@@ -21,5 +21,24 @@ namespace Businesslayer
             ReservationUsers = reservationUsers;
         }
 
+        public void AddToGroup()
+        {
+            
+        }
+
+        public void AddUser()
+        {
+            
+        }
+
+        public void UpdateCampingSpots()
+        {
+            
+        }
+
+        public void CheckorCreateGroup()
+        {
+            
+        }
     }
 }
