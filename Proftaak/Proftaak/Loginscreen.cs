@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proftaak
 {
-    public partial class Form1 : Form
+    public partial class Loginscreen : Form
     {
-        public Form1()
+        public Loginscreen()
         {
             InitializeComponent();
         }

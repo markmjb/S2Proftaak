@@ -1,6 +1,6 @@
 ﻿namespace Proftaak
 {
-    partial class Form1
+    partial class Loginscreen
     {
         /// <summary>
         /// Required designer variable.
