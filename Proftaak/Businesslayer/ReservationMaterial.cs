@@ -8,6 +8,26 @@ namespace Businesslayer
 {
     class ReservationMaterial
     {
-        public TYPE Type { get; set; }
+        public int Amount { get; set; }
+        public decimal Price { get; set; }
+
+        public void ChangePrice()
+        {
+            
+        }
+
+        public void ChangeStock()
+        {
+            
+        }
+        public void LoanMaterial()
+        {
+            
+        }
+        public void ReturnMaterial()
+        {
+            
+        }
+
     }
 }
