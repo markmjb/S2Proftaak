@@ -48,6 +48,7 @@
     <Compile Include="DbAccess.cs" />
     <Compile Include="Databaseconnection.cs" />
     <Compile Include="DbMaterial.cs" />
+    <Compile Include="DbMedia.cs" />
     <Compile Include="DbRemainder.cs" />
     <Compile Include="DbReservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

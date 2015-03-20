@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Datalayer
 {
-    class DbRemainder: Databaseconnection
+    public class DbRemainder: Databaseconnection
     {
+        //For Event and Login database handling.
     }
 }

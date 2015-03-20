@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datalayer
+namespace Businesslayer
 {
-   public class DbMaterial: Databaseconnection
+    class Mediaitem
     {
     }
 }

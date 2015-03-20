@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datalayer
 {
-   public class DbMaterial: Databaseconnection
+    public class DbMedia : Databaseconnection
     {
     }
 }
