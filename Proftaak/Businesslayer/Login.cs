@@ -8,5 +8,11 @@ namespace Businesslayer
 {
     class Login
     {
+
+
+        public void CheckLogin()
+        {
+            
+        }
     }
 }
