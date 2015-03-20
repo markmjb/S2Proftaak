@@ -8,5 +8,6 @@ namespace Businesslayer
 {
     class ReservationMaterial
     {
+        public TYPE Type { get; set; }
     }
 }

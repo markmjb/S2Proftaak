@@ -20,23 +20,27 @@ namespace Businesslayer
             Price = price;
             ReservationUsers = reservationUsers;
         }
-
         public void AddToGroup()
         {
             
         }
-
         public void AddUser()
         {
             
         }
-
         public void UpdateCampingSpots()
         {
             
         }
-
         public void CheckorCreateGroup()
+        {
+            
+        }
+        public void HandlePayment()
+        {
+            
+        }
+        public void SaveReservation()
         {
             
         }
