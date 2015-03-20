@@ -16,5 +16,23 @@ namespace Proftaak
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Loginscreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            //Check for correct login, than:
+            this.Hide();
+            StartScreen S = new StartScreen();
+            S.Show();
+        }
     }
 }

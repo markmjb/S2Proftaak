@@ -221,7 +221,6 @@
             this.tabPage2.Size = new System.Drawing.Size(961, 521);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Upload media";
-
             // 
             // groupBox1
             // 
@@ -347,14 +346,15 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Description / Text :";
             // 
-            // Form1
+            // Mediasharing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 473);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Mediasharing";
+            this.Text = "Mediasharing";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mediasharing_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

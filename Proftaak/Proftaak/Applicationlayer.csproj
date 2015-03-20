@@ -82,11 +82,26 @@
     <Compile Include="Reservation.Designer.cs">
       <DependentUpon>Reservation.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartScreen.Designer.cs">
+      <DependentUpon>StartScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AccessControlForm.resx">
       <DependentUpon>AccessControlForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventControl.resx">
       <DependentUpon>EventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loginscreen.resx">
+      <DependentUpon>Loginscreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialControlForm.resx">
+      <DependentUpon>MaterialControlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaSharing.resx">
+      <DependentUpon>MediaSharing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -97,6 +112,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reservation.resx">
+      <DependentUpon>Reservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartScreen.resx">
+      <DependentUpon>StartScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

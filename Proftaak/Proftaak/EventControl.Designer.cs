@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(348, 362);
             this.Name = "EventControl";
             this.Text = "EventControl";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventControl_FormClosing);
             this.ResumeLayout(false);
 
         }

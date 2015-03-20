@@ -31,6 +31,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label45 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label41 = new System.Windows.Forms.Label();
@@ -48,25 +56,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.domainUpDown3 = new System.Windows.Forms.DomainUpDown();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.domainUpDown3 = new System.Windows.Forms.DomainUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -126,6 +126,91 @@
             this.tabPage1.Size = new System.Drawing.Size(440, 494);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(201, 213);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(41, 23);
+            this.button6.TabIndex = 44;
+            this.button6.Text = "<<";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(201, 184);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(41, 23);
+            this.button5.TabIndex = 43;
+            this.button5.Text = ">>";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(318, 307);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(10, 13);
+            this.label47.TabIndex = 42;
+            this.label47.Text = "-";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(255, 307);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(57, 13);
+            this.label46.TabIndex = 41;
+            this.label46.Text = "Total price";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(354, 300);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(55, 23);
+            this.button3.TabIndex = 40;
+            this.button3.Text = "Order";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(308, 114);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(56, 13);
+            this.label45.TabIndex = 39;
+            this.label45.Text = "Your items";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Items.AddRange(new object[] {
+            "Item 1, amount, price",
+            "Item 2, amount, price",
+            "Item 8, amount, price"});
+            this.listBox2.Location = new System.Drawing.Point(258, 141);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(151, 147);
+            this.listBox2.TabIndex = 38;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Item 1, price",
+            "Item 2, price",
+            "Item 3, price",
+            "Item 4, price",
+            "Item 5, price",
+            "Item 6, price",
+            "Item 7, price",
+            "Item 8, price"});
+            this.listBox1.Location = new System.Drawing.Point(33, 141);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(151, 147);
+            this.listBox1.TabIndex = 37;
             // 
             // button1
             // 
@@ -291,6 +376,65 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stock";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(134, 271);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 102;
+            this.label5.Text = "New price:";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(262, 265);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 101;
+            this.button2.Text = "Change";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(195, 268);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(61, 20);
+            this.textBox1.TabIndex = 100;
+            // 
+            // domainUpDown3
+            // 
+            this.domainUpDown3.Items.Add("item 1");
+            this.domainUpDown3.Items.Add("item 2");
+            this.domainUpDown3.Items.Add("item 3");
+            this.domainUpDown3.Items.Add("item 4");
+            this.domainUpDown3.Items.Add("item 5");
+            this.domainUpDown3.Items.Add("item 6");
+            this.domainUpDown3.Items.Add("item 7 ");
+            this.domainUpDown3.Items.Add("item 8");
+            this.domainUpDown3.Location = new System.Drawing.Point(72, 268);
+            this.domainUpDown3.Name = "domainUpDown3";
+            this.domainUpDown3.Size = new System.Drawing.Size(56, 20);
+            this.domainUpDown3.TabIndex = 99;
+            this.domainUpDown3.Text = "item 1";
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Items.AddRange(new object[] {
+            "Item 1, price, stock",
+            "Item 2, price, stock",
+            "Item 3, price, stock",
+            "Item 4, price, stock",
+            "Item 5, price, stock",
+            "Item 6, price, stock",
+            "Item 7, price, stock",
+            "Item 8, price, stock"});
+            this.listBox3.Location = new System.Drawing.Point(63, 80);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.ScrollAlwaysVisible = true;
+            this.listBox3.Size = new System.Drawing.Size(222, 160);
+            this.listBox3.TabIndex = 98;
+            // 
             // domainUpDown2
             // 
             this.domainUpDown2.Items.Add("item 1");
@@ -350,158 +494,15 @@
             this.textBox13.Size = new System.Drawing.Size(61, 20);
             this.textBox13.TabIndex = 92;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "Item 1, price",
-            "Item 2, price",
-            "Item 3, price",
-            "Item 4, price",
-            "Item 5, price",
-            "Item 6, price",
-            "Item 7, price",
-            "Item 8, price"});
-            this.listBox1.Location = new System.Drawing.Point(33, 141);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(151, 147);
-            this.listBox1.TabIndex = 37;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "Item 1, amount, price",
-            "Item 2, amount, price",
-            "Item 8, amount, price"});
-            this.listBox2.Location = new System.Drawing.Point(258, 141);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.ScrollAlwaysVisible = true;
-            this.listBox2.Size = new System.Drawing.Size(151, 147);
-            this.listBox2.TabIndex = 38;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(308, 114);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(56, 13);
-            this.label45.TabIndex = 39;
-            this.label45.Text = "Your items";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(354, 300);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 23);
-            this.button3.TabIndex = 40;
-            this.button3.Text = "Order";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(255, 307);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(57, 13);
-            this.label46.TabIndex = 41;
-            this.label46.Text = "Total price";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(318, 307);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(10, 13);
-            this.label47.TabIndex = 42;
-            this.label47.Text = "-";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(201, 184);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(41, 23);
-            this.button5.TabIndex = 43;
-            this.button5.Text = ">>";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(201, 213);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(41, 23);
-            this.button6.TabIndex = 44;
-            this.button6.Text = "<<";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Items.AddRange(new object[] {
-            "Item 1, price, stock",
-            "Item 2, price, stock",
-            "Item 3, price, stock",
-            "Item 4, price, stock",
-            "Item 5, price, stock",
-            "Item 6, price, stock",
-            "Item 7, price, stock",
-            "Item 8, price, stock"});
-            this.listBox3.Location = new System.Drawing.Point(63, 80);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.ScrollAlwaysVisible = true;
-            this.listBox3.Size = new System.Drawing.Size(222, 160);
-            this.listBox3.TabIndex = 98;
-            // 
-            // domainUpDown3
-            // 
-            this.domainUpDown3.Items.Add("item 1");
-            this.domainUpDown3.Items.Add("item 2");
-            this.domainUpDown3.Items.Add("item 3");
-            this.domainUpDown3.Items.Add("item 4");
-            this.domainUpDown3.Items.Add("item 5");
-            this.domainUpDown3.Items.Add("item 6");
-            this.domainUpDown3.Items.Add("item 7 ");
-            this.domainUpDown3.Items.Add("item 8");
-            this.domainUpDown3.Location = new System.Drawing.Point(72, 268);
-            this.domainUpDown3.Name = "domainUpDown3";
-            this.domainUpDown3.Size = new System.Drawing.Size(56, 20);
-            this.domainUpDown3.TabIndex = 99;
-            this.domainUpDown3.Text = "item 1";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(195, 268);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(61, 20);
-            this.textBox1.TabIndex = 100;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(262, 265);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 101;
-            this.button2.Text = "Change";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(134, 271);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 102;
-            this.label5.Text = "New price:";
-            // 
-            // Form1
+            // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 522);
             this.Controls.Add(this.Lenen);
-            this.Name = "Form1";
+            this.Name = "MaterialControlForm";
             this.Text = "Material control";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MaterialControlForm_FormClosing);
             this.Lenen.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

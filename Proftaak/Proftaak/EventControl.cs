@@ -16,5 +16,11 @@ namespace Proftaak
         {
             InitializeComponent();
         }
+
+        private void EventControl_FormClosing(object sender, FormClosingEventArgs e)
+        {
+    StartScreen S = new StartScreen();
+            S.Show();
+        }
     }
 }
