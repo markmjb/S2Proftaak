@@ -28,5 +28,5 @@ namespace Businesslayer
             Debt = debt;
             Password = password;
         }
-    }s
+    }
 }
