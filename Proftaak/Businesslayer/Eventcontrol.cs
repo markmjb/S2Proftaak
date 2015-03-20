@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    public class EventControl
+    public class EventControl : Reserveration
     {
-        public User Employee { get; set; }
         public string Description { get; set; }
         public Address LocationAddress { get; set; }
         public string Name { get; set; }
         public string RFID { get; set; }
 
-        public EventControl(User employee, string description, Address locationAddress, string name, string rfid)
+        public EventControl(DateTime beginTime, DateTime endtime, User employee, string description, Address locationAddress, string name, string rfid) : base(beginTime, endtime, employee)
         {
-            Employee = employee;
             Description = description;
             LocationAddress = locationAddress;
             Name = name;

@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    public class ReservationCampspot
+    public class ReservationCampspot : Reserveration
     {
-        public User Employee { get; set; }
         public List<int> Campingspots { get; set; }
         public decimal Price { get; set; }
         public List<User> ReservationUsers { get; set; }
 
-        public ReservationCampspot(User employee, List<int> campingspots, decimal price, List<User> reservationUsers)
+        public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, List<int> campingspots, decimal price, List<User> reservationUsers) : base(beginTime, endtime, employee)
         {
-            Employee = employee;
             Campingspots = campingspots;
             Price = price;
             ReservationUsers = reservationUsers;
