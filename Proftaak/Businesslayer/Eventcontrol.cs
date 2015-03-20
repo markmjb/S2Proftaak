@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    class EventControl
+    public class EventControl
     {
         public User Employee { get; set; }
         public string Description { get; set; }

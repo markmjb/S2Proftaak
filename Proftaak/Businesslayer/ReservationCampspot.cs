@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    class ReservationCampspot
+    public class ReservationCampspot
     {
         public User Employee { get; set; }
         public List<int> Campingspots { get; set; }

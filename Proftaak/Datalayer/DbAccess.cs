@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datalayer
 {
-    class DbAccess
+    public class DbAccess : Datalayer.Databaseconnection
     {
     }
 }

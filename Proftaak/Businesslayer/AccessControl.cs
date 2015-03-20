@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    class AccessControl
+    public class AccessControl
     {
 
 

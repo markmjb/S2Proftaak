@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datalayer
 {
-    class DbReservation
+    class DbReservation: Databaseconnection
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    class Group
+    public class Group
     {
         public List<User> GroupMembers { get; set; }
         public string Name { get; set; }
