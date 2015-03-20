@@ -1,6 +1,6 @@
 ﻿namespace Proftaak
 {
-    partial class MediaSharingg
+    partial class MediaSharing
     {
         /// <summary>
         /// Required designer variable.
