@@ -201,9 +201,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(232, 71);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 13);
+            this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 110;
-            this.label7.Text = "Reservation | Users";
+            this.label7.Text = "Reservation | Name";
             // 
             // comboBox1
             // 
@@ -218,9 +218,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(17, 73);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(169, 13);
+            this.label6.Size = new System.Drawing.Size(148, 13);
             this.label6.TabIndex = 108;
-            this.label6.Text = "Reservationnumber | Reservations";
+            this.label6.Text = "Reservationnumber | Payment";
             // 
             // button6
             // 
@@ -567,10 +567,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(486, 304);
+            this.label2.Location = new System.Drawing.Point(469, 292);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 115;
+            this.label2.TabIndex = 114;
             this.label2.Text = "Checked In";
             // 
             // AccessControlForm

@@ -1,6 +1,6 @@
 ﻿namespace Proftaak
 {
-    partial class MediaSharing
+    partial class Mediasharing
     {
         /// <summary>
         /// Required designer variable.
@@ -221,7 +221,7 @@
             this.tabPage2.Size = new System.Drawing.Size(961, 521);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Upload media";
- 
+
             // 
             // groupBox1
             // 

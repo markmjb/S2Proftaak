@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proftaak
 {
-    public partial class MediaSharing : Form
+    public partial class Mediasharing : Form
     {
-        public MediaSharing()
+        public Mediasharing()
         {
             InitializeComponent();
         }
