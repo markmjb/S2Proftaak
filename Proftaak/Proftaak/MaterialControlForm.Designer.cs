@@ -126,6 +126,7 @@
             this.tabPage1.Size = new System.Drawing.Size(440, 494);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // button6
             // 
@@ -236,9 +237,9 @@
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(155, 418);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(74, 13);
+            this.label41.Size = new System.Drawing.Size(174, 13);
             this.label41.TabIndex = 34;
-            this.label41.Text = "item 1 / item 5";
+            this.label41.Text = "item 1_29-03-15\' / item 5_30-03-15\'";
             // 
             // label42
             // 

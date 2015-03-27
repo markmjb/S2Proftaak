@@ -22,5 +22,10 @@ namespace Proftaak
          StartScreen S = new StartScreen();
             S.Show();
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
