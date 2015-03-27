@@ -57,18 +57,26 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -346,6 +354,66 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Description / Text :";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button9);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.listBox2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(961, 521);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Reports";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Items.AddRange(new object[] {
+            "ReportID : 1, Name : Chris, MediaTitle : Kijk deze shit! ",
+            "ReportedBy : Rob, Description : Abusieve taalgebruik in de titel"});
+            this.listBox2.Location = new System.Drawing.Point(141, 6);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(329, 433);
+            this.listBox2.TabIndex = 0;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(8, 55);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(116, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Delete Report:";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(9, 81);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(116, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Delete Report";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(9, 129);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(115, 23);
+            this.button9.TabIndex = 4;
+            this.button9.Text = "Navigate to post";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
             // Mediasharing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,6 +431,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -398,5 +468,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
