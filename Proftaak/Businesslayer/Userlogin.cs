@@ -8,6 +8,6 @@ namespace Businesslayer
 {
 public    class Userlogin
 {
-    public static int LoggedUserID = 0;
+    public static int LoggedUserId = 0;
 }
 }
