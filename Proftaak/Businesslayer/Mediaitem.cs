@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    class Mediaitem
+    public class Mediaitem
     {
         public string Type { get; set; }
 

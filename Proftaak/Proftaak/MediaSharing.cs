@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Businesslayer;
 
 namespace Proftaak
 {
@@ -23,6 +24,7 @@ namespace Proftaak
        private string category;
        private string filepath;
        private string title;
+       private int userID;
 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
@@ -44,13 +46,14 @@ namespace Proftaak
 
         private void btnUploadMediaTab2_Click(object sender, EventArgs e)
         {
+
           type = cbtypetab2.Text;
           title = tbTitle.Text;
           description = tbDescription.Text;
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
 
-            
+          Mediaitem newmedia = new Mediaitem(type, title, description, category, userID);  
           
 
           
