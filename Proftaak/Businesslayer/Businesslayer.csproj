@@ -50,6 +50,7 @@
     <Compile Include="ReservationMaterial.cs" />
     <Compile Include="Reserveration.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Userlogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datalayer\Datalayer.csproj">
