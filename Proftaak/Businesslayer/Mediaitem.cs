@@ -7,8 +7,10 @@ using Datalayer;
 
 namespace Businesslayer
 {
+    
     public class Mediaitem
     {
+        DbMedia dbm = new DbMedia();
         public string Type { get; set; }
 
         public string Title { get; set; }
@@ -28,6 +30,8 @@ namespace Businesslayer
             this.Description = Description;
             this.CategoryID = CategoryID;
             this.UserID = UserID;
+
+            dbm.AddMediaItem(Title, Description, UserID);
 
         }
 

@@ -56,10 +56,9 @@ namespace Proftaak
           description = tbDescription.Text;
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
-          categoryID = getcategory();
+          categoryID = 3;
           userID = userl.LoggedUserID;
-          MessageBox.Show(userID.ToString());
-          MessageBox.Show(categoryID.ToString());
+          
 
           Mediaitem newmedia = new Mediaitem(type, title, description, categoryID, userID);  
 

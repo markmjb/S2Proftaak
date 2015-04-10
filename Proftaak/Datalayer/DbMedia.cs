@@ -13,7 +13,7 @@ namespace Datalayer
         Databaseconnection dbc = new Databaseconnection();
         int MediacategoryID;
 
-       public void AddMediaItem(String Type, String Title, String Description, String Category, int UserID)
+       public void AddMediaItem(String Title, String Description, int UserID)
        {
            try
            {
@@ -44,7 +44,7 @@ namespace Datalayer
                Openconnection();
                CMD().CommandText = "SELECT MEDIACATEGORY FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME  = :input";
                CMD().Parameters.Add("input", categoryinput);
-        
+
                OracleDataReader reader = CMD().ExecuteReader();
 
                while (reader.Read())
