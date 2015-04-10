@@ -131,6 +131,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Businesslayer\Businesslayer.csproj">
+      <Project>{5c2fa6b8-e6e6-4f2d-87c4-24db6e3ee231}</Project>
+      <Name>Businesslayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
