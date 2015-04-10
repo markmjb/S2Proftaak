@@ -63,6 +63,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -263,6 +264,9 @@
             // cbCategory
             // 
             this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Items.AddRange(new object[] {
+            "Horror",
+            "Happy"});
             this.cbCategory.Location = new System.Drawing.Point(67, 283);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(164, 21);
@@ -281,7 +285,9 @@
             // 
             this.cbtypetab2.FormattingEnabled = true;
             this.cbtypetab2.Items.AddRange(new object[] {
-            "Foto"});
+            "Picture",
+            "Video",
+            "Text"});
             this.cbtypetab2.Location = new System.Drawing.Point(250, 18);
             this.cbtypetab2.Name = "cbtypetab2";
             this.cbtypetab2.Size = new System.Drawing.Size(87, 21);
@@ -295,6 +301,7 @@
             this.btnBrowse.TabIndex = 21;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // btnUploadMediaTab2
             // 
@@ -304,6 +311,7 @@
             this.btnUploadMediaTab2.TabIndex = 11;
             this.btnUploadMediaTab2.Text = "Upload Media";
             this.btnUploadMediaTab2.UseVisualStyleBackColor = true;
+            this.btnUploadMediaTab2.Click += new System.EventHandler(this.btnUploadMediaTab2_Click);
             // 
             // tbSelectFile
             // 
@@ -414,6 +422,10 @@
             this.listBox2.Size = new System.Drawing.Size(329, 433);
             this.listBox2.TabIndex = 0;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Mediasharing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,5 +486,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
