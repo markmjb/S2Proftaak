@@ -11,16 +11,26 @@ namespace Datalayer
 {
     public class Databaseconnection
     {
-        private OracleConnection conn;
+        public OracleConnection conn;
 
         public Databaseconnection()
         {
             //Oude proftaak connection
-  
-                conn = new OracleConnection();
-                string user = "system";
-                string pw = "system";
-                conn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
+
+            conn = new OracleConnection();
+            string user = "system";
+            string pw = "system";
+            conn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
+        }
+
+        public void OpenConnection()
+        {
+            OpenConnection();
+        }
+
+        public void CloseConnection()
+        {
+            
         }
   
     }
