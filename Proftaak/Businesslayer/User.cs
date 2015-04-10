@@ -16,7 +16,6 @@ namespace Businesslayer
         public string Email { get; set; }
         public Decimal Debt { get; set; }
         public string Password { get; set; }
-
         public int ID { get; set; }
 
         public User(string firstname, string lastname, Address address, Group @group, bool isadmin, string email, decimal debt, string password, int ID )
