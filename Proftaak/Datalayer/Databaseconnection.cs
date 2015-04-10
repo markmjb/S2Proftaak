@@ -21,20 +21,22 @@ namespace Datalayer
                 conn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
         }
 
-        public void Openconnection()
+        public void OpenConnection()
         {
-            this.conn.Open();
+            try
+            {
+                conn = new OracleConnection();
+                conn.Open();
+            }
+            catch
+            {
+                conn.Close();
+            }
         }
 
-        public OracleCommand CMD()
+        public void QueryString()
         {
-            OracleCommand cmd = this.conn.CreateCommand();
-            return cmd;
-        }
 
-        public void Closeconnection()
-        {
-            this.conn.Close();
         }
     }
 }
