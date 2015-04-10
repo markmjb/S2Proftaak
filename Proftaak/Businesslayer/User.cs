@@ -17,7 +17,9 @@ namespace Businesslayer
         public Decimal Debt { get; set; }
         public string Password { get; set; }
 
-        public User(string firstname, string lastname, Address address, Group @group, bool isadmin, string email, decimal debt, string password)
+        public int ID { get; set; }
+
+        public User(string firstname, string lastname, Address address, Group @group, bool isadmin, string email, decimal debt, string password, int ID )
         {
             Firstname = firstname;
             Lastname = lastname;
@@ -27,6 +29,7 @@ namespace Businesslayer
             Email = email;
             Debt = debt;
             Password = password;
+            this.ID = ID;
         }
     }
 }
