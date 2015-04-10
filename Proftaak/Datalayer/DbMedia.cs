@@ -11,13 +11,6 @@ namespace Datalayer
     public class DbMedia : Databaseconnection
     {      
 
-       //public void AddMediaItem(String Type, String Title, String Description, String Category, int UserID)
-       // {
-  
-       //     string sql = "INSERT INTO PTS2_MEDIAITEM VALUES ('" + Type + "'," + Title + "," + Description + ","  + Category + "," + UserID + ")";
-       //     OracleConnection command = new OracleConnection(sql , conn.ConnectionString);
-       //}
-
        public void AddMediaItem(String Type, String Title, String Description, String Category, int UserID)
        {
            try
@@ -42,5 +35,28 @@ namespace Datalayer
                Closeconnection();
            }
        }
+
+       private void GetCategoryID(string categoryinput)
+       {
+           try
+           {
+               
+               Openconnection();
+
+               CMD().ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               Closeconnection();
+           }
+
+          
+
+       }
+ 
     }
 }

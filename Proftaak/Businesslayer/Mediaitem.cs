@@ -18,12 +18,14 @@ namespace Businesslayer
 
         public int UserID { get; set; }
 
-        public Mediaitem(string Type, string Title, string Description, string Category, int UserID)
+        public int CategoryID { get; set; }
+
+        public Mediaitem(string Type, string Title, string Description, int CategoryID, int UserID)
         {
             this.Type = Type;
             this.Title = Title;
             this.Description = Description;
-            this.Category = Category;
+            this.CategoryID = CategoryID;
             this.UserID = UserID;
 
         }

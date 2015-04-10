@@ -25,6 +25,7 @@ namespace Proftaak
        private string filepath;
        private string title;
        private int userID;
+       private int categoryID;
 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
@@ -52,8 +53,9 @@ namespace Proftaak
           description = tbDescription.Text;
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
+          GetCategoryID(category);
 
-          Mediaitem newmedia = new Mediaitem(type, title, description, category, userID);  
+          Mediaitem newmedia = new Mediaitem(type, title, description, categoryID, userID);  
           
 
           
@@ -61,5 +63,7 @@ namespace Proftaak
           
 
         }
+
+      
     }
 }
