@@ -29,6 +29,7 @@ namespace Datalayer
         public OracleCommand CMD()
         {
             OracleCommand cmd = this.conn.CreateCommand();
+            return cmd;
         }
 
         public void Closeconnection()

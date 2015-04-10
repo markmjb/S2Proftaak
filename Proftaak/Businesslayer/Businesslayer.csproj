@@ -51,12 +51,6 @@
     <Compile Include="Reserveration.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Datalayer\Datalayer.csproj">
-      <Project>{6a3ddd02-e927-4501-bb6b-e09b18464cb7}</Project>
-      <Name>Datalayer</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
