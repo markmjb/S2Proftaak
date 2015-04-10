@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-    public class EventControl : Reserveration
+    public class EventControl : Reservation
     {
         public string Description { get; set; }
         public Address LocationAddress { get; set; }
