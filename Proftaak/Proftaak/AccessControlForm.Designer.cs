@@ -81,6 +81,7 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
+            this.tbRFIDNr = new System.Windows.Forms.TextBox();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -149,6 +150,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.tbRFIDNr);
             this.tabPage1.Controls.Add(this.pbChecked);
             this.tabPage1.Controls.Add(this.lblChecked);
             this.tabPage1.Controls.Add(this.gbReservations);
@@ -584,6 +586,13 @@
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
             // 
+            // tbRFIDNr
+            // 
+            this.tbRFIDNr.Location = new System.Drawing.Point(454, 268);
+            this.tbRFIDNr.Name = "tbRFIDNr";
+            this.tbRFIDNr.Size = new System.Drawing.Size(141, 20);
+            this.tbRFIDNr.TabIndex = 116;
+            // 
             // AccessControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -664,5 +673,6 @@
         private System.Windows.Forms.TextBox tbStrNr;
         private System.Windows.Forms.TextBox tbSurname;
         private System.Windows.Forms.PictureBox pbChecked;
+        private System.Windows.Forms.TextBox tbRFIDNr;
     }
 }
