@@ -9,25 +9,38 @@ using Oracle.DataAccess.Client;
 namespace Datalayer
 {
     public class DbMedia : Databaseconnection
-    {
-        private OracleConnection conn;
+    {      
 
-            public void Databaseconnection()
-        {
-         
-                string user = "system";
-                string pw = "system";
-                conn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
-                conn = new OracleConnection(conn.ConnectionString);
-        }
-
-        
+       //public void AddMediaItem(String Type, String Title, String Description, String Category, int UserID)
+       // {
+  
+       //     string sql = "INSERT INTO PTS2_MEDIAITEM VALUES ('" + Type + "'," + Title + "," + Description + ","  + Category + "," + UserID + ")";
+       //     OracleConnection command = new OracleConnection(sql , conn.ConnectionString);
+       //}
 
        public void AddMediaItem(String Type, String Title, String Description, String Category, int UserID)
-        {
-  
-            string sql = "INSERT INTO PTS2_MEDIAITEM VALUES ('" + Type + "'," + Title + "," + Description + ","  + Category + "," + UserID + ")";
-            OracleConnection command = new OracleConnection(sql , conn.ConnectionString);
+       {
+           try
+           {
+               CMD().CommandText =
+                   " INSERT INTO PTS2_MEDIAITEM(Title,Type,Description,Category,UserID) VALUES (:title, :type, :desc, :cat, :uid)";
+               CMD().Parameters.Add("title", Title);
+               CMD().Parameters.Add("type", Type);
+               CMD().Parameters.Add("desc", Description);
+               CMD().Parameters.Add("cat", Category);
+               CMD().Parameters.Add("uid", UserID);
+               Openconnection();
+               
+               CMD().ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               Closeconnection();
+           }
        }
     }
 }
