@@ -31,38 +31,38 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.listBoxInfo = new System.Windows.Forms.ListBox();
+            this.btnUploadMedia = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLike = new System.Windows.Forms.Button();
+            this.btnReply = new System.Windows.Forms.Button();
+            this.tbReply = new System.Windows.Forms.RichTextBox();
+            this.btnSpam = new System.Windows.Forms.Button();
+            this.btnDownloadMedia = new System.Windows.Forms.Button();
+            this.btnDeleteMedia = new System.Windows.Forms.Button();
             this.FileBox = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbtype = new System.Windows.Forms.ComboBox();
+            this.tbsearch = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.cbtypetab2 = new System.Windows.Forms.ComboBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.btnUploadMediaTab2 = new System.Windows.Forms.Button();
+            this.tbSelectFile = new System.Windows.Forms.TextBox();
+            this.tbDescription = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -88,15 +88,15 @@
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.button7);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.richTextBox1);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.btnLike);
+            this.tabPage1.Controls.Add(this.btnReply);
+            this.tabPage1.Controls.Add(this.tbReply);
+            this.tabPage1.Controls.Add(this.btnSpam);
+            this.tabPage1.Controls.Add(this.btnDownloadMedia);
+            this.tabPage1.Controls.Add(this.btnDeleteMedia);
             this.tabPage1.Controls.Add(this.FileBox);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.cbtype);
+            this.tabPage1.Controls.Add(this.tbsearch);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -106,8 +106,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.listBox1);
-            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.listBoxInfo);
+            this.groupBox3.Controls.Add(this.btnUploadMedia);
             this.groupBox3.Location = new System.Drawing.Point(202, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(543, 80);
@@ -115,22 +115,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "File Info";
             // 
-            // listBox1
+            // listBoxInfo
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 14);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(388, 56);
-            this.listBox1.TabIndex = 11;
+            this.listBoxInfo.FormattingEnabled = true;
+            this.listBoxInfo.Location = new System.Drawing.Point(6, 14);
+            this.listBoxInfo.Name = "listBoxInfo";
+            this.listBoxInfo.Size = new System.Drawing.Size(388, 56);
+            this.listBoxInfo.TabIndex = 11;
             // 
-            // button5
+            // btnUploadMedia
             // 
-            this.button5.Location = new System.Drawing.Point(400, 14);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(137, 56);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Upload media";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnUploadMedia.Location = new System.Drawing.Point(400, 14);
+            this.btnUploadMedia.Name = "btnUploadMedia";
+            this.btnUploadMedia.Size = new System.Drawing.Size(137, 56);
+            this.btnUploadMedia.TabIndex = 7;
+            this.btnUploadMedia.Text = "Upload media";
+            this.btnUploadMedia.UseVisualStyleBackColor = true;
+            this.btnUploadMedia.Click += new System.EventHandler(this.btnUploadMedia_Click);
             // 
             // pictureBox1
             // 
@@ -140,58 +141,58 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // button7
+            // btnLike
             // 
-            this.button7.Location = new System.Drawing.Point(602, 422);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(143, 23);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "Like";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnLike.Location = new System.Drawing.Point(602, 422);
+            this.btnLike.Name = "btnLike";
+            this.btnLike.Size = new System.Drawing.Size(143, 23);
+            this.btnLike.TabIndex = 10;
+            this.btnLike.Text = "Like";
+            this.btnLike.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnReply
             // 
-            this.button6.Location = new System.Drawing.Point(602, 393);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(143, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Give a reply";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnReply.Location = new System.Drawing.Point(602, 393);
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Size = new System.Drawing.Size(143, 23);
+            this.btnReply.TabIndex = 9;
+            this.btnReply.Text = "Give a reply";
+            this.btnReply.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // tbReply
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(202, 395);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(394, 47);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
+            this.tbReply.Location = new System.Drawing.Point(202, 395);
+            this.tbReply.Name = "tbReply";
+            this.tbReply.Size = new System.Drawing.Size(394, 47);
+            this.tbReply.TabIndex = 8;
+            this.tbReply.Text = "";
             // 
-            // button4
+            // btnSpam
             // 
-            this.button4.Location = new System.Drawing.Point(18, 412);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(178, 30);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Report as spam";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSpam.Location = new System.Drawing.Point(18, 412);
+            this.btnSpam.Name = "btnSpam";
+            this.btnSpam.Size = new System.Drawing.Size(178, 30);
+            this.btnSpam.TabIndex = 6;
+            this.btnSpam.Text = "Report as spam";
+            this.btnSpam.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnDownloadMedia
             // 
-            this.button3.Location = new System.Drawing.Point(18, 376);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 30);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Download media";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDownloadMedia.Location = new System.Drawing.Point(18, 376);
+            this.btnDownloadMedia.Name = "btnDownloadMedia";
+            this.btnDownloadMedia.Size = new System.Drawing.Size(178, 30);
+            this.btnDownloadMedia.TabIndex = 5;
+            this.btnDownloadMedia.Text = "Download media";
+            this.btnDownloadMedia.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDeleteMedia
             // 
-            this.button1.Location = new System.Drawing.Point(18, 340);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Delete media";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDeleteMedia.Location = new System.Drawing.Point(18, 340);
+            this.btnDeleteMedia.Name = "btnDeleteMedia";
+            this.btnDeleteMedia.Size = new System.Drawing.Size(178, 30);
+            this.btnDeleteMedia.TabIndex = 3;
+            this.btnDeleteMedia.Text = "Delete media";
+            this.btnDeleteMedia.UseVisualStyleBackColor = true;
             // 
             // FileBox
             // 
@@ -201,23 +202,22 @@
             this.FileBox.Size = new System.Drawing.Size(178, 251);
             this.FileBox.TabIndex = 2;
             // 
-            // comboBox1
+            // cbtype
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbtype.FormattingEnabled = true;
+            this.cbtype.Items.AddRange(new object[] {
             "Media"});
-            this.comboBox1.Location = new System.Drawing.Point(18, 46);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(178, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cbtype.Location = new System.Drawing.Point(18, 46);
+            this.cbtype.Name = "cbtype";
+            this.cbtype.Size = new System.Drawing.Size(178, 21);
+            this.cbtype.TabIndex = 1;
             // 
-            // textBox1
+            // tbsearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(18, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "SearchBox";
+            this.tbsearch.Location = new System.Drawing.Point(18, 20);
+            this.tbsearch.Name = "tbsearch";
+            this.tbsearch.Size = new System.Drawing.Size(178, 20);
+            this.tbsearch.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -233,16 +233,16 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.cbCategory);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.button12);
-            this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.richTextBox2);
+            this.groupBox1.Controls.Add(this.cbtypetab2);
+            this.groupBox1.Controls.Add(this.btnBrowse);
+            this.groupBox1.Controls.Add(this.btnUploadMediaTab2);
+            this.groupBox1.Controls.Add(this.tbSelectFile);
+            this.groupBox1.Controls.Add(this.tbDescription);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tbTitle);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(8, 18);
             this.groupBox1.Name = "groupBox1";
@@ -260,13 +260,13 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "Category :";
             // 
-            // comboBox3
+            // cbCategory
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(67, 283);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(164, 21);
-            this.comboBox3.TabIndex = 22;
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(67, 283);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(164, 21);
+            this.cbCategory.TabIndex = 22;
             // 
             // label6
             // 
@@ -277,48 +277,48 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Choose the media type you would like to upload :";
             // 
-            // comboBox2
+            // cbtypetab2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbtypetab2.FormattingEnabled = true;
+            this.cbtypetab2.Items.AddRange(new object[] {
             "Foto"});
-            this.comboBox2.Location = new System.Drawing.Point(250, 18);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(87, 21);
-            this.comboBox2.TabIndex = 11;
+            this.cbtypetab2.Location = new System.Drawing.Point(250, 18);
+            this.cbtypetab2.Name = "cbtypetab2";
+            this.cbtypetab2.Size = new System.Drawing.Size(87, 21);
+            this.cbtypetab2.TabIndex = 11;
             // 
-            // button12
+            // btnBrowse
             // 
-            this.button12.Location = new System.Drawing.Point(237, 247);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(100, 23);
-            this.button12.TabIndex = 21;
-            this.button12.Text = "Browse";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnBrowse.Location = new System.Drawing.Point(237, 247);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(100, 23);
+            this.btnBrowse.TabIndex = 21;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnUploadMediaTab2
             // 
-            this.button8.Location = new System.Drawing.Point(9, 360);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(328, 23);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "Upload Media";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnUploadMediaTab2.Location = new System.Drawing.Point(9, 360);
+            this.btnUploadMediaTab2.Name = "btnUploadMediaTab2";
+            this.btnUploadMediaTab2.Size = new System.Drawing.Size(328, 23);
+            this.btnUploadMediaTab2.TabIndex = 11;
+            this.btnUploadMediaTab2.Text = "Upload Media";
+            this.btnUploadMediaTab2.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // tbSelectFile
             // 
-            this.textBox6.Location = new System.Drawing.Point(9, 247);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(222, 20);
-            this.textBox6.TabIndex = 20;
+            this.tbSelectFile.Location = new System.Drawing.Point(9, 247);
+            this.tbSelectFile.Name = "tbSelectFile";
+            this.tbSelectFile.Size = new System.Drawing.Size(222, 20);
+            this.tbSelectFile.TabIndex = 20;
             // 
-            // richTextBox2
+            // tbDescription
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(9, 117);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(328, 81);
-            this.richTextBox2.TabIndex = 10;
-            this.richTextBox2.Text = "";
+            this.tbDescription.Location = new System.Drawing.Point(9, 117);
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.Size = new System.Drawing.Size(328, 81);
+            this.tbDescription.TabIndex = 10;
+            this.tbDescription.Text = "";
             // 
             // label5
             // 
@@ -338,12 +338,12 @@
             this.label9.TabIndex = 16;
             this.label9.Text = "Select File :";
             // 
-            // textBox2
+            // tbTitle
             // 
-            this.textBox2.Location = new System.Drawing.Point(9, 66);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(328, 20);
-            this.textBox2.TabIndex = 0;
+            this.tbTitle.Location = new System.Drawing.Point(9, 66);
+            this.tbTitle.Name = "tbTitle";
+            this.tbTitle.Size = new System.Drawing.Size(328, 20);
+            this.tbTitle.TabIndex = 0;
             // 
             // label1
             // 
@@ -369,32 +369,14 @@
             this.tabPage3.Text = "Reports";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // button9
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "ReportID : 1, Name : Chris, MediaTitle : Kijk deze shit! ",
-            "ReportedBy : Rob, Description : Abusieve taalgebruik in de titel"});
-            this.listBox2.Location = new System.Drawing.Point(141, 6);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(329, 433);
-            this.listBox2.TabIndex = 0;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(8, 55);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(116, 20);
-            this.textBox3.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Delete Report:";
+            this.button9.Location = new System.Drawing.Point(9, 129);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(115, 23);
+            this.button9.TabIndex = 4;
+            this.button9.Text = "Navigate to post";
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -405,14 +387,32 @@
             this.button2.Text = "Delete Report";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // label3
             // 
-            this.button9.Location = new System.Drawing.Point(9, 129);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(115, 23);
-            this.button9.TabIndex = 4;
-            this.button9.Text = "Navigate to post";
-            this.button9.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Delete Report:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(8, 55);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(116, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Items.AddRange(new object[] {
+            "ReportID : 1, Name : Chris, MediaTitle : Kijk deze shit! ",
+            "ReportedBy : Rob, Description : Abusieve taalgebruik in de titel"});
+            this.listBox2.Location = new System.Drawing.Point(141, 6);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(329, 433);
+            this.listBox2.TabIndex = 0;
             // 
             // Mediasharing
             // 
@@ -441,33 +441,33 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbtype;
+        private System.Windows.Forms.TextBox tbsearch;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLike;
+        private System.Windows.Forms.Button btnReply;
+        private System.Windows.Forms.RichTextBox tbReply;
+        private System.Windows.Forms.Button btnUploadMedia;
+        private System.Windows.Forms.Button btnSpam;
+        private System.Windows.Forms.Button btnDownloadMedia;
+        private System.Windows.Forms.Button btnDeleteMedia;
         private System.Windows.Forms.ListBox FileBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbtypetab2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Button btnUploadMediaTab2;
+        private System.Windows.Forms.RichTextBox tbDescription;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ListBox listBoxInfo;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.TextBox tbSelectFile;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button2;
