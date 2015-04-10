@@ -36,6 +36,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.Presentlist = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tbRFIDNr = new System.Windows.Forms.TextBox();
             this.pbChecked = new System.Windows.Forms.PictureBox();
             this.lblChecked = new System.Windows.Forms.Label();
             this.gbReservations = new System.Windows.Forms.GroupBox();
@@ -81,7 +82,6 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
-            this.tbRFIDNr = new System.Windows.Forms.TextBox();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -169,6 +169,13 @@
             this.tabPage1.Text = "Toegangscontrole";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tbRFIDNr
+            // 
+            this.tbRFIDNr.Location = new System.Drawing.Point(454, 268);
+            this.tbRFIDNr.Name = "tbRFIDNr";
+            this.tbRFIDNr.Size = new System.Drawing.Size(141, 20);
+            this.tbRFIDNr.TabIndex = 116;
+            // 
             // pbChecked
             // 
             this.pbChecked.Location = new System.Drawing.Point(454, 318);
@@ -229,6 +236,7 @@
             // 
             // cbSearch
             // 
+            this.cbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSearch.FormattingEnabled = true;
             this.cbSearch.Location = new System.Drawing.Point(145, 23);
             this.cbSearch.Name = "cbSearch";
@@ -586,18 +594,11 @@
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
             // 
-            // tbRFIDNr
-            // 
-            this.tbRFIDNr.Location = new System.Drawing.Point(454, 268);
-            this.tbRFIDNr.Name = "tbRFIDNr";
-            this.tbRFIDNr.Size = new System.Drawing.Size(141, 20);
-            this.tbRFIDNr.TabIndex = 116;
-            // 
             // AccessControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 438);
+            this.ClientSize = new System.Drawing.Size(882, 438);
             this.Controls.Add(this.Presentlist);
             this.Name = "AccessControlForm";
             this.Text = "Accesscontrol";

@@ -48,12 +48,10 @@ namespace Proftaak
             switch (attached.ID)
             {
                 case Phidget.PhidgetID.RFID_2OUTPUT_READ_WRITE:
-                    this.Bounds = new Rectangle(this.Location, new Size(298, 545));
                     break;
                 case Phidget.PhidgetID.RFID:
                 case Phidget.PhidgetID.RFID_2OUTPUT:
                 default:
-                    this.Bounds = new Rectangle(this.Location, new Size(298, 433));
                     break;
             }
         }
