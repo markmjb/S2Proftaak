@@ -266,11 +266,13 @@
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Items.AddRange(new object[] {
             "Horror",
-            "Happy"});
+            "Happy",
+            "Epic Dance moeves at tha clup brah"});
             this.cbCategory.Location = new System.Drawing.Point(67, 283);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(164, 21);
             this.cbCategory.TabIndex = 22;
+            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChanged);
             // 
             // label6
             // 

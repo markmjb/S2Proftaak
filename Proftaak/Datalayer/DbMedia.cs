@@ -10,19 +10,20 @@ namespace Datalayer
 {
     public class DbMedia : Databaseconnection
     {      
+        Databaseconnection dbc = new Databaseconnection();
+        int MediacategoryID;
 
        public void AddMediaItem(String Type, String Title, String Description, String Category, int UserID)
        {
            try
            {
+               Openconnection();
                CMD().CommandText =
                    " INSERT INTO PTS2_MEDIAITEM(Title,Type,Description,Category,UserID) VALUES (:title, :type, :desc, :cat, :uid)";
                CMD().Parameters.Add("title", Title);
-               CMD().Parameters.Add("type", Type);
                CMD().Parameters.Add("desc", Description);
-               CMD().Parameters.Add("cat", Category);
                CMD().Parameters.Add("uid", UserID);
-               Openconnection();
+              
                
                CMD().ExecuteReader();
            }
@@ -36,26 +37,37 @@ namespace Datalayer
            }
        }
 
-       private void GetCategoryID(string categoryinput)
+       public int GetCategoryID(string categoryinput)
        {
            try
            {
-               
                Openconnection();
+               CMD().CommandText = "SELECT MEDIACATEGORY FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME  = :input";
+               CMD().Parameters.Add("input", categoryinput);
+        
+               OracleDataReader reader = CMD().ExecuteReader();
 
-               CMD().ExecuteReader();
+               while (reader.Read())
+               {
+
+                   MediacategoryID = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+
+               }
+             
+
            }
            catch (OracleException exc)
            {
                Console.WriteLine(exc);
            }
-           finally
-           {
-               Closeconnection();
-           }
+            finally
+            {
+                Closeconnection();
 
+              
+            }
           
-
+           return MediacategoryID;
        }
  
     }

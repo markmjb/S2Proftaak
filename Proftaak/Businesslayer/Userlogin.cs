@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Businesslayer
 {
-public    class Userlogin
+public class Userlogin
 {
-    public static int LoggedUserId = 0;
+    public static int LoggedUserId = 1;
+
+    public int LoggedUserID { get { return LoggedUserId; } set { LoggedUserId = value; } }
 }
 }

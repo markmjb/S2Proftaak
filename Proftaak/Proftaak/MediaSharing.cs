@@ -9,16 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Businesslayer;
 
+
 namespace Proftaak
 {
     public partial class Mediasharing : Form
     {
+        Mediasharingbusiness mdsb = new Mediasharingbusiness();
+        Userlogin userl = new Userlogin();
         public Mediasharing()
         {
             InitializeComponent();
             
         }
-
+       
        private string type;
        private string description;
        private string category;
@@ -53,9 +56,13 @@ namespace Proftaak
           description = tbDescription.Text;
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
-          GetCategoryID(category);
+          categoryID = getcategory();
+          userID = userl.LoggedUserID;
+          MessageBox.Show(userID.ToString());
+          MessageBox.Show(categoryID.ToString());
 
           Mediaitem newmedia = new Mediaitem(type, title, description, categoryID, userID);  
+
           
 
           
@@ -64,6 +71,18 @@ namespace Proftaak
 
         }
 
+        public int getcategory()
+        {
+            categoryID = mdsb.getcategory(category);
+            return categoryID;
+        }
+
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
       
     }
 }
