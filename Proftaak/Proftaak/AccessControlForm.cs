@@ -15,12 +15,18 @@ namespace Proftaak
         public AccessControlForm()
         {
             InitializeComponent();
+            pbChecked.BackColor = Color.Red;
         }
 
         private void AccessControlForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             StartScreen S = new StartScreen();
             S.Show();
+        }
+
+        private void AccessControlForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

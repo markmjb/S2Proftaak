@@ -36,56 +36,58 @@
             this.label18 = new System.Windows.Forms.Label();
             this.Presentlist = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listBox4 = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.pbChecked = new System.Windows.Forms.PictureBox();
+            this.lblChecked = new System.Windows.Forms.Label();
+            this.gbReservations = new System.Windows.Forms.GroupBox();
+            this.lbResName = new System.Windows.Forms.ListBox();
+            this.lbResNr = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSearch = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.gbSelectName = new System.Windows.Forms.GroupBox();
+            this.tbReserv = new System.Windows.Forms.TextBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbMblNr = new System.Windows.Forms.TextBox();
+            this.tbPstlCode = new System.Windows.Forms.TextBox();
+            this.tbTeleNr = new System.Windows.Forms.TextBox();
+            this.tbGrpName = new System.Windows.Forms.TextBox();
+            this.tbDepature = new System.Windows.Forms.TextBox();
+            this.tbArrival = new System.Windows.Forms.TextBox();
+            this.tbCity = new System.Windows.Forms.TextBox();
+            this.tbStrNr = new System.Windows.Forms.TextBox();
+            this.tbSurname = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblReserv = new System.Windows.Forms.Label();
+            this.lblStrNr = new System.Windows.Forms.Label();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.lblGrpName = new System.Windows.Forms.Label();
+            this.lblDepature = new System.Windows.Forms.Label();
+            this.lblArrival = new System.Windows.Forms.Label();
+            this.lblMblNr = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblTeleNr = new System.Windows.Forms.Label();
+            this.lblPstlCode = new System.Windows.Forms.Label();
+            this.lblSurname = new System.Windows.Forms.Label();
             this.textBox14 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.btnUnAtt = new System.Windows.Forms.Button();
+            this.btnAtt = new System.Windows.Forms.Button();
+            this.btnPaym = new System.Windows.Forms.Button();
+            this.btnDelRes = new System.Windows.Forms.Button();
+            this.tbDelRes = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox5 = new System.Windows.Forms.ListBox();
+            this.lbPresentList = new System.Windows.Forms.ListBox();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
+            this.gbReservations.SuspendLayout();
+            this.gbSelectName.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbPresentList.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -147,15 +149,16 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.pbChecked);
+            this.tabPage1.Controls.Add(this.lblChecked);
+            this.tabPage1.Controls.Add(this.gbReservations);
+            this.tabPage1.Controls.Add(this.gbSelectName);
             this.tabPage1.Controls.Add(this.textBox14);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.textBox13);
+            this.tabPage1.Controls.Add(this.btnUnAtt);
+            this.tabPage1.Controls.Add(this.btnAtt);
+            this.tabPage1.Controls.Add(this.btnPaym);
+            this.tabPage1.Controls.Add(this.btnDelRes);
+            this.tabPage1.Controls.Add(this.tbDelRes);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -164,63 +167,71 @@
             this.tabPage1.Text = "Toegangscontrole";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // pbChecked
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(469, 292);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 114;
-            this.label2.Text = "Checked In";
+            this.pbChecked.Location = new System.Drawing.Point(454, 318);
+            this.pbChecked.Name = "pbChecked";
+            this.pbChecked.Size = new System.Drawing.Size(141, 56);
+            this.pbChecked.TabIndex = 115;
+            this.pbChecked.TabStop = false;
             // 
-            // groupBox2
+            // lblChecked
             // 
-            this.groupBox2.Controls.Add(this.listBox4);
-            this.groupBox2.Controls.Add(this.listBox3);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.textBox6);
-            this.groupBox2.Location = new System.Drawing.Point(6, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(442, 402);
-            this.groupBox2.TabIndex = 113;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Reservations";
+            this.lblChecked.AutoSize = true;
+            this.lblChecked.Location = new System.Drawing.Point(451, 293);
+            this.lblChecked.Name = "lblChecked";
+            this.lblChecked.Size = new System.Drawing.Size(62, 13);
+            this.lblChecked.TabIndex = 114;
+            this.lblChecked.Text = "Checked In";
             // 
-            // listBox4
+            // gbReservations
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.Location = new System.Drawing.Point(235, 89);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(191, 303);
-            this.listBox4.TabIndex = 106;
+            this.gbReservations.Controls.Add(this.lbResName);
+            this.gbReservations.Controls.Add(this.lbResNr);
+            this.gbReservations.Controls.Add(this.label7);
+            this.gbReservations.Controls.Add(this.cbSearch);
+            this.gbReservations.Controls.Add(this.label6);
+            this.gbReservations.Controls.Add(this.btnSearch);
+            this.gbReservations.Controls.Add(this.tbSearch);
+            this.gbReservations.Location = new System.Drawing.Point(6, 3);
+            this.gbReservations.Name = "gbReservations";
+            this.gbReservations.Size = new System.Drawing.Size(442, 402);
+            this.gbReservations.TabIndex = 113;
+            this.gbReservations.TabStop = false;
+            this.gbReservations.Text = "Reservations";
             // 
-            // listBox3
+            // lbResName
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(20, 89);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(178, 303);
-            this.listBox3.TabIndex = 105;
+            this.lbResName.FormattingEnabled = true;
+            this.lbResName.Location = new System.Drawing.Point(224, 89);
+            this.lbResName.Name = "lbResName";
+            this.lbResName.Size = new System.Drawing.Size(191, 303);
+            this.lbResName.TabIndex = 106;
+            // 
+            // lbResNr
+            // 
+            this.lbResNr.FormattingEnabled = true;
+            this.lbResNr.Location = new System.Drawing.Point(20, 89);
+            this.lbResNr.Name = "lbResNr";
+            this.lbResNr.Size = new System.Drawing.Size(178, 303);
+            this.lbResNr.TabIndex = 105;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(232, 71);
+            this.label7.Location = new System.Drawing.Point(221, 71);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 110;
             this.label7.Text = "Reservation | Name";
             // 
-            // comboBox1
+            // cbSearch
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(145, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(84, 21);
-            this.comboBox1.TabIndex = 111;
+            this.cbSearch.FormattingEnabled = true;
+            this.cbSearch.Location = new System.Drawing.Point(145, 23);
+            this.cbSearch.Name = "cbSearch";
+            this.cbSearch.Size = new System.Drawing.Size(84, 21);
+            this.cbSearch.TabIndex = 111;
             // 
             // label6
             // 
@@ -231,258 +242,258 @@
             this.label6.TabIndex = 108;
             this.label6.Text = "Reservationnumber | Payment";
             // 
-            // button6
+            // btnSearch
             // 
-            this.button6.Location = new System.Drawing.Point(235, 23);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 107;
-            this.button6.Text = "Search";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(235, 23);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 107;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // tbSearch
             // 
-            this.textBox6.Location = new System.Drawing.Point(20, 23);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(119, 20);
-            this.textBox6.TabIndex = 109;
+            this.tbSearch.Location = new System.Drawing.Point(20, 23);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(119, 20);
+            this.tbSearch.TabIndex = 109;
             // 
-            // groupBox1
+            // gbSelectName
             // 
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.label26);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label25);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.textBox10);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.textBox11);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox28);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBox24);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.textBox23);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.textBox22);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.textBox21);
-            this.groupBox1.Controls.Add(this.textBox12);
-            this.groupBox1.Controls.Add(this.textBox20);
-            this.groupBox1.Location = new System.Drawing.Point(603, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(267, 402);
-            this.groupBox1.TabIndex = 112;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selected Name";
+            this.gbSelectName.Controls.Add(this.tbReserv);
+            this.gbSelectName.Controls.Add(this.tbEmail);
+            this.gbSelectName.Controls.Add(this.tbMblNr);
+            this.gbSelectName.Controls.Add(this.tbPstlCode);
+            this.gbSelectName.Controls.Add(this.tbTeleNr);
+            this.gbSelectName.Controls.Add(this.tbGrpName);
+            this.gbSelectName.Controls.Add(this.tbDepature);
+            this.gbSelectName.Controls.Add(this.tbArrival);
+            this.gbSelectName.Controls.Add(this.tbCity);
+            this.gbSelectName.Controls.Add(this.tbStrNr);
+            this.gbSelectName.Controls.Add(this.tbSurname);
+            this.gbSelectName.Controls.Add(this.tbName);
+            this.gbSelectName.Controls.Add(this.lblName);
+            this.gbSelectName.Controls.Add(this.lblReserv);
+            this.gbSelectName.Controls.Add(this.lblStrNr);
+            this.gbSelectName.Controls.Add(this.lblCity);
+            this.gbSelectName.Controls.Add(this.lblGrpName);
+            this.gbSelectName.Controls.Add(this.lblDepature);
+            this.gbSelectName.Controls.Add(this.lblArrival);
+            this.gbSelectName.Controls.Add(this.lblMblNr);
+            this.gbSelectName.Controls.Add(this.lblEmail);
+            this.gbSelectName.Controls.Add(this.lblTeleNr);
+            this.gbSelectName.Controls.Add(this.lblPstlCode);
+            this.gbSelectName.Controls.Add(this.lblSurname);
+            this.gbSelectName.Location = new System.Drawing.Point(603, 3);
+            this.gbSelectName.Name = "gbSelectName";
+            this.gbSelectName.Size = new System.Drawing.Size(267, 402);
+            this.gbSelectName.TabIndex = 112;
+            this.gbSelectName.TabStop = false;
+            this.gbSelectName.Text = "Selected Name";
             // 
-            // textBox7
+            // tbReserv
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(132, 360);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(118, 20);
-            this.textBox7.TabIndex = 136;
+            this.tbReserv.Enabled = false;
+            this.tbReserv.Location = new System.Drawing.Point(126, 364);
+            this.tbReserv.Name = "tbReserv";
+            this.tbReserv.Size = new System.Drawing.Size(115, 20);
+            this.tbReserv.TabIndex = 147;
             // 
-            // label26
+            // tbEmail
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(18, 21);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(41, 13);
-            this.label26.TabIndex = 113;
-            this.label26.Text = "Name :";
+            this.tbEmail.Enabled = false;
+            this.tbEmail.Location = new System.Drawing.Point(126, 326);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(115, 20);
+            this.tbEmail.TabIndex = 146;
             // 
-            // label8
+            // tbMblNr
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 367);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 13);
-            this.label8.TabIndex = 135;
-            this.label8.Text = "Reservation :";
+            this.tbMblNr.Enabled = false;
+            this.tbMblNr.Location = new System.Drawing.Point(126, 301);
+            this.tbMblNr.Name = "tbMblNr";
+            this.tbMblNr.Size = new System.Drawing.Size(115, 20);
+            this.tbMblNr.TabIndex = 145;
             // 
-            // label25
+            // tbPstlCode
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(18, 71);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(90, 13);
-            this.label25.TabIndex = 114;
-            this.label25.Text = "Street + Number :";
+            this.tbPstlCode.Enabled = false;
+            this.tbPstlCode.Location = new System.Drawing.Point(126, 269);
+            this.tbPstlCode.Name = "tbPstlCode";
+            this.tbPstlCode.Size = new System.Drawing.Size(115, 20);
+            this.tbPstlCode.TabIndex = 144;
             // 
-            // textBox8
+            // tbTeleNr
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(132, 326);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(116, 20);
-            this.textBox8.TabIndex = 134;
+            this.tbTeleNr.Enabled = false;
+            this.tbTeleNr.Location = new System.Drawing.Point(126, 245);
+            this.tbTeleNr.Name = "tbTeleNr";
+            this.tbTeleNr.Size = new System.Drawing.Size(115, 20);
+            this.tbTeleNr.TabIndex = 143;
             // 
-            // label24
+            // tbGrpName
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(18, 96);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(30, 13);
-            this.label24.TabIndex = 115;
-            this.label24.Text = "City :";
+            this.tbGrpName.Enabled = false;
+            this.tbGrpName.Location = new System.Drawing.Point(126, 200);
+            this.tbGrpName.Name = "tbGrpName";
+            this.tbGrpName.Size = new System.Drawing.Size(115, 20);
+            this.tbGrpName.TabIndex = 142;
             // 
-            // textBox9
+            // tbDepature
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(132, 301);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(116, 20);
-            this.textBox9.TabIndex = 133;
+            this.tbDepature.Enabled = false;
+            this.tbDepature.Location = new System.Drawing.Point(126, 157);
+            this.tbDepature.Name = "tbDepature";
+            this.tbDepature.Size = new System.Drawing.Size(115, 20);
+            this.tbDepature.TabIndex = 141;
             // 
-            // label20
+            // tbArrival
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(18, 203);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(71, 13);
-            this.label20.TabIndex = 116;
-            this.label20.Text = "Group name :";
+            this.tbArrival.Enabled = false;
+            this.tbArrival.Location = new System.Drawing.Point(126, 132);
+            this.tbArrival.Name = "tbArrival";
+            this.tbArrival.Size = new System.Drawing.Size(115, 20);
+            this.tbArrival.TabIndex = 140;
             // 
-            // textBox10
+            // tbCity
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(134, 269);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(116, 20);
-            this.textBox10.TabIndex = 132;
+            this.tbCity.Enabled = false;
+            this.tbCity.Location = new System.Drawing.Point(126, 93);
+            this.tbCity.Name = "tbCity";
+            this.tbCity.Size = new System.Drawing.Size(115, 20);
+            this.tbCity.TabIndex = 139;
             // 
-            // label15
+            // tbStrNr
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 160);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(84, 13);
-            this.label15.TabIndex = 117;
-            this.label15.Text = "Departure date :";
+            this.tbStrNr.Enabled = false;
+            this.tbStrNr.Location = new System.Drawing.Point(126, 68);
+            this.tbStrNr.Name = "tbStrNr";
+            this.tbStrNr.Size = new System.Drawing.Size(115, 20);
+            this.tbStrNr.TabIndex = 138;
             // 
-            // textBox11
+            // tbSurname
             // 
-            this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(134, 245);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(116, 20);
-            this.textBox11.TabIndex = 131;
+            this.tbSurname.Enabled = false;
+            this.tbSurname.Location = new System.Drawing.Point(126, 42);
+            this.tbSurname.Name = "tbSurname";
+            this.tbSurname.Size = new System.Drawing.Size(115, 20);
+            this.tbSurname.TabIndex = 137;
             // 
-            // label14
+            // tbName
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(18, 135);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(66, 13);
-            this.label14.TabIndex = 118;
-            this.label14.Text = "Arrival date :";
+            this.tbName.Enabled = false;
+            this.tbName.Location = new System.Drawing.Point(126, 18);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(115, 20);
+            this.tbName.TabIndex = 136;
             // 
-            // label9
+            // lblName
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(20, 304);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 13);
-            this.label9.TabIndex = 130;
-            this.label9.Text = "Mobile number :";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(18, 21);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(41, 13);
+            this.lblName.TabIndex = 113;
+            this.lblName.Text = "Name :";
             // 
-            // textBox28
+            // lblReserv
             // 
-            this.textBox28.Enabled = false;
-            this.textBox28.Location = new System.Drawing.Point(132, 18);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(118, 20);
-            this.textBox28.TabIndex = 119;
+            this.lblReserv.AutoSize = true;
+            this.lblReserv.Location = new System.Drawing.Point(18, 367);
+            this.lblReserv.Name = "lblReserv";
+            this.lblReserv.Size = new System.Drawing.Size(70, 13);
+            this.lblReserv.TabIndex = 135;
+            this.lblReserv.Text = "Reservation :";
             // 
-            // label10
+            // lblStrNr
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 329);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 13);
-            this.label10.TabIndex = 129;
-            this.label10.Text = "E-Mail :";
+            this.lblStrNr.AutoSize = true;
+            this.lblStrNr.Location = new System.Drawing.Point(18, 71);
+            this.lblStrNr.Name = "lblStrNr";
+            this.lblStrNr.Size = new System.Drawing.Size(90, 13);
+            this.lblStrNr.TabIndex = 114;
+            this.lblStrNr.Text = "Street + Number :";
             // 
-            // textBox24
+            // lblCity
             // 
-            this.textBox24.Enabled = false;
-            this.textBox24.Location = new System.Drawing.Point(132, 93);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(118, 20);
-            this.textBox24.TabIndex = 120;
+            this.lblCity.AutoSize = true;
+            this.lblCity.Location = new System.Drawing.Point(18, 96);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(30, 13);
+            this.lblCity.TabIndex = 115;
+            this.lblCity.Text = "City :";
             // 
-            // label11
+            // lblGrpName
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(19, 248);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(102, 13);
-            this.label11.TabIndex = 128;
-            this.label11.Text = "Telephone number :";
+            this.lblGrpName.AutoSize = true;
+            this.lblGrpName.Location = new System.Drawing.Point(18, 203);
+            this.lblGrpName.Name = "lblGrpName";
+            this.lblGrpName.Size = new System.Drawing.Size(71, 13);
+            this.lblGrpName.TabIndex = 116;
+            this.lblGrpName.Text = "Group name :";
             // 
-            // textBox23
+            // lblDepature
             // 
-            this.textBox23.Enabled = false;
-            this.textBox23.Location = new System.Drawing.Point(132, 68);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(118, 20);
-            this.textBox23.TabIndex = 121;
+            this.lblDepature.AutoSize = true;
+            this.lblDepature.Location = new System.Drawing.Point(18, 160);
+            this.lblDepature.Name = "lblDepature";
+            this.lblDepature.Size = new System.Drawing.Size(84, 13);
+            this.lblDepature.TabIndex = 117;
+            this.lblDepature.Text = "Departure date :";
             // 
-            // label12
+            // lblArrival
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 272);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(69, 13);
-            this.label12.TabIndex = 127;
-            this.label12.Text = "Postal code :";
+            this.lblArrival.AutoSize = true;
+            this.lblArrival.Location = new System.Drawing.Point(18, 135);
+            this.lblArrival.Name = "lblArrival";
+            this.lblArrival.Size = new System.Drawing.Size(66, 13);
+            this.lblArrival.TabIndex = 118;
+            this.lblArrival.Text = "Arrival date :";
             // 
-            // textBox22
+            // lblMblNr
             // 
-            this.textBox22.Enabled = false;
-            this.textBox22.Location = new System.Drawing.Point(133, 132);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(117, 20);
-            this.textBox22.TabIndex = 122;
+            this.lblMblNr.AutoSize = true;
+            this.lblMblNr.Location = new System.Drawing.Point(18, 304);
+            this.lblMblNr.Name = "lblMblNr";
+            this.lblMblNr.Size = new System.Drawing.Size(82, 13);
+            this.lblMblNr.TabIndex = 130;
+            this.lblMblNr.Text = "Mobile number :";
             // 
-            // label13
+            // lblEmail
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(18, 45);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
-            this.label13.TabIndex = 126;
-            this.label13.Text = "Surname :";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(18, 329);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(42, 13);
+            this.lblEmail.TabIndex = 129;
+            this.lblEmail.Text = "E-Mail :";
             // 
-            // textBox21
+            // lblTeleNr
             // 
-            this.textBox21.Enabled = false;
-            this.textBox21.Location = new System.Drawing.Point(133, 158);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(117, 20);
-            this.textBox21.TabIndex = 123;
+            this.lblTeleNr.AutoSize = true;
+            this.lblTeleNr.Location = new System.Drawing.Point(18, 248);
+            this.lblTeleNr.Name = "lblTeleNr";
+            this.lblTeleNr.Size = new System.Drawing.Size(102, 13);
+            this.lblTeleNr.TabIndex = 128;
+            this.lblTeleNr.Text = "Telephone number :";
             // 
-            // textBox12
+            // lblPstlCode
             // 
-            this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(132, 42);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(118, 20);
-            this.textBox12.TabIndex = 125;
+            this.lblPstlCode.AutoSize = true;
+            this.lblPstlCode.Location = new System.Drawing.Point(18, 272);
+            this.lblPstlCode.Name = "lblPstlCode";
+            this.lblPstlCode.Size = new System.Drawing.Size(69, 13);
+            this.lblPstlCode.TabIndex = 127;
+            this.lblPstlCode.Text = "Postal code :";
             // 
-            // textBox20
+            // lblSurname
             // 
-            this.textBox20.Enabled = false;
-            this.textBox20.Location = new System.Drawing.Point(132, 200);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(118, 20);
-            this.textBox20.TabIndex = 124;
+            this.lblSurname.AutoSize = true;
+            this.lblSurname.Location = new System.Drawing.Point(18, 45);
+            this.lblSurname.Name = "lblSurname";
+            this.lblSurname.Size = new System.Drawing.Size(55, 13);
+            this.lblSurname.TabIndex = 126;
+            this.lblSurname.Text = "Surname :";
             // 
             // textBox14
             // 
@@ -491,52 +502,52 @@
             this.textBox14.Size = new System.Drawing.Size(141, 20);
             this.textBox14.TabIndex = 93;
             // 
-            // button4
+            // btnUnAtt
             // 
-            this.button4.Location = new System.Drawing.Point(454, 206);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(143, 23);
-            this.button4.TabIndex = 92;
-            this.button4.Text = "Unattach RFID";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnUnAtt.Location = new System.Drawing.Point(454, 206);
+            this.btnUnAtt.Name = "btnUnAtt";
+            this.btnUnAtt.Size = new System.Drawing.Size(141, 23);
+            this.btnUnAtt.TabIndex = 92;
+            this.btnUnAtt.Text = "Unattach RFID";
+            this.btnUnAtt.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnAtt
             // 
-            this.button3.Location = new System.Drawing.Point(454, 177);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(143, 23);
-            this.button3.TabIndex = 91;
-            this.button3.Text = "Attach RFID";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAtt.Location = new System.Drawing.Point(454, 177);
+            this.btnAtt.Name = "btnAtt";
+            this.btnAtt.Size = new System.Drawing.Size(141, 23);
+            this.btnAtt.TabIndex = 91;
+            this.btnAtt.Text = "Attach RFID";
+            this.btnAtt.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnPaym
             // 
-            this.button2.Location = new System.Drawing.Point(454, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(143, 23);
-            this.button2.TabIndex = 90;
-            this.button2.Text = "Accept payment";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPaym.Location = new System.Drawing.Point(454, 99);
+            this.btnPaym.Name = "btnPaym";
+            this.btnPaym.Size = new System.Drawing.Size(141, 23);
+            this.btnPaym.TabIndex = 90;
+            this.btnPaym.Text = "Accept payment";
+            this.btnPaym.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDelRes
             // 
-            this.button1.Location = new System.Drawing.Point(454, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 23);
-            this.button1.TabIndex = 89;
-            this.button1.Text = "Delete Reservation";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDelRes.Location = new System.Drawing.Point(454, 42);
+            this.btnDelRes.Name = "btnDelRes";
+            this.btnDelRes.Size = new System.Drawing.Size(141, 23);
+            this.btnDelRes.TabIndex = 89;
+            this.btnDelRes.Text = "Delete Reservation";
+            this.btnDelRes.UseVisualStyleBackColor = true;
             // 
-            // textBox13
+            // tbDelRes
             // 
-            this.textBox13.Location = new System.Drawing.Point(454, 16);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(141, 20);
-            this.textBox13.TabIndex = 88;
+            this.tbDelRes.Location = new System.Drawing.Point(454, 16);
+            this.tbDelRes.Name = "tbDelRes";
+            this.tbDelRes.Size = new System.Drawing.Size(141, 20);
+            this.tbDelRes.TabIndex = 88;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.groupBox3);
+            this.tabPage2.Controls.Add(this.gbPresentList);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -545,16 +556,16 @@
             this.tabPage2.Text = "Present List";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // gbPresentList
             // 
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.listBox5);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(437, 405);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Present List";
+            this.gbPresentList.Controls.Add(this.label1);
+            this.gbPresentList.Controls.Add(this.lbPresentList);
+            this.gbPresentList.Location = new System.Drawing.Point(3, 3);
+            this.gbPresentList.Name = "gbPresentList";
+            this.gbPresentList.Size = new System.Drawing.Size(437, 405);
+            this.gbPresentList.TabIndex = 2;
+            this.gbPresentList.TabStop = false;
+            this.gbPresentList.Text = "Present List";
             // 
             // label1
             // 
@@ -565,13 +576,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Reservation | Name | Tel |  ";
             // 
-            // listBox5
+            // lbPresentList
             // 
-            this.listBox5.FormattingEnabled = true;
-            this.listBox5.Location = new System.Drawing.Point(9, 32);
-            this.listBox5.Name = "listBox5";
-            this.listBox5.Size = new System.Drawing.Size(405, 368);
-            this.listBox5.TabIndex = 0;
+            this.lbPresentList.FormattingEnabled = true;
+            this.lbPresentList.Location = new System.Drawing.Point(9, 32);
+            this.lbPresentList.Name = "lbPresentList";
+            this.lbPresentList.Size = new System.Drawing.Size(405, 368);
+            this.lbPresentList.TabIndex = 0;
             // 
             // AccessControlForm
             // 
@@ -582,16 +593,18 @@
             this.Name = "AccessControlForm";
             this.Text = "Accesscontrol";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AccessControlForm_FormClosing);
+            this.Load += new System.EventHandler(this.AccessControlForm_Load);
             this.Presentlist.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).EndInit();
+            this.gbReservations.ResumeLayout(false);
+            this.gbReservations.PerformLayout();
+            this.gbSelectName.ResumeLayout(false);
+            this.gbSelectName.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbPresentList.ResumeLayout(false);
+            this.gbPresentList.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -606,49 +619,50 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TabControl Presentlist;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSearch;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ListBox lbResName;
+        private System.Windows.Forms.ListBox lbResNr;
         private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.Button btnUnAtt;
+        private System.Windows.Forms.Button btnAtt;
+        private System.Windows.Forms.Button btnPaym;
+        private System.Windows.Forms.Button btnDelRes;
+        private System.Windows.Forms.TextBox tbDelRes;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbReservations;
+        private System.Windows.Forms.GroupBox gbSelectName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblReserv;
+        private System.Windows.Forms.Label lblStrNr;
+        private System.Windows.Forms.Label lblCity;
+        private System.Windows.Forms.Label lblGrpName;
+        private System.Windows.Forms.Label lblDepature;
+        private System.Windows.Forms.Label lblArrival;
+        private System.Windows.Forms.Label lblMblNr;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblTeleNr;
+        private System.Windows.Forms.Label lblPstlCode;
+        private System.Windows.Forms.Label lblSurname;
+        private System.Windows.Forms.GroupBox gbPresentList;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox5;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox lbPresentList;
+        private System.Windows.Forms.Label lblChecked;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbReserv;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.TextBox tbMblNr;
+        private System.Windows.Forms.TextBox tbPstlCode;
+        private System.Windows.Forms.TextBox tbTeleNr;
+        private System.Windows.Forms.TextBox tbGrpName;
+        private System.Windows.Forms.TextBox tbDepature;
+        private System.Windows.Forms.TextBox tbArrival;
+        private System.Windows.Forms.TextBox tbCity;
+        private System.Windows.Forms.TextBox tbStrNr;
+        private System.Windows.Forms.TextBox tbSurname;
+        private System.Windows.Forms.PictureBox pbChecked;
     }
 }
