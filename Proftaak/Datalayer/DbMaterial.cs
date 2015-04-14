@@ -11,24 +11,24 @@ namespace Datalayer
    public class DbMaterial 
     {
         private Databaseconnection db = new Databaseconnection();
-        private OracleConnection DbMaterial;
+        private OracleConnection DbMateriall;
 
         public DbMaterial()
         {
-            DbMaterial = new OracleConnection();
-            DbMaterial.ConnectionString = db.getstring();
+            DbMateriall = new OracleConnection();
+            DbMateriall.ConnectionString = db.getstring();
         }
 
        public void ChangePrice(string MaterialName, double Price)
         {
             try
             {
-                OracleCommand cmd = this.DbMaterial.CreateCommand();
+                OracleCommand cmd = this.DbMateriall.CreateCommand();
                 cmd.CommandText = "update PTS2_MATERIAL set price = :Price where materialName = :MaterialName";
                 cmd.Parameters.Add("materialName", MaterialName);
                 cmd.Parameters.Add("price", Price);
 
-                DbMaterial.Open();
+                DbMateriall.Open();
 
                 cmd.ExecuteReader();
             }
@@ -38,8 +38,12 @@ namespace Datalayer
             }
             finally
             {
-                this.DbMaterial.Close();
+                this.DbMateriall.Close();
             }
         }
+       public void ChangeStock()
+       {
+
+       }
     }
 }
