@@ -8,21 +8,21 @@ namespace Businesslayer
 {
     public class Address
     {
+        public string Country { get; set; }
+        public string Province { get; set; }
+        public string City { get; set; }
         public string Street { get; set; }
         public int Streetnumber { get; set; }
         public string PostalCode { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
 
-        public Address(string street, int streetnumber, string postalCode, string city, string state, string country)
+        public Address(string country, string province, string city, string street, int streetnumber, string postalcode)
         {
+            Country = country;
+            Province = province;
+            City = city;
             Street = street;
             Streetnumber = streetnumber;
-            PostalCode = postalCode;
-            City = city;
-            State = state;
-            Country = country;
+            PostalCode = postalcode;
         }
     }
 }
