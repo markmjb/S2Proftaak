@@ -10,7 +10,7 @@ namespace Businesslayer
 {
     public class AccessControl
     {
-        //DbAccess DA = new DbAccess();
+        DbAccess DA = new DbAccess();
 
         public void AttachRfid()
         {
@@ -29,7 +29,7 @@ namespace Businesslayer
 
         public void DeleteReservation(string DL)
         {
-            //DA.DeleteRes(DL);
+            DA.DeleteRes(DL);
         }
 
         public void GetAllReservations()

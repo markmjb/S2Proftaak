@@ -10,19 +10,22 @@ namespace Datalayer
 {
     public class DbAccess : Datalayer.Databaseconnection
     {
+        private Databaseconnection db = new Databaseconnection();
+        private OracleConnection DbAcces;
 
-        //Databaseconnection db = new Databaseconnection();
-
-        /*public void DeleteRes(string ResNr)
+        public DbAccess()
+        {
+            DbAcces = new OracleConnection();
+            DbAcces.ConnectionString = db.getstring();
+        }
+        public void DeleteRes(string ResNr)
         {
             try
             {
-                Openconnection();
-                CMD().CommandText =
-                    "DELETE FROM Reservation, User_Reservation WHERE Reservation.ID = '" + ResNr + "' AND User_Reservation.ReservationID = '" + ResNr + "';";
-                CMD().Parameters.Add("ID", ResNr);
-
-                CMD().ExecuteReader();
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "DELETE FROM Reservation, User_Reservation WHERE Reservation.ID = '" + ResNr + "' AND User_Reservation.ReservationID = '" + ResNr + "';";
+                cmd.Parameters.Add("ID", ResNr);
+                cmd.ExecuteReader();
             }
             catch (OracleException exc)
             {
@@ -30,8 +33,8 @@ namespace Datalayer
             }
             finally
             {
-                Closeconnection();
+                this.DbAcces.Close();
             }
-        }*/
+        }
     }
 }

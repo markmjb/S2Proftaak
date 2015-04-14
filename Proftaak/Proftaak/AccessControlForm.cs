@@ -17,7 +17,7 @@ namespace Proftaak
     {
         private RFID rfid;
         private string TempRFID;
-        //AccessControl AC = new AccessControl();
+        AccessControl AC = new AccessControl();
 
         public AccessControlForm()
         {
@@ -153,7 +153,7 @@ namespace Proftaak
 
         private void btnDelRes_Click(object sender, EventArgs e)
         {
-            //AC.DeleteReservation(tbDelRes.Text);
+            AC.DeleteReservation(tbDelRes.Text);
         }
     }
 }
