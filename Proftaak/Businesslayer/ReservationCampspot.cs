@@ -18,6 +18,11 @@ namespace Businesslayer
             Price = price;
             ReservationUsers = reservationUsers;
         }
+
+        public ReservationCampspot()
+        {
+            
+        }
         public void AddToGroup()
         {
             

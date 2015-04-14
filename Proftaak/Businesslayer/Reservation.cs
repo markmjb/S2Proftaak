@@ -18,5 +18,10 @@ namespace Businesslayer
             Endtime = endtime;
             Employee = employee;
         }
+
+        protected Reservation()
+        {
+            
+        }
     }
 }

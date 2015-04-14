@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Businesslayer;
 
 namespace Proftaak
 {
@@ -21,6 +22,11 @@ namespace Proftaak
         {
         StartScreen S = new StartScreen();
             S.Show();
+        }
+
+        private void Reservation_Load(object sender, EventArgs e)
+        {
+            //Businesslayer.Reservation Res = new Businesslayer.ReservationCampspot()
         }
     }
 }
