@@ -14,13 +14,12 @@ namespace Proftaak
     public partial class EventControl : Form
     {
         //FIELDS
-        private Businesslayer.EventControl eventControl;
+        private Businesslayer.EventControl eventControl = new Businesslayer.EventControl();;
+        
         //CONSTRUCTORS
         public EventControl()
         {
             InitializeComponent();
-
-            eventControl = new Businesslayer.EventControl();
         }
 
         private void EventControl_FormClosing(object sender, FormClosingEventArgs e)
@@ -30,11 +29,6 @@ namespace Proftaak
         }
 
         //METHODS
-        public void GetEvents()
-        {
-            
-        }
-
         private void btnCreateEvent_Click(object sender, EventArgs e)
         {
             string name = tbName.Text;
