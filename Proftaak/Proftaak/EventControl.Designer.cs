@@ -41,8 +41,11 @@
             this.tbPriceperticket = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.datagridEvents = new System.Windows.Forms.DataGridView();
+            this.columnEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnEventStartdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnEventEnddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -153,20 +156,46 @@
             this.textBox1.Size = new System.Drawing.Size(287, 65);
             this.textBox1.TabIndex = 12;
             // 
-            // dataGridView1
+            // datagridEvents
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(598, 150);
-            this.dataGridView1.TabIndex = 13;
+            this.datagridEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagridEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columnEventName,
+            this.columnEventStartdate,
+            this.columnEventEnddate});
+            this.datagridEvents.Location = new System.Drawing.Point(8, 12);
+            this.datagridEvents.Name = "datagridEvents";
+            this.datagridEvents.Size = new System.Drawing.Size(598, 150);
+            this.datagridEvents.TabIndex = 13;
+            // 
+            // columnEventName
+            // 
+            this.columnEventName.HeaderText = "Name";
+            this.columnEventName.Name = "columnEventName";
+            this.columnEventName.ReadOnly = true;
+            this.columnEventName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnEventName.Width = 200;
+            // 
+            // columnEventStartdate
+            // 
+            this.columnEventStartdate.HeaderText = "Startdate";
+            this.columnEventStartdate.Name = "columnEventStartdate";
+            this.columnEventStartdate.ReadOnly = true;
+            this.columnEventStartdate.Width = 200;
+            // 
+            // columnEventEnddate
+            // 
+            this.columnEventEnddate.HeaderText = "Enddate";
+            this.columnEventEnddate.Name = "columnEventEnddate";
+            this.columnEventEnddate.ReadOnly = true;
+            this.columnEventEnddate.Width = 200;
             // 
             // EventControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(618, 362);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.datagridEvents);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.tbPriceperticket);
@@ -183,7 +212,7 @@
             this.Name = "EventControl";
             this.Text = "EventControl";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventControl_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,6 +233,9 @@
         private System.Windows.Forms.TextBox tbPriceperticket;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView datagridEvents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventStartdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventEnddate;
     }
 }

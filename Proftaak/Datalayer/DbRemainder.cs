@@ -8,6 +8,6 @@ namespace Datalayer
 {
     public class DbRemainder: Databaseconnection
     {
-        //For Event and Login database handling.
+        
     }
 }
