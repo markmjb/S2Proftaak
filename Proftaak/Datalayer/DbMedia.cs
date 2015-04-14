@@ -47,7 +47,7 @@ namespace Datalayer
            }
        }
 
-        public void AddMediaItemFile(String Filelocation, int Filesize, String Filetype, int size, int mediacategoryid)
+        public void AddMediaItemFile(String Filelocation, int Filesize, String Filetype, int mediacategoryid)
        {
            try
            {
