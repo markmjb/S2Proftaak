@@ -52,7 +52,7 @@ namespace Proftaak
             tbSelectFile.Text = openFileDialog1.FileName;
             FileInfo F = new FileInfo(openFileDialog1.FileName);
             size = Convert.ToInt32(F.Length / 1000);
-            filetype = F.GetType().ToString();
+            filetype = F.Extension;
             MessageBox.Show(filetype);
 
            
