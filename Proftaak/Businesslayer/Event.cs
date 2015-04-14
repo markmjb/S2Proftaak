@@ -17,7 +17,7 @@ namespace Businesslayer
         public Address Address { get; set; }
         
         //CONSTRUCTORS
-        public Event(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, Address address, string street, int streetnumber, string postalcode, string city, string state, string country)
+        public Event(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, string country, string state, string city, string street, int streetnumber, string postalcode)
         {
             Name = name;
             Description = description;
@@ -25,7 +25,7 @@ namespace Businesslayer
             EndDate = endDate;
             TicketPrice = ticketPrice;
 
-            Address = new Address(street, streetnumber, postalcode, city, state, country);
+            Address = new Address(country, state, city, street, streetnumber, postalcode);
         }
     }
 }
