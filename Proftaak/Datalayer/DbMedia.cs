@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,24 +9,32 @@ using Oracle.DataAccess.Client;
 
 namespace Datalayer
 {
-    public class DbMedia : Databaseconnection
+    public class DbMedia 
     {      
-        Databaseconnection dbc = new Databaseconnection();
+        
         int MediacategoryID;
+        private OracleConnection dbmediaconn;
+
+        public DbMedia()
+        {
+            dbmediaconn = new OracleConnection();
+            string user = "system";
+            string pw = "system";
+            dbmediaconn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
+        }
 
        public void AddMediaItem(String Title, String Description, int UserID)
        {
            try
            {
-               Openconnection();
-               CMD().CommandText =
-                   " INSERT INTO PTS2_MEDIAITEM(Title,Type,Description,Category,UserID) VALUES (:title, :type, :desc, :cat, :uid)";
-               CMD().Parameters.Add("title", Title);
-               CMD().Parameters.Add("desc", Description);
-               CMD().Parameters.Add("uid", UserID);
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText= " INSERT INTO PTS2_MEDIAITEM(Title,Type,Description,Category,UserID) VALUES (:title, :type, :desc, :cat, :uid)";
+               cmd.Parameters.Add("title", Title);
+               cmd.Parameters.Add("desc", Description);
+               cmd.Parameters.Add("uid", UserID);
               
                
-               CMD().ExecuteReader();
+               cmd.ExecuteReader();
            }
            catch (OracleException exc)
            {
@@ -33,7 +42,7 @@ namespace Datalayer
            }
            finally
            {
-               Closeconnection();
+               this.dbmediaconn.Close();
            }
        }
 
@@ -41,11 +50,11 @@ namespace Datalayer
        {
            try
            {
-               Openconnection();
-               CMD().CommandText = "SELECT MEDIACATEGORY FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME  = :input";
-               CMD().Parameters.Add("input", categoryinput);
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "SELECT MEDIACATEGORY FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME  = :input";
+               cmd.Parameters.Add("input", categoryinput);
 
-               OracleDataReader reader = CMD().ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
                {
@@ -61,11 +70,11 @@ namespace Datalayer
                Console.WriteLine(exc);
            }
             finally
-            {
-                Closeconnection();
+           {
+               this.dbmediaconn.Close();
 
-              
-            }
+
+           }
           
            return MediacategoryID;
        }
