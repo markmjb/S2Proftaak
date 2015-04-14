@@ -8,7 +8,7 @@ using Oracle.DataAccess.Client;
 
 namespace Datalayer
 {
-    public class DbAccess : Datalayer.Databaseconnection
+    public class DbAccess
     {
         private Databaseconnection db = new Databaseconnection();
         private OracleConnection DbAcces;
@@ -18,13 +18,17 @@ namespace Datalayer
             DbAcces = new OracleConnection();
             DbAcces.ConnectionString = db.getstring();
         }
-        public void DeleteRes(string ResNr)
+
+        public void DeleteRes(int ResNr)
         {
             try
             {
+
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "DELETE FROM Reservation, User_Reservation WHERE Reservation.ID = '" + ResNr + "' AND User_Reservation.ReservationID = '" + ResNr + "';";
+                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID';";
                 cmd.Parameters.Add("ID", ResNr);
+
+                DbAcces.Open();
                 cmd.ExecuteReader();
             }
             catch (OracleException exc)
@@ -35,6 +39,108 @@ namespace Datalayer
             {
                 this.DbAcces.Close();
             }
+        }
+
+
+        public void DeleteUserRes(int ResNr)
+        {
+            try
+            {
+
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = ':ID';";
+                cmd.Parameters.Add("ID", ResNr);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+        }
+
+        public void AllReservations(int ID)
+        {
+            /*try
+            {
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "SELECT R.ID, R.Price FROM Reservation R, Event E WHERE E.EventID = E.id AND E.ID = :ID";
+                cmd.Parameters.Add("ID", ID);
+
+                DbAcces.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                List<serie> list = new List<serie>();
+                int ReserveringID;
+                int Price;
+
+                while (reader.Read())
+                {
+
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }*/
+        }
+
+        public void AcceptPaymentRes(int ResNr)
+        {
+            /*
+            try
+            {
+
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID';";
+                cmd.Parameters.Add("ID", ResNr);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+             * 
+             */
+        }
+
+        public void AttachRFID(int ResNr)
+        {
+            /*
+            try
+            {
+
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID';";
+                cmd.Parameters.Add("ID", ResNr);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+            */
         }
     }
 }

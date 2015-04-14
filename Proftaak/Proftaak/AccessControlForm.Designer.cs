@@ -36,7 +36,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.Presentlist = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tbRFIDNr = new System.Windows.Forms.TextBox();
             this.pbChecked = new System.Windows.Forms.PictureBox();
             this.lblChecked = new System.Windows.Forms.Label();
             this.gbReservations = new System.Windows.Forms.GroupBox();
@@ -72,7 +71,6 @@
             this.lblTeleNr = new System.Windows.Forms.Label();
             this.lblPstlCode = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
             this.btnUnAtt = new System.Windows.Forms.Button();
             this.btnAtt = new System.Windows.Forms.Button();
             this.btnPaym = new System.Windows.Forms.Button();
@@ -82,6 +80,8 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
+            this.lblPayment = new System.Windows.Forms.Label();
+            this.cbEvent = new System.Windows.Forms.ComboBox();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -150,12 +150,12 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tbRFIDNr);
+            this.tabPage1.Controls.Add(this.cbEvent);
+            this.tabPage1.Controls.Add(this.lblPayment);
             this.tabPage1.Controls.Add(this.pbChecked);
             this.tabPage1.Controls.Add(this.lblChecked);
             this.tabPage1.Controls.Add(this.gbReservations);
             this.tabPage1.Controls.Add(this.gbSelectName);
-            this.tabPage1.Controls.Add(this.textBox14);
             this.tabPage1.Controls.Add(this.btnUnAtt);
             this.tabPage1.Controls.Add(this.btnAtt);
             this.tabPage1.Controls.Add(this.btnPaym);
@@ -169,16 +169,9 @@
             this.tabPage1.Text = "Toegangscontrole";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tbRFIDNr
-            // 
-            this.tbRFIDNr.Location = new System.Drawing.Point(454, 268);
-            this.tbRFIDNr.Name = "tbRFIDNr";
-            this.tbRFIDNr.Size = new System.Drawing.Size(141, 20);
-            this.tbRFIDNr.TabIndex = 116;
-            // 
             // pbChecked
             // 
-            this.pbChecked.Location = new System.Drawing.Point(454, 318);
+            this.pbChecked.Location = new System.Drawing.Point(454, 329);
             this.pbChecked.Name = "pbChecked";
             this.pbChecked.Size = new System.Drawing.Size(141, 56);
             this.pbChecked.TabIndex = 115;
@@ -187,7 +180,7 @@
             // lblChecked
             // 
             this.lblChecked.AutoSize = true;
-            this.lblChecked.Location = new System.Drawing.Point(451, 293);
+            this.lblChecked.Location = new System.Drawing.Point(451, 311);
             this.lblChecked.Name = "lblChecked";
             this.lblChecked.Size = new System.Drawing.Size(62, 13);
             this.lblChecked.TabIndex = 114;
@@ -505,16 +498,9 @@
             this.lblSurname.TabIndex = 126;
             this.lblSurname.Text = "Surname :";
             // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(454, 151);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(141, 20);
-            this.textBox14.TabIndex = 93;
-            // 
             // btnUnAtt
             // 
-            this.btnUnAtt.Location = new System.Drawing.Point(454, 206);
+            this.btnUnAtt.Location = new System.Drawing.Point(454, 251);
             this.btnUnAtt.Name = "btnUnAtt";
             this.btnUnAtt.Size = new System.Drawing.Size(141, 23);
             this.btnUnAtt.TabIndex = 92;
@@ -523,7 +509,7 @@
             // 
             // btnAtt
             // 
-            this.btnAtt.Location = new System.Drawing.Point(454, 177);
+            this.btnAtt.Location = new System.Drawing.Point(454, 222);
             this.btnAtt.Name = "btnAtt";
             this.btnAtt.Size = new System.Drawing.Size(141, 23);
             this.btnAtt.TabIndex = 91;
@@ -532,16 +518,17 @@
             // 
             // btnPaym
             // 
-            this.btnPaym.Location = new System.Drawing.Point(454, 99);
+            this.btnPaym.Location = new System.Drawing.Point(454, 160);
             this.btnPaym.Name = "btnPaym";
             this.btnPaym.Size = new System.Drawing.Size(141, 23);
             this.btnPaym.TabIndex = 90;
             this.btnPaym.Text = "Accept payment";
             this.btnPaym.UseVisualStyleBackColor = true;
+            this.btnPaym.Click += new System.EventHandler(this.btnPaym_Click);
             // 
             // btnDelRes
             // 
-            this.btnDelRes.Location = new System.Drawing.Point(454, 42);
+            this.btnDelRes.Location = new System.Drawing.Point(454, 89);
             this.btnDelRes.Name = "btnDelRes";
             this.btnDelRes.Size = new System.Drawing.Size(141, 23);
             this.btnDelRes.TabIndex = 89;
@@ -551,7 +538,7 @@
             // 
             // tbDelRes
             // 
-            this.tbDelRes.Location = new System.Drawing.Point(454, 16);
+            this.tbDelRes.Location = new System.Drawing.Point(454, 63);
             this.tbDelRes.Name = "tbDelRes";
             this.tbDelRes.Size = new System.Drawing.Size(141, 20);
             this.tbDelRes.TabIndex = 88;
@@ -595,6 +582,27 @@
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
             // 
+            // lblPayment
+            // 
+            this.lblPayment.AutoSize = true;
+            this.lblPayment.Location = new System.Drawing.Point(451, 144);
+            this.lblPayment.Name = "lblPayment";
+            this.lblPayment.Size = new System.Drawing.Size(48, 13);
+            this.lblPayment.TabIndex = 112;
+            this.lblPayment.Text = "Payment";
+            // 
+            // cbEvent
+            // 
+            this.cbEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEvent.FormattingEnabled = true;
+            this.cbEvent.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cbEvent.Location = new System.Drawing.Point(454, 16);
+            this.cbEvent.Name = "cbEvent";
+            this.cbEvent.Size = new System.Drawing.Size(141, 21);
+            this.cbEvent.TabIndex = 112;
+            // 
             // AccessControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,7 +645,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox lbResName;
         private System.Windows.Forms.ListBox lbResNr;
-        private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Button btnUnAtt;
         private System.Windows.Forms.Button btnAtt;
         private System.Windows.Forms.Button btnPaym;
@@ -675,6 +682,7 @@
         private System.Windows.Forms.TextBox tbStrNr;
         private System.Windows.Forms.TextBox tbSurname;
         private System.Windows.Forms.PictureBox pbChecked;
-        private System.Windows.Forms.TextBox tbRFIDNr;
+        private System.Windows.Forms.Label lblPayment;
+        private System.Windows.Forms.ComboBox cbEvent;
     }
 }
