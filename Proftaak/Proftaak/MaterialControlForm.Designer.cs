@@ -67,6 +67,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
+            this.lbRFIDNr = new System.Windows.Forms.Label();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -95,6 +96,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.lbRFIDNr);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button5);
             this.tabPage1.Controls.Add(this.label47);
@@ -495,6 +497,15 @@
             this.textBox13.Size = new System.Drawing.Size(61, 20);
             this.textBox13.TabIndex = 92;
             // 
+            // lbRFIDNr
+            // 
+            this.lbRFIDNr.AutoSize = true;
+            this.lbRFIDNr.Location = new System.Drawing.Point(241, 21);
+            this.lbRFIDNr.Name = "lbRFIDNr";
+            this.lbRFIDNr.Size = new System.Drawing.Size(70, 13);
+            this.lbRFIDNr.TabIndex = 45;
+            this.lbRFIDNr.Text = "RFID number";
+            // 
             // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,6 +515,7 @@
             this.Name = "MaterialControlForm";
             this.Text = "Material control";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MaterialControlForm_FormClosing);
+            this.Load += new System.EventHandler(this.MaterialControlForm_Load);
             this.Lenen.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -555,5 +567,6 @@
         private System.Windows.Forms.DomainUpDown domainUpDown3;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbRFIDNr;
     }
 }

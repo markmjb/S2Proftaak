@@ -13,6 +13,7 @@ namespace Datalayer
     {      
         
         int MediacategoryID;
+        public int MediaitemID { get; set; }
         private Databaseconnection db = new Databaseconnection();
         private OracleConnection dbmediaconn;
 
@@ -47,13 +48,14 @@ namespace Datalayer
            }
        }
 
-        public void AddMediaItemFile(String Filelocation, int Filesize, String Filetype, int size, int mediacategoryid)
+        public void AddMediaItemFile(int MediaitemID, String Filelocation, int Filesize, String Filetype, int mediacategoryid)
        {
            try
            {
 
                OracleCommand cmd = this.dbmediaconn.CreateCommand();
                cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMFILE(Filelocation, Filesize, Filetype,Mediacategoryid) VALUES (:flocation, :fsize, :ftype, :mediacategoryid)";
+               cmd.Parameters.Add("mediaitemID", MediaitemID);
                cmd.Parameters.Add("flocation", Filelocation);
                cmd.Parameters.Add("fsize", Filesize);
                cmd.Parameters.Add("ftype", Filetype );
@@ -73,6 +75,39 @@ namespace Datalayer
            }
        }
 
+        public int GetMediaItemID(string Title)
+        {
+            try
+            {
+                OracleCommand cmd = this.dbmediaconn.CreateCommand();
+                cmd.CommandText = "SELECT MEDIAITEMID FROM PTS2_MEDIAITEM WHERE TITLE  = :Title";
+                cmd.Parameters.Add("Title", Title);
+                
+                dbmediaconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+
+                }
+
+
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.dbmediaconn.Close();
+
+
+            }
+
+            return MediaitemID;
+        }
 
        public int GetCategoryID(string categoryinput)
        {
@@ -106,6 +141,8 @@ namespace Datalayer
           
            return MediacategoryID;
        }
- 
+
+
+      
     }
 }

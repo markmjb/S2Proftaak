@@ -27,9 +27,10 @@ namespace Businesslayer
             
         }
 
-        public void DeleteReservation(string DL)
+        public void DeleteReservation(int DL)
         {
             DA.DeleteRes(DL);
+            DA.DeleteUserRes(DL);
         }
 
         public void GetAllReservations()
@@ -45,6 +46,11 @@ namespace Businesslayer
         public void Search()
         {
             
+        }
+
+        public void AcceptPay()
+        {
+            int USERID = Userlogin.LoggedUserId;
         }
     }
 }

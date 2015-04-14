@@ -57,12 +57,10 @@ namespace Proftaak
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {
-            tbRFIDNr.Text = e.Tag;
             TempRFID = e.Tag;
         }
         void rfid_TagLost(object sender, TagEventArgs e)
         {
-            tbRFIDNr.Text = "";
         }
 
         //Parses command line arguments and calls the appropriate open
@@ -153,7 +151,13 @@ namespace Proftaak
 
         private void btnDelRes_Click(object sender, EventArgs e)
         {
-            AC.DeleteReservation(tbDelRes.Text);
+
+            AC.DeleteReservation(Convert.ToInt32(tbDelRes.Text));
+        }
+
+        private void btnPaym_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

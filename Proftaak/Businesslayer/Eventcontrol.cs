@@ -1,4 +1,5 @@
 ﻿using System;
+using Datalayer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,19 @@ namespace Businesslayer
 {
     public class EventControl : Reservation
     {
-        public string Description { get; set; }
-        public Address LocationAddress { get; set; }
-        public string Name { get; set; }
-        public string RFID { get; set; }
+        //FIELDS
+        public List<Event> Events { get; set; }
+        private Datalayer.DbRemainder dbRemainder = new Datalayer.DbRemainder();
 
-        public EventControl(DateTime beginTime, DateTime endtime, User employee, string description, Address locationAddress, string name, string rfid) : base(beginTime, endtime, employee)
+        //CONSTRUCTORS
+        public EventControl()
         {
-            Description = description;
-            LocationAddress = locationAddress;
-            Name = name;
-            RFID = rfid;
         }
 
-
-
+        //METHODS
+        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, string country, string province, string city, string street, int streetnumber, string postalcode)
+        {
+            Events.Add(new Event(name, description, startDate, endDate, ticketPrice, country, province, city, street, streetnumber, postalcode));
+        }
     }
 }
