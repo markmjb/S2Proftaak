@@ -50,7 +50,7 @@ namespace Businesslayer
 
         public void AcceptPay()
         {
-            int USERID = Userlogin.LoggedUserId;
+            int USERID = Userlogin.Loggeduser.ID;
         }
     }
 }

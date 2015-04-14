@@ -39,7 +39,7 @@ namespace Businesslayer
             this.size = size;
             this.filepath = filepath;
 
-            dbm.AddMediaItem(Title, Description, UserID);
+            //dbm.AddMediaItem(Title, Description, UserID);
             mediaitemid = dbm.GetMediaItemID(Title);
             dbm.AddMediaItemFile(mediaitemid,filepath, size, Filetype, 2);
 

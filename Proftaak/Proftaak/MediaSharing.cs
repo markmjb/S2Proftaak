@@ -67,7 +67,7 @@ namespace Proftaak
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
           categoryID = 3;
-          userID = userl.LoggedUserID;
+            userID = Userlogin.Loggeduser.ID;
          
           
 

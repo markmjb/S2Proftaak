@@ -14,7 +14,7 @@ namespace Proftaak
     public partial class EventControl : Form
     {
         //FIELDS
-        private Businesslayer.EventControl eventControl = new Businesslayer.EventControl();;
+        private Businesslayer.EventControl eventControl = new Businesslayer.EventControl();
         
         //CONSTRUCTORS
         public EventControl()

@@ -24,8 +24,7 @@ namespace Businesslayer
             StartDate = startDate;
             EndDate = endDate;
             TicketPrice = ticketPrice;
-
-            Address = new Address(country, state, city, street, streetnumber, postalcode);
+            Address = new Address(street,streetnumber,postalcode,city,state,country);
         }
     }
 }
