@@ -13,14 +13,13 @@ namespace Datalayer
     {      
         
         int MediacategoryID;
+        private Databaseconnection db = new Databaseconnection();
         private OracleConnection dbmediaconn;
 
         public DbMedia()
         {
             dbmediaconn = new OracleConnection();
-            string user = "system";
-            string pw = "system";
-            dbmediaconn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
+            dbmediaconn.ConnectionString = db.getstring();
         }
 
        public void AddMediaItem(String Title, String Description, int UserID)

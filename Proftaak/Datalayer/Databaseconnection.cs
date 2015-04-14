@@ -11,33 +11,19 @@ namespace Datalayer
 {
     public class Databaseconnection
     {
-        private OracleConnection conn;
-
+        
+        string user = "system";
+        string pw = "system";
+        public static string connectionstring = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
         public Databaseconnection()
         {
-                conn = new OracleConnection();
-                string user = "system";
-                string pw = "system";
-                conn.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
+
         }
 
-        public void Openconnection()
+        public string getstring()
         {
-            this.conn.Open();
+            return connectionstring;
         }
-
-        public OracleCommand CMD()
-        {
-            OracleCommand cmd = this.conn.CreateCommand();
-            return cmd;
-        }
-
-        public void Closeconnection()
-        {
-            this.conn.Close();
-        }
-
-       
 
     }
 }
