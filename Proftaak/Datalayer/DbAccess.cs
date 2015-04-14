@@ -25,7 +25,7 @@ namespace Datalayer
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID';";
+                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID'";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
@@ -48,7 +48,7 @@ namespace Datalayer
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = ':ID';";
+                cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = ':ID'";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
@@ -64,26 +64,29 @@ namespace Datalayer
             }
         }
 
-        public void AllReservations(int ID)
+        public List<ReservationAccesDL> AllReservations(int EventID)
         {
-            /*try
+
+            List<ReservationAccesDL> Reservations = new List<ReservationAccesDL>();
+
+            try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "SELECT R.ID, R.Price FROM Reservation R, Event E WHERE E.EventID = E.id AND E.ID = :ID";
-                cmd.Parameters.Add("ID", ID);
+                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :ID";
+                cmd.Parameters.Add("ID", EventID);
 
                 DbAcces.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
-                List<A> list = new List<A>();
-                int ReserveringID;
+                int ReservationNr;
                 int Price;
 
                 while (reader.Read())
                 {
-                    Episode = Convert.ToInt32(reader["Episode"]);
-                    A AB = new A(....);
-                    list.Add(AB);
+                    ReservationNr = Convert.ToInt32(reader["ReservationID"]);
+                    Price = Convert.ToInt32(reader["Price"]);
+                    ReservationAccesDL Reservation = new ReservationAccesDL(ReservationNr, Price);
+                    Reservations.Add(Reservation);
                 }
             }
             catch (OracleException exc)
@@ -93,7 +96,8 @@ namespace Datalayer
             finally
             {
                 this.DbAcces.Close();
-            }*/
+            }
+            return Reservations;
         }
 
         public void AcceptPaymentRes(int ResNr)
@@ -103,7 +107,7 @@ namespace Datalayer
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID';";
+                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID'";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
@@ -128,7 +132,7 @@ namespace Datalayer
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID';";
+                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID'";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();

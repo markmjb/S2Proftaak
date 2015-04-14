@@ -36,6 +36,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.Presentlist = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbEvent = new System.Windows.Forms.ComboBox();
+            this.lblPayment = new System.Windows.Forms.Label();
             this.pbChecked = new System.Windows.Forms.PictureBox();
             this.lblChecked = new System.Windows.Forms.Label();
             this.gbReservations = new System.Windows.Forms.GroupBox();
@@ -80,8 +82,6 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
-            this.lblPayment = new System.Windows.Forms.Label();
-            this.cbEvent = new System.Windows.Forms.ComboBox();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -168,6 +168,28 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Toegangscontrole";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbEvent
+            // 
+            this.cbEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEvent.FormattingEnabled = true;
+            this.cbEvent.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cbEvent.Location = new System.Drawing.Point(454, 16);
+            this.cbEvent.Name = "cbEvent";
+            this.cbEvent.Size = new System.Drawing.Size(141, 21);
+            this.cbEvent.TabIndex = 112;
+            this.cbEvent.SelectionChangeCommitted += new System.EventHandler(this.cbEvent_SelectionChangeCommitted);
+            // 
+            // lblPayment
+            // 
+            this.lblPayment.AutoSize = true;
+            this.lblPayment.Location = new System.Drawing.Point(451, 144);
+            this.lblPayment.Name = "lblPayment";
+            this.lblPayment.Size = new System.Drawing.Size(48, 13);
+            this.lblPayment.TabIndex = 112;
+            this.lblPayment.Text = "Payment";
             // 
             // pbChecked
             // 
@@ -581,27 +603,6 @@
             this.lbPresentList.Name = "lbPresentList";
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
-            // 
-            // lblPayment
-            // 
-            this.lblPayment.AutoSize = true;
-            this.lblPayment.Location = new System.Drawing.Point(451, 144);
-            this.lblPayment.Name = "lblPayment";
-            this.lblPayment.Size = new System.Drawing.Size(48, 13);
-            this.lblPayment.TabIndex = 112;
-            this.lblPayment.Text = "Payment";
-            // 
-            // cbEvent
-            // 
-            this.cbEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEvent.FormattingEnabled = true;
-            this.cbEvent.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cbEvent.Location = new System.Drawing.Point(454, 16);
-            this.cbEvent.Name = "cbEvent";
-            this.cbEvent.Size = new System.Drawing.Size(141, 21);
-            this.cbEvent.TabIndex = 112;
             // 
             // AccessControlForm
             // 

@@ -49,6 +49,7 @@
     <Compile Include="Mediaitem.cs" />
     <Compile Include="Mediasharingbusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationAcces.cs" />
     <Compile Include="ReservationCampspot.cs" />
     <Compile Include="ReservationMaterial.cs" />
     <Compile Include="Reservation.cs" />

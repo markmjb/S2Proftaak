@@ -33,9 +33,16 @@ namespace Businesslayer
             DA.DeleteUserRes(DL);
         }
 
-        public void GetAllReservations()
+        public List<ReservationAcces> GetAllReservations(int EventID)
         {
-            
+            List<ReservationAcces> ReservationBL = new List<ReservationAcces>();
+            List<ReservationAccesDL> ReservationDL = DA.AllReservations(EventID);
+
+            foreach(ReservationAccesDL R in ReservationDL)
+            {
+                ReservationBL.Add(new ReservationAcces(R.ReservationNr, R.Payment ));
+            }
+            return ReservationBL;
         }
 
         public void GetUserInfo()

@@ -18,6 +18,7 @@ namespace Proftaak
         private RFID rfid;
         private string TempRFID;
         AccessControl AC = new AccessControl();
+        List<ReservationAcces> ReservationBL = new List<ReservationAcces>();
 
         public AccessControlForm()
         {
@@ -38,6 +39,8 @@ namespace Proftaak
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             openCmdLine(rfid);
+
+            LoadReservationListBox();
         }
 
         void rfid_Attach(object sender, AttachEventArgs e)
@@ -158,6 +161,24 @@ namespace Proftaak
         private void btnPaym_Click(object sender, EventArgs e)
         {
             
+        }
+
+        void LoadReservationListBox()
+        {
+            if (cbEvent.Text != "")
+            {
+                List<ReservationAcces> Reservations = AC.GetAllReservations(Convert.ToInt32(cbEvent.Text));
+
+                foreach (ReservationAcces R in Reservations)    
+                {
+                    lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
+                }
+            }
+        }
+
+        private void cbEvent_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LoadReservationListBox();
         }
     }
 }
