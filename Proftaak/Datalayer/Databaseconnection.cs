@@ -11,10 +11,7 @@ namespace Datalayer
 {
     public class Databaseconnection
     {
-        
-        string user = "system";
-        string pw = "system";
-        public static string connectionstring = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "127.0.0.1/" + ";";
+        public static string connectionstring = "User Id=system;Password=system;Data Source=" + "127.0.0.1/" + ";";
         public Databaseconnection()
         {
 
