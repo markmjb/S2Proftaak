@@ -75,13 +75,15 @@ namespace Datalayer
                 DbAcces.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
-                List<serie> list = new List<serie>();
+                List<A> list = new List<A>();
                 int ReserveringID;
                 int Price;
 
                 while (reader.Read())
                 {
-
+                    Episode = Convert.ToInt32(reader["Episode"]);
+                    A AB = new A(....);
+                    list.Add(AB);
                 }
             }
             catch (OracleException exc)
