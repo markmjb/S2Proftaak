@@ -66,31 +66,6 @@ namespace Datalayer
                this.DbMateriall.Close();
            }
        }
-       public void AddStock(string MaterialName, string Description, double Price, int MaterialTypeID, int EventID)
-       {
-           try
-           {
-               OracleCommand cmd = this.DbMateriall.CreateCommand();
-               cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialName, description, price, materialTypeID, eventID)VALUES (:MaterialName, :Description, :Price, :MaterialTypeID, :EventID)";
-               cmd.Parameters.Add("materialName", MaterialName);
-               cmd.Parameters.Add("description", Description);
-               cmd.Parameters.Add("price", Price);
-               cmd.Parameters.Add("materialTypeID", MaterialTypeID);
-               cmd.Parameters.Add("eventID", EventID);
-
-               DbMateriall.Open();
-
-               cmd.ExecuteReader();
-           }
-           catch (OracleException exc)
-           {
-               Console.WriteLine(exc);
-           }
-           finally
-           {
-               this.DbMateriall.Close();
-           }
-       }
        public void LoanMaterial(int MaterialID)
        {
            try
