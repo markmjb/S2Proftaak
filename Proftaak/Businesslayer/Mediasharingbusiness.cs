@@ -14,5 +14,11 @@ namespace Businesslayer
         {
             return dbmedia.GetCategoryID(category);
         }
+
+        public int GetmediaitemID(string Title)
+        {
+            return dbmedia.GetMediaItemID(Title);
+        }
+
     }
 }

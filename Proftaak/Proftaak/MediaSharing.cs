@@ -68,16 +68,18 @@ namespace Proftaak
           category = cbCategory.Text;
           categoryID = 3;
           userID = userl.LoggedUserID;
-          
-          
-
-          Mediaitem newmedia = new Mediaitem(type, title, description, filepath, categoryID, userID, size, filetype);  
-
+         
           
 
+          Mediaitem newmedia = new Mediaitem(type, title, description, filepath, categoryID, userID, size, filetype);
+          int mediaitemID = mdsb.GetmediaitemID(title);
+            FileBox.Items.Add(mediaitemID + ": " + title);
+            mdsb.GetmediaitemID(title);
           
 
-          
+
+
+
 
         }
 
