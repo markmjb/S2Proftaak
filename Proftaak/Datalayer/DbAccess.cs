@@ -10,20 +10,17 @@ namespace Datalayer
 {
     public class DbAccess : Datalayer.Databaseconnection
     {
-        public DbAccess()
-        {
 
-        }
+        //Databaseconnection db = new Databaseconnection();
 
-        public void DeleteRes(int ResNr)
+        public void DeleteRes(string ResNr)
         {
             try
             {
-                CMD().CommandText =
-                    "DELETE FROM Reservation, User_Reservation WHERE Reservation.ID = '" + ResNr + "' AND User_Reservation.ReservationID = '" + ResNr + "'";
-                CMD().Parameters.Add("ID", ResNr);
-
                 Openconnection();
+                CMD().CommandText =
+                    "DELETE FROM Reservation, User_Reservation WHERE Reservation.ID = '" + ResNr + "' AND User_Reservation.ReservationID = '" + ResNr + "';";
+                CMD().Parameters.Add("ID", ResNr);
 
                 CMD().ExecuteReader();
             }

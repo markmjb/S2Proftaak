@@ -4,12 +4,13 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datalayer;
 
 namespace Businesslayer
 {
     public class AccessControl
     {
-
+        //DbAccess DA = new DbAccess();
 
         public void AttachRfid()
         {
@@ -26,9 +27,9 @@ namespace Businesslayer
             
         }
 
-        public void DeleteReservation()
+        public void DeleteReservation(string DL)
         {
-            
+            //DA.DeleteRes(DL);
         }
 
         public void GetAllReservations()

@@ -547,6 +547,7 @@
             this.btnDelRes.TabIndex = 89;
             this.btnDelRes.Text = "Delete Reservation";
             this.btnDelRes.UseVisualStyleBackColor = true;
+            this.btnDelRes.Click += new System.EventHandler(this.btnDelRes_Click);
             // 
             // tbDelRes
             // 

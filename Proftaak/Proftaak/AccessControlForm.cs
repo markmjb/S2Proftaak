@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
+using Businesslayer;
 
 namespace Proftaak
 {
@@ -16,6 +17,7 @@ namespace Proftaak
     {
         private RFID rfid;
         private string TempRFID;
+        //AccessControl AC = new AccessControl();
 
         public AccessControlForm()
         {
@@ -36,8 +38,6 @@ namespace Proftaak
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             openCmdLine(rfid);
-
-
         }
 
         void rfid_Attach(object sender, AttachEventArgs e)
@@ -150,6 +150,11 @@ namespace Proftaak
             Application.Exit();
         }
         #endregion
+
+        private void btnDelRes_Click(object sender, EventArgs e)
+        {
+            //AC.DeleteReservation(tbDelRes.Text);
+        }
     }
 }
 
