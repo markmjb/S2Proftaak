@@ -22,16 +22,18 @@ namespace Datalayer
             dbmediaconn.ConnectionString = db.getstring();
         }
 
-       public void AddMediaItem(String Title, String Description, int UserID)
+       public void AddMediaItem(String Title, String Description, int UserID, int size)
        {
            try
            {
+
                OracleCommand cmd = this.dbmediaconn.CreateCommand();
-               cmd.CommandText= " INSERT INTO PTS2_MEDIAITEM(Title,Type,Description,Category,UserID) VALUES (:title, :type, :desc, :cat, :uid)";
+               cmd.CommandText= " INSERT INTO PTS2_MEDIAITEM(Title,Description,UserID) VALUES (:title, :descr, :userid)";
                cmd.Parameters.Add("title", Title);
-               cmd.Parameters.Add("desc", Description);
-               cmd.Parameters.Add("uid", UserID);
-              
+               cmd.Parameters.Add("descr", Description);
+               cmd.Parameters.Add("userid", UserID);
+
+               dbmediaconn.Open();
                
                cmd.ExecuteReader();
            }
@@ -44,6 +46,33 @@ namespace Datalayer
                this.dbmediaconn.Close();
            }
        }
+
+        public void AddMediaItemFile(String Filelocation, int Filesize, String Filetype, int size, int mediacategoryid)
+       {
+           try
+           {
+
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMFILE(Filelocation, Filesize, Filetype,Mediacategoryid) VALUES (:flocation, :fsize, :ftype, :mediacategoryid)";
+               cmd.Parameters.Add("flocation", Filelocation);
+               cmd.Parameters.Add("fsize", Filesize);
+               cmd.Parameters.Add("ftype", Filetype );
+               cmd.Parameters.Add("mediacateogryid", mediacategoryid);
+
+               dbmediaconn.Open();
+               
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+           }
+       }
+
 
        public int GetCategoryID(string categoryinput)
        {

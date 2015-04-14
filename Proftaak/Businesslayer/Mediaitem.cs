@@ -23,15 +23,18 @@ namespace Businesslayer
 
         public int CategoryID { get; set; }
 
-        public Mediaitem(string Type, string Title, string Description, int CategoryID, int UserID)
+        public int size { get; set; }
+
+        public Mediaitem(string Type, string Title, string Description, int CategoryID, int UserID, int size)
         {
             this.Type = Type;
             this.Title = Title;
             this.Description = Description;
             this.CategoryID = CategoryID;
             this.UserID = UserID;
+            this.size = size;
 
-            dbm.AddMediaItem(Title, Description, UserID);
+            dbm.AddMediaItem(Title, Description, UserID, size);
 
         }
 
