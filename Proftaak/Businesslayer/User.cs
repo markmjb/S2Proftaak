@@ -30,5 +30,18 @@ namespace Businesslayer
             Password = password;
             this.ID = ID;
         }
+
+        public User(string firstname, string lastname, Address address, string email, int id)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Address = address;
+           Email = email;
+          ID = id;
+        }
+        public User()
+        {
+            
+        }
     }
 }

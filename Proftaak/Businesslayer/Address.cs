@@ -24,5 +24,10 @@ namespace Businesslayer
             State = state;
             Country = country;
         }
+
+        public Address()
+        {
+            
+        }
     }
 }

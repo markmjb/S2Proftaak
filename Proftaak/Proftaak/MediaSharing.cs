@@ -62,7 +62,7 @@ namespace Proftaak
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
           categoryID = 3;
-          userID = userl.LoggedUserID;
+            userID = 2;
           
 
           Mediaitem newmedia = new Mediaitem(type, title, description, categoryID, userID, size);  
