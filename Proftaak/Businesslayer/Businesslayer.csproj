@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AccessControl.cs" />
     <Compile Include="Address.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="EventControl.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Login.cs" />

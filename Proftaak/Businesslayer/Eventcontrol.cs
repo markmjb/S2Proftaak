@@ -9,12 +9,13 @@ namespace Businesslayer
 {
     public class EventControl : Reservation
     {
+        /*
         public string Description { get; set; }
         public Address LocationAddress { get; set; }
         public string Name { get; set; }
-        public string RFID { get; set; }
+        public string Rfid { get; set; }
 
-        /*
+        
         public EventControl(DateTime beginTime, DateTime endtime, User employee, string description, Address locationAddress, string name, string rfid) : base(beginTime, endtime, employee)
         {
             Description = description;
@@ -23,16 +24,9 @@ namespace Businesslayer
             RFID = rfid;
         }
          */
-
         public EventControl()
         {
-            Datalayer.DbRemainder dbConnection = new Datalayer.DbRemainder();
 
-        }
-
-        public List<EventControl> getEvents()
-        {
-            
         }
     }
 }
