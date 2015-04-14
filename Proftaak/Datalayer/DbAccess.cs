@@ -13,7 +13,7 @@ namespace Datalayer
 
         //Databaseconnection db = new Databaseconnection();
 
-        public void DeleteRes(string ResNr)
+        /*public void DeleteRes(string ResNr)
         {
             try
             {
@@ -32,6 +32,6 @@ namespace Datalayer
             {
                 Closeconnection();
             }
-        }
+        }*/
     }
 }
