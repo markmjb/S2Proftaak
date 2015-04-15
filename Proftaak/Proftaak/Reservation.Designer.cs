@@ -36,25 +36,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabEvent = new System.Windows.Forms.TabPage();
-            this.btnNext = new System.Windows.Forms.Button();
             this.lblChooseEvent = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabCampspot = new System.Windows.Forms.TabPage();
             this.tabAddUser = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.button4 = new System.Windows.Forms.Button();
+            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
+            this.btnAddEdit = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.lbAddedUsers = new System.Windows.Forms.ListBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.tbLastname = new System.Windows.Forms.TextBox();
+            this.tbFirstname = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbGroup = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,12 +62,12 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.tbCountry = new System.Windows.Forms.TextBox();
+            this.tbState = new System.Windows.Forms.TextBox();
+            this.tbCity = new System.Windows.Forms.TextBox();
+            this.tbPostalcode = new System.Windows.Forms.TextBox();
+            this.tbStreetnumber = new System.Windows.Forms.TextBox();
+            this.tbStreet = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -78,6 +76,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.lbAvailablespots = new System.Windows.Forms.ListBox();
+            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -152,33 +154,23 @@
             this.tabControl1.Controls.Add(this.tabCampspot);
             this.tabControl1.Controls.Add(this.tabAddUser);
             this.tabControl1.Controls.Add(this.tabConf);
-            this.tabControl1.Location = new System.Drawing.Point(3, -5);
+            this.tabControl1.Location = new System.Drawing.Point(13, -5);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1200, 762);
+            this.tabControl1.Size = new System.Drawing.Size(1178, 700);
             this.tabControl1.TabIndex = 6;
             // 
             // tabEvent
             // 
-            this.tabEvent.Controls.Add(this.btnNext);
             this.tabEvent.Controls.Add(this.lblChooseEvent);
             this.tabEvent.Controls.Add(this.comboBox2);
             this.tabEvent.Location = new System.Drawing.Point(4, 25);
             this.tabEvent.Name = "tabEvent";
-            this.tabEvent.Size = new System.Drawing.Size(1192, 733);
+            this.tabEvent.Size = new System.Drawing.Size(1170, 671);
             this.tabEvent.TabIndex = 3;
             this.tabEvent.Text = "Choose Event";
             this.tabEvent.UseVisualStyleBackColor = true;
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(75, 261);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(776, 152);
-            this.btnNext.TabIndex = 2;
-            this.btnNext.Text = "NEXT";
-            this.btnNext.UseVisualStyleBackColor = true;
             // 
             // lblChooseEvent
             // 
@@ -201,6 +193,8 @@
             // tabCampspot
             // 
             this.tabCampspot.BackColor = System.Drawing.SystemColors.Control;
+            this.tabCampspot.Controls.Add(this.btnReload);
+            this.tabCampspot.Controls.Add(this.lbAvailablespots);
             this.tabCampspot.Controls.Add(this.pictureBox1);
             this.tabCampspot.Controls.Add(this.label2);
             this.tabCampspot.Controls.Add(this.button1);
@@ -211,7 +205,7 @@
             this.tabCampspot.Margin = new System.Windows.Forms.Padding(4);
             this.tabCampspot.Name = "tabCampspot";
             this.tabCampspot.Padding = new System.Windows.Forms.Padding(4);
-            this.tabCampspot.Size = new System.Drawing.Size(1192, 733);
+            this.tabCampspot.Size = new System.Drawing.Size(1170, 671);
             this.tabCampspot.TabIndex = 0;
             this.tabCampspot.Text = "ChooseCampingspot";
             // 
@@ -223,20 +217,19 @@
             this.tabAddUser.Margin = new System.Windows.Forms.Padding(4);
             this.tabAddUser.Name = "tabAddUser";
             this.tabAddUser.Padding = new System.Windows.Forms.Padding(4);
-            this.tabAddUser.Size = new System.Drawing.Size(1192, 733);
+            this.tabAddUser.Size = new System.Drawing.Size(1170, 671);
             this.tabAddUser.TabIndex = 1;
             this.tabAddUser.Text = "Add Users";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dateTimePicker3);
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.dtpBirth);
+            this.groupBox2.Controls.Add(this.btnAddEdit);
             this.groupBox2.Controls.Add(this.groupBox4);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.textBox12);
-            this.groupBox2.Controls.Add(this.textBox11);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tbEmail);
+            this.groupBox2.Controls.Add(this.tbPassword);
+            this.groupBox2.Controls.Add(this.tbLastname);
+            this.groupBox2.Controls.Add(this.tbFirstname);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.label5);
@@ -253,23 +246,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add User";
             // 
-            // dateTimePicker3
+            // dtpBirth
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(120, 161);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(143, 22);
-            this.dateTimePicker3.TabIndex = 19;
+            this.dtpBirth.Location = new System.Drawing.Point(120, 161);
+            this.dtpBirth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpBirth.Name = "dtpBirth";
+            this.dtpBirth.Size = new System.Drawing.Size(143, 22);
+            this.dtpBirth.TabIndex = 19;
             // 
-            // button4
+            // btnAddEdit
             // 
-            this.button4.Location = new System.Drawing.Point(192, 505);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Add/Edit  User";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAddEdit.Location = new System.Drawing.Point(192, 505);
+            this.btnAddEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddEdit.Name = "btnAddEdit";
+            this.btnAddEdit.Size = new System.Drawing.Size(100, 28);
+            this.btnAddEdit.TabIndex = 18;
+            this.btnAddEdit.Text = "Add/Edit  User";
+            this.btnAddEdit.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -304,47 +297,37 @@
             this.lbAddedUsers.Size = new System.Drawing.Size(159, 212);
             this.lbAddedUsers.TabIndex = 0;
             // 
-            // button3
+            // tbEmail
             // 
-            this.button3.Location = new System.Drawing.Point(651, 562);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Next Page:";
-            this.button3.UseVisualStyleBackColor = true;
+            this.tbEmail.Location = new System.Drawing.Point(120, 100);
+            this.tbEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(132, 22);
+            this.tbEmail.TabIndex = 17;
             // 
-            // textBox12
+            // tbPassword
             // 
-            this.textBox12.Location = new System.Drawing.Point(120, 100);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(132, 22);
-            this.textBox12.TabIndex = 17;
+            this.tbPassword.Location = new System.Drawing.Point(120, 132);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(132, 22);
+            this.tbPassword.TabIndex = 16;
             // 
-            // textBox11
+            // tbLastname
             // 
-            this.textBox11.Location = new System.Drawing.Point(120, 132);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(132, 22);
-            this.textBox11.TabIndex = 16;
+            this.tbLastname.Location = new System.Drawing.Point(120, 70);
+            this.tbLastname.Margin = new System.Windows.Forms.Padding(4);
+            this.tbLastname.Name = "tbLastname";
+            this.tbLastname.Size = new System.Drawing.Size(132, 22);
+            this.tbLastname.TabIndex = 7;
             // 
-            // textBox2
+            // tbFirstname
             // 
-            this.textBox2.Location = new System.Drawing.Point(120, 70);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 22);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(120, 38);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 22);
-            this.textBox1.TabIndex = 6;
+            this.tbFirstname.Location = new System.Drawing.Point(120, 38);
+            this.tbFirstname.Margin = new System.Windows.Forms.Padding(4);
+            this.tbFirstname.Name = "tbFirstname";
+            this.tbFirstname.Size = new System.Drawing.Size(132, 22);
+            this.tbFirstname.TabIndex = 6;
             // 
             // label6
             // 
@@ -358,7 +341,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.cbGroup);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Location = new System.Drawing.Point(8, 428);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
@@ -369,14 +352,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Group";
             // 
-            // comboBox1
+            // cbGroup
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(95, 25);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(160, 24);
-            this.comboBox1.TabIndex = 19;
+            this.cbGroup.FormattingEnabled = true;
+            this.cbGroup.Location = new System.Drawing.Point(95, 25);
+            this.cbGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.cbGroup.Name = "cbGroup";
+            this.cbGroup.Size = new System.Drawing.Size(160, 24);
+            this.cbGroup.TabIndex = 19;
             // 
             // label13
             // 
@@ -433,12 +416,12 @@
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.tbCountry);
+            this.groupBox1.Controls.Add(this.tbState);
+            this.groupBox1.Controls.Add(this.tbCity);
+            this.groupBox1.Controls.Add(this.tbPostalcode);
+            this.groupBox1.Controls.Add(this.tbStreetnumber);
+            this.groupBox1.Controls.Add(this.tbStreet);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -481,53 +464,53 @@
             this.label10.TabIndex = 3;
             this.label10.Text = "City:";
             // 
-            // textBox4
+            // tbCountry
             // 
-            this.textBox4.Location = new System.Drawing.Point(112, 199);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(132, 22);
-            this.textBox4.TabIndex = 9;
+            this.tbCountry.Location = new System.Drawing.Point(112, 199);
+            this.tbCountry.Margin = new System.Windows.Forms.Padding(4);
+            this.tbCountry.Name = "tbCountry";
+            this.tbCountry.Size = new System.Drawing.Size(132, 22);
+            this.tbCountry.TabIndex = 9;
             // 
-            // textBox5
+            // tbState
             // 
-            this.textBox5.Location = new System.Drawing.Point(115, 162);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(132, 22);
-            this.textBox5.TabIndex = 10;
+            this.tbState.Location = new System.Drawing.Point(115, 162);
+            this.tbState.Margin = new System.Windows.Forms.Padding(4);
+            this.tbState.Name = "tbState";
+            this.tbState.Size = new System.Drawing.Size(132, 22);
+            this.tbState.TabIndex = 10;
             // 
-            // textBox6
+            // tbCity
             // 
-            this.textBox6.Location = new System.Drawing.Point(115, 135);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(132, 22);
-            this.textBox6.TabIndex = 11;
+            this.tbCity.Location = new System.Drawing.Point(115, 135);
+            this.tbCity.Margin = new System.Windows.Forms.Padding(4);
+            this.tbCity.Name = "tbCity";
+            this.tbCity.Size = new System.Drawing.Size(132, 22);
+            this.tbCity.TabIndex = 11;
             // 
-            // textBox7
+            // tbPostalcode
             // 
-            this.textBox7.Location = new System.Drawing.Point(115, 95);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(132, 22);
-            this.textBox7.TabIndex = 12;
+            this.tbPostalcode.Location = new System.Drawing.Point(115, 95);
+            this.tbPostalcode.Margin = new System.Windows.Forms.Padding(4);
+            this.tbPostalcode.Name = "tbPostalcode";
+            this.tbPostalcode.Size = new System.Drawing.Size(132, 22);
+            this.tbPostalcode.TabIndex = 12;
             // 
-            // textBox8
+            // tbStreetnumber
             // 
-            this.textBox8.Location = new System.Drawing.Point(115, 55);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(132, 22);
-            this.textBox8.TabIndex = 13;
+            this.tbStreetnumber.Location = new System.Drawing.Point(115, 55);
+            this.tbStreetnumber.Margin = new System.Windows.Forms.Padding(4);
+            this.tbStreetnumber.Name = "tbStreetnumber";
+            this.tbStreetnumber.Size = new System.Drawing.Size(132, 22);
+            this.tbStreetnumber.TabIndex = 13;
             // 
-            // textBox9
+            // tbStreet
             // 
-            this.textBox9.Location = new System.Drawing.Point(115, 23);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(132, 22);
-            this.textBox9.TabIndex = 14;
+            this.tbStreet.Location = new System.Drawing.Point(115, 23);
+            this.tbStreet.Margin = new System.Windows.Forms.Padding(4);
+            this.tbStreet.Name = "tbStreet";
+            this.tbStreet.Size = new System.Drawing.Size(132, 22);
+            this.tbStreet.TabIndex = 14;
             // 
             // label9
             // 
@@ -569,7 +552,7 @@
             this.tabConf.Location = new System.Drawing.Point(4, 25);
             this.tabConf.Margin = new System.Windows.Forms.Padding(4);
             this.tabConf.Name = "tabConf";
-            this.tabConf.Size = new System.Drawing.Size(1192, 733);
+            this.tabConf.Size = new System.Drawing.Size(1170, 671);
             this.tabConf.TabIndex = 2;
             this.tabConf.Text = "Confirmation Screen";
             // 
@@ -612,12 +595,53 @@
             this.label14.TabIndex = 0;
             this.label14.Text = "Reservation Info:";
             // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Location = new System.Drawing.Point(17, 702);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(109, 36);
+            this.btnPrevious.TabIndex = 4;
+            this.btnPrevious.Text = "Previous";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(1083, 702);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(109, 36);
+            this.btnNext.TabIndex = 3;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // lbAvailablespots
+            // 
+            this.lbAvailablespots.FormattingEnabled = true;
+            this.lbAvailablespots.ItemHeight = 16;
+            this.lbAvailablespots.Location = new System.Drawing.Point(49, 62);
+            this.lbAvailablespots.Name = "lbAvailablespots";
+            this.lbAvailablespots.Size = new System.Drawing.Size(120, 436);
+            this.lbAvailablespots.TabIndex = 6;
+            // 
+            // btnReload
+            // 
+            this.btnReload.Location = new System.Drawing.Point(49, 30);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(120, 31);
+            this.btnReload.TabIndex = 7;
+            this.btnReload.Text = "Reload";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // Reservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 758);
+            this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnNext);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Reservation";
             this.Text = "Reservation";
@@ -673,27 +697,29 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.TextBox tbLastname;
+        private System.Windows.Forms.TextBox tbFirstname;
+        private System.Windows.Forms.TextBox tbCountry;
+        private System.Windows.Forms.TextBox tbState;
+        private System.Windows.Forms.TextBox tbCity;
+        private System.Windows.Forms.TextBox tbPostalcode;
+        private System.Windows.Forms.TextBox tbStreetnumber;
+        private System.Windows.Forms.TextBox tbStreet;
+        private System.Windows.Forms.Button btnAddEdit;
+        private System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dtpBirth;
         private System.Windows.Forms.TabPage tabEvent;
-        private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label lblChooseEvent;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.ListBox lbAvailablespots;
+        private System.Windows.Forms.Button btnReload;
     }
 }

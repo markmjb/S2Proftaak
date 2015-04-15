@@ -34,6 +34,7 @@ namespace Proftaak
        private int userID;
        private int categoryID;
        
+        List<Mediaitem> Mediaitems = new List<Mediaitem>();
 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
@@ -54,7 +55,7 @@ namespace Proftaak
             FileInfo F = new FileInfo(openFileDialog1.FileName);
             size = Convert.ToInt32(F.Length / 1000);
             filetype = F.Extension;
-            MessageBox.Show(filetype);
+    
 
            
         }
@@ -68,14 +69,19 @@ namespace Proftaak
           filepath = tbSelectFile.Text;
           category = cbCategory.Text;
           categoryID = 3;
-            userID = Userlogin.Loggeduser.ID;
+          userID = Userlogin.Loggeduser.ID;
          
           
 
           Mediaitem newmedia = new Mediaitem(type, title, description, filepath, categoryID, userID, size, filetype);
+         
           int mediaitemID = mdsb.GetmediaitemID(title);
-            FileBox.Items.Add(mediaitemID + ": " + title);
-            mdsb.GetmediaitemID(title);
+
+          Mediaitems = mdsb.Getallmediaitems();
+          Refresh();
+       
+
+            
           
 
 
@@ -95,7 +101,13 @@ namespace Proftaak
 
         }
 
-        
-      
+        public new void Refresh()
+        {
+            foreach (Mediaitem mediaitem in Mediaitems)
+            {
+                FileBox.Items.Add(mediaitem.Title);
+
+            }
+        }
     }
 }

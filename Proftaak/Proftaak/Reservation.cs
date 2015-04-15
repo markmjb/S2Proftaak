@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Businesslayer;
+using Businesslayer.Business;
 
 namespace Proftaak
 {
@@ -28,5 +29,37 @@ namespace Proftaak
         {
             //Businesslayer.Reservation Res = new Businesslayer.ReservationCampspot()
         }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                
+            }
+            else
+            {
+                tabControl1.SelectedIndex--;
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 3)
+            {
+               
+            }
+            else
+            {
+                tabControl1.SelectedIndex++;
+            }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+        ReservationCampspot C = new ReservationCampspot();
+       
+        }
+
+
     }
 }

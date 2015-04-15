@@ -13,12 +13,16 @@ namespace Businesslayer.Business
         //CONSTRUCTORS
         public EventControl()
         {
+            Events = new List<Event>();
+            GetEvents();
         }
 
         //METHODS
-        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, string country, string province, string city, string street, int streetnumber, string postalcode)
+        public void GetEvents()
         {
-            Events.Add(new Event(name, description, startDate, endDate, ticketPrice, country, province, city, street, streetnumber, postalcode));
+            Events.Clear();
+
+            Events = dbRemainder.GetEvents();
         }
     }
 }

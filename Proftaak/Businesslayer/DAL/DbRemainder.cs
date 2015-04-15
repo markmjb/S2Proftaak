@@ -7,12 +7,13 @@ namespace Businesslayer.DAL
 {
     public class DbRemainder : Databaseconnection
     {
-        private Databaseconnection db = new Databaseconnection();
+        private Databaseconnection db;
         private readonly OracleConnection dbremainderconn;
         private bool Logincheck;
 
         public DbRemainder()
         {
+            db = new Databaseconnection();
             this.dbremainderconn = new OracleConnection();
             dbremainderconn.ConnectionString = db.getstring();
         }
@@ -100,72 +101,44 @@ namespace Businesslayer.DAL
             return Objects;
         }
 
-        public List<Event> RefreshEvents()
+        public List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
-
-            int eventID;
-            string eventName;
-            string description;
-            DateTime startDate;
-            DateTime endDate;
-            decimal ticketPrice;
-            int userID;
-            int addressID;
-
-            string street = "";
-            int streetnumber = -1;
-            string postalCode = "";
-            string city = "";
-            string province = "";
-            string country = "";
 
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
                 cmd.CommandText =
-                    "SELECT eventID, eventName, description, startDate, endDate, ticketPrice, userID, addressID" +
-                    " FROM PTS2_EVENT";
+                    "SELECT E.eventID, E.eventName, E.description, E.startDate, E.endDate, E.ticketPrice, E.userID, A.addressID, A.country, A.province, A.city, A.street, A.housenumber, A.postalcode FROM PTS2_EVENT E, PTS2_ADDRESS A WHERE E.addressID = A.addressID";
+
                 dbremainderconn.Open();
-                
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    eventID = Convert.ToInt32(reader["eventID"]);
-                    eventName = Convert.ToString(reader["eventName"]);
-                    description = Convert.ToString(reader["description"]);
-                    startDate = Convert.ToDateTime(reader["startDate"]);
-                    endDate = Convert.ToDateTime(reader["endDate"]);
-                    ticketPrice = Convert.ToDecimal(reader["ticketPrice"]);
-                    userID = Convert.ToInt32(reader["userID"]);
-                    addressID = Convert.ToInt32(reader["addressID"]);
+                    int eventID = Convert.ToInt32(reader["eventID"]);
+                    string name = Convert.ToString(reader["eventName"]);
+                    string description = Convert.ToString(reader["description"]);
+                    DateTime startDate = Convert.ToDateTime(reader["startDate"]);
+                    DateTime endDate = Convert.ToDateTime(reader["endDate"]);
+                    decimal ticketPrice = Convert.ToDecimal(reader["ticketPrice"]);
+                    int userID = Convert.ToInt32(reader["userID"]);
 
-                    OracleCommand cmd2 = this.dbremainderconn.CreateCommand();
-                    cmd.CommandText =
-                        "SELECT country, province, city, street, housenumber, postalcode" +
-                        " FROM PTS2_ADDRESS" +
-                        " WHERE addressID = " +
-                        addressID;
-                    reader = cmd2.ExecuteReader();
+                    int addressID = Convert.ToInt32(reader["addressID"]);
+                    string street = Convert.ToString(reader["street"]);
+                    int streetnumber = Convert.ToInt32(reader["housenumber"]);
+                    string postalCode = Convert.ToString(reader["postalcode"]);
+                    string city = Convert.ToString(reader["city"]);
+                    string province = Convert.ToString(reader["province"]);
+                    string country = Convert.ToString(reader["country"]);
 
-                    while (reader.Read())
-                    {
-                        street = Convert.ToString(reader["street"]);
-                        streetnumber = Convert.ToInt32(reader["housenumber"]);
-                        postalCode = Convert.ToString(reader["postalcode"]);
-                        city = Convert.ToString(reader["city"]);
-                        province = Convert.ToString(reader["province"]);
-                        country = Convert.ToString(reader["country"]);
-                    }
-
-                    //events.Add(new Event(eventID, eventName, description, startDate, endDate, ticketPrice, userID,
-                    //    addressID, street, streetnumber, postalCode, city, province, country));
+                    events.Add(new Event(eventID, name, description, startDate, endDate, ticketPrice, userID, addressID,
+                        street, streetnumber, postalCode, city, province, country));
                 }
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                throw exception;
+                throw e;
             }
             finally
             {
@@ -173,9 +146,8 @@ namespace Businesslayer.DAL
                 {
                     dbremainderconn.Close();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
                 }
             }
 

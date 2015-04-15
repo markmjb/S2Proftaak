@@ -1,4 +1,5 @@
-﻿using Businesslayer.DAL;
+﻿using System.Collections.Generic;
+using Businesslayer.DAL;
 
 namespace Businesslayer.Business
 {
@@ -23,7 +24,7 @@ namespace Businesslayer.Business
 
         public int size { get; set; }
 
-        public int mediaitemid { get; set; }
+        public int Mediaitemid { get; set; }
 
        
 
@@ -38,11 +39,25 @@ namespace Businesslayer.Business
             this.filepath = filepath;
 
             dbm.AddMediaItem(Title, Description, UserID);
-            mediaitemid = dbm.GetMediaItemID(Title);
-            dbm.AddMediaItemFile(mediaitemid,filepath, size, Filetype, 2);
+            Mediaitemid = dbm.GetMediaItemID(Title);
+            dbm.AddMediaItemFile(Mediaitemid,filepath, size, Filetype, 2);
             dbm.Getmediaitems();
 
         }
 
+        public Mediaitem(int mediaitemid, string title, string description, int userid)
+        {
+            this.Mediaitemid = mediaitemid;
+            this.Title = title;
+            this.Description = description;
+            this.UserID = userid;
+
+        }
+
+        public override string ToString()
+        {
+            return Mediaitemid.ToString() + ": " + Title;
+        }
     }
+         
 }
