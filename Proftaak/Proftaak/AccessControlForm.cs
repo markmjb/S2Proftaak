@@ -65,6 +65,7 @@ namespace Proftaak
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {
+            lblRFID.Text = e.Tag;
             TempRFID = e.Tag;
         }
         void rfid_TagLost(object sender, TagEventArgs e)
@@ -263,6 +264,29 @@ namespace Proftaak
             }
 
             LoadReservationUserListBox();
+        }
+
+        private void lblRFID_TextChanged(object sender, EventArgs e)
+        {
+            int SelectedIndex = lbResName.SelectedIndex;
+
+            bool isAttached = AC.getRFID((Convert.ToInt32(TempRFID)));
+            if (SelectedIndex != -1)
+            {
+                User U = ReservationUsers.ElementAt(SelectedIndex);
+                if (isAttached)
+                {
+                    btnAtt.Enabled = false;
+                    btnUnAtt.Enabled = true;
+                    AC.DettachRFID(U.ID, Convert.ToInt32(cbEvent.Text), (Convert.ToInt32(TempRFID)));
+                }
+                else if (!isAttached)
+                {
+                    btnAtt.Enabled = true;
+                    btnUnAtt.Enabled = false;
+                    AC.AttachRFID(U.ID, Convert.ToInt32(cbEvent.Text), (Convert.ToInt32(TempRFID)));
+                }
+            }
         }
     }
 }

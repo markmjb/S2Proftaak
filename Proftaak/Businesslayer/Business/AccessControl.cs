@@ -7,11 +7,15 @@ namespace Businesslayer.Business
     {
         DbAccess DA = new DbAccess();
 
-        public void AttachRfid()
+        public void AttachRFID(int UserID, int EventID, int RFID)
         {
-            
+            DA.AttachRFID(UserID, EventID, RFID);
         }
 
+        public void DettachRFID(int UserID, int EventID, int RFID)
+        {
+            DA.DettachRFID(UserID, EventID, RFID);
+        }
 
         public void DeleteReservation(int DL)
         {

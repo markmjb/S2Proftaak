@@ -36,6 +36,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.Presentlist = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnDept = new System.Windows.Forms.Button();
             this.cbEvent = new System.Windows.Forms.ComboBox();
             this.lblPayment = new System.Windows.Forms.Label();
             this.pbChecked = new System.Windows.Forms.PictureBox();
@@ -77,7 +78,7 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
-            this.btnDept = new System.Windows.Forms.Button();
+            this.lblRFID = new System.Windows.Forms.Label();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -146,6 +147,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblRFID);
             this.tabPage1.Controls.Add(this.btnDept);
             this.tabPage1.Controls.Add(this.cbEvent);
             this.tabPage1.Controls.Add(this.lblPayment);
@@ -165,6 +167,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Toegangscontrole";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnDept
+            // 
+            this.btnDept.Location = new System.Drawing.Point(454, 201);
+            this.btnDept.Name = "btnDept";
+            this.btnDept.Size = new System.Drawing.Size(141, 23);
+            this.btnDept.TabIndex = 116;
+            this.btnDept.Text = "Accept dept";
+            this.btnDept.UseVisualStyleBackColor = true;
             // 
             // cbEvent
             // 
@@ -556,14 +567,15 @@
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
             // 
-            // btnDept
+            // lblRFID
             // 
-            this.btnDept.Location = new System.Drawing.Point(454, 201);
-            this.btnDept.Name = "btnDept";
-            this.btnDept.Size = new System.Drawing.Size(141, 23);
-            this.btnDept.TabIndex = 116;
-            this.btnDept.Text = "Accept dept";
-            this.btnDept.UseVisualStyleBackColor = true;
+            this.lblRFID.AutoSize = true;
+            this.lblRFID.Location = new System.Drawing.Point(451, 317);
+            this.lblRFID.Name = "lblRFID";
+            this.lblRFID.Size = new System.Drawing.Size(54, 13);
+            this.lblRFID.TabIndex = 117;
+            this.lblRFID.Text = "RFID-Tag";
+            this.lblRFID.TextChanged += new System.EventHandler(this.lblRFID_TextChanged);
             // 
             // AccessControlForm
             // 
@@ -642,5 +654,6 @@
         private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.ComboBox cbEvent;
         private System.Windows.Forms.Button btnDept;
+        private System.Windows.Forms.Label lblRFID;
     }
 }
