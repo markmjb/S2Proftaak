@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Businesslayer;
+using Businesslayer.Business;
 
 namespace Proftaak
 {
@@ -32,7 +33,7 @@ namespace Proftaak
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Businesslayer.Login login = new Login();
+            Login login = new Login();
             Userlogin U = new Userlogin();
             bool rightcredentials = login.CheckLogin(tbEmail.Text, tbPassword.Text);
             if (rightcredentials==false)

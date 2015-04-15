@@ -1,17 +1,14 @@
 ﻿using System;
-using Datalayer;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Businesslayer.DAL;
 
-namespace Businesslayer
+namespace Businesslayer.Business
 {
     public class EventControl : Reservation
     {
         //FIELDS
         public List<Event> Events { get; set; }
-        private Datalayer.DbRemainder dbRemainder = new Datalayer.DbRemainder();
+        private DbRemainder dbRemainder = new DbRemainder();
 
         //CONSTRUCTORS
         public EventControl()

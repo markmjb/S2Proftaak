@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,27 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessControl.cs" />
-    <Compile Include="Address.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventControl.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="Login.cs" />
-    <Compile Include="Mediaitem.cs" />
-    <Compile Include="Mediasharingbusiness.cs" />
+    <Compile Include="Business\AccessControl.cs" />
+    <Compile Include="Business\Address.cs" />
+    <Compile Include="DAL\Databaseconnection.cs" />
+    <Compile Include="DAL\DbAccess.cs" />
+    <Compile Include="DAL\DbMaterial.cs" />
+    <Compile Include="DAL\DbMedia.cs" />
+    <Compile Include="DAL\DbRemainder.cs" />
+    <Compile Include="DAL\DbReservation.cs" />
+    <Compile Include="Business\Event.cs" />
+    <Compile Include="Business\EventControl.cs" />
+    <Compile Include="Business\Group.cs" />
+    <Compile Include="Business\Login.cs" />
+    <Compile Include="Business\Mediaitem.cs" />
+    <Compile Include="Business\Mediasharingbusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReservationAcces.cs" />
-    <Compile Include="ReservationCampspot.cs" />
-    <Compile Include="ReservationMaterial.cs" />
-    <Compile Include="Reservation.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Userlogin.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Datalayer\Datalayer.csproj">
-      <Project>{6a3ddd02-e927-4501-bb6b-e09b18464cb7}</Project>
-      <Name>Datalayer</Name>
-    </ProjectReference>
+    <Compile Include="Business\ReservationAccess.cs" />
+    <Compile Include="Business\ReservationCampspot.cs" />
+    <Compile Include="Business\ReservationMaterial.cs" />
+    <Compile Include="Business\Reservation.cs" />
+    <Compile Include="Business\User.cs" />
+    <Compile Include="Business\Userlogin.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

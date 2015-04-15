@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oracle.DataAccess;
+using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
-namespace Datalayer
+namespace Businesslayer.DAL
 {
     public class DbAccess
     {
@@ -64,10 +61,10 @@ namespace Datalayer
             }
         }
 
-        public List<ReservationAccesDL> AllReservations(int EventID)
+        public List<ReservationAccess> AllReservations(int EventID)
         {
 
-            List<ReservationAccesDL> Reservations = new List<ReservationAccesDL>();
+            List<ReservationAccess> Reservations = new List<ReservationAccess>();
 
             try
             {
@@ -85,7 +82,7 @@ namespace Datalayer
                 {
                     ReservationNr = Convert.ToInt32(reader["ReservationID"]);
                     Price = Convert.ToInt32(reader["Price"]);
-                    ReservationAccesDL Reservation = new ReservationAccesDL(ReservationNr, Price);
+                    ReservationAccess Reservation = new ReservationAccess(ReservationNr, Price);
                     Reservations.Add(Reservation);
                 }
             }
@@ -100,9 +97,9 @@ namespace Datalayer
             return Reservations;
         }
 
-        public List<UserDL> ReservationUser(int ResNr)
+        public List<User> ReservationUser(int ResNr)
         {
-            List<UserDL> ReservUsers = new List<UserDL>();
+            List<User> ReservUsers = new List<User>();
 
             try
             {
@@ -159,9 +156,9 @@ namespace Datalayer
                     Country = Convert.ToString(reader["Country"]);
 
 
-                    AddressDL Address = new AddressDL(Street, Housenumber, Postalcode, City, Province, Country);
-                    GroupDL Group = new GroupDL(Groupname);
-                    UserDL User = new UserDL(ReservationNr,  UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, Address, Group);
+                    Address Address = new Address(Street, Housenumber, Postalcode, City, Province, Country);
+                    Group Group = new Group(Groupname);
+                    User User = new User(ReservationNr,  UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, Address, Group);
                     ReservUsers.Add(User);
                 }
             }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Datalayer;
+﻿using System.Collections.Generic;
+using Businesslayer.DAL;
 
-namespace Businesslayer
+namespace Businesslayer.Business
 {
     public class AccessControl
     {
@@ -33,14 +28,14 @@ namespace Businesslayer
             DA.DeleteUserRes(DL);
         }
 
-        public List<ReservationAcces> GetAllReservations(int EventID)
+        public List<ReservationAccess> GetAllReservations(int EventID)
         {
-            List<ReservationAcces> ReservationBL = new List<ReservationAcces>();
-            List<ReservationAccesDL> ReservationDL = DA.AllReservations(EventID);
+            List<ReservationAccess> ReservationBL = new List<ReservationAccess>();
+            List<ReservationAccess> ReservationDL = DA.AllReservations(EventID);
 
-            foreach(ReservationAccesDL R in ReservationDL)
+            foreach(ReservationAccess R in ReservationDL)
             {
-                ReservationBL.Add(new ReservationAcces(R.ReservationNr, R.Payment ));
+                ReservationBL.Add(new ReservationAccess(R.ReservationNr, R.Payment ));
             }
             return ReservationBL;
         }
@@ -48,9 +43,9 @@ namespace Businesslayer
         public List<User> GetUserInfo(int ResNr)
         {
             List<User> ReservationUsers = new List<User>();
-            List<UserDL> ReservationUsersDL = DA.ReservationUser(ResNr);
+            List<User> ReservationUsersDL = DA.ReservationUser(ResNr);
 
-            foreach (UserDL R in ReservationUsersDL)
+            foreach (User R in ReservationUsersDL)
             {
                 Group Group = new Group(R.Group.Name);
                 Address Address = new Address(R.Address.Street, R.Address.Streetnumber, R.Address.PostalCode, R.Address.City, R.Address.Province, R.Address.Country);

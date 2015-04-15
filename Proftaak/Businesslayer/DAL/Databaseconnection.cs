@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
-using Oracle.DataAccess;
-using Oracle.DataAccess.Client;
+﻿using System.Collections.Generic;
+using Businesslayer.Business;
 
-namespace Datalayer
+namespace Businesslayer.DAL
 {
     public class Databaseconnection
     {
-        public List<EventDL> events = new List<EventDL>(); 
+        public List<EventControl> events = new List<EventControl>(); 
         public static string connectionstring = "User Id=mark;Password=mark;Data Source=" + "127.0.0.1/" + ";";
         public Databaseconnection()
         {
@@ -29,11 +23,11 @@ namespace Datalayer
 
 
 
-//public List<DatalayerComment> CommentsOfFile(string item)
+//public List<BusinesslayerComment> CommentsOfFile(string item)
 //{
 //    string selectString = "SELECT * FROM PTS_COMMENTFILE WHERE SUBJECT Like '" + item + "%'";
 //    this.command = new OracleCommand(selectString, this.conn);
-//    DCommentList = new List<DatalayerComment>();
+//    DCommentList = new List<BusinesslayerComment>();
 //    try
 //    {
 //        this.conn.Open();
@@ -45,7 +39,7 @@ namespace Datalayer
 //            string Subject = Convert.ToString(reader["SUBJECT"]);
 //            string Username = Convert.ToString(reader["USERNAME"]);
 //            string Description = Convert.ToString(reader["DESCRIPTION"]);
-//            DCommentList.Add(new Datalayer.DatalayerComment(Commentid, Subject, Username, Description));
+//            DCommentList.Add(new Businesslayer.BusinesslayerComment(Commentid, Subject, Username, Description));
 //        }
 //    }
 //    catch (OracleException exc)

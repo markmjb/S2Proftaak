@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
 
-namespace Datalayer
+namespace Businesslayer.DAL
 {
    public class DbMaterial 
     {

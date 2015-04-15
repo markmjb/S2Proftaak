@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
+using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
-namespace Datalayer
+namespace Businesslayer.DAL
 {
     public class DbRemainder : Databaseconnection
     {
@@ -106,9 +100,9 @@ namespace Datalayer
             return Objects;
         }
 
-        public List<EventDL> RefreshEvents()
+        public List<Event> RefreshEvents()
         {
-            List<EventDL> events = new List<EventDL>();
+            List<Event> events = new List<Event>();
 
             int eventID;
             string eventName;
@@ -165,8 +159,8 @@ namespace Datalayer
                         country = Convert.ToString(reader["country"]);
                     }
 
-                    events.Add(new EventDL(eventID, eventName, description, startDate, endDate, ticketPrice, userID,
-                        addressID, street, streetnumber, postalCode, city, province, country));
+                    //events.Add(new Event(eventID, eventName, description, startDate, endDate, ticketPrice, userID,
+                    //    addressID, street, streetnumber, postalCode, city, province, country));
                 }
             }
             catch (Exception exception)

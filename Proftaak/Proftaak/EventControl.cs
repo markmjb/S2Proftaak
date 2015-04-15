@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Businesslayer.Business;
 
 namespace Proftaak
 {
     public partial class EventControl : Form
     {
         //FIELDS
-        private Businesslayer.EventControl eventControl = new Businesslayer.EventControl();
+        private Businesslayer.Business.EventControl eventControl = new Businesslayer.Business.EventControl();
         
         //CONSTRUCTORS
         public EventControl()

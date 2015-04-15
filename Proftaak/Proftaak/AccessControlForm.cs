@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
 using Businesslayer;
+using Businesslayer.Business;
 
 namespace Proftaak
 {
@@ -20,7 +21,7 @@ namespace Proftaak
 
         AccessControl AC = new AccessControl();
 
-        List<ReservationAcces> Reservations;
+        List<ReservationAccess> Reservations;
         List<User> ReservationUsers;
 
         private int SelectedReservation = -1;
@@ -179,7 +180,7 @@ namespace Proftaak
             {
                 Reservations = AC.GetAllReservations(Convert.ToInt32(cbEvent.Text));
 
-                foreach (ReservationAcces R in Reservations)    
+                foreach (ReservationAccess R in Reservations)    
                 {
                     lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
                 }
@@ -217,7 +218,7 @@ namespace Proftaak
         private void lbResNr_SelectedIndexChanged(object sender, EventArgs e)
         {
             int SelectedIndex = lbResNr.SelectedIndex;
-            ReservationAcces R = Reservations.ElementAt(SelectedIndex);
+            ReservationAccess R = Reservations.ElementAt(SelectedIndex);
             SelectedReservation = R.ReservationNr;
 
             LoadReservationUserListBox();

@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using Oracle.DataAccess;
+using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
-
-namespace Datalayer
+namespace Businesslayer.DAL
 {
     public class DbMedia 
     {      
@@ -164,7 +157,7 @@ namespace Datalayer
                    string Description = Convert.ToString(reader["DESCRIPTION"]);
                    int Userid = Convert.ToInt32(reader["USERID"]);
                    
-                   MediaItemData mediaitem = new MediaItemData(MediaitemID, Title, Description, Userid);
+                   //Mediaitem mediaitem = new Mediaitem(MediaitemID, Title, Description, Userid);
                  
 
 
