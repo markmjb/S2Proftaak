@@ -25,7 +25,6 @@ namespace Proftaak
         List<User> ReservationUsers;
 
         private int SelectedReservation = -1;
-        private int SelectedUser = -1;
 
         public AccessControlForm()
         {

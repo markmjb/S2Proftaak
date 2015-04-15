@@ -22,7 +22,7 @@ namespace Businesslayer.DAL
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID'";
+                cmd.CommandText = "DELETE FROM PTS2_Reservation R WHERE R.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
@@ -45,7 +45,7 @@ namespace Businesslayer.DAL
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = ':ID'";
+                cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
