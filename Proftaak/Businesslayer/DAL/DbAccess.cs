@@ -38,7 +38,6 @@ namespace Businesslayer.DAL
             }
         }
 
-
         public void DeleteUserRes(int ResNr)
         {
             try
@@ -174,15 +173,12 @@ namespace Businesslayer.DAL
             
         }
 
-        public void AcceptPaymentRes(int ResNr)
-        {
-            /*
+        public void ShowUserDept(int ResNr,int UserID)
+        {         
             try
             {
-
                 OracleCommand cmd = this.DbAcces.CreateCommand();
                 cmd.CommandText = "SELECT R.Price FROM PTS2_Reservation R WHERE R.ReservationID = :ID AND R.EventID = :ID";
-                                  "UPDATE PTS2_Reservation SET isPayed = 1, Price = 0 WHERE R.ReservationID = :ID AND R.EventID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
@@ -196,19 +192,41 @@ namespace Businesslayer.DAL
             {
                 this.DbAcces.Close();
             }
-             * 
-             */
         }
 
-        public void AttachRFID(int ResNr)
+        public void AttachRFID(int UserID, int EventID, int RFID)
         {
-            /*
+            try
+            {
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "INSERT INTO PTS2_RFID (rfidID, isAttached, eventID, userID) VALUES (:RFID,1,:EventID,:UserID)";
+                cmd.Parameters.Add("UserID", UserID);
+                cmd.Parameters.Add("EventID", EventID);
+                cmd.Parameters.Add("RFID", RFID);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+        }
+
+        public void DettachRFID(int UserID, int EventID, int RFID)  
+        {
             try
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID'";
-                cmd.Parameters.Add("ID", ResNr);
+                cmd.CommandText = "DELETE FROM PTS2_RFID WHERE rfidID = :RFID AND EVENTID = :EventID AND USERID = :UserID";
+                cmd.Parameters.Add("UserID", UserID);
+                cmd.Parameters.Add("EventID", EventID);
+                cmd.Parameters.Add("RFID", RFID);
 
                 DbAcces.Open();
                 cmd.ExecuteReader();
@@ -221,7 +239,140 @@ namespace Businesslayer.DAL
             {
                 this.DbAcces.Close();
             }
-            */
+
+        }
+
+        public bool GetRFIDStatus(int RFID)
+        {
+            bool isAttached = false;
+            try
+            {
+
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "SELECT isAttached FROM RFID WHERE rfidID = :RFID";
+                cmd.Parameters.Add("RFID", RFID);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if ((Convert.ToInt32(reader["isAttached"])) == 0)
+                    {
+                        isAttached = false;
+                    }
+                    else if ((Convert.ToInt32(reader["isAttached"])) == 1)
+                    {
+                        isAttached = true;
+                    }
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+            return isAttached;
+        }
+
+        public bool IsPresent(int UserID)
+        {
+            bool isPresent = false;
+            try
+            {
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "SELECT isPresent FROM PTS2_Users WHERE userID = :UserID";
+                cmd.Parameters.Add("UserID", UserID);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if ((Convert.ToInt32(reader["isPresent"])) == 0)
+                    {
+                        isPresent = false;
+                    }
+                    else if ((Convert.ToInt32(reader["isPresent"])) == 1)
+                    {
+                        isPresent = true;
+                    }
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+            return isPresent;
+
+        }
+
+        public void UpdateIsPresent(int UserID)
+        {
+            try
+            {
+
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                //cmd.CommandText =
+                //cmd.Parameters.Add("ID", ResNr);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+
+        }
+
+        public List<ReservationAccess> Search(int EventID, string Search)
+        {
+            List<ReservationAccess> Reservations = new List<ReservationAccess>();
+
+            try
+            {
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :ID AND R.ReservationID LIKE ':Search%'";
+                cmd.Parameters.Add("ID", EventID);
+                cmd.Parameters.Add("Search", Search);
+
+                DbAcces.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                int ReservationNr;
+                int Price;
+
+                while (reader.Read())
+                {
+                    ReservationNr = Convert.ToInt32(reader["ReservationID"]);
+                    Price = Convert.ToInt32(reader["Price"]);
+                    ReservationAccess Reservation = new ReservationAccess(ReservationNr, Price);
+                    Reservations.Add(Reservation);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+            return Reservations;
         }
     }
 }

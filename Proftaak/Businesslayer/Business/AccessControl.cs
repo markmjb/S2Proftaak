@@ -12,15 +12,6 @@ namespace Businesslayer.Business
             
         }
 
-        public void ChangePresence()
-        {
-            
-        }
-
-        public void UpdatePeoplePresent()
-        {
-            
-        }
 
         public void DeleteReservation(int DL)
         {
@@ -40,9 +31,22 @@ namespace Businesslayer.Business
             return ReservationUsers;
         }
 
-        public void Search()
+        public List<ReservationAccess> Search(int EventID, string Search)
         {
-            
+            List<ReservationAccess> Reservations = DA.Search(EventID, Search);
+            return Reservations;
+        }
+
+        public bool getPresents(int UserID)
+        {
+            bool isPresent = DA.IsPresent(UserID);
+            return isPresent;
+        }
+
+        public bool getRFID(int RFID)
+        {
+            bool isAttached = DA.GetRFIDStatus(RFID);
+            return isAttached;
         }
 
         public void AcceptPay()

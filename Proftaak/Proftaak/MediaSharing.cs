@@ -101,7 +101,7 @@ namespace Proftaak
 
         }
 
-        public void Refresh()
+        public new void Refresh()
         {
             foreach (Mediaitem mediaitem in Mediaitems)
             {

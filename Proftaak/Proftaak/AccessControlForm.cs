@@ -18,10 +18,12 @@ namespace Proftaak
     {
         private RFID rfid;
         private string TempRFID;
+        private bool isPresent;
 
         AccessControl AC = new AccessControl();
 
         List<ReservationAccess> Reservations;
+        List<ReservationAccess> SearchResults;
         List<User> ReservationUsers;
 
         private int SelectedReservation = -1;
@@ -29,7 +31,6 @@ namespace Proftaak
         public AccessControlForm()
         {
             InitializeComponent();
-            //pbChecked.BackColor = Color.Red;
         }
 
         private void AccessControlForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -45,10 +46,6 @@ namespace Proftaak
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             openCmdLine(rfid);
-
-            lbResNr.Items.Clear();
-            lbResName.Items.Clear();
-            LoadReservationListBox();
         }
 
         void rfid_Attach(object sender, AttachEventArgs e)
@@ -219,51 +216,29 @@ namespace Proftaak
             int SelectedIndex = lbResNr.SelectedIndex;
             ReservationAccess R = Reservations.ElementAt(SelectedIndex);
             SelectedReservation = R.ReservationNr;
-
             LoadReservationUserListBox();
-
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            /*
-            if (cbSearch.SelectedIndex == 0)
+            if (cbEvent.Text != "")
             {
-                
-                foreach (ReservationAcces R in Reservations)
-                {
-                    if (R.ReservationNr == (Convert.ToInt32(tbSearch.Text))  )
-                    {
-                        ReservationsSearch.Add(R);
-                    }
-                }
-                foreach (ReservationAcces R in ReservationsSearch)
+                SearchResults = AC.Search((Convert.ToInt32(cbEvent.Text)), tbSearch.Text);
+
+                lbResNr.Items.Clear();
+                foreach (ReservationAccess R in Reservations)
                 {
                     lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
                 }
             }
-            else if (cbSearch.SelectedIndex == 1)
-            {
-                foreach (User U in ReservationUsers)
-                {
-                    if (U.Firstname == tbSearch.Text || U.Lastname == tbSearch.Text )
-                    {
-                        ReservationUsers.Add(U);
-                    }
-                }
-                foreach (User U in ReservationUsers)
-                {
-                    lbResName.Items.Add(U.ReservationID + "\t|\t" + U.Lastname + "," + U.Firstname);
-                }
-
-            }
-            */
         }
 
         private void lbResName_SelectedIndexChanged(object sender, EventArgs e)
         {
             int SelectedIndex = lbResName.SelectedIndex;
             User U = ReservationUsers.ElementAt(SelectedIndex);
+            bool isPresent = AC.getPresents(U.ID);
+
             if ( U != null )
             {
                 tbSurname.Text = U.Lastname;
@@ -276,6 +251,15 @@ namespace Proftaak
                 tbCity.Text = U.Address.City;
                 tbArrival.Text = U.StartDate.ToString();
                 tbDepature.Text = U.EndDate.ToString();
+                if (isPresent)
+                {
+                    pbChecked.BackColor = Color.Green;
+                }
+                else
+                {
+                    pbChecked.BackColor = Color.Red;
+                }
+
             }
 
             LoadReservationUserListBox();
