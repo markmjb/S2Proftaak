@@ -10,10 +10,11 @@ namespace Businesslayer.Business
         public int Amount { get; set; }
         public decimal Price { get; set; }
 
-       public ReservationMaterial(DateTime beginTime, DateTime endtime, User employee, int amount, decimal price, Item item) : base(beginTime, endtime, employee)
+       public ReservationMaterial(//DateTime beginTime, DateTime endtime, User employee, int amount, decimal price, Item item) : base(beginTime, endtime, employee)
+           )
        {
-           Amount = amount;
-           Price = price;
+           //Amount = amount;
+           //Price = price;
        }
         public void ChangePrice(string name, double price)
         {

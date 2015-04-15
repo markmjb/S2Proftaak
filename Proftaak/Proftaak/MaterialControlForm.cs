@@ -20,7 +20,7 @@ namespace Proftaak
         private RFID rfid;
         private string TempRFID;
 
-        
+        ReservationMaterial RM = new ReservationMaterial();
 
         public MaterialControlForm()
         {
@@ -158,7 +158,7 @@ namespace Proftaak
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            //RM.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDouble(tbPrice.Text));
+            RM.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDouble(tbPrice.Text));
         }
     }
 }
