@@ -15,7 +15,7 @@ namespace Businesslayer.Business
             Price = price;
             ReservationUsers = reservationUsers;
         }
-
+        
         public ReservationCampspot()
         {
             

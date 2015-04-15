@@ -36,8 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabEvent = new System.Windows.Forms.TabPage();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
             this.lblChooseEvent = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabCampspot = new System.Windows.Forms.TabPage();
@@ -78,6 +76,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.lbAvailablespots = new System.Windows.Forms.ListBox();
+            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -170,26 +172,6 @@
             this.tabEvent.Text = "Choose Event";
             this.tabEvent.UseVisualStyleBackColor = true;
             // 
-            // btnPrevious
-            // 
-            this.btnPrevious.Location = new System.Drawing.Point(17, 702);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(109, 36);
-            this.btnPrevious.TabIndex = 4;
-            this.btnPrevious.Text = "Previous";
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(1083, 702);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(109, 36);
-            this.btnNext.TabIndex = 3;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
             // lblChooseEvent
             // 
             this.lblChooseEvent.AutoSize = true;
@@ -211,6 +193,8 @@
             // tabCampspot
             // 
             this.tabCampspot.BackColor = System.Drawing.SystemColors.Control;
+            this.tabCampspot.Controls.Add(this.btnReload);
+            this.tabCampspot.Controls.Add(this.lbAvailablespots);
             this.tabCampspot.Controls.Add(this.pictureBox1);
             this.tabCampspot.Controls.Add(this.label2);
             this.tabCampspot.Controls.Add(this.button1);
@@ -611,6 +595,45 @@
             this.label14.TabIndex = 0;
             this.label14.Text = "Reservation Info:";
             // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Location = new System.Drawing.Point(17, 702);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(109, 36);
+            this.btnPrevious.TabIndex = 4;
+            this.btnPrevious.Text = "Previous";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(1083, 702);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(109, 36);
+            this.btnNext.TabIndex = 3;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // lbAvailablespots
+            // 
+            this.lbAvailablespots.FormattingEnabled = true;
+            this.lbAvailablespots.ItemHeight = 16;
+            this.lbAvailablespots.Location = new System.Drawing.Point(49, 62);
+            this.lbAvailablespots.Name = "lbAvailablespots";
+            this.lbAvailablespots.Size = new System.Drawing.Size(120, 436);
+            this.lbAvailablespots.TabIndex = 6;
+            // 
+            // btnReload
+            // 
+            this.btnReload.Location = new System.Drawing.Point(49, 30);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(120, 31);
+            this.btnReload.TabIndex = 7;
+            this.btnReload.Text = "Reload";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // Reservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -696,5 +719,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.ListBox lbAvailablespots;
+        private System.Windows.Forms.Button btnReload;
     }
 }
