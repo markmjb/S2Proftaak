@@ -153,5 +153,86 @@ namespace Businesslayer.DAL
 
             return events;
         }
+
+        public bool CheckEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        {
+            int results = 0;
+            string command = "COUNT(eventID) FROM PTS2_EVENT WHERE eventName = " + name + " AND description = " + description + " AND startDate = " + startDate + " AND endDate = " + endDate + " AND ticketPrice = " + ticketPrice;
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = command;
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    results++;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+
+            if (results > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool CheckAddress(string country, string province, string city, string street, int streetnumber, string postalcode)
+        {
+            int results = 0;
+            string command = "COUNT(addressID) FROM PTS2_ADDRESS WHERE country = " + country + " AND province = " + province + " AND city = " + city + " AND street = " + street + " AND houseNumber = " + streetnumber + " AND postalcode = " + postalcode;
+            
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = command;
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    results++;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+
+            if (results > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

@@ -41,5 +41,37 @@ namespace Proftaak
                 datagridEvents.Rows.Add(Convert.ToString(ev.EventID), Convert.ToString(ev.Name), Convert.ToString(ev.StartDate), Convert.ToString(ev.EndDate));
             }
         }
+
+        private void btnCreateEvent_Click(object sender, EventArgs e)
+        {
+            string name = tbName.Text;
+            string description = tbDescription.Text;
+            DateTime startDate = dtpStartDate.Value;
+            DateTime endDate = dtpEndDate.Value;
+            decimal ticketPrice = nupTicketprice.Value;
+
+            string country = tbCountry.Text;
+            string province = tbProvince.Text;
+            string city = tbCity.Text;
+            string street = tbStreet.Text;
+            int streetnumber = Convert.ToInt32(nupStreetnumber.Value);
+            string postalcode = tbPostalcode.Text;
+
+            if (eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
+            {
+                MessageBox.Show("Het event " + name + "bestaat al");
+            }
+            else
+            {
+                if (eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
+                {
+
+                }
+                else
+                {
+                    
+                }
+            }
+        }
     }
 }
