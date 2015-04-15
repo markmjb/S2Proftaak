@@ -54,8 +54,10 @@ namespace Businesslayer.Business
 
         }
 
-       
-
+        public string ToString()
+        {
+            return Mediaitemid.ToString() + ": " + Title;
+        }
     }
          
 }

@@ -80,7 +80,7 @@ namespace Proftaak
           Mediaitems = mdsb.Getallmediaitems();
             foreach (Mediaitem mediaitem in Mediaitems)
             {
-                FileBox.Items.Add(mediaitem);
+                FileBox.Items.Add(mediaitem.ToString());
 
             }
           mdsb.GetmediaitemID(title);
