@@ -416,13 +416,13 @@
             // 
             // dupItem
             // 
-            this.dupItem.Items.Add("item 1");
+            this.dupItem.Items.Add("rode appels");
             this.dupItem.Items.Add("item 2");
             this.dupItem.Items.Add("item 3");
             this.dupItem.Items.Add("item 4");
             this.dupItem.Items.Add("item 5");
             this.dupItem.Items.Add("item 6");
-            this.dupItem.Items.Add("item 7 ");
+            this.dupItem.Items.Add("item 7");
             this.dupItem.Items.Add("item 8");
             this.dupItem.Location = new System.Drawing.Point(72, 268);
             this.dupItem.Name = "dupItem";

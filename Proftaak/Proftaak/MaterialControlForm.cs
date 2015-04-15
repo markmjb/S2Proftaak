@@ -158,7 +158,8 @@ namespace Proftaak
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            RM.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDouble(tbPrice.Text));
+            //RM.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDouble(tbPrice.Text));
+            MessageBox.Show(dupItem.SelectedItem.ToString());
         }
     }
 }

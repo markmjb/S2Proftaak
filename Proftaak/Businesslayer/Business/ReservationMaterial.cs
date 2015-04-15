@@ -18,7 +18,7 @@ namespace Businesslayer.Business
        }
         public void ChangePrice(string name, double price)
         {
-            DM.ChangePrice(name, price);
+           DM.ChangePrice(name, price);        
         }
 
         public void ChangeStock()
