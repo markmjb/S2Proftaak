@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
 
+
 namespace Datalayer
 {
     public class DbMedia 
     {      
+        
         
         int MediacategoryID;
         public int MediaitemID { get; set; }
@@ -23,7 +26,7 @@ namespace Datalayer
             dbmediaconn.ConnectionString = db.getstring();
         }
 
-       public void AddMediaItem(String Title, String Description, int UserID, int size)
+       public void AddMediaItem(String Title, String Description, int UserID)
        {
            try
            {
@@ -142,6 +145,46 @@ namespace Datalayer
            return MediacategoryID;
        }
 
+
+       public int Getmediaitems()
+       {
+          
+           try
+           {
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM";
+               dbmediaconn.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+
+                   int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                   string Title = Convert.ToString(reader["TITLE"]);
+                   string Description = Convert.ToString(reader["DESCRIPTION"]);
+                   int Userid = Convert.ToInt32(reader["USERID"]);
+                   
+                   MediaItemData mediaitem = new MediaItemData(MediaitemID, Title, Description, Userid);
+                 
+
+
+               }
+
+
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+
+
+           }
+
+           return MediacategoryID;
+       }
 
       
     }

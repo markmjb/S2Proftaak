@@ -11,6 +11,7 @@ namespace Businesslayer
     public class Mediaitem
     {
         DbMedia dbm = new DbMedia();
+        
         public string Type { get; set; }
 
         public string Title { get; set; }
@@ -29,6 +30,8 @@ namespace Businesslayer
 
         public int mediaitemid { get; set; }
 
+       
+
         public Mediaitem(string Type, string Title, string Description, string filepath, int CategoryID, int UserID, int size, string Filetype)
         {
             this.Type = Type;
@@ -39,9 +42,10 @@ namespace Businesslayer
             this.size = size;
             this.filepath = filepath;
 
-            //dbm.AddMediaItem(Title, Description, UserID);
+            dbm.AddMediaItem(Title, Description, UserID);
             mediaitemid = dbm.GetMediaItemID(Title);
             dbm.AddMediaItemFile(mediaitemid,filepath, size, Filetype, 2);
+            dbm.Getmediaitems();
 
         }
 
