@@ -57,20 +57,17 @@ namespace Proftaak
             int streetnumber = Convert.ToInt32(nupStreetnumber.Value);
             string postalcode = tbPostalcode.Text;
 
-            if (eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
+            if (name != "" && description != "" && startDate > DateTime.Today && endDate > DateTime.Today && endDate > startDate && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode != ""
             {
-                MessageBox.Show("Het event " + name + "bestaat al");
-            }
-            else
-            {
-                if (eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
+                if (!eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
                 {
+                    eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
+                }
 
-                }
-                else
+                if (!eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
                 {
-                    
-                }
+                    eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice);
+                }                
             }
         }
     }

@@ -27,21 +27,23 @@ namespace Businesslayer.Business
 
         public bool CheckEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
         {
-            if (dbRemainder.CheckEvent(name, description, startDate, endDate, ticketPrice))
-            {
-                return true;
-            }
-            return false;
+            return dbRemainder.CheckEvent(name, description, startDate, endDate, ticketPrice);
         }
 
         public bool CheckAddress(string country, string province, string city, string street, int streetnumber, string postalcode)
         {
-            if (dbRemainder.CheckAddress(country, province, city, street, streetnumber, postalcode))
-            {
-                return true;
-            }
-            return false;
-
+            return dbRemainder.CheckAddress(country, province, city, street, streetnumber, postalcode);
         }
+
+        public void CreateAddress(string country, string province, string city, string street, int streetnumber, string postalcode)
+        {
+            dbRemainder.CreateAddress(country, province, city, street, streetnumber, postalcode);
+        }
+
+        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        {
+            dbRemainder.CreateEvent(name, description, startDate, Endtime, ticketPrice);
+        }
+
     }
 }

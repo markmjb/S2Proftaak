@@ -234,5 +234,60 @@ namespace Businesslayer.DAL
             return false;
         }
 
+        public void CreateAddress(string country , string province , string city , string street , int streetnumber , string postalcode)
+        {
+            string command = "INSERT INTO PTS2_ADDRESS (country, province, city, street, housenumber, postalcode) VALUES (" + country + ", " + province + ", " + city + ", " + street + ", " + streetnumber + ", " + postalcode + ")";
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = command;
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        {
+            string command = "INSERT INTO PTS2_Event (name, description, startDate, endDate, ticketPrice) VALUES (" + name + ", " + description + ", " + startDate + ", " + endDate + ", " + ticketPrice + ")";
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = command;
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
     }
 }
