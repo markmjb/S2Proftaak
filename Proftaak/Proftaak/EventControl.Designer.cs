@@ -41,9 +41,6 @@
             this.lblDescription = new System.Windows.Forms.Label();
             this.tbDescription = new System.Windows.Forms.TextBox();
             this.datagridEvents = new System.Windows.Forms.DataGridView();
-            this.columnEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnEventStartdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnEventEnddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCountry = new System.Windows.Forms.Label();
             this.lblProvince = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
@@ -57,6 +54,10 @@
             this.nupStreetnumber = new System.Windows.Forms.NumericUpDown();
             this.tbPostalcode = new System.Windows.Forms.TextBox();
             this.nupTicketprice = new System.Windows.Forms.NumericUpDown();
+            this.columnEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnEventStartdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnEventEnddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStreetnumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupTicketprice)).BeginInit();
@@ -70,7 +71,6 @@
             this.btnCreateEvent.TabIndex = 0;
             this.btnCreateEvent.Text = "Create Event";
             this.btnCreateEvent.UseVisualStyleBackColor = true;
-            this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
             // 
             // button2
             // 
@@ -168,6 +168,7 @@
             // 
             this.datagridEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columnEventID,
             this.columnEventName,
             this.columnEventStartdate,
             this.columnEventEnddate});
@@ -175,28 +176,6 @@
             this.datagridEvents.Name = "datagridEvents";
             this.datagridEvents.Size = new System.Drawing.Size(598, 150);
             this.datagridEvents.TabIndex = 13;
-            // 
-            // columnEventName
-            // 
-            this.columnEventName.HeaderText = "Name";
-            this.columnEventName.Name = "columnEventName";
-            this.columnEventName.ReadOnly = true;
-            this.columnEventName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.columnEventName.Width = 200;
-            // 
-            // columnEventStartdate
-            // 
-            this.columnEventStartdate.HeaderText = "Startdate";
-            this.columnEventStartdate.Name = "columnEventStartdate";
-            this.columnEventStartdate.ReadOnly = true;
-            this.columnEventStartdate.Width = 200;
-            // 
-            // columnEventEnddate
-            // 
-            this.columnEventEnddate.HeaderText = "Enddate";
-            this.columnEventEnddate.Name = "columnEventEnddate";
-            this.columnEventEnddate.ReadOnly = true;
-            this.columnEventEnddate.Width = 200;
             // 
             // lblCountry
             // 
@@ -302,6 +281,34 @@
             this.nupTicketprice.Size = new System.Drawing.Size(120, 20);
             this.nupTicketprice.TabIndex = 26;
             // 
+            // columnEventID
+            // 
+            this.columnEventID.HeaderText = "EventID";
+            this.columnEventID.Name = "columnEventID";
+            this.columnEventID.Width = 125;
+            // 
+            // columnEventName
+            // 
+            this.columnEventName.HeaderText = "Name";
+            this.columnEventName.Name = "columnEventName";
+            this.columnEventName.ReadOnly = true;
+            this.columnEventName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnEventName.Width = 125;
+            // 
+            // columnEventStartdate
+            // 
+            this.columnEventStartdate.HeaderText = "Startdate";
+            this.columnEventStartdate.Name = "columnEventStartdate";
+            this.columnEventStartdate.ReadOnly = true;
+            this.columnEventStartdate.Width = 125;
+            // 
+            // columnEventEnddate
+            // 
+            this.columnEventEnddate.HeaderText = "Enddate";
+            this.columnEventEnddate.Name = "columnEventEnddate";
+            this.columnEventEnddate.ReadOnly = true;
+            this.columnEventEnddate.Width = 125;
+            // 
             // EventControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,9 +366,6 @@
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.DataGridView datagridEvents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventStartdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventEnddate;
         private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.Label lblProvince;
         private System.Windows.Forms.Label lblCity;
@@ -375,5 +379,9 @@
         private System.Windows.Forms.NumericUpDown nupStreetnumber;
         private System.Windows.Forms.TextBox tbPostalcode;
         private System.Windows.Forms.NumericUpDown nupTicketprice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventStartdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnEventEnddate;
     }
 }
