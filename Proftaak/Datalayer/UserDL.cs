@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Businesslayer
+namespace Datalayer
 {
-    public  class User
+    public class UserDL
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public Address Address { get; set; }
-        public Group Group { get; set; }
+        public AddressDL Address { get; set; }
+        public GroupDL Group { get; set; }
         public bool Isadmin { get; set; }
         public string Email { get; set; }
         public Decimal Debt { get; set; }
@@ -21,7 +21,7 @@ namespace Businesslayer
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public User(string firstname, string lastname, Address address, Group @group, bool isadmin, string email, decimal debt, string password, int ID )
+        public UserDL(string firstname, string lastname, AddressDL address, GroupDL @group, bool isadmin, string email, decimal debt, string password, int ID)
         {
             Firstname = firstname;
             Lastname = lastname;
@@ -34,7 +34,7 @@ namespace Businesslayer
             this.ID = ID;
         }
 
-        public User(string firstname, string lastname, Address address, string email, int id)
+        public UserDL(string firstname, string lastname, AddressDL address, string email, int id)
         {
             Firstname = firstname;
             Lastname = lastname;
@@ -43,7 +43,7 @@ namespace Businesslayer
             ID = id;
         }
 
-        public User(int reservationid, int userid, string lastname, string firstname, string email, string password, bool isAdmin, DateTime startdate, DateTime enddate, Address address, Group group )
+        public UserDL(int reservationid, int userid, string lastname, string firstname, string email, string password, bool isAdmin, DateTime startdate, DateTime enddate, AddressDL address, GroupDL group)
         {
             ReservationID = reservationid;
             ID = userid;
@@ -58,9 +58,10 @@ namespace Businesslayer
             EndDate = enddate;
         }
 
-        public User()
+        public UserDL()
         {
             
         }
     }
 }
+

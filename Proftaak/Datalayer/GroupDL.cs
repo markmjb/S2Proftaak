@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Businesslayer
+namespace Datalayer
 {
-    public class Group
-    {
-        public List<User> GroupMembers { get; set; }
+    public class GroupDL
+    {       
+        public List<UserDL> GroupMembers { get; set; }
         public string Name { get; set; }
 
-        public Group(List<User> groupMembers, string name)
+
+        public GroupDL(List<UserDL> groupMembers, string name)
         {
             GroupMembers = groupMembers;
             Name = name;
         }
 
-        public Group(string name)
+        public GroupDL(string name)
         {
             Name = name;
         }

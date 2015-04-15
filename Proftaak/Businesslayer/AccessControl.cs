@@ -45,9 +45,18 @@ namespace Businesslayer
             return ReservationBL;
         }
 
-        public void GetUserInfo()
+        public List<User> GetUserInfo(int ResNr)
         {
-            
+            List<User> ReservationUsers = new List<User>();
+            List<UserDL> ReservationUsersDL = DA.ReservationUser(ResNr);
+
+            foreach (UserDL R in ReservationUsersDL)
+            {
+                Group Group = new Group(R.Group.Name);
+                Address Address = new Address(R.Address.Street, R.Address.Streetnumber, R.Address.PostalCode, R.Address.City, R.Address.Province, R.Address.Country);
+                ReservationUsers.Add(new User(R.ReservationID, R.ID, R.Lastname, R.Firstname, R.Email, R.Password, R.Isadmin, R.StartDate, R.EndDate, Address, Group));
+            }
+            return ReservationUsers;
         }
 
         public void Search()

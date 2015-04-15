@@ -100,6 +100,83 @@ namespace Datalayer
             return Reservations;
         }
 
+        public List<UserDL> ReservationUser(int ResNr)
+        {
+            List<UserDL> ReservUsers = new List<UserDL>();
+
+            try
+            {
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.UserPassword, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.ReservationID = :ID";
+                cmd.Parameters.Add("ID", ResNr);
+
+                DbAcces.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                // G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country
+
+                int ReservationNr;
+                int UserID;
+                string LastName;
+                string FirstName;
+                string Email;
+                bool isAdmin = false;
+                string UserPassword;
+                DateTime StartDate;
+                DateTime EndDate;
+                string Groupname;
+                string Street;
+                int Housenumber;
+                string Postalcode;
+                string Province;
+                string City;
+                string Country;
+
+
+                while (reader.Read())
+                {
+                    ReservationNr = Convert.ToInt32(reader["ReservationID"]);
+                    LastName = Convert.ToString(reader["lastname"]);
+                    FirstName = Convert.ToString(reader["firstname"]);
+                    UserID = Convert.ToInt32(reader["UserID"]);
+                    Email = Convert.ToString(reader["Email"]);
+                    if ( (Convert.ToInt32(reader["isAdmin"])) == 0 )
+                    {
+                        isAdmin = false;
+                    }
+                    else if ((Convert.ToInt32(reader["isAdmin"])) == 1)
+                    {
+                        isAdmin = true;
+                    }
+                    UserPassword = Convert.ToString(reader["UserPassword"]);
+                    StartDate = Convert.ToDateTime(reader["StartDate"]);
+                    EndDate = Convert.ToDateTime(reader["EndDate"]);
+                    Groupname = Convert.ToString(reader["Groupname"]);
+                    Street = Convert.ToString(reader["street"]);
+                    Housenumber = Convert.ToInt32(reader["Housenumber"]);
+                    Postalcode = Convert.ToString(reader["Postalcode"]);
+                    Province = Convert.ToString(reader["province"]);
+                    City = Convert.ToString(reader["City"]);
+                    Country = Convert.ToString(reader["Country"]);
+
+
+                    AddressDL Address = new AddressDL(Street, Housenumber, Postalcode, City, Province, Country);
+                    GroupDL Group = new GroupDL(Groupname);
+                    UserDL User = new UserDL(ReservationNr,  UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, Address, Group);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+            return ReservUsers;
+            
+        }
+
         public void AcceptPaymentRes(int ResNr)
         {
             /*
@@ -107,7 +184,8 @@ namespace Datalayer
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "  DELETE FROM PTS2_Reservation R WHERE R.ID = ':ID'";
+                cmd.CommandText = "SELECT R.Price FROM PTS2_Reservation R WHERE R.ReservationID = :ID AND R.EventID = :ID";
+                                  "UPDATE PTS2_Reservation SET isPayed = 1, Price = 0 WHERE R.ReservationID = :ID AND R.EventID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
                 DbAcces.Open();
