@@ -17,8 +17,14 @@ namespace Proftaak
     {
         private RFID rfid;
         private string TempRFID;
+
         AccessControl AC = new AccessControl();
+
         List<ReservationAcces> Reservations;
+        List<User> ReservationUsers;
+
+        private int SelectedReservation = -1;
+        private int SelectedUser = -1;
 
         public AccessControlForm()
         {
@@ -40,6 +46,8 @@ namespace Proftaak
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             openCmdLine(rfid);
 
+            lbResNr.Items.Clear();
+            lbResName.Items.Clear();
             LoadReservationListBox();
         }
 
@@ -156,6 +164,7 @@ namespace Proftaak
         {
 
             AC.DeleteReservation(Convert.ToInt32(tbDelRes.Text));
+            LoadReservationListBox();
         }
 
         private void btnPaym_Click(object sender, EventArgs e)
@@ -165,6 +174,7 @@ namespace Proftaak
 
         void LoadReservationListBox()
         {
+            lbResNr.Items.Clear();
             if (cbEvent.Text != "")
             {
                 Reservations = AC.GetAllReservations(Convert.ToInt32(cbEvent.Text));
@@ -174,19 +184,101 @@ namespace Proftaak
                     lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
                 }
             }
+            LoadReservationUserListBox();
         }
 
         void LoadReservationUserListBox()
         {
-            /*if (lbResNr.SelectedIndex != -1)
+            lbResName.Items.Clear();
+            if (SelectedReservation != -1)
             {
-               List<User> ReservationUsers = AC.GetUserInfo()
-            }*/
+                ReservationUsers = AC.GetUserInfo(SelectedReservation);
+
+                foreach (User U in ReservationUsers)
+                {
+                    lbResName.Items.Add(U.ReservationID + "\t|\t" + U.Lastname + "," + U.Firstname);
+                }
+            }
         }
 
         private void cbEvent_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            lbResName.Items.Clear();
             LoadReservationListBox();
+            LoadReservationUserListBox();
+
+            if (lbResNr.SelectedIndex == -1)
+            {
+                lbResName.Items.Clear();
+            }
+
+        }
+
+        private void lbResNr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int SelectedIndex = lbResNr.SelectedIndex;
+            ReservationAcces R = Reservations.ElementAt(SelectedIndex);
+            SelectedReservation = R.ReservationNr;
+
+            LoadReservationUserListBox();
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            /*
+            if (cbSearch.SelectedIndex == 0)
+            {
+                
+                foreach (ReservationAcces R in Reservations)
+                {
+                    if (R.ReservationNr == (Convert.ToInt32(tbSearch.Text))  )
+                    {
+                        ReservationsSearch.Add(R);
+                    }
+                }
+                foreach (ReservationAcces R in ReservationsSearch)
+                {
+                    lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
+                }
+            }
+            else if (cbSearch.SelectedIndex == 1)
+            {
+                foreach (User U in ReservationUsers)
+                {
+                    if (U.Firstname == tbSearch.Text || U.Lastname == tbSearch.Text )
+                    {
+                        ReservationUsers.Add(U);
+                    }
+                }
+                foreach (User U in ReservationUsers)
+                {
+                    lbResName.Items.Add(U.ReservationID + "\t|\t" + U.Lastname + "," + U.Firstname);
+                }
+
+            }
+            */
+        }
+
+        private void lbResName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int SelectedIndex = lbResName.SelectedIndex;
+            User U = ReservationUsers.ElementAt(SelectedIndex);
+            if ( U != null )
+            {
+                tbSurname.Text = U.Lastname;
+                tbName.Text = U.Firstname;
+                tbGrpName.Text = U.Group.Name;
+                tbEmail.Text = U.Email;
+                tbStrNr.Text = U.Address.Street + " " + Convert.ToString(U.Address.Streetnumber);
+                tbReserv.Text = Convert.ToString(U.ReservationID);
+                tbPstlCode.Text = U.Address.PostalCode;
+                tbCity.Text = U.Address.City;
+                tbArrival.Text = U.StartDate.ToString();
+                tbDepature.Text = U.EndDate.ToString();
+            }
+
+            LoadReservationUserListBox();
         }
     }
 }

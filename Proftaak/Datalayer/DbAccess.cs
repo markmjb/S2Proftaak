@@ -113,7 +113,6 @@ namespace Datalayer
                 DbAcces.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
-                // G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country
 
                 int ReservationNr;
                 int UserID;
@@ -163,6 +162,7 @@ namespace Datalayer
                     AddressDL Address = new AddressDL(Street, Housenumber, Postalcode, City, Province, Country);
                     GroupDL Group = new GroupDL(Groupname);
                     UserDL User = new UserDL(ReservationNr,  UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, Address, Group);
+                    ReservUsers.Add(User);
                 }
             }
             catch (OracleException exc)

@@ -51,9 +51,7 @@
             this.gbSelectName = new System.Windows.Forms.GroupBox();
             this.tbReserv = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
-            this.tbMblNr = new System.Windows.Forms.TextBox();
             this.tbPstlCode = new System.Windows.Forms.TextBox();
-            this.tbTeleNr = new System.Windows.Forms.TextBox();
             this.tbGrpName = new System.Windows.Forms.TextBox();
             this.tbDepature = new System.Windows.Forms.TextBox();
             this.tbArrival = new System.Windows.Forms.TextBox();
@@ -68,9 +66,7 @@
             this.lblGrpName = new System.Windows.Forms.Label();
             this.lblDepature = new System.Windows.Forms.Label();
             this.lblArrival = new System.Windows.Forms.Label();
-            this.lblMblNr = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.lblTeleNr = new System.Windows.Forms.Label();
             this.lblPstlCode = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
             this.btnUnAtt = new System.Windows.Forms.Button();
@@ -145,7 +141,7 @@
             this.Presentlist.Location = new System.Drawing.Point(2, 2);
             this.Presentlist.Name = "Presentlist";
             this.Presentlist.SelectedIndex = 0;
-            this.Presentlist.Size = new System.Drawing.Size(882, 437);
+            this.Presentlist.Size = new System.Drawing.Size(935, 437);
             this.Presentlist.TabIndex = 0;
             // 
             // tabPage1
@@ -164,7 +160,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(874, 411);
+            this.tabPage1.Size = new System.Drawing.Size(927, 411);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Toegangscontrole";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -231,6 +227,7 @@
             this.lbResName.Name = "lbResName";
             this.lbResName.Size = new System.Drawing.Size(191, 303);
             this.lbResName.TabIndex = 106;
+            this.lbResName.SelectedIndexChanged += new System.EventHandler(this.lbResName_SelectedIndexChanged);
             // 
             // lbResNr
             // 
@@ -239,6 +236,7 @@
             this.lbResNr.Name = "lbResNr";
             this.lbResNr.Size = new System.Drawing.Size(178, 303);
             this.lbResNr.TabIndex = 105;
+            this.lbResNr.SelectedIndexChanged += new System.EventHandler(this.lbResNr_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -253,6 +251,9 @@
             // 
             this.cbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSearch.FormattingEnabled = true;
+            this.cbSearch.Items.AddRange(new object[] {
+            "Reservations",
+            "Users"});
             this.cbSearch.Location = new System.Drawing.Point(145, 23);
             this.cbSearch.Name = "cbSearch";
             this.cbSearch.Size = new System.Drawing.Size(84, 21);
@@ -275,6 +276,7 @@
             this.btnSearch.TabIndex = 107;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tbSearch
             // 
@@ -287,9 +289,7 @@
             // 
             this.gbSelectName.Controls.Add(this.tbReserv);
             this.gbSelectName.Controls.Add(this.tbEmail);
-            this.gbSelectName.Controls.Add(this.tbMblNr);
             this.gbSelectName.Controls.Add(this.tbPstlCode);
-            this.gbSelectName.Controls.Add(this.tbTeleNr);
             this.gbSelectName.Controls.Add(this.tbGrpName);
             this.gbSelectName.Controls.Add(this.tbDepature);
             this.gbSelectName.Controls.Add(this.tbArrival);
@@ -304,14 +304,12 @@
             this.gbSelectName.Controls.Add(this.lblGrpName);
             this.gbSelectName.Controls.Add(this.lblDepature);
             this.gbSelectName.Controls.Add(this.lblArrival);
-            this.gbSelectName.Controls.Add(this.lblMblNr);
             this.gbSelectName.Controls.Add(this.lblEmail);
-            this.gbSelectName.Controls.Add(this.lblTeleNr);
             this.gbSelectName.Controls.Add(this.lblPstlCode);
             this.gbSelectName.Controls.Add(this.lblSurname);
             this.gbSelectName.Location = new System.Drawing.Point(603, 3);
             this.gbSelectName.Name = "gbSelectName";
-            this.gbSelectName.Size = new System.Drawing.Size(267, 402);
+            this.gbSelectName.Size = new System.Drawing.Size(313, 402);
             this.gbSelectName.TabIndex = 112;
             this.gbSelectName.TabStop = false;
             this.gbSelectName.Text = "Selected Name";
@@ -319,49 +317,33 @@
             // tbReserv
             // 
             this.tbReserv.Enabled = false;
-            this.tbReserv.Location = new System.Drawing.Point(126, 364);
+            this.tbReserv.Location = new System.Drawing.Point(126, 332);
             this.tbReserv.Name = "tbReserv";
-            this.tbReserv.Size = new System.Drawing.Size(115, 20);
+            this.tbReserv.Size = new System.Drawing.Size(165, 20);
             this.tbReserv.TabIndex = 147;
             // 
             // tbEmail
             // 
             this.tbEmail.Enabled = false;
-            this.tbEmail.Location = new System.Drawing.Point(126, 326);
+            this.tbEmail.Location = new System.Drawing.Point(126, 281);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(115, 20);
+            this.tbEmail.Size = new System.Drawing.Size(165, 20);
             this.tbEmail.TabIndex = 146;
-            // 
-            // tbMblNr
-            // 
-            this.tbMblNr.Enabled = false;
-            this.tbMblNr.Location = new System.Drawing.Point(126, 301);
-            this.tbMblNr.Name = "tbMblNr";
-            this.tbMblNr.Size = new System.Drawing.Size(115, 20);
-            this.tbMblNr.TabIndex = 145;
             // 
             // tbPstlCode
             // 
             this.tbPstlCode.Enabled = false;
-            this.tbPstlCode.Location = new System.Drawing.Point(126, 269);
+            this.tbPstlCode.Location = new System.Drawing.Point(126, 250);
             this.tbPstlCode.Name = "tbPstlCode";
-            this.tbPstlCode.Size = new System.Drawing.Size(115, 20);
+            this.tbPstlCode.Size = new System.Drawing.Size(165, 20);
             this.tbPstlCode.TabIndex = 144;
-            // 
-            // tbTeleNr
-            // 
-            this.tbTeleNr.Enabled = false;
-            this.tbTeleNr.Location = new System.Drawing.Point(126, 245);
-            this.tbTeleNr.Name = "tbTeleNr";
-            this.tbTeleNr.Size = new System.Drawing.Size(115, 20);
-            this.tbTeleNr.TabIndex = 143;
             // 
             // tbGrpName
             // 
             this.tbGrpName.Enabled = false;
             this.tbGrpName.Location = new System.Drawing.Point(126, 200);
             this.tbGrpName.Name = "tbGrpName";
-            this.tbGrpName.Size = new System.Drawing.Size(115, 20);
+            this.tbGrpName.Size = new System.Drawing.Size(165, 20);
             this.tbGrpName.TabIndex = 142;
             // 
             // tbDepature
@@ -369,7 +351,7 @@
             this.tbDepature.Enabled = false;
             this.tbDepature.Location = new System.Drawing.Point(126, 157);
             this.tbDepature.Name = "tbDepature";
-            this.tbDepature.Size = new System.Drawing.Size(115, 20);
+            this.tbDepature.Size = new System.Drawing.Size(165, 20);
             this.tbDepature.TabIndex = 141;
             // 
             // tbArrival
@@ -377,7 +359,7 @@
             this.tbArrival.Enabled = false;
             this.tbArrival.Location = new System.Drawing.Point(126, 132);
             this.tbArrival.Name = "tbArrival";
-            this.tbArrival.Size = new System.Drawing.Size(115, 20);
+            this.tbArrival.Size = new System.Drawing.Size(165, 20);
             this.tbArrival.TabIndex = 140;
             // 
             // tbCity
@@ -385,7 +367,7 @@
             this.tbCity.Enabled = false;
             this.tbCity.Location = new System.Drawing.Point(126, 93);
             this.tbCity.Name = "tbCity";
-            this.tbCity.Size = new System.Drawing.Size(115, 20);
+            this.tbCity.Size = new System.Drawing.Size(165, 20);
             this.tbCity.TabIndex = 139;
             // 
             // tbStrNr
@@ -393,7 +375,7 @@
             this.tbStrNr.Enabled = false;
             this.tbStrNr.Location = new System.Drawing.Point(126, 68);
             this.tbStrNr.Name = "tbStrNr";
-            this.tbStrNr.Size = new System.Drawing.Size(115, 20);
+            this.tbStrNr.Size = new System.Drawing.Size(165, 20);
             this.tbStrNr.TabIndex = 138;
             // 
             // tbSurname
@@ -401,7 +383,7 @@
             this.tbSurname.Enabled = false;
             this.tbSurname.Location = new System.Drawing.Point(126, 42);
             this.tbSurname.Name = "tbSurname";
-            this.tbSurname.Size = new System.Drawing.Size(115, 20);
+            this.tbSurname.Size = new System.Drawing.Size(165, 20);
             this.tbSurname.TabIndex = 137;
             // 
             // tbName
@@ -409,7 +391,7 @@
             this.tbName.Enabled = false;
             this.tbName.Location = new System.Drawing.Point(126, 18);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(115, 20);
+            this.tbName.Size = new System.Drawing.Size(165, 20);
             this.tbName.TabIndex = 136;
             // 
             // lblName
@@ -424,7 +406,7 @@
             // lblReserv
             // 
             this.lblReserv.AutoSize = true;
-            this.lblReserv.Location = new System.Drawing.Point(18, 367);
+            this.lblReserv.Location = new System.Drawing.Point(18, 335);
             this.lblReserv.Name = "lblReserv";
             this.lblReserv.Size = new System.Drawing.Size(70, 13);
             this.lblReserv.TabIndex = 135;
@@ -475,37 +457,19 @@
             this.lblArrival.TabIndex = 118;
             this.lblArrival.Text = "Arrival date :";
             // 
-            // lblMblNr
-            // 
-            this.lblMblNr.AutoSize = true;
-            this.lblMblNr.Location = new System.Drawing.Point(18, 304);
-            this.lblMblNr.Name = "lblMblNr";
-            this.lblMblNr.Size = new System.Drawing.Size(82, 13);
-            this.lblMblNr.TabIndex = 130;
-            this.lblMblNr.Text = "Mobile number :";
-            // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(18, 329);
+            this.lblEmail.Location = new System.Drawing.Point(18, 284);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 13);
             this.lblEmail.TabIndex = 129;
             this.lblEmail.Text = "E-Mail :";
             // 
-            // lblTeleNr
-            // 
-            this.lblTeleNr.AutoSize = true;
-            this.lblTeleNr.Location = new System.Drawing.Point(18, 248);
-            this.lblTeleNr.Name = "lblTeleNr";
-            this.lblTeleNr.Size = new System.Drawing.Size(102, 13);
-            this.lblTeleNr.TabIndex = 128;
-            this.lblTeleNr.Text = "Telephone number :";
-            // 
             // lblPstlCode
             // 
             this.lblPstlCode.AutoSize = true;
-            this.lblPstlCode.Location = new System.Drawing.Point(18, 272);
+            this.lblPstlCode.Location = new System.Drawing.Point(18, 253);
             this.lblPstlCode.Name = "lblPstlCode";
             this.lblPstlCode.Size = new System.Drawing.Size(69, 13);
             this.lblPstlCode.TabIndex = 127;
@@ -608,7 +572,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 438);
+            this.ClientSize = new System.Drawing.Size(929, 438);
             this.Controls.Add(this.Presentlist);
             this.Name = "AccessControlForm";
             this.Text = "Accesscontrol";
@@ -661,9 +625,7 @@
         private System.Windows.Forms.Label lblGrpName;
         private System.Windows.Forms.Label lblDepature;
         private System.Windows.Forms.Label lblArrival;
-        private System.Windows.Forms.Label lblMblNr;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblTeleNr;
         private System.Windows.Forms.Label lblPstlCode;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.GroupBox gbPresentList;
@@ -673,9 +635,7 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbReserv;
         private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.TextBox tbMblNr;
         private System.Windows.Forms.TextBox tbPstlCode;
-        private System.Windows.Forms.TextBox tbTeleNr;
         private System.Windows.Forms.TextBox tbGrpName;
         private System.Windows.Forms.TextBox tbDepature;
         private System.Windows.Forms.TextBox tbArrival;
