@@ -78,13 +78,8 @@ namespace Proftaak
           int mediaitemID = mdsb.GetmediaitemID(title);
 
           Mediaitems = mdsb.Getallmediaitems();
-            foreach (Mediaitem mediaitem in Mediaitems)
-            {
-                FileBox.Items.Add(mediaitem.Title);
-
-            }
-          mdsb.GetmediaitemID(title);
-
+          Refresh();
+       
 
             
           
@@ -106,7 +101,13 @@ namespace Proftaak
 
         }
 
-        
-      
+        public void Refresh()
+        {
+            foreach (Mediaitem mediaitem in Mediaitems)
+            {
+                FileBox.Items.Add(mediaitem.Title);
+
+            }
+        }
     }
 }
