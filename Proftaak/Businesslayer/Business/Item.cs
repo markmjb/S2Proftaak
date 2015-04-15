@@ -16,5 +16,6 @@ namespace Businesslayer.Business
             Name = name;
             Price = price;
         }
+
     }
 }

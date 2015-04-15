@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Business\AccessControl.cs" />
     <Compile Include="Business\Address.cs" />
+    <Compile Include="Business\Item.cs" />
     <Compile Include="DAL\Databaseconnection.cs" />
     <Compile Include="DAL\DbAccess.cs" />
     <Compile Include="DAL\DbMaterial.cs" />
