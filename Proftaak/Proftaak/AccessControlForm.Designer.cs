@@ -44,7 +44,6 @@
             this.lbResName = new System.Windows.Forms.ListBox();
             this.lbResNr = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbSearch = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
@@ -78,6 +77,7 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
+            this.btnDept = new System.Windows.Forms.Button();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -146,6 +146,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnDept);
             this.tabPage1.Controls.Add(this.cbEvent);
             this.tabPage1.Controls.Add(this.lblPayment);
             this.tabPage1.Controls.Add(this.pbChecked);
@@ -181,7 +182,7 @@
             // lblPayment
             // 
             this.lblPayment.AutoSize = true;
-            this.lblPayment.Location = new System.Drawing.Point(451, 144);
+            this.lblPayment.Location = new System.Drawing.Point(451, 185);
             this.lblPayment.Name = "lblPayment";
             this.lblPayment.Size = new System.Drawing.Size(48, 13);
             this.lblPayment.TabIndex = 112;
@@ -189,7 +190,7 @@
             // 
             // pbChecked
             // 
-            this.pbChecked.Location = new System.Drawing.Point(454, 329);
+            this.pbChecked.Location = new System.Drawing.Point(454, 346);
             this.pbChecked.Name = "pbChecked";
             this.pbChecked.Size = new System.Drawing.Size(141, 56);
             this.pbChecked.TabIndex = 115;
@@ -198,7 +199,7 @@
             // lblChecked
             // 
             this.lblChecked.AutoSize = true;
-            this.lblChecked.Location = new System.Drawing.Point(451, 311);
+            this.lblChecked.Location = new System.Drawing.Point(451, 330);
             this.lblChecked.Name = "lblChecked";
             this.lblChecked.Size = new System.Drawing.Size(62, 13);
             this.lblChecked.TabIndex = 114;
@@ -209,7 +210,6 @@
             this.gbReservations.Controls.Add(this.lbResName);
             this.gbReservations.Controls.Add(this.lbResNr);
             this.gbReservations.Controls.Add(this.label7);
-            this.gbReservations.Controls.Add(this.cbSearch);
             this.gbReservations.Controls.Add(this.label6);
             this.gbReservations.Controls.Add(this.btnSearch);
             this.gbReservations.Controls.Add(this.tbSearch);
@@ -223,9 +223,9 @@
             // lbResName
             // 
             this.lbResName.FormattingEnabled = true;
-            this.lbResName.Location = new System.Drawing.Point(224, 89);
+            this.lbResName.Location = new System.Drawing.Point(213, 89);
             this.lbResName.Name = "lbResName";
-            this.lbResName.Size = new System.Drawing.Size(191, 303);
+            this.lbResName.Size = new System.Drawing.Size(212, 303);
             this.lbResName.TabIndex = 106;
             this.lbResName.SelectedIndexChanged += new System.EventHandler(this.lbResName_SelectedIndexChanged);
             // 
@@ -241,23 +241,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(221, 71);
+            this.label7.Location = new System.Drawing.Point(210, 71);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 110;
             this.label7.Text = "Reservation | Name";
-            // 
-            // cbSearch
-            // 
-            this.cbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSearch.FormattingEnabled = true;
-            this.cbSearch.Items.AddRange(new object[] {
-            "Reservations",
-            "Users"});
-            this.cbSearch.Location = new System.Drawing.Point(145, 23);
-            this.cbSearch.Name = "cbSearch";
-            this.cbSearch.Size = new System.Drawing.Size(84, 21);
-            this.cbSearch.TabIndex = 111;
             // 
             // label6
             // 
@@ -270,7 +258,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(235, 23);
+            this.btnSearch.Location = new System.Drawing.Point(145, 23);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 107;
@@ -486,7 +474,7 @@
             // 
             // btnUnAtt
             // 
-            this.btnUnAtt.Location = new System.Drawing.Point(454, 251);
+            this.btnUnAtt.Location = new System.Drawing.Point(454, 277);
             this.btnUnAtt.Name = "btnUnAtt";
             this.btnUnAtt.Size = new System.Drawing.Size(141, 23);
             this.btnUnAtt.TabIndex = 92;
@@ -495,7 +483,7 @@
             // 
             // btnAtt
             // 
-            this.btnAtt.Location = new System.Drawing.Point(454, 222);
+            this.btnAtt.Location = new System.Drawing.Point(454, 246);
             this.btnAtt.Name = "btnAtt";
             this.btnAtt.Size = new System.Drawing.Size(141, 23);
             this.btnAtt.TabIndex = 91;
@@ -504,11 +492,11 @@
             // 
             // btnPaym
             // 
-            this.btnPaym.Location = new System.Drawing.Point(454, 160);
+            this.btnPaym.Location = new System.Drawing.Point(454, 125);
             this.btnPaym.Name = "btnPaym";
-            this.btnPaym.Size = new System.Drawing.Size(141, 23);
+            this.btnPaym.Size = new System.Drawing.Size(141, 38);
             this.btnPaym.TabIndex = 90;
-            this.btnPaym.Text = "Accept payment";
+            this.btnPaym.Text = "Accept payment reservation";
             this.btnPaym.UseVisualStyleBackColor = true;
             this.btnPaym.Click += new System.EventHandler(this.btnPaym_Click);
             // 
@@ -535,7 +523,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(874, 411);
+            this.tabPage2.Size = new System.Drawing.Size(927, 411);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Present List";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -568,6 +556,15 @@
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
             // 
+            // btnDept
+            // 
+            this.btnDept.Location = new System.Drawing.Point(454, 201);
+            this.btnDept.Name = "btnDept";
+            this.btnDept.Size = new System.Drawing.Size(141, 23);
+            this.btnDept.TabIndex = 116;
+            this.btnDept.Text = "Accept dept";
+            this.btnDept.UseVisualStyleBackColor = true;
+            // 
             // AccessControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,7 +572,7 @@
             this.ClientSize = new System.Drawing.Size(929, 438);
             this.Controls.Add(this.Presentlist);
             this.Name = "AccessControlForm";
-            this.Text = "Accesscontrol";
+            this.Text = "Access Control";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AccessControlForm_FormClosing);
             this.Load += new System.EventHandler(this.AccessControlForm_Load);
             this.Presentlist.ResumeLayout(false);
@@ -603,7 +600,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TabControl Presentlist;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox cbSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label6;
@@ -645,5 +641,6 @@
         private System.Windows.Forms.PictureBox pbChecked;
         private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.ComboBox cbEvent;
+        private System.Windows.Forms.Button btnDept;
     }
 }
