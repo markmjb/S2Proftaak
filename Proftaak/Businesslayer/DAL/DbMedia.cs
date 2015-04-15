@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
@@ -12,6 +13,9 @@ namespace Businesslayer.DAL
         public int MediaitemID { get; set; }
         private Databaseconnection db = new Databaseconnection();
         private OracleConnection dbmediaconn;
+        public Mediasharingbusiness msb = new Mediasharingbusiness();
+
+       
 
         public DbMedia()
         {
@@ -50,7 +54,7 @@ namespace Businesslayer.DAL
            {
 
                OracleCommand cmd = this.dbmediaconn.CreateCommand();
-               cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMFILE(Filelocation, Filesize, Filetype,Mediacategoryid) VALUES (:flocation, :fsize, :ftype, :mediacategoryid)";
+               cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMFILE(mediaitemID,Filelocation, Filesize, Filetype,Mediacategoryid) VALUES (:mediaitemID ,:flocation, :fsize, :ftype, :mediacategoryid)";
                cmd.Parameters.Add("mediaitemID", MediaitemID);
                cmd.Parameters.Add("flocation", Filelocation);
                cmd.Parameters.Add("fsize", Filesize);
@@ -139,9 +143,9 @@ namespace Businesslayer.DAL
        }
 
 
-       public int Getmediaitems()
+       public List<Mediaitem>Getmediaitems()
        {
-          
+           List<Mediaitem> mediaitems = new List<Mediaitem>();
            try
            {
                OracleCommand cmd = this.dbmediaconn.CreateCommand();
@@ -156,9 +160,10 @@ namespace Businesslayer.DAL
                    string Title = Convert.ToString(reader["TITLE"]);
                    string Description = Convert.ToString(reader["DESCRIPTION"]);
                    int Userid = Convert.ToInt32(reader["USERID"]);
-                   
-                   //Mediaitem mediaitem = new Mediaitem(MediaitemID, Title, Description, Userid);
-                 
+
+                   Mediaitem mediaitem = new Mediaitem(MediaitemID, Title, Description, Userid);
+                   mediaitems.Add(mediaitem);
+
 
 
                }
@@ -176,7 +181,7 @@ namespace Businesslayer.DAL
 
            }
 
-           return MediacategoryID;
+           return mediaitems;
        }
 
       
