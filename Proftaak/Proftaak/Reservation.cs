@@ -28,5 +28,31 @@ namespace Proftaak
         {
             //Businesslayer.Reservation Res = new Businesslayer.ReservationCampspot()
         }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                
+            }
+            else
+            {
+                tabControl1.SelectedIndex--;
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 3)
+            {
+               
+            }
+            else
+            {
+                tabControl1.SelectedIndex++;
+            }
+        }
+
+
     }
 }

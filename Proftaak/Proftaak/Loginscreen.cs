@@ -33,20 +33,20 @@ namespace Proftaak
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            Userlogin U = new Userlogin();
-            bool rightcredentials = login.CheckLogin(tbEmail.Text, tbPassword.Text);
-            if (rightcredentials==false)
-            {
+            //Login login = new Login();
+            //Userlogin U = new Userlogin();
+            //bool rightcredentials = login.CheckLogin(tbEmail.Text, tbPassword.Text);
+            //if (rightcredentials==false)
+            //{
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 this.Hide();
                 StartScreen S = new StartScreen();
                 S.Show();
-                U.UpdateUser(tbEmail.Text, tbPassword.Text);
-            }
+                //U.UpdateUser(tbEmail.Text, tbPassword.Text);
+            //}
             //Check for correct login, than:
 
         }

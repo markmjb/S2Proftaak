@@ -10,6 +10,7 @@ public class Userlogin
     private List<string> Objects = new List<string>();
     public static User Loggeduser;
     public static Address LoggeduserAddress;
+    public static int uid = 1;
     public void UpdateUser(string emailaddress,string password)
     {  
       Objects= dbr.Getloggeduser(emailaddress,password);
