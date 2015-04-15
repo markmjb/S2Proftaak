@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Business\AccessControl.cs" />
     <Compile Include="Business\Address.cs" />
+    <Compile Include="Business\Item.cs" />
     <Compile Include="DAL\Databaseconnection.cs" />
     <Compile Include="DAL\DbAccess.cs" />
     <Compile Include="DAL\DbMaterial.cs" />

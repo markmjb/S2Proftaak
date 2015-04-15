@@ -31,6 +31,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbRFIDNr = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
@@ -57,9 +58,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.domainUpDown3 = new System.Windows.Forms.DomainUpDown();
+            this.btnChange = new System.Windows.Forms.Button();
+            this.tbPrice = new System.Windows.Forms.TextBox();
+            this.dupItem = new System.Windows.Forms.DomainUpDown();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
             this.label44 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.lbRFIDNr = new System.Windows.Forms.Label();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -129,6 +129,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // lbRFIDNr
+            // 
+            this.lbRFIDNr.AutoSize = true;
+            this.lbRFIDNr.Location = new System.Drawing.Point(241, 21);
+            this.lbRFIDNr.Name = "lbRFIDNr";
+            this.lbRFIDNr.Size = new System.Drawing.Size(70, 13);
+            this.lbRFIDNr.TabIndex = 45;
+            this.lbRFIDNr.Text = "RFID number";
             // 
             // button6
             // 
@@ -362,9 +371,9 @@
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.domainUpDown3);
+            this.tabPage2.Controls.Add(this.btnChange);
+            this.tabPage2.Controls.Add(this.tbPrice);
+            this.tabPage2.Controls.Add(this.dupItem);
             this.tabPage2.Controls.Add(this.listBox3);
             this.tabPage2.Controls.Add(this.domainUpDown2);
             this.tabPage2.Controls.Add(this.label44);
@@ -388,37 +397,38 @@
             this.label5.TabIndex = 102;
             this.label5.Text = "New price:";
             // 
-            // button2
+            // btnChange
             // 
-            this.button2.Location = new System.Drawing.Point(262, 265);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 101;
-            this.button2.Text = "Change";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnChange.Location = new System.Drawing.Point(262, 265);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(75, 23);
+            this.btnChange.TabIndex = 101;
+            this.btnChange.Text = "Change";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
-            // textBox1
+            // tbPrice
             // 
-            this.textBox1.Location = new System.Drawing.Point(195, 268);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(61, 20);
-            this.textBox1.TabIndex = 100;
+            this.tbPrice.Location = new System.Drawing.Point(195, 268);
+            this.tbPrice.Name = "tbPrice";
+            this.tbPrice.Size = new System.Drawing.Size(61, 20);
+            this.tbPrice.TabIndex = 100;
             // 
-            // domainUpDown3
+            // dupItem
             // 
-            this.domainUpDown3.Items.Add("item 1");
-            this.domainUpDown3.Items.Add("item 2");
-            this.domainUpDown3.Items.Add("item 3");
-            this.domainUpDown3.Items.Add("item 4");
-            this.domainUpDown3.Items.Add("item 5");
-            this.domainUpDown3.Items.Add("item 6");
-            this.domainUpDown3.Items.Add("item 7 ");
-            this.domainUpDown3.Items.Add("item 8");
-            this.domainUpDown3.Location = new System.Drawing.Point(72, 268);
-            this.domainUpDown3.Name = "domainUpDown3";
-            this.domainUpDown3.Size = new System.Drawing.Size(56, 20);
-            this.domainUpDown3.TabIndex = 99;
-            this.domainUpDown3.Text = "item 1";
+            this.dupItem.Items.Add("item 1");
+            this.dupItem.Items.Add("item 2");
+            this.dupItem.Items.Add("item 3");
+            this.dupItem.Items.Add("item 4");
+            this.dupItem.Items.Add("item 5");
+            this.dupItem.Items.Add("item 6");
+            this.dupItem.Items.Add("item 7 ");
+            this.dupItem.Items.Add("item 8");
+            this.dupItem.Location = new System.Drawing.Point(72, 268);
+            this.dupItem.Name = "dupItem";
+            this.dupItem.Size = new System.Drawing.Size(56, 20);
+            this.dupItem.TabIndex = 99;
+            this.dupItem.Text = "item 1";
             // 
             // listBox3
             // 
@@ -497,15 +507,6 @@
             this.textBox13.Size = new System.Drawing.Size(61, 20);
             this.textBox13.TabIndex = 92;
             // 
-            // lbRFIDNr
-            // 
-            this.lbRFIDNr.AutoSize = true;
-            this.lbRFIDNr.Location = new System.Drawing.Point(241, 21);
-            this.lbRFIDNr.Name = "lbRFIDNr";
-            this.lbRFIDNr.Size = new System.Drawing.Size(70, 13);
-            this.lbRFIDNr.TabIndex = 45;
-            this.lbRFIDNr.Text = "RFID number";
-            // 
             // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,9 +563,9 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DomainUpDown domainUpDown3;
+        private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.TextBox tbPrice;
+        private System.Windows.Forms.DomainUpDown dupItem;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbRFIDNr;
