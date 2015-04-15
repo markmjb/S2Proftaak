@@ -114,7 +114,6 @@ namespace Businesslayer.DAL
                     "WHERE E.addressID = A.addressID";
 
                 dbremainderconn.Open();
-
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())

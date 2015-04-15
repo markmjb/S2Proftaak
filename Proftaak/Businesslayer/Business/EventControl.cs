@@ -13,6 +13,8 @@ namespace Businesslayer.Business
         //CONSTRUCTORS
         public EventControl()
         {
+            Events = new List<Event>();
+            GetEvents();
         }
 
         //METHODS

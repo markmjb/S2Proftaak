@@ -22,7 +22,7 @@ namespace Proftaak
         {
             InitializeComponent();
 
-            GetEvents();
+            FillDatagridEvents();
         }
         //EVENTS
         private void EventControl_FormClosing(object sender, FormClosingEventArgs e)
@@ -32,7 +32,7 @@ namespace Proftaak
         }
 
         //METHODS
-        private void GetEvents()
+        private void FillDatagridEvents()
         {
             datagridEvents.Rows.Clear();
 
