@@ -21,7 +21,6 @@ namespace Datalayer
         {
             this.dbremainderconn = new OracleConnection();
             dbremainderconn.ConnectionString = db.getstring();
-            
         }
 
         public bool Checklogin(string email, string pass)
@@ -105,6 +104,88 @@ namespace Datalayer
             }
 
             return Objects;
+        }
+
+        public List<EventDL> RefreshEvents()
+        {
+            List<EventDL> events = new List<EventDL>();
+
+            int eventID;
+            string eventName;
+            string description;
+            DateTime startDate;
+            DateTime endDate;
+            decimal ticketPrice;
+            int userID;
+            int addressID;
+
+            string street = "";
+            int streetnumber = -1;
+            string postalCode = "";
+            string city = "";
+            string province = "";
+            string country = "";
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText =
+                    "SELECT eventID, eventName, description, startDate, endDate, ticketPrice, userID, addressID" +
+                    " FROM PTS2_EVENT";
+                dbremainderconn.Open();
+                
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    eventID = Convert.ToInt32(reader["eventID"]);
+                    eventName = Convert.ToString(reader["eventName"]);
+                    description = Convert.ToString(reader["description"]);
+                    startDate = Convert.ToDateTime(reader["startDate"]);
+                    endDate = Convert.ToDateTime(reader["endDate"]);
+                    ticketPrice = Convert.ToDecimal(reader["ticketPrice"]);
+                    userID = Convert.ToInt32(reader["userID"]);
+                    addressID = Convert.ToInt32(reader["addressID"]);
+
+                    OracleCommand cmd2 = this.dbremainderconn.CreateCommand();
+                    cmd.CommandText =
+                        "SELECT country, province, city, street, housenumber, postalcode" +
+                        " FROM PTS2_ADDRESS" +
+                        " WHERE addressID = " +
+                        addressID;
+                    reader = cmd2.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        street = Convert.ToString(reader["street"]);
+                        streetnumber = Convert.ToInt32(reader["housenumber"]);
+                        postalCode = Convert.ToString(reader["postalcode"]);
+                        city = Convert.ToString(reader["city"]);
+                        province = Convert.ToString(reader["province"]);
+                        country = Convert.ToString(reader["country"]);
+                    }
+
+                    events.Add(new EventDL(eventID, eventName, description, startDate, endDate, ticketPrice, userID,
+                        addressID, street, streetnumber, postalCode, city, province, country));
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+            return events;
         }
     }
 }

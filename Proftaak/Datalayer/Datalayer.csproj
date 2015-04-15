@@ -52,6 +52,7 @@
     <Compile Include="DbMedia.cs" />
     <Compile Include="DbRemainder.cs" />
     <Compile Include="DbReservation.cs" />
+    <Compile Include="EventDL.cs" />
     <Compile Include="GroupDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationAccesDL.cs" />

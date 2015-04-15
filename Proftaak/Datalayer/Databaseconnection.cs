@@ -11,6 +11,7 @@ namespace Datalayer
 {
     public class Databaseconnection
     {
+        public List<EventDL> events = new List<EventDL>(); 
         public static string connectionstring = "User Id=mark;Password=mark;Data Source=" + "127.0.0.1/" + ";";
         public Databaseconnection()
         {
