@@ -36,10 +36,10 @@ namespace Proftaak
         {
             datagridEvents.Rows.Clear();
 
-            foreach (Event ev in eventControl.Events)
-            {
-                datagridEvents.Rows.Add(Convert.ToString(ev.EventID), Convert.ToString(ev.Name), Convert.ToString(ev.StartDate), Convert.ToString(ev.EndDate));
-            }
+            //foreach (Event ev in eventControl.Events)
+            //{
+            //    datagridEvents.Rows.Add(Convert.ToString(ev.EventID), Convert.ToString(ev.Name), Convert.ToString(ev.StartDate), Convert.ToString(ev.EndDate));
+            //}
         }
     }
 }
