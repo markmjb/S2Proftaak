@@ -109,9 +109,7 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
                 cmd.CommandText =
-                    "SELECT E.eventID, E.eventName, E.description, E.startDate, E.endDate, E.ticketPrice, E.userID, A.addressID, A.country, A.province, A.city, A.street, A.housenumber, A.postalcode" +
-                    "FROM PTS2_EVENT E, PTS2_ADDRESS A" +
-                    "WHERE E.addressID = A.addressID";
+                    "SELECT E.eventID, E.eventName, E.description, E.startDate, E.endDate, E.ticketPrice, E.userID, A.addressID, A.country, A.province, A.city, A.street, A.housenumber, A.postalcode FROM PTS2_EVENT E, PTS2_ADDRESS A WHERE E.addressID = A.addressID";
 
                 dbremainderconn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -120,7 +118,7 @@ namespace Businesslayer.DAL
                 {
                     int eventID = Convert.ToInt32(reader["eventID"]);
                     string name = Convert.ToString(reader["eventName"]);
-                    string description = Convert.ToString(reader["desciption"]);
+                    string description = Convert.ToString(reader["description"]);
                     DateTime startDate = Convert.ToDateTime(reader["startDate"]);
                     DateTime endDate = Convert.ToDateTime(reader["endDate"]);
                     decimal ticketPrice = Convert.ToDecimal(reader["ticketPrice"]);
@@ -130,7 +128,7 @@ namespace Businesslayer.DAL
                     string street = Convert.ToString(reader["street"]);
                     int streetnumber = Convert.ToInt32(reader["housenumber"]);
                     string postalCode = Convert.ToString(reader["postalcode"]);
-                    string city = Convert.ToString(reader["cuity"]);
+                    string city = Convert.ToString(reader["city"]);
                     string province = Convert.ToString(reader["province"]);
                     string country = Convert.ToString(reader["country"]);
 
