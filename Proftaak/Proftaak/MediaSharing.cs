@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 using Businesslayer;
 using System.IO;
@@ -21,6 +22,7 @@ namespace Proftaak
         public Mediasharing()
         {
             InitializeComponent();
+            Refresh();
             
         }
        
@@ -34,7 +36,7 @@ namespace Proftaak
        private int userID;
        private int categoryID;
        
-        List<Mediaitem> Mediaitems = new List<Mediaitem>();
+       public List<Mediaitem> Mediaitems = new List<Mediaitem>();
 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
@@ -103,11 +105,28 @@ namespace Proftaak
 
         public new void Refresh()
         {
+            mdsb.Getallmediaitems();
+            Mediaitems = mdsb.Getallmediaitems();
+            FileBox.Items.Clear();
             foreach (Mediaitem mediaitem in Mediaitems)
             {
                 FileBox.Items.Add(mediaitem.Title);
 
             }
+        }
+
+        private void btnDeleteMedia_Click(object sender, EventArgs e)
+        {
+            string selecteditem = FileBox.SelectedItem.ToString();
+            Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
+
+            
+
+            
+            mdsb.RemoveMediaItem(item);
+            Refresh();
+
+
         }
     }
 }

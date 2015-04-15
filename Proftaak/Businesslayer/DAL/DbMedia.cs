@@ -186,6 +186,31 @@ namespace Businesslayer.DAL
            return mediaitems;
        }
 
+       public void RemoveMediaItem(Mediaitem mediaitem)
+       {
+           try
+           {
+               int MediaitemID = mediaitem.Mediaitemid;
+
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "DELETE FROM PTS2_MEDIAITEM WHERE MEDIAITEMID = :MediaitemID";
+               cmd.Parameters.Add("MediaitemID", MediaitemID);
+            
+
+               dbmediaconn.Open();
+
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+           }
+       }
+
       
     }
 }

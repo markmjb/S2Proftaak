@@ -194,6 +194,7 @@
             this.btnDeleteMedia.TabIndex = 3;
             this.btnDeleteMedia.Text = "Delete media";
             this.btnDeleteMedia.UseVisualStyleBackColor = true;
+            this.btnDeleteMedia.Click += new System.EventHandler(this.btnDeleteMedia_Click);
             // 
             // FileBox
             // 

@@ -27,5 +27,10 @@ namespace Businesslayer.Business
             return dbmedia.GetMediaItemID(Title);
         }
 
+        public void RemoveMediaItem(Mediaitem mediaitem)
+        {
+            dbmedia.RemoveMediaItem(mediaitem);
+        }
+
     }
 }
