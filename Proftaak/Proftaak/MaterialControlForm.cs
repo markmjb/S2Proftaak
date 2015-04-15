@@ -9,13 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
+using Businesslayer;
+using Businesslayer.Business;
 
 namespace Proftaak
 {
     public partial class MaterialControlForm : Form
     {
+        
         private RFID rfid;
         private string TempRFID;
+
+        
 
         public MaterialControlForm()
         {
@@ -150,5 +155,10 @@ namespace Proftaak
             Application.Exit();
         }
         #endregion
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            //RM.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDouble(tbPrice.Text));
+        }
     }
 }

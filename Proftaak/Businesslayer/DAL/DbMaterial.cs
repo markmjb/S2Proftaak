@@ -1,4 +1,5 @@
 ﻿using System;
+using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
