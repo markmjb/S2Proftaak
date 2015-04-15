@@ -7,12 +7,13 @@ namespace Businesslayer.DAL
 {
     public class DbRemainder : Databaseconnection
     {
-        private Databaseconnection db = new Databaseconnection();
+        private Databaseconnection db;
         private readonly OracleConnection dbremainderconn;
         private bool Logincheck;
 
         public DbRemainder()
         {
+            db = new Databaseconnection();
             this.dbremainderconn = new OracleConnection();
             dbremainderconn.ConnectionString = db.getstring();
         }

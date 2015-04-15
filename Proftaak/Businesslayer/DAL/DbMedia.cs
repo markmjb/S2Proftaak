@@ -11,15 +11,17 @@ namespace Businesslayer.DAL
         
         int MediacategoryID;
         public int MediaitemID { get; set; }
-        private Databaseconnection db = new Databaseconnection();
+        private Databaseconnection db;
         private OracleConnection dbmediaconn;
-        public Mediasharingbusiness msb = new Mediasharingbusiness();
+        
 
        
 
         public DbMedia()
         {
             dbmediaconn = new OracleConnection();
+            db = new Databaseconnection();
+
             dbmediaconn.ConnectionString = db.getstring();
         }
 
