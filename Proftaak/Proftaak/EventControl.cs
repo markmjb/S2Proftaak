@@ -57,7 +57,7 @@ namespace Proftaak
             int streetnumber = Convert.ToInt32(nupStreetnumber.Value);
             string postalcode = tbPostalcode.Text;
 
-            if (name != "" && description != "" && startDate > DateTime.Today && endDate > DateTime.Today && endDate > startDate && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode != ""
+            if (name != "" && description != "" && startDate > DateTime.Today && endDate > DateTime.Today && endDate > startDate && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode != "")
             {
                 if (!eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
                 {

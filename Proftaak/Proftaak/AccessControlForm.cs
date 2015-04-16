@@ -17,16 +17,30 @@ namespace Proftaak
     public partial class AccessControlForm : Form
     {
         private RFID rfid;
-        private string TempRFID;
         private bool isPresent;
+        private int SelectedReservation = -1;
+        private string TempRFID;
+        public string RFID 
+        {
+            get { return TempRFID; }
+            set
+            {
+                TempRFID = value;
+                OnRFIDChanged();
+            }
+        }
+
+        protected virtual void OnRFIDChanged()
+        {
+            if (RFIDChanged != null) RFIDChanged(this, EventArgs.Empty);
+        }
+
+        public event System.EventHandler RFIDChanged;
 
         AccessControl AC = new AccessControl();
-
         List<ReservationAccess> Reservations;
         List<ReservationAccess> SearchResults;
         List<User> ReservationUsers;
-
-        private int SelectedReservation = -1;
 
         public AccessControlForm()
         {
@@ -65,7 +79,6 @@ namespace Proftaak
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {
-            lblRFID.Text = e.Tag;
             TempRFID = e.Tag;
         }
         void rfid_TagLost(object sender, TagEventArgs e)
@@ -160,7 +173,6 @@ namespace Proftaak
 
         private void btnDelRes_Click(object sender, EventArgs e)
         {
-
             AC.DeleteReservation(Convert.ToInt32(tbDelRes.Text));
             LoadReservationListBox();
         }
@@ -209,7 +221,6 @@ namespace Proftaak
             {
                 lbResName.Items.Clear();
             }
-
         }
 
         private void lbResNr_SelectedIndexChanged(object sender, EventArgs e)
@@ -260,33 +271,8 @@ namespace Proftaak
                 {
                     pbChecked.BackColor = Color.Red;
                 }
-
             }
-
             LoadReservationUserListBox();
-        }
-
-        private void lblRFID_TextChanged(object sender, EventArgs e)
-        {
-            int SelectedIndex = lbResName.SelectedIndex;
-
-            bool isAttached = AC.getRFID((Convert.ToInt32(TempRFID)));
-            if (SelectedIndex != -1)
-            {
-                User U = ReservationUsers.ElementAt(SelectedIndex);
-                if (isAttached)
-                {
-                    btnAtt.Enabled = false;
-                    btnUnAtt.Enabled = true;
-                    AC.DettachRFID(U.ID, Convert.ToInt32(cbEvent.Text), (Convert.ToInt32(TempRFID)));
-                }
-                else if (!isAttached)
-                {
-                    btnAtt.Enabled = true;
-                    btnUnAtt.Enabled = false;
-                    AC.AttachRFID(U.ID, Convert.ToInt32(cbEvent.Text), (Convert.ToInt32(TempRFID)));
-                }
-            }
         }
     }
 }
