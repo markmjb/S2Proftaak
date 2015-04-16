@@ -67,6 +67,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
+            this.dupItem = new System.Windows.Forms.DomainUpDown();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -369,6 +370,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.dupItem);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.btnChange);
             this.tabPage2.Controls.Add(this.tbPrice);
@@ -489,6 +491,13 @@
             this.textBox13.Size = new System.Drawing.Size(61, 20);
             this.textBox13.TabIndex = 92;
             // 
+            // dupItem
+            // 
+            this.dupItem.Location = new System.Drawing.Point(63, 268);
+            this.dupItem.Name = "dupItem";
+            this.dupItem.Size = new System.Drawing.Size(65, 20);
+            this.dupItem.TabIndex = 103;
+            // 
             // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,5 +559,6 @@
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbRFIDNr;
+        private System.Windows.Forms.DomainUpDown dupItem;
     }
 }
