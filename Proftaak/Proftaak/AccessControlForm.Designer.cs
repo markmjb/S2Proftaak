@@ -78,7 +78,6 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
-            this.lblRFID = new System.Windows.Forms.Label();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -147,7 +146,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lblRFID);
             this.tabPage1.Controls.Add(this.btnDept);
             this.tabPage1.Controls.Add(this.cbEvent);
             this.tabPage1.Controls.Add(this.lblPayment);
@@ -567,16 +565,6 @@
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
             // 
-            // lblRFID
-            // 
-            this.lblRFID.AutoSize = true;
-            this.lblRFID.Location = new System.Drawing.Point(451, 317);
-            this.lblRFID.Name = "lblRFID";
-            this.lblRFID.Size = new System.Drawing.Size(54, 13);
-            this.lblRFID.TabIndex = 117;
-            this.lblRFID.Text = "RFID-Tag";
-            this.lblRFID.TextChanged += new System.EventHandler(this.lblRFID_TextChanged);
-            // 
             // AccessControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,6 +642,5 @@
         private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.ComboBox cbEvent;
         private System.Windows.Forms.Button btnDept;
-        private System.Windows.Forms.Label lblRFID;
     }
 }
