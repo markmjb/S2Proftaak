@@ -7,12 +7,12 @@ namespace Businesslayer.Business
     {
         DbAccess DA = new DbAccess();
 
-        public void AttachRFID(int UserID, int EventID, int RFID)
+        public void AttachRFID(int UserID, int EventID, string RFID)
         {
             DA.AttachRFID(UserID, EventID, RFID);
         }
 
-        public void DettachRFID(int UserID, int EventID, int RFID)
+        public void DettachRFID(int UserID, int EventID, string RFID)
         {
             DA.DettachRFID(UserID, EventID, RFID);
         }
@@ -47,7 +47,7 @@ namespace Businesslayer.Business
             return isPresent;
         }
 
-        public bool getRFID(int RFID)
+        public bool getRFID(string RFID)
         {
             bool isAttached = DA.GetRFIDStatus(RFID);
             return isAttached;
