@@ -194,12 +194,12 @@ namespace Businesslayer.DAL
             }
         }
 
-        public void AttachRFID(int UserID, int EventID, string RFID)
+        public void AttachRFID(int UserID, int EventID, int RFID)
         {
             try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "INSERT INTO PTS2_RFID (rfidID, isAttached, eventID, userID) VALUES (':RFID',1,:EventID,:UserID)";
+                cmd.CommandText = "INSERT INTO PTS2_RFID (rfidID, isAttached, eventID, userID) VALUES (:RFID,1,:EventID,:UserID)";
                 cmd.Parameters.Add("UserID", UserID);
                 cmd.Parameters.Add("EventID", EventID);
                 cmd.Parameters.Add("RFID", RFID);
@@ -217,13 +217,13 @@ namespace Businesslayer.DAL
             }
         }
 
-        public void DettachRFID(int UserID, int EventID, string RFID)  
+        public void DettachRFID(int UserID, int EventID, int RFID)  
         {
             try
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "DELETE FROM PTS2_RFID WHERE rfidID = ':RFID' AND EVENTID = :EventID AND USERID = :UserID";
+                cmd.CommandText = "DELETE FROM PTS2_RFID WHERE rfidID = :RFID AND EVENTID = :EventID AND USERID = :UserID";
                 cmd.Parameters.Add("UserID", UserID);
                 cmd.Parameters.Add("EventID", EventID);
                 cmd.Parameters.Add("RFID", RFID);
@@ -242,14 +242,14 @@ namespace Businesslayer.DAL
 
         }
 
-        public bool GetRFIDStatus(string RFID)
+        public bool GetRFIDStatus(int RFID)
         {
             bool isAttached = false;
             try
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "SELECT isAttached FROM RFID WHERE rfidID = ':RFID'";
+                cmd.CommandText = "SELECT isAttached FROM RFID WHERE rfidID = :RFID";
                 cmd.Parameters.Add("RFID", RFID);
 
                 DbAcces.Open();
