@@ -60,7 +60,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnChange = new System.Windows.Forms.Button();
             this.tbPrice = new System.Windows.Forms.TextBox();
-            this.dupItem = new System.Windows.Forms.DomainUpDown();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
             this.label44 = new System.Windows.Forms.Label();
@@ -373,7 +372,6 @@
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.btnChange);
             this.tabPage2.Controls.Add(this.tbPrice);
-            this.tabPage2.Controls.Add(this.dupItem);
             this.tabPage2.Controls.Add(this.listBox3);
             this.tabPage2.Controls.Add(this.domainUpDown2);
             this.tabPage2.Controls.Add(this.label44);
@@ -413,22 +411,6 @@
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(61, 20);
             this.tbPrice.TabIndex = 100;
-            // 
-            // dupItem
-            // 
-            this.dupItem.Items.Add("rode appels");
-            this.dupItem.Items.Add("item 2");
-            this.dupItem.Items.Add("item 3");
-            this.dupItem.Items.Add("item 4");
-            this.dupItem.Items.Add("item 5");
-            this.dupItem.Items.Add("item 6");
-            this.dupItem.Items.Add("item 7");
-            this.dupItem.Items.Add("item 8");
-            this.dupItem.Location = new System.Drawing.Point(72, 268);
-            this.dupItem.Name = "dupItem";
-            this.dupItem.Size = new System.Drawing.Size(56, 20);
-            this.dupItem.TabIndex = 99;
-            this.dupItem.Text = "item 1";
             // 
             // listBox3
             // 
@@ -565,7 +547,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.TextBox tbPrice;
-        private System.Windows.Forms.DomainUpDown dupItem;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbRFIDNr;
