@@ -128,5 +128,10 @@ namespace Proftaak
 
 
         }
+
+        private void FileBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("nee");
+        }
     }
 }
