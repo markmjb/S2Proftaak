@@ -315,12 +315,9 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-<<<<<<< HEAD
                 cmd.CommandText = "DELETE FROM PTS2_RFID WHERE RFID = :RFID AND EventID = :EventID";
-=======
                 cmd.CommandText = "UPDATE PTS2_RFID SET RFID = '' WHERE RFID = :RFID AND EVENTID = :EventID";
                 cmd.Parameters.Add("EventID", EventID);
->>>>>>> origin/master
                 cmd.Parameters.Add("RFID", RFID);
                 cmd.Parameters.Add("EventID", EventID);
 
@@ -329,11 +326,8 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exc)
             {
-<<<<<<< HEAD
                 throw (exc);
-=======
                 throw exc;
->>>>>>> origin/master
             }
             finally
             {
