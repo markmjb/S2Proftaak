@@ -15,9 +15,9 @@ namespace Businesslayer.Business
            Amount = amount;
            Price = price;
        }
-        public void ChangePrice(string name, double price)
+        public void ChangePrice(string name, decimal price)
         {
-           DM.ChangePrice(name, price);        
+          // DM.ChangePrice(name, price);        
         }
 
         public void ChangeStock()

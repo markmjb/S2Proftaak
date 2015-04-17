@@ -15,14 +15,16 @@ namespace Businesslayer.DAL
             DbMateriall.ConnectionString = db.getstring();
         }
 
-       public void ChangePrice(string MaterialName, double Price)
+       public void ChangePrice(string MaterialName, decimal Price)
         {
             try
             {
+                double d = (double)Price;
                 OracleCommand cmd = this.DbMateriall.CreateCommand();
-                cmd.CommandText = "update PTS2_MATERIAL set price = :Price where materialName = :MaterialName";
-                cmd.Parameters.Add("materialName", MaterialName);
-                cmd.Parameters.Add("price", Price);
+                cmd.CommandText = "update PTS2_MATERIAL set price = 25.3 where materialName = :MaterialName";
+                cmd.Parameters.Add("MaterialName", MaterialName);
+                //cmd.Parameters.Add("Price", 30);
+                
 
                 DbMateriall.Open();
 
