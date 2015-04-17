@@ -50,7 +50,6 @@ namespace Businesslayer.DAL
 
 
         }
-
         public List<string> Getloggeduser(string email, string pass)
         {
             List<string> Objects = new List<string>();
@@ -101,7 +100,6 @@ namespace Businesslayer.DAL
 
             return Objects;
         }
-
         public List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
@@ -143,13 +141,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    dbremainderconn.Close();
-                }
-                catch (Exception)
-                {
-                }
+                this.dbremainderconn.Close();
             }
 
             return events;
