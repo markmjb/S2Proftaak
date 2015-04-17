@@ -157,12 +157,16 @@ namespace Businesslayer.DAL
         public bool CheckEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
         {
             int results = 0;
-            string command = "COUNT(eventID) FROM PTS2_EVENT WHERE eventName = " + name + " AND description = " + description + " AND startDate = " + startDate + " AND endDate = " + endDate + " AND ticketPrice = " + ticketPrice;
-
+            
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
-                cmd.CommandText = command;
+                cmd.CommandText = "COUNT(eventID) FROM PTS2_EVENT WHERE eventName = ':name' AND description = ':description' AND startDate = TO_DATE(':startDate', 'MM/DD/YYYY') AND endDate = TO_DATE'(':endDate', 'MM/DD/YYYY') AND ticketPrice = :ticketPrice";
+                cmd.Parameters.Add("name", name);
+                cmd.Parameters.Add("description", description);
+                cmd.Parameters.Add("startDate", startDate);
+                cmd.Parameters.Add("endDate", endDate);
+                cmd.Parameters.Add("ticketPrice", ticketPrice);
 
                 dbremainderconn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -197,12 +201,17 @@ namespace Businesslayer.DAL
         public bool CheckAddress(string country, string province, string city, string street, int streetnumber, string postalcode)
         {
             int results = 0;
-            string command = "COUNT(addressID) FROM PTS2_ADDRESS WHERE country = " + country + " AND province = " + province + " AND city = " + city + " AND street = " + street + " AND houseNumber = " + streetnumber + " AND postalcode = " + postalcode;
             
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
-                cmd.CommandText = command;
+                cmd.CommandText = "COUNT(addressID) FROM PTS2_ADDRESS WHERE country = ':country' AND province = ':province' AND city = ':city' AND street = ':street' AND houseNumber = ':streetnumber' AND postalcode = ':postalcode'";
+                cmd.Parameters.Add("country", country);
+                cmd.Parameters.Add("province", province);
+                cmd.Parameters.Add("city", city);
+                cmd.Parameters.Add("street", street);
+                cmd.Parameters.Add("streetnumber", streetnumber);
+                cmd.Parameters.Add("postalcode", postalcode);
 
                 dbremainderconn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
