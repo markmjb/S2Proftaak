@@ -21,6 +21,7 @@ namespace Businesslayer.DAL
         public List<int> Campspots()
         {
             OracleCommand cmd = this.dbr.CreateCommand();
+            return null;
         }
     }
 }
