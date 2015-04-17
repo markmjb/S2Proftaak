@@ -10,15 +10,17 @@ namespace Businesslayer.Business
     public class Item
     {
         DbMaterial DM = new DbMaterial();
-        public string Name { get; set; }
-        public double Price { get; set; }
+        public List<Item> Items { get; set; }
 
-        public Item(string name, double price)
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+
+        public Item(string name, decimal price)
         {
             Name = name;
             Price = price;
         }
-        public void ChangePrice(string name, double price)
+        public void ChangePrice(string name, decimal price)
         {
             DM.ChangePrice(name, price);
         }

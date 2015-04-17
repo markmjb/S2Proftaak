@@ -17,7 +17,6 @@ namespace Proftaak
     public partial class AccessControlForm : Form
     {
         private RFID rfid;
-        private bool isPresent;
         private int SelectedReservation = -1;
         private string TempRFID;
         public string RFID 
@@ -33,6 +32,28 @@ namespace Proftaak
         protected virtual void OnRFIDChanged()
         {
             if (RFIDChanged != null) RFIDChanged(this, EventArgs.Empty);
+
+            int SelectedIndex = lbResName.SelectedIndex;
+            bool isAttached = AC.getRFID(TempRFID);
+
+            label4.Text = "isAttached!";
+
+            if (SelectedIndex != -1)
+            {
+                User U = ReservationUsers.ElementAt(SelectedIndex);
+                if (isAttached)
+                {
+                    btnAtt.Enabled = false;
+                    btnUnAtt.Enabled = true;
+                    AC.DettachRFID(U.ID, Convert.ToInt32(cbEvent.Text), TempRFID);
+                }
+                else if (!isAttached)
+                {
+                    btnAtt.Enabled = true;
+                    btnUnAtt.Enabled = false;
+                    AC.AttachRFID(U.ID, Convert.ToInt32(cbEvent.Text), TempRFID);
+                }
+            }
         }
 
         public event System.EventHandler RFIDChanged;
@@ -41,10 +62,18 @@ namespace Proftaak
         List<ReservationAccess> Reservations;
         List<ReservationAccess> SearchResults;
         List<User> ReservationUsers;
+        List<User> EventUsers;
+        List<Event> AllEvents;
 
         public AccessControlForm()
         {
             InitializeComponent();
+            RFIDChanged += AccessControlForm_RFIDChanged;
+        }
+
+        void AccessControlForm_RFIDChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void AccessControlForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,12 +89,14 @@ namespace Proftaak
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             openCmdLine(rfid);
+
+            LoadCBoxEvents();
         }
 
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
-            //attachedTxt.Text = e.Device.Attached.ToString();
+            label2.Text = e.Device.Attached.ToString();
 
             switch (attached.ID)
             {
@@ -79,10 +110,12 @@ namespace Proftaak
         }
         void rfid_Tag(object sender, TagEventArgs e)
         {
+            label3.Text = e.Tag;
             TempRFID = e.Tag;
         }
         void rfid_TagLost(object sender, TagEventArgs e)
         {
+            label3.Text = "";
         }
 
         //Parses command line arguments and calls the appropriate open
@@ -171,32 +204,23 @@ namespace Proftaak
         }
         #endregion
 
-        private void btnDelRes_Click(object sender, EventArgs e)
-        {
-            AC.DeleteReservation(Convert.ToInt32(tbDelRes.Text));
-            LoadReservationListBox();
-        }
-
-        private void btnPaym_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         void LoadReservationListBox()
         {
             lbResNr.Items.Clear();
-            if (cbEvent.Text != "")
-            {
-                Reservations = AC.GetAllReservations(Convert.ToInt32(cbEvent.Text));
+            AllEvents = AC.GetEvents();
 
-                foreach (ReservationAccess R in Reservations)    
+            if (cbEvent.SelectedIndex != -1)
+            {
+                int SelectedEvent = cbEvent.SelectedIndex;
+                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
+                Reservations = AC.GetAllReservations(SelEvent.EventID);
+
+                foreach (ReservationAccess R in Reservations)
                 {
                     lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
                 }
             }
-            LoadReservationUserListBox();
         }
-
         void LoadReservationUserListBox()
         {
             lbResName.Items.Clear();
@@ -206,16 +230,54 @@ namespace Proftaak
 
                 foreach (User U in ReservationUsers)
                 {
-                    lbResName.Items.Add(U.ReservationID + "\t|\t" + U.Lastname + "," + U.Firstname);
+                    lbResName.Items.Add(U.ReservationID + "  |  " + U.Lastname + "," + U.Firstname);
                 }
             }
+        }
+        void LoadCBoxEvents()
+        {
+            cbEvent.Items.Clear();
+            AllEvents = AC.GetEvents();
+            foreach (Event E in AllEvents)
+            {
+                cbEvent.Items.Add(E.Name);
+            }
+        }
+        void LoadPresentList()
+        {
+            if (cbEvent.SelectedIndex != -1)
+            {
+                int SelectedEvent = cbEvent.SelectedIndex;
+                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
+                EventUsers = AC.GetAllUsers(SelEvent.EventID);
+
+                foreach (User R in EventUsers)
+                {
+                    if(R.IsPresent)
+                    {
+                        lbPresentList.Items.Add("Reservation: " + R.ReservationID + " Name: " + R.Lastname + "," + R.Firstname + " Presents: " + R.IsPresent);
+                    }
+                }
+            }
+        }
+
+        private void btnDelRes_Click(object sender, EventArgs e)
+        {
+            AC.DeleteReservation(Convert.ToInt32(tbDelRes.Text));
+            LoadReservationListBox();
+        }
+
+        private void btnPaym_Click(object sender, EventArgs e)
+        {
+            AC.AcceptPay((Convert.ToInt32(tbDelRes.Text)));
+            LoadReservationListBox();
         }
 
         private void cbEvent_SelectionChangeCommitted(object sender, EventArgs e)
         {
             lbResName.Items.Clear();
             LoadReservationListBox();
-            LoadReservationUserListBox();
+            LoadPresentList();
 
             if (lbResNr.SelectedIndex == -1)
             {
@@ -233,11 +295,17 @@ namespace Proftaak
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (cbEvent.Text != "")
+            lbResNr.Items.Clear();
+            AllEvents = AC.GetEvents();
+
+            if (cbEvent.SelectedIndex != -1)
             {
-                SearchResults = AC.Search((Convert.ToInt32(cbEvent.Text)), tbSearch.Text);
+                int SelectedEvent = cbEvent.SelectedIndex;
+                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
+                Reservations = AC.GetAllReservations(SelEvent.EventID);
 
                 lbResNr.Items.Clear();
+                SearchResults = AC.Search(SelEvent.EventID, (Convert.ToInt32(tbSearch.Text)));
                 foreach (ReservationAccess R in Reservations)
                 {
                     lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);

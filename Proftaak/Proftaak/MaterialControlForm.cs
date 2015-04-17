@@ -19,19 +19,24 @@ namespace Proftaak
         
         private RFID rfid;
         private string TempRFID;
+
         Item USBstick = new Item("USBstick", 5);
         Item Ethernetkabel = new Item("Ethernetkabel", 10);
         Item Laptop = new Item("Laptop", 200);
         Item Accu = new Item("Accu", 25);
-        
-
+        public List<Item> items = new List<Item>();
         public MaterialControlForm()
         {
             InitializeComponent();
-            dupItem.Items.Add(USBstick);
-            dupItem.Items.Add(Ethernetkabel);
-            dupItem.Items.Add(Laptop);
-            dupItem.Items.Add(Accu);
+            dupItem.Items.Add(USBstick.Name);
+            dupItem.Items.Add(Ethernetkabel.Name);
+            dupItem.Items.Add(Laptop.Name);
+            dupItem.Items.Add(Accu.Name);
+            items.Add(USBstick);
+            items.Add(Ethernetkabel);
+            items.Add(Laptop);
+            items.Add(Accu);
+
         }
 
         private void MaterialControlForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -165,7 +170,8 @@ namespace Proftaak
 
         private void btnChange_Click(object sender, EventArgs e)
         {          
-            USBstick.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDouble(tbPrice.Text));
+            USBstick.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDecimal(tbPrice.Text));
+            MessageBox.Show("gedaan");
         }
     }
 }
