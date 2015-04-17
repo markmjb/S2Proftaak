@@ -57,17 +57,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dupItem = new System.Windows.Forms.DomainUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.btnChange = new System.Windows.Forms.Button();
             this.tbPrice = new System.Windows.Forms.TextBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
+            this.lbItems = new System.Windows.Forms.ListBox();
+            this.dupItemsStock = new System.Windows.Forms.DomainUpDown();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.dupItem = new System.Windows.Forms.DomainUpDown();
+            this.tbAdd = new System.Windows.Forms.TextBox();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -374,19 +374,26 @@
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.btnChange);
             this.tabPage2.Controls.Add(this.tbPrice);
-            this.tabPage2.Controls.Add(this.listBox3);
-            this.tabPage2.Controls.Add(this.domainUpDown2);
+            this.tabPage2.Controls.Add(this.lbItems);
+            this.tabPage2.Controls.Add(this.dupItemsStock);
             this.tabPage2.Controls.Add(this.label44);
             this.tabPage2.Controls.Add(this.label43);
-            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.btnAdd);
             this.tabPage2.Controls.Add(this.label35);
-            this.tabPage2.Controls.Add(this.textBox13);
+            this.tabPage2.Controls.Add(this.tbAdd);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(440, 494);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stock";
+            // 
+            // dupItem
+            // 
+            this.dupItem.Location = new System.Drawing.Point(63, 268);
+            this.dupItem.Name = "dupItem";
+            this.dupItem.Size = new System.Drawing.Size(65, 20);
+            this.dupItem.TabIndex = 103;
             // 
             // label5
             // 
@@ -414,39 +421,21 @@
             this.tbPrice.Size = new System.Drawing.Size(61, 20);
             this.tbPrice.TabIndex = 100;
             // 
-            // listBox3
+            // lbItems
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Items.AddRange(new object[] {
-            "Item 1, price, stock",
-            "Item 2, price, stock",
-            "Item 3, price, stock",
-            "Item 4, price, stock",
-            "Item 5, price, stock",
-            "Item 6, price, stock",
-            "Item 7, price, stock",
-            "Item 8, price, stock"});
-            this.listBox3.Location = new System.Drawing.Point(63, 80);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.ScrollAlwaysVisible = true;
-            this.listBox3.Size = new System.Drawing.Size(222, 160);
-            this.listBox3.TabIndex = 98;
+            this.lbItems.FormattingEnabled = true;
+            this.lbItems.Location = new System.Drawing.Point(63, 80);
+            this.lbItems.Name = "lbItems";
+            this.lbItems.ScrollAlwaysVisible = true;
+            this.lbItems.Size = new System.Drawing.Size(222, 160);
+            this.lbItems.TabIndex = 98;
             // 
-            // domainUpDown2
+            // dupItemsStock
             // 
-            this.domainUpDown2.Items.Add("item 1");
-            this.domainUpDown2.Items.Add("item 2");
-            this.domainUpDown2.Items.Add("item 3");
-            this.domainUpDown2.Items.Add("item 4");
-            this.domainUpDown2.Items.Add("item 5");
-            this.domainUpDown2.Items.Add("item 6");
-            this.domainUpDown2.Items.Add("item 7 ");
-            this.domainUpDown2.Items.Add("item 8");
-            this.domainUpDown2.Location = new System.Drawing.Point(72, 405);
-            this.domainUpDown2.Name = "domainUpDown2";
-            this.domainUpDown2.Size = new System.Drawing.Size(56, 20);
-            this.domainUpDown2.TabIndex = 97;
-            this.domainUpDown2.Text = "item 1";
+            this.dupItemsStock.Location = new System.Drawing.Point(72, 405);
+            this.dupItemsStock.Name = "dupItemsStock";
+            this.dupItemsStock.Size = new System.Drawing.Size(56, 20);
+            this.dupItemsStock.TabIndex = 97;
             // 
             // label44
             // 
@@ -466,14 +455,15 @@
             this.label43.TabIndex = 95;
             this.label43.Text = "Change the price of an item";
             // 
-            // button4
+            // btnAdd
             // 
-            this.button4.Location = new System.Drawing.Point(235, 401);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 94;
-            this.button4.Text = "Add";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAdd.Location = new System.Drawing.Point(235, 401);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 94;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label35
             // 
@@ -484,19 +474,12 @@
             this.label35.TabIndex = 93;
             this.label35.Text = "Add:";
             // 
-            // textBox13
+            // tbAdd
             // 
-            this.textBox13.Location = new System.Drawing.Point(170, 404);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(61, 20);
-            this.textBox13.TabIndex = 92;
-            // 
-            // dupItem
-            // 
-            this.dupItem.Location = new System.Drawing.Point(63, 268);
-            this.dupItem.Name = "dupItem";
-            this.dupItem.Size = new System.Drawing.Size(65, 20);
-            this.dupItem.TabIndex = 103;
+            this.tbAdd.Location = new System.Drawing.Point(170, 404);
+            this.tbAdd.Name = "tbAdd";
+            this.tbAdd.Size = new System.Drawing.Size(61, 20);
+            this.tbAdd.TabIndex = 92;
             // 
             // MaterialControlForm
             // 
@@ -525,9 +508,9 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox tbAdd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -543,7 +526,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DomainUpDown domainUpDown1;
-        private System.Windows.Forms.DomainUpDown domainUpDown2;
+        private System.Windows.Forms.DomainUpDown dupItemsStock;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Button button6;
@@ -556,7 +539,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.TextBox tbPrice;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox lbItems;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbRFIDNr;
         private System.Windows.Forms.DomainUpDown dupItem;

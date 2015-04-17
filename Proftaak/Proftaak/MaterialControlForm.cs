@@ -29,7 +29,10 @@ namespace Proftaak
             for(int i = 0; i < items.Count; i++)
             {
                 dupItem.Items.Add(items[i].Name);
+                dupItemsStock.Items.Add(items[i].Name);
+                lbItems.Items.Add("Product : " + items[i].Name +" , prijs: €" + items[i].Price);
             }
+
         }
 
         private void MaterialControlForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -162,10 +165,24 @@ namespace Proftaak
         #endregion
 
         private void btnChange_Click(object sender, EventArgs e)
-        {  
-            
-            IB.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToDecimal(tbPrice.Text));
+        {            
+            IB.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
+            Update();
             MessageBox.Show("gedaan");
+        }
+        private void Update()
+        {
+            lbItems.Items.Clear();
+            items = IB.GetItems();
+            for (int i = 0; i < items.Count; i++)
+            {
+                lbItems.Items.Add("Product : " + items[i].Name + " , prijs: €" + items[i].Price);
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            IB.AddStock(dupItemsStock.SelectedItem.ToString(), Convert.ToInt32(tbAdd.Text));
         }
     }
 }

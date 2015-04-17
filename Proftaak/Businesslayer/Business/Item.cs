@@ -13,9 +13,9 @@ namespace Businesslayer.Business
         public List<Item> Items { get; set; }
 
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
-        public Item(string name, decimal price)
+        public Item(string name, int price)
         {
             Name = name;
             Price = price;
