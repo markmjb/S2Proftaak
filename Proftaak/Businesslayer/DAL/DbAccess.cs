@@ -315,12 +315,12 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-<<<<<<< HEAD
+
                 cmd.CommandText = "DELETE FROM PTS2_RFID WHERE RFID = :RFID AND EventID = :EventID";
-=======
+
                 cmd.CommandText = "UPDATE PTS2_RFID SET RFID = '' WHERE RFID = :RFID AND EVENTID = :EventID";
                 cmd.Parameters.Add("EventID", EventID);
->>>>>>> origin/master
+
                 cmd.Parameters.Add("RFID", RFID);
                 cmd.Parameters.Add("EventID", EventID);
 
@@ -329,11 +329,11 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exc)
             {
-<<<<<<< HEAD
+
                 throw (exc);
-=======
+
                 throw exc;
->>>>>>> origin/master
+
             }
             finally
             {
@@ -477,13 +477,14 @@ namespace Businesslayer.DAL
         {
             List<ReservationAccess> Reservations = new List<ReservationAccess>();
             string search = Convert.ToString(Search);
-            search += "%";
+            search = search + "%";
+            
             try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :ID AND R.ReservationID LIKE :Search%";
-                cmd.Parameters.Add("ID", EventID);
-                cmd.Parameters.Add("Search", search);
+                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
+                cmd.Parameters.Add("eID", EventID);
+                cmd.Parameters.Add("Search", Search);
 
                 DbAcces.Open();
                 OracleDataReader reader = cmd.ExecuteReader();

@@ -103,15 +103,15 @@ namespace Proftaak
 
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
-            if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
-            {
-                int eventID = eventControl.GetEventID(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value);
+            //if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
+            //{
+            //    int eventID = eventControl.GetEventID(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value);
 
-                eventControl.DeleteEvent(eventID);
+            //    eventControl.DeleteEvent(eventID);
 
-                FillDatagridEvents();
-                OnDatagridEventsCellClick();
-            }
+            //    FillDatagridEvents();
+            //    OnDatagridEventsCellClick();
+            //}
         }
     }
 }

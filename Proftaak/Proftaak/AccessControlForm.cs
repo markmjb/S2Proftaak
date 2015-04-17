@@ -266,13 +266,12 @@ namespace Proftaak
 
             if (cbEvent.SelectedIndex != -1)
             {
-                int SelectedEvent = cbEvent.SelectedIndex;
-                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
+                Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
                 Reservations = AC.GetAllReservations(SelEvent.EventID);
 
                 lbResNr.Items.Clear();
                 SearchResults = AC.Search(SelEvent.EventID, (Convert.ToInt32(tbSearch.Text)));
-                foreach (ReservationAccess R in Reservations)
+                foreach (ReservationAccess R in SearchResults)
                 {
                     lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
                 }
@@ -362,6 +361,8 @@ namespace Proftaak
                 }
             }
         }
+
+
     }
 }
 
