@@ -10,6 +10,7 @@ namespace Businesslayer.DAL
         
         
         int MediacategoryID;
+        Mediaitem mediaitem;
         public int MediaitemID { get; set; }
         private Databaseconnection db;
         private OracleConnection dbmediaconn;
@@ -209,6 +210,49 @@ namespace Businesslayer.DAL
            {
                this.dbmediaconn.Close();
            }
+       }
+       public Mediaitem Getsinglemediaitem(int mediaitemid)
+       {
+           
+           try
+           {
+               
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM WHERE Mediaitemid = :Mediaitemid";
+               cmd.Parameters.Add("Mediaitemid", mediaitemid);
+               dbmediaconn.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+
+                   int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                   string Title = Convert.ToString(reader["TITLE"]);
+                   string Description = Convert.ToString(reader["DESCRIPTION"]);
+                   int Userid = Convert.ToInt32(reader["USERID"]);
+
+                   mediaitem = new Mediaitem(MediaitemID, Title, Description, Userid);
+            
+
+
+
+               }
+              
+
+
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+
+
+           }
+
+           return mediaitem;
        }
 
       

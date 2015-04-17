@@ -38,10 +38,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnDept = new System.Windows.Forms.Button();
             this.cbEvent = new System.Windows.Forms.ComboBox();
-            this.lblPayment = new System.Windows.Forms.Label();
             this.pbChecked = new System.Windows.Forms.PictureBox();
             this.lblChecked = new System.Windows.Forms.Label();
             this.gbReservations = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lbResName = new System.Windows.Forms.ListBox();
             this.lbResNr = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -78,6 +79,9 @@
             this.gbPresentList = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblEvents = new System.Windows.Forms.Label();
+            this.lblReservationNr = new System.Windows.Forms.Label();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
@@ -146,9 +150,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblReservationNr);
+            this.tabPage1.Controls.Add(this.lblEvents);
             this.tabPage1.Controls.Add(this.btnDept);
             this.tabPage1.Controls.Add(this.cbEvent);
-            this.tabPage1.Controls.Add(this.lblPayment);
             this.tabPage1.Controls.Add(this.pbChecked);
             this.tabPage1.Controls.Add(this.lblChecked);
             this.tabPage1.Controls.Add(this.gbReservations);
@@ -168,9 +173,9 @@
             // 
             // btnDept
             // 
-            this.btnDept.Location = new System.Drawing.Point(454, 201);
+            this.btnDept.Location = new System.Drawing.Point(454, 191);
             this.btnDept.Name = "btnDept";
-            this.btnDept.Size = new System.Drawing.Size(141, 23);
+            this.btnDept.Size = new System.Drawing.Size(141, 42);
             this.btnDept.TabIndex = 116;
             this.btnDept.Text = "Accept dept";
             this.btnDept.UseVisualStyleBackColor = true;
@@ -179,23 +184,11 @@
             // 
             this.cbEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEvent.FormattingEnabled = true;
-            this.cbEvent.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cbEvent.Location = new System.Drawing.Point(454, 16);
+            this.cbEvent.Location = new System.Drawing.Point(454, 28);
             this.cbEvent.Name = "cbEvent";
             this.cbEvent.Size = new System.Drawing.Size(141, 21);
             this.cbEvent.TabIndex = 112;
             this.cbEvent.SelectionChangeCommitted += new System.EventHandler(this.cbEvent_SelectionChangeCommitted);
-            // 
-            // lblPayment
-            // 
-            this.lblPayment.AutoSize = true;
-            this.lblPayment.Location = new System.Drawing.Point(451, 185);
-            this.lblPayment.Name = "lblPayment";
-            this.lblPayment.Size = new System.Drawing.Size(48, 13);
-            this.lblPayment.TabIndex = 112;
-            this.lblPayment.Text = "Payment";
             // 
             // pbChecked
             // 
@@ -216,6 +209,9 @@
             // 
             // gbReservations
             // 
+            this.gbReservations.Controls.Add(this.label4);
+            this.gbReservations.Controls.Add(this.label3);
+            this.gbReservations.Controls.Add(this.label2);
             this.gbReservations.Controls.Add(this.lbResName);
             this.gbReservations.Controls.Add(this.lbResNr);
             this.gbReservations.Controls.Add(this.label7);
@@ -228,6 +224,24 @@
             this.gbReservations.TabIndex = 113;
             this.gbReservations.TabStop = false;
             this.gbReservations.Text = "Reservations";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(285, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 112;
+            this.label3.Text = "label3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(282, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 111;
+            this.label2.Text = "label2";
             // 
             // lbResName
             // 
@@ -483,7 +497,7 @@
             // 
             // btnUnAtt
             // 
-            this.btnUnAtt.Location = new System.Drawing.Point(454, 277);
+            this.btnUnAtt.Location = new System.Drawing.Point(454, 287);
             this.btnUnAtt.Name = "btnUnAtt";
             this.btnUnAtt.Size = new System.Drawing.Size(141, 23);
             this.btnUnAtt.TabIndex = 92;
@@ -492,7 +506,7 @@
             // 
             // btnAtt
             // 
-            this.btnAtt.Location = new System.Drawing.Point(454, 246);
+            this.btnAtt.Location = new System.Drawing.Point(454, 258);
             this.btnAtt.Name = "btnAtt";
             this.btnAtt.Size = new System.Drawing.Size(141, 23);
             this.btnAtt.TabIndex = 91;
@@ -501,9 +515,9 @@
             // 
             // btnPaym
             // 
-            this.btnPaym.Location = new System.Drawing.Point(454, 125);
+            this.btnPaym.Location = new System.Drawing.Point(454, 144);
             this.btnPaym.Name = "btnPaym";
-            this.btnPaym.Size = new System.Drawing.Size(141, 38);
+            this.btnPaym.Size = new System.Drawing.Size(141, 41);
             this.btnPaym.TabIndex = 90;
             this.btnPaym.Text = "Accept payment reservation";
             this.btnPaym.UseVisualStyleBackColor = true;
@@ -511,9 +525,9 @@
             // 
             // btnDelRes
             // 
-            this.btnDelRes.Location = new System.Drawing.Point(454, 89);
+            this.btnDelRes.Location = new System.Drawing.Point(454, 96);
             this.btnDelRes.Name = "btnDelRes";
-            this.btnDelRes.Size = new System.Drawing.Size(141, 23);
+            this.btnDelRes.Size = new System.Drawing.Size(141, 41);
             this.btnDelRes.TabIndex = 89;
             this.btnDelRes.Text = "Delete Reservation";
             this.btnDelRes.UseVisualStyleBackColor = true;
@@ -521,7 +535,7 @@
             // 
             // tbDelRes
             // 
-            this.tbDelRes.Location = new System.Drawing.Point(454, 63);
+            this.tbDelRes.Location = new System.Drawing.Point(454, 74);
             this.tbDelRes.Name = "tbDelRes";
             this.tbDelRes.Size = new System.Drawing.Size(141, 20);
             this.tbDelRes.TabIndex = 88;
@@ -553,9 +567,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 13);
+            this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Reservation | Name | Tel |  ";
+            this.label1.Text = "Reservation | Name |  ";
             // 
             // lbPresentList
             // 
@@ -564,6 +578,33 @@
             this.lbPresentList.Name = "lbPresentList";
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(357, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 113;
+            this.label4.Text = "label4";
+            // 
+            // lblEvents
+            // 
+            this.lblEvents.AutoSize = true;
+            this.lblEvents.Location = new System.Drawing.Point(451, 12);
+            this.lblEvents.Name = "lblEvents";
+            this.lblEvents.Size = new System.Drawing.Size(40, 13);
+            this.lblEvents.TabIndex = 117;
+            this.lblEvents.Text = "Events";
+            // 
+            // lblReservationNr
+            // 
+            this.lblReservationNr.AutoSize = true;
+            this.lblReservationNr.Location = new System.Drawing.Point(451, 58);
+            this.lblReservationNr.Name = "lblReservationNr";
+            this.lblReservationNr.Size = new System.Drawing.Size(107, 13);
+            this.lblReservationNr.TabIndex = 118;
+            this.lblReservationNr.Text = "Reservation Number:";
             // 
             // AccessControlForm
             // 
@@ -639,8 +680,12 @@
         private System.Windows.Forms.TextBox tbStrNr;
         private System.Windows.Forms.TextBox tbSurname;
         private System.Windows.Forms.PictureBox pbChecked;
-        private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.ComboBox cbEvent;
         private System.Windows.Forms.Button btnDept;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblReservationNr;
+        private System.Windows.Forms.Label lblEvents;
     }
 }

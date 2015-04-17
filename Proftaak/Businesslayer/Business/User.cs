@@ -16,6 +16,7 @@ namespace Businesslayer.Business
         public int ReservationID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public bool IsPresent { get; set; }
 
         public User(string firstname, string lastname, Address address, Group @group, bool isadmin, string email, decimal debt, string password, int ID )
         {
@@ -39,7 +40,7 @@ namespace Businesslayer.Business
             ID = id;
         }
 
-        public User(int reservationid, int userid, string lastname, string firstname, string email, string password, bool isAdmin, DateTime startdate, DateTime enddate, Address address, Group group )
+        public User(int reservationid, int userid, string lastname, string firstname, string email, string password, bool isAdmin, DateTime startdate, DateTime enddate, bool isPresent, Address address, Group group )
         {
             ReservationID = reservationid;
             ID = userid;
@@ -52,6 +53,7 @@ namespace Businesslayer.Business
             Password = password;
             StartDate = startdate;
             EndDate = enddate;
+            IsPresent = isPresent;
         }
 
         public User()

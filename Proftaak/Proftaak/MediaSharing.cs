@@ -110,20 +110,30 @@ namespace Proftaak
             FileBox.Items.Clear();
             foreach (Mediaitem mediaitem in Mediaitems)
             {
-                FileBox.Items.Add(mediaitem.Title);
+                FileBox.Items.Add(mediaitem.ToString());
 
             }
         }
 
         private void btnDeleteMedia_Click(object sender, EventArgs e)
         {
-            string selecteditem = FileBox.SelectedItem.ToString();
-            Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
+            if (FileBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("geen item geselecteerd");
+            }
+            else
+            {
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':');
+                selecteditem = selecteditems[1];
+                Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
 
-            
 
+
+
+                mdsb.RemoveMediaItem(item);   
+            }
             
-            mdsb.RemoveMediaItem(item);
             Refresh();
 
 
@@ -131,7 +141,23 @@ namespace Proftaak
 
         private void FileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("nee");
+            if (FileBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("geen item geselecteerd");
+            }
+            else
+            {
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':');
+                int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                Mediaitem selected = mdsb.Getsinglemediaitem(selecteditemid);
+                string postedby = Userlogin.Loggeduser.Firstname + " " + Userlogin.Loggeduser.Lastname;
+                listBoxInfo.Items.Add("MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "  Description: " + selected.Description + "  Posted by: " + postedby);
+
+            }
+           
         }
+
+        
     }
 }

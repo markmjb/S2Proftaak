@@ -27,7 +27,8 @@ namespace Proftaak
 
         private void Reservation_Load(object sender, EventArgs e)
         {
-            //Businesslayer.Reservation Res = new Businesslayer.ReservationCampspot()
+        ReservationCampspot RC=new ReservationCampspot();
+            RC.UpdateCampingSpots();
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -54,10 +55,24 @@ namespace Proftaak
             }
         }
 
-        private void btnReload_Click(object sender, EventArgs e)
+
+        
+
+        private void btnSelect_Click(object sender, EventArgs e)
         {
-        ReservationCampspot C = new ReservationCampspot();
-       
+            if (lbAvailablespots.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select A Campingspot");
+            }
+        }
+
+        private void btnDeselect_Click(object sender, EventArgs e)
+        {
+            if (lbselectedcampspots.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select A Campingspot");
+            }
+
         }
 
 
