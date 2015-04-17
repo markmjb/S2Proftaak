@@ -47,6 +47,11 @@ namespace Businesslayer.Business
             dbRemainder.CreateEvent(name, description, startDate, Endtime, ticketPrice, addressID);
         }
 
+        public int GetEventID(string eventName, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        {
+            return dbRemainder.GetEventID(eventName, description, startDate, Endtime, ticketPrice);
+        }
+
         public Event GetEvent(int eventID)
         {
             foreach (Event ev in Events)
@@ -57,6 +62,11 @@ namespace Businesslayer.Business
                 }
             }
             return null;
+        }
+
+        public void DeleteEvent(int eventID)
+        {
+            dbRemainder.DeleteEvent(eventID);
         }
     }
 }

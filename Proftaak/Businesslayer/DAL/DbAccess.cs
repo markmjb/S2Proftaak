@@ -316,7 +316,7 @@ namespace Businesslayer.DAL
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "UPDATE PTS2_RFID SET RFID = NULL WHERE RFID = ':RFID' AND EVENTID = :EventID;";
+                cmd.CommandText = "UPDATE PTS2_RFID SET RFID = '' WHERE RFID = :RFID AND EVENTID = :EventID";
                 cmd.Parameters.Add("EventID", EventID);
                 cmd.Parameters.Add("RFID", RFID);
 
@@ -325,7 +325,7 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exc)
             {
-                Console.WriteLine(exc);
+                throw exc;
             }
             finally
             {

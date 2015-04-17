@@ -334,5 +334,73 @@ namespace Businesslayer.DAL
             }
             return addressID;
         }
+
+        public int GetEventID(string eventName, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        {
+            int eventID = -1;
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = "SELECT eventID FROM PTS2_EVENT WHERE eventName = :eventName AND description = :description AND startDate = TO_DATE(:startDate, 'MM/DD/YYYY') AND endDate = TO_DATE(:endDate, 'MM/DD/YYYY') AND ticketPrice = :ticketPrice";
+                cmd.Parameters.Add("eventName", eventName);
+                cmd.Parameters.Add("description", description);
+                cmd.Parameters.Add("startDate", startDate.ToShortDateString());
+                cmd.Parameters.Add("endDate", endDate.ToShortDateString());
+                cmd.Parameters.Add("ticketPrice", ticketPrice);
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                reader.Read();
+                if (reader.Read())
+                {
+                    eventID = Convert.ToInt32(reader["eventID"]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return eventID;
+        }
+
+        public void DeleteEvent(int eventID)
+        {
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = "DELETE FROM PTS2_EVENT WHERE eventID = :eventID";
+                cmd.Parameters.Add("eventID", eventID);
+
+                dbremainderconn.Open();
+                cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
     }
 }
