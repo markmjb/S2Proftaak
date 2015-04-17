@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
@@ -49,7 +50,6 @@ namespace Businesslayer.DAL
 
 
         }
-
         public List<string> Getloggeduser(string email, string pass)
         {
             List<string> Objects = new List<string>();
@@ -100,7 +100,6 @@ namespace Businesslayer.DAL
 
             return Objects;
         }
-
         public List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
@@ -142,39 +141,34 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    dbremainderconn.Close();
-                }
-                catch (Exception)
-                {
-                }
+                this.dbremainderconn.Close();
             }
 
             return events;
         }
 
         public bool CheckEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
-        {
-            int results = 0;
-            
+        {            
+            bool result = false;
+
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
-                cmd.CommandText = "COUNT(eventID) FROM PTS2_EVENT WHERE eventName = ':name' AND description = ':description' AND startDate = TO_DATE(':startDate', 'MM/DD/YYYY') AND endDate = TO_DATE'(':endDate', 'MM/DD/YYYY') AND ticketPrice = :ticketPrice";
+                cmd.CommandText = "SELECT COUNT(eventID) as count FROM PTS2_EVENT WHERE eventName = :name AND description = :description AND startDate = TO_DATE(:startDate, 'MM/DD/YYYY') AND endDate = TO_DATE(:endDate, 'MM/DD/YYYY') AND ticketPrice = :ticketPrice";
                 cmd.Parameters.Add("name", name);
                 cmd.Parameters.Add("description", description);
-                cmd.Parameters.Add("startDate", startDate);
-                cmd.Parameters.Add("endDate", endDate);
+                cmd.Parameters.Add("startDate", startDate.ToShortDateString());
+                cmd.Parameters.Add("endDate", endDate.ToShortDateString());
                 cmd.Parameters.Add("ticketPrice", ticketPrice);
 
                 dbremainderconn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+                reader.Read();
+                if (Convert.ToInt32(reader["count"]) > 0)
                 {
-                    results++;
-                }
+                    result = true;
+                }  
             }
             catch (Exception e)
             {
@@ -186,26 +180,22 @@ namespace Businesslayer.DAL
                 {
                     dbremainderconn.Close();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    throw e;
                 }
             }
-
-            if (results > 0)
-            {
-                return true;
-            }
-            return false;
+            return result;  
         }
 
         public bool CheckAddress(string country, string province, string city, string street, int streetnumber, string postalcode)
         {
-            int results = 0;
-            
+            bool result = false;
+
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
-                cmd.CommandText = "COUNT(addressID) FROM PTS2_ADDRESS WHERE country = ':country' AND province = ':province' AND city = ':city' AND street = ':street' AND houseNumber = ':streetnumber' AND postalcode = ':postalcode'";
+                cmd.CommandText = "SELECT COUNT(addressID) as count FROM PTS2_ADDRESS WHERE country = :country AND province = :province AND city = :city AND street = :street AND houseNumber = :streetnumber AND postalcode = :postalcode";
                 cmd.Parameters.Add("country", country);
                 cmd.Parameters.Add("province", province);
                 cmd.Parameters.Add("city", city);
@@ -216,9 +206,10 @@ namespace Businesslayer.DAL
                 dbremainderconn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+                reader.Read();
+                if (Convert.ToInt32(reader["count"]) > 0)
                 {
-                    results++;
+                    result = true;
                 }
             }
             catch (Exception e)
@@ -231,29 +222,29 @@ namespace Businesslayer.DAL
                 {
                     dbremainderconn.Close();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    throw e;
                 }
             }
-
-            if (results > 0)
-            {
-                return true;
-            }
-            return false;
+            return result;
         }
 
         public void CreateAddress(string country , string province , string city , string street , int streetnumber , string postalcode)
         {
-            string command = "INSERT INTO PTS2_ADDRESS (country, province, city, street, housenumber, postalcode) VALUES (" + country + ", " + province + ", " + city + ", " + street + ", " + streetnumber + ", " + postalcode + ")";
-
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
-                cmd.CommandText = command;
+                cmd.CommandText = "INSERT INTO PTS2_ADDRESS (country, province, city, street, housenumber, postalcode) VALUES (:country, :province, :city, :street, :housenumber, :postalcode)";
+                cmd.Parameters.Add("country", country);
+                cmd.Parameters.Add("province", province);
+                cmd.Parameters.Add("city", city);
+                cmd.Parameters.Add("street", street);
+                cmd.Parameters.Add("streetnumber", streetnumber);
+                cmd.Parameters.Add("postalcode", postalcode);
 
                 dbremainderconn.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
+                cmd.ExecuteReader();
             }
             catch (Exception e)
             {
@@ -271,17 +262,22 @@ namespace Businesslayer.DAL
             }
         }
 
-        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, int addressID)
         {
-            string command = "INSERT INTO PTS2_Event (name, description, startDate, endDate, ticketPrice) VALUES (" + name + ", " + description + ", " + startDate + ", " + endDate + ", " + ticketPrice + ")";
-
             try
             {
                 OracleCommand cmd = this.dbremainderconn.CreateCommand();
-                cmd.CommandText = command;
+                cmd.CommandText = "INSERT INTO PTS2_Event (eventName, description, startDate, endDate, ticketPrice, userID, addressID) VALUES (:name, :description, TO_DATE(:startDate, 'MM/DD/YYYY'), TO_DATE(:endDate, 'MM/DD/YYYY'), :ticketPrice, :userID, :addressID)";
+                cmd.Parameters.Add("name", name);
+                cmd.Parameters.Add("description", description);
+                cmd.Parameters.Add("startDate", startDate.ToShortDateString());
+                cmd.Parameters.Add("endDate", endDate.ToShortDateString());
+                cmd.Parameters.Add("ticketPrice", ticketPrice);
+                cmd.Parameters.Add("userID", Userlogin.Loggeduser.ID);
+                cmd.Parameters.Add("addressID", addressID);
 
                 dbremainderconn.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
+                cmd.ExecuteReader();
             }
             catch (Exception e)
             {
@@ -295,6 +291,114 @@ namespace Businesslayer.DAL
                 }
                 catch (Exception)
                 {
+                }
+            }
+        }
+
+        public int GetAddressID(string country, string province, string city, string street, int streetnumber, string postalcode)
+        {
+            int addressID = -1;
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = "SELECT addressID FROM PTS2_ADDRESS WHERE country = :country AND province = :province AND city = :city AND street = :street AND housenumber = :streetnumber AND postalcode = :postalcode";
+                cmd.Parameters.Add("country", country);
+                cmd.Parameters.Add("province", province);
+                cmd.Parameters.Add("city", city);
+                cmd.Parameters.Add("street", street);
+                cmd.Parameters.Add("streetnumber", streetnumber);
+                cmd.Parameters.Add("postalcode", postalcode);
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    addressID = Convert.ToInt32(reader["addressID"]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return addressID;
+        }
+
+        public int GetEventID(string eventName, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        {
+            int eventID = -1;
+
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = "SELECT eventID FROM PTS2_EVENT WHERE eventName = :eventName AND description = :description AND startDate = TO_DATE(:startDate, 'MM/DD/YYYY') AND endDate = TO_DATE(:endDate, 'MM/DD/YYYY') AND ticketPrice = :ticketPrice";
+                cmd.Parameters.Add("eventName", eventName);
+                cmd.Parameters.Add("description", description);
+                cmd.Parameters.Add("startDate", startDate.ToShortDateString());
+                cmd.Parameters.Add("endDate", endDate.ToShortDateString());
+                cmd.Parameters.Add("ticketPrice", ticketPrice);
+
+                dbremainderconn.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                reader.Read();
+                if (reader.Read())
+                {
+                    eventID = Convert.ToInt32(reader["eventID"]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return eventID;
+        }
+
+        public void DeleteEvent(int eventID)
+        {
+            try
+            {
+                OracleCommand cmd = this.dbremainderconn.CreateCommand();
+                cmd.CommandText = "DELETE FROM PTS2_EVENT WHERE eventID = :eventID";
+                cmd.Parameters.Add("eventID", eventID);
+
+                dbremainderconn.Open();
+                cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                try
+                {
+                    dbremainderconn.Close();
+                }
+                catch (Exception e)
+                {
+                    throw e;
                 }
             }
         }

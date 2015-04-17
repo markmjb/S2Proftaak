@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Businesslayer;
 using Businesslayer.Business;
+using Businesslayer.DAL;
 
 namespace Proftaak
 {
@@ -17,6 +18,7 @@ namespace Proftaak
         
             List<int> Availablespots=new List<int>();
             List<int> Selectedspots= new List<int>();
+        private List<Event> Events = new List<Event>();
             ReservationCampspot RC = new ReservationCampspot();
         public Reservation()
         {
@@ -31,11 +33,20 @@ namespace Proftaak
         
         private void Reservation_Load(object sender, EventArgs e)
         {
-        
+            foreach (Event E in RC.Events())
+            {
+            Events.Add(E);
+                cbEvent.Items.Add(E.Name.ToString());
+            }
+
+
+            Updatespots();
             foreach (int I in Availablespots)
             {
                 lbAvailablespots.Items.Add(Convert.ToString(I));
             }
+            
+            cbEvent.SelectedIndex = 0;
         }
 
         private void Updatespots()

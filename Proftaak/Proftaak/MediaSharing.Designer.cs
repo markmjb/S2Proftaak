@@ -33,6 +33,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbfileinfo = new System.Windows.Forms.TextBox();
             this.btnUploadMedia = new System.Windows.Forms.Button();
             this.btnLike = new System.Windows.Forms.Button();
             this.btnReply = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tbfileinfo = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -125,6 +125,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "File Info";
             // 
+            // tbfileinfo
+            // 
+            this.tbfileinfo.Location = new System.Drawing.Point(6, 14);
+            this.tbfileinfo.Multiline = true;
+            this.tbfileinfo.Name = "tbfileinfo";
+            this.tbfileinfo.Size = new System.Drawing.Size(388, 61);
+            this.tbfileinfo.TabIndex = 12;
+            // 
             // btnUploadMedia
             // 
             this.btnUploadMedia.Location = new System.Drawing.Point(400, 14);
@@ -178,6 +186,7 @@
             this.btnDownloadMedia.TabIndex = 5;
             this.btnDownloadMedia.Text = "Download media";
             this.btnDownloadMedia.UseVisualStyleBackColor = true;
+            this.btnDownloadMedia.Click += new System.EventHandler(this.btnDownloadMedia_Click);
             // 
             // btnDeleteMedia
             // 
@@ -429,14 +438,6 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // tbfileinfo
-            // 
-            this.tbfileinfo.Location = new System.Drawing.Point(6, 14);
-            this.tbfileinfo.Multiline = true;
-            this.tbfileinfo.Name = "tbfileinfo";
-            this.tbfileinfo.Size = new System.Drawing.Size(388, 56);
-            this.tbfileinfo.TabIndex = 12;
             // 
             // Mediasharing
             // 

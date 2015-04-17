@@ -31,6 +31,12 @@ namespace Businesslayer.Business
         {
             dbmedia.RemoveMediaItem(mediaitem);
         }
+
+        public void RemoveMediaItemFile(Mediaitem mediaitem)
+        {
+            dbmedia.RemoveMediaItemFile(mediaitem);
+        }
+
         public Mediaitem Getsinglemediaitem(int mediaitemid)
         {
             return dbmedia.Getsinglemediaitem(mediaitemid);

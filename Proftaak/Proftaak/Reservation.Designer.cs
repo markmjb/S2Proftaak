@@ -38,7 +38,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabEvent = new System.Windows.Forms.TabPage();
             this.lblChooseEvent = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbEvent = new System.Windows.Forms.ComboBox();
             this.tabCampspot = new System.Windows.Forms.TabPage();
             this.btnDeselect = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -170,7 +170,7 @@
             // tabEvent
             // 
             this.tabEvent.Controls.Add(this.lblChooseEvent);
-            this.tabEvent.Controls.Add(this.comboBox2);
+            this.tabEvent.Controls.Add(this.cbEvent);
             this.tabEvent.Location = new System.Drawing.Point(4, 25);
             this.tabEvent.Name = "tabEvent";
             this.tabEvent.Size = new System.Drawing.Size(1170, 671);
@@ -188,13 +188,13 @@
             this.lblChooseEvent.TabIndex = 1;
             this.lblChooseEvent.Text = "Choose Event:";
             // 
-            // comboBox2
+            // cbEvent
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(445, 247);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 0;
+            this.cbEvent.FormattingEnabled = true;
+            this.cbEvent.Location = new System.Drawing.Point(445, 247);
+            this.cbEvent.Name = "cbEvent";
+            this.cbEvent.Size = new System.Drawing.Size(121, 24);
+            this.cbEvent.TabIndex = 0;
             // 
             // tabCampspot
             // 
@@ -763,7 +763,7 @@
         private System.Windows.Forms.DateTimePicker dtpBirth;
         private System.Windows.Forms.TabPage tabEvent;
         private System.Windows.Forms.Label lblChooseEvent;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbEvent;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.ListBox lbAvailablespots;

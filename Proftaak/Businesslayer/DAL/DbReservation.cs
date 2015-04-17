@@ -26,7 +26,7 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = this.dbr.CreateCommand();
                 cmd.CommandText =
-                    "select CAMPINGSPOTID from PTS2_CAMPINGSPOT INNER JOIN PTS2_RESCAMP ON PTS2_CAMPINGSPOT.CAMPINGSPOTID=PTS2_RESCAMP.CAMPSPOTID";
+                    "select CAMPPLACE FROM PTS2_CAMPINGSPOT INNER JOIN PTS2_EVENT ON CAMPINGSPOTID = PTS2_CAMPINGSPOT.CAMPINGSPOTID AND EVENTID=1";
                 this.dbr.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 

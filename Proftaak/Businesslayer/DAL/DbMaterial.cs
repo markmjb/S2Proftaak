@@ -28,12 +28,12 @@ namespace Businesslayer.DAL
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 string materialtypeName;
-                decimal price;
+                int price;
 
                 while (reader.Read())
                 {
                     materialtypeName = Convert.ToString(reader["materialtypeName"]);
-                    price = Convert.ToDecimal(reader["price"]);
+                    price = Convert.ToInt32(reader["price"]);
                     Item item = new Item(materialtypeName, price);
                     items.Add(item);               
                 }
@@ -48,14 +48,15 @@ namespace Businesslayer.DAL
             }
             return items;
         }
-       public void ChangePrice(string MaterialName, decimal Price)
+       public void ChangePrice(string materialName, int price)
         {
             try
             {
                 OracleCommand cmd = this.DbMateriall.CreateCommand();
-                cmd.CommandText = "update PTS2_MATERIAL set price =:Price where materialName = :MaterialName";
-                cmd.Parameters.Add("MaterialName", MaterialName);
-                cmd.Parameters.Add("Price", Price);
+                cmd.CommandText = String.Format("update PTS2_MATERIALTYPE set price = {0} where materialtypeName = '{1}'", price, materialName);
+               // cmd.CommandText = String.Format("update PTS2_MATERIAL set price = {0} where materialName = '{1}'", price, materialName);
+                //cmd.Parameters.Add("materialName", materialName);
+                //cmd.Parameters.Add("price", price);
                 
 
                 DbMateriall.Open();
@@ -68,20 +69,40 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.DbMateriall.Close();
+                try
+                {
+                    OracleCommand cmd = this.DbMateriall.CreateCommand();
+                    //cmd.CommandText = String.Format("update PTS2_MATERIALTYPE set price = {0} where materialtypeName = '{1}'", price, materialName);
+                    cmd.CommandText = String.Format("update PTS2_MATERIAL set price = {0} where materialName = '{1}'", price, materialName);
+                    //cmd.Parameters.Add("materialName", materialName);
+                    //cmd.Parameters.Add("price", price);
+
+
+                    //DbMateriall.Open();
+
+                    cmd.ExecuteReader();
+                }
+                catch (OracleException exc)
+                {
+                    Console.WriteLine(exc);
+                }
+                finally
+                {
+                    this.DbMateriall.Close();
+                }
             }
         }
-       public void AddStock(string MaterialName, string Description, double Price, int MaterialTypeID, int EventID)
+       public void AddStock(string materialName, string description, int price, int materialTypeID, int eventID)
        {
            try
            {
                OracleCommand cmd = this.DbMateriall.CreateCommand();
-               cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialName, description, price, materialTypeID, eventID)VALUES (:MaterialName, :Description, :Price, :MaterialTypeID, :EventID)";
-               cmd.Parameters.Add("materialName", MaterialName);
-               cmd.Parameters.Add("description", Description);
-               cmd.Parameters.Add("price", Price);
-               cmd.Parameters.Add("materialTypeID", MaterialTypeID);
-               cmd.Parameters.Add("eventID", EventID);
+               cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialName, description, price, materialTypeID, eventID)VALUES (:materialName, :description, :price, :materialTypeID, :eventID)";
+               cmd.Parameters.Add("materialName", materialName);
+               cmd.Parameters.Add("description", description);
+               cmd.Parameters.Add("price", price);
+               cmd.Parameters.Add("materialTypeID", materialTypeID);
+               cmd.Parameters.Add("eventID", eventID);
 
                DbMateriall.Open();
 
