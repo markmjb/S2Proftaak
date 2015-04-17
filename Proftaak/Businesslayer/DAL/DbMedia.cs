@@ -212,6 +212,32 @@ namespace Businesslayer.DAL
                this.dbmediaconn.Close();
            }
        }
+
+       public void RemoveMediaItemFile(Mediaitem mediaitem)
+       {
+           try
+           {
+               int MediaitemID = mediaitem.Mediaitemid;
+
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "DELETE FROM PTS2_MEDIAITEMFILE WHERE MEDIAITEMID = :MediaitemID";
+               cmd.Parameters.Add("MediaitemID", MediaitemID);
+
+
+               dbmediaconn.Open();
+
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+           }
+       }
+
        public Mediaitem Getsinglemediaitem(int mediaitemid)
        {
            
@@ -275,6 +301,9 @@ namespace Businesslayer.DAL
                    int Filesize = Convert.ToInt32(reader["FILESIZE"]);
                    string Filetype = Convert.ToString(reader["FILETYPE"]);
                    int Mediacategoryofid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                   
+                  
+
                    
                    mediaitem = new Mediaitem(Mediaitemid, Filepath, Filesize, Filetype, Mediacategoryofid);
 

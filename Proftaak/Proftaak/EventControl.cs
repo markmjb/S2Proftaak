@@ -74,7 +74,13 @@ namespace Proftaak
 
         private void datagridEvents_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != "" && datagridEvents.CurrentCell.Value != null)
+            OnDatagridEventsCellClick();
+        }
+
+        private void OnDatagridEventsCellClick()
+        {
+            if (datagridEvents.CurrentCell.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != "" &&
+                datagridEvents.CurrentCell.Value != null)
             {
                 int eventID = Convert.ToInt32(datagridEvents.CurrentCell.Value);
 
@@ -92,6 +98,19 @@ namespace Proftaak
                 tbStreet.Text = ev.Address.Street;
                 nudStreetnumber.Value = ev.Address.Streetnumber;
                 tbPostalcode.Text = ev.Address.PostalCode;
+            }
+        }
+
+        private void btnDeleteEvent_Click(object sender, EventArgs e)
+        {
+            if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
+            {
+                int eventID = eventControl.GetEventID(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value);
+
+                eventControl.DeleteEvent(eventID);
+
+                FillDatagridEvents();
+                OnDatagridEventsCellClick();
             }
         }
     }

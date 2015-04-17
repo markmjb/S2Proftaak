@@ -11,6 +11,7 @@ namespace Businesslayer.Business
         public List<User> ReservationUsers { get; set; }
 
         private DbReservation dbres = new DbReservation();
+        private DbRemainder dbrem = new DbRemainder();
 
         public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, List<int> campingspots, decimal price, List<User> reservationUsers) : base(beginTime, endtime, employee)
         {
@@ -18,7 +19,11 @@ namespace Businesslayer.Business
             Price = price;
             ReservationUsers = reservationUsers;
         }
-        
+
+        public List<Event> Events()
+        {
+         return   dbrem.GetEvents();
+        }
         public ReservationCampspot()
         {
             

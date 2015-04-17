@@ -43,7 +43,6 @@ namespace Proftaak
             rfid.TagLost -= new TagEventHandler(rfid_TagLost);
             rfid.close();
         }
-
         private void AccessControlForm_Load(object sender, EventArgs e)
         {
             rfid = new RFID();
@@ -59,6 +58,7 @@ namespace Proftaak
         {
             RFID attached = (RFID)sender;
             label2.Text = e.Device.Attached.ToString();
+            rfid.Antenna = true;
 
             switch (attached.ID)
             {
@@ -84,7 +84,6 @@ namespace Proftaak
             RFID detached = (RFID)sender;
             label3.Text = detached.Attached.ToString();
         }
-
         //Parses command line arguments and calls the appropriate open
         #region Command line open functions
         private void openCmdLine(Phidget p)
@@ -329,6 +328,8 @@ namespace Proftaak
                     AC.AttachRFID(U.ID, SelEvent.EventID, TempRFID);
                 }
             }
+            btnAtt.Enabled = false;
+            btnUnAtt.Enabled = true;
         }
 
         private void btnUnAtt_Click(object sender, EventArgs e)
@@ -339,11 +340,13 @@ namespace Proftaak
                 Event SelEvent = AllEvents.ElementAt(SelectedEvent);
                 AC.DettachRFID(SelEvent.EventID, TempRFID);
             }
+            btnAtt.Enabled = true;
+            btnUnAtt.Enabled = false;
         }
 
         private void label3_TextChanged(object sender, EventArgs e)
         {
-            if (TempRFID != "")
+            if (label3.Text != "")
             {
                 bool isAttached = AC.getRFID(TempRFID);
 
@@ -354,8 +357,8 @@ namespace Proftaak
                 }
                 else if (!isAttached)
                 {
-                    btnUnAtt.Enabled = true;
-                    btnAtt.Enabled = false;
+                    btnUnAtt.Enabled = false;
+                    btnAtt.Enabled = true;
                 }
             }
         }
