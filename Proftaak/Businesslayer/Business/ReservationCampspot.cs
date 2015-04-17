@@ -31,9 +31,9 @@ namespace Businesslayer.Business
         {
             
         }
-        public void UpdateCampingSpots()
+        public List<int> UpdateCampingSpots()
         {
-        
+            return dbres.Campspots();
         }
         public void CheckorCreateGroup()
         {

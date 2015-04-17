@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
 
@@ -20,8 +21,30 @@ namespace Businesslayer.DAL
 
         public List<int> Campspots()
         {
-            OracleCommand cmd = this.dbr.CreateCommand();
-            return null;
+            List<int> spots = new List<int>();
+            try
+            {
+                OracleCommand cmd = this.dbr.CreateCommand();
+                cmd.CommandText =
+                    "select CAMPINGSPOTID from PTS2_CAMPINGSPOT INNER JOIN PTS2_RESCAMP ON PTS2_CAMPINGSPOT.CAMPINGSPOTID=PTS2_RESCAMP.CAMPSPOTID";
+                this.dbr.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    spots.Add(Convert.ToInt32(reader["CAMPINGSPOTID"]));
+                }
+            }
+            catch (OracleException exc)
+            {
+
+            }
+            finally
+            {
+                this.dbr.Close();
+            }
+            return spots;
+
         }
     }
 }

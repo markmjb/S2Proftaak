@@ -7,14 +7,16 @@ namespace Businesslayer.Business
     public class Mediaitem
     {
         DbMedia dbm = new DbMedia();
+
+        public int Mediacategoryofid { get; set; }
         
-        public string Type { get; set; }
+        public string Filetype { get; set; }
 
         public string Title { get; set; }
 
         public string Description { get; set; }
 
-        public string filepath { get; set; }
+        public string Filepath { get; set; }
 
         public string Category { get; set; }
 
@@ -22,21 +24,20 @@ namespace Businesslayer.Business
 
         public int CategoryID { get; set; }
 
-        public int size { get; set; }
+        public int Filesize { get; set; }
 
         public int Mediaitemid { get; set; }
 
-       
 
         public Mediaitem(string Type, string Title, string Description, string filepath, int CategoryID, int UserID, int size, string Filetype)
         {
-            this.Type = Type;
+            this.Filetype = Type;
             this.Title = Title;
             this.Description = Description;
             this.CategoryID = CategoryID;
             this.UserID = UserID;
-            this.size = size;
-            this.filepath = filepath;
+            this.Filesize = size;
+            this.Filepath = filepath;
 
             dbm.AddMediaItem(Title, Description, UserID);
             Mediaitemid = dbm.GetMediaItemID(Title);
@@ -54,10 +55,20 @@ namespace Businesslayer.Business
 
         }
 
+        public Mediaitem(int mediaitemid, string filepath, int filesize, string filetype, int mediacategoryofid)
+        {
+            this.Mediaitemid = mediaitemid;
+            this.Filepath = filepath;
+            this.Filesize = filesize;
+            this.Filetype = filetype;
+            this.Mediacategoryofid = mediacategoryofid;
+        }
+
         public override string ToString()
         {
             return Mediaitemid.ToString() + ":" + Title;
         }
+      
     }
          
 }

@@ -48,6 +48,7 @@ namespace Proftaak
         private void btnUploadMedia_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage2;
+            
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -147,16 +148,37 @@ namespace Proftaak
             }
             else
             {
+                tbfileinfo.Clear();
+                
                 string selecteditem = FileBox.SelectedItem.ToString();
                 string[] selecteditems = selecteditem.Split(':');
                 int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selecteditemid);
                 Mediaitem selected = mdsb.Getsinglemediaitem(selecteditemid);
+                string itemfiletype = itemfile.Filetype;
+                int itemfilesize = itemfile.Filesize;
                 string postedby = Userlogin.Loggeduser.Firstname + " " + Userlogin.Loggeduser.Lastname;
-                listBoxInfo.Items.Add("MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "  Description: " + selected.Description + "  Posted by: " + postedby);
-
+                tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby + "\r\nFiletype: " + itemfiletype + " Filesize:" + itemfilesize;
+               
             }
            
         }
+
+        private void cbtypetab2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbtypetab2.SelectedValue == "Text")
+            {
+                tbSelectFile.Enabled = false;
+                btnBrowse.Enabled = false;
+            }
+            else
+            {
+                tbSelectFile.Enabled = true;
+                btnBrowse.Enabled = true;
+            }
+        }
+
+       
 
         
     }

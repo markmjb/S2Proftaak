@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBoxInfo = new System.Windows.Forms.ListBox();
             this.btnUploadMedia = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLike = new System.Windows.Forms.Button();
             this.btnReply = new System.Windows.Forms.Button();
             this.tbReply = new System.Windows.Forms.RichTextBox();
@@ -64,10 +64,11 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.tbfileinfo = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -87,8 +88,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.btnLike);
             this.tabPage1.Controls.Add(this.btnReply);
             this.tabPage1.Controls.Add(this.tbReply);
@@ -105,9 +106,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "MediaSharing";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(208, 87);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(537, 290);
+            this.listBox1.TabIndex = 12;
+            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.listBoxInfo);
+            this.groupBox3.Controls.Add(this.tbfileinfo);
             this.groupBox3.Controls.Add(this.btnUploadMedia);
             this.groupBox3.Location = new System.Drawing.Point(202, 6);
             this.groupBox3.Name = "groupBox3";
@@ -115,14 +124,6 @@
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "File Info";
-            // 
-            // listBoxInfo
-            // 
-            this.listBoxInfo.FormattingEnabled = true;
-            this.listBoxInfo.Location = new System.Drawing.Point(6, 14);
-            this.listBoxInfo.Name = "listBoxInfo";
-            this.listBoxInfo.Size = new System.Drawing.Size(388, 56);
-            this.listBoxInfo.TabIndex = 11;
             // 
             // btnUploadMedia
             // 
@@ -133,14 +134,6 @@
             this.btnUploadMedia.Text = "Upload media";
             this.btnUploadMedia.UseVisualStyleBackColor = true;
             this.btnUploadMedia.Click += new System.EventHandler(this.btnUploadMedia_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(202, 87);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(543, 300);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // btnLike
             // 
@@ -296,6 +289,7 @@
             this.cbtypetab2.Name = "cbtypetab2";
             this.cbtypetab2.Size = new System.Drawing.Size(87, 21);
             this.cbtypetab2.TabIndex = 11;
+            this.cbtypetab2.SelectedIndexChanged += new System.EventHandler(this.cbtypetab2_SelectedIndexChanged);
             // 
             // btnBrowse
             // 
@@ -430,6 +424,20 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // tbfileinfo
+            // 
+            this.tbfileinfo.Location = new System.Drawing.Point(6, 14);
+            this.tbfileinfo.Multiline = true;
+            this.tbfileinfo.Name = "tbfileinfo";
+            this.tbfileinfo.Size = new System.Drawing.Size(388, 56);
+            this.tbfileinfo.TabIndex = 12;
+            // 
             // Mediasharing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,7 +451,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -460,7 +468,6 @@
         private System.Windows.Forms.ComboBox cbtype;
         private System.Windows.Forms.TextBox tbsearch;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnLike;
         private System.Windows.Forms.Button btnReply;
         private System.Windows.Forms.RichTextBox tbReply;
@@ -478,7 +485,6 @@
         private System.Windows.Forms.Button btnUploadMediaTab2;
         private System.Windows.Forms.RichTextBox tbDescription;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListBox listBoxInfo;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox tbSelectFile;
         private System.Windows.Forms.Label label9;
@@ -490,6 +496,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.TextBox tbfileinfo;
     }
 }
