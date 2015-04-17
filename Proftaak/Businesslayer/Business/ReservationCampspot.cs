@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Businesslayer.DAL;
 
 namespace Businesslayer.Business
 {
@@ -8,6 +9,8 @@ namespace Businesslayer.Business
         public List<int> Campingspots { get; set; }
         public decimal Price { get; set; }
         public List<User> ReservationUsers { get; set; }
+
+        private DbReservation dbres = new DbReservation();
 
         public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, List<int> campingspots, decimal price, List<User> reservationUsers) : base(beginTime, endtime, employee)
         {
@@ -30,7 +33,7 @@ namespace Businesslayer.Business
         }
         public void UpdateCampingSpots()
         {
-            
+        
         }
         public void CheckorCreateGroup()
         {
