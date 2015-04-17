@@ -32,7 +32,7 @@ namespace Businesslayer.DAL
 
                 while (reader.Read())
                 {
-                    spots.Add(Convert.ToInt32(reader["CAMPINGSPOTID"]));
+                    spots.Add(Convert.ToInt32(reader["CAMPPLACE"]));
                 }
             }
             catch (OracleException exc)

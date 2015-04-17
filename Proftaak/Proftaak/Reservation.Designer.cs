@@ -329,6 +329,7 @@
             this.btnAddEdit.TabIndex = 18;
             this.btnAddEdit.Text = "Add/Edit  User";
             this.btnAddEdit.UseVisualStyleBackColor = true;
+            this.btnAddEdit.Click += new System.EventHandler(this.btnAddEdit_Click);
             // 
             // groupBox4
             // 

@@ -102,10 +102,17 @@ namespace Proftaak
             }
             else
             {
-                lbAvailablespots.Items.Add(lbAvailablespots.SelectedItem);
-                lbselectedcampspots.Items.Remove(lbAvailablespots.SelectedItem);
+                lbAvailablespots.Items.Add(lbselectedcampspots.SelectedItem);
+                lbselectedcampspots.Items.Remove(lbselectedcampspots.SelectedItem);
             }
 
+        }
+
+        private void btnAddEdit_Click(object sender, EventArgs e)
+        {
+
+            
+        
         }
         }
 }
