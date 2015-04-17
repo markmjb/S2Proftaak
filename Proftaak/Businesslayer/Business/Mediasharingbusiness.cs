@@ -49,5 +49,11 @@ namespace Businesslayer.Business
 
         }
 
+        public List<Mediaitem> Getmediatextlist(int mediaitemid)
+        {
+            return dbmedia.Getmediatext(mediaitemid);
+
+        }
+
     }
 }

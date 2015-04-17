@@ -352,8 +352,7 @@ namespace Businesslayer.DAL
                 dbremainderconn.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
-                reader.Read();
-                if (reader.Read())
+                while (reader.Read())
                 {
                     eventID = Convert.ToInt32(reader["eventID"]);
                 }

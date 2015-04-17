@@ -329,6 +329,49 @@ namespace Businesslayer.DAL
            return mediaitem;
        }
 
+
+       public List<Mediaitem> Getmediatext(int mediaitemid)
+       {
+           List<Mediaitem> mediatextitems = new List<Mediaitem>();
+
+           try
+           {
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE Mediaitemcommentid = :Mediaitemid";
+               cmd.Parameters.Add("Mediaitemid", mediaitemid);
+
+               dbmediaconn.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+
+                   int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                   string Text = Convert.ToString(reader["TEXT"]);
+                   int Mediaitemcommentid = Convert.ToInt32(reader["MEDIAITEMCOMMENTID"]);
+                  
+                   Mediaitem mediaitem = new Mediaitem(MediaitemID, Text, Mediaitemcommentid);
+                   mediatextitems.Add(mediaitem);
+
+
+
+               }
+
+
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+
+
+           }
+
+           return mediatextitems;
+       }
       
     }
 }

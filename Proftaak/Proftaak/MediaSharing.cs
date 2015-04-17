@@ -38,7 +38,7 @@ namespace Proftaak
        private int categoryID;
        
        public List<Mediaitem> Mediaitems = new List<Mediaitem>();
-
+       public List<Mediaitem> Mediatext = new List<Mediaitem>(); 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -123,10 +123,15 @@ namespace Proftaak
             mdsb.Getallmediaitems();
             Mediaitems = mdsb.Getallmediaitems();
             FileBox.Items.Clear();
+            listBox1.Items.Clear();
             foreach (Mediaitem mediaitem in Mediaitems)
             {
                 FileBox.Items.Add(mediaitem.ToString());
 
+            }
+            foreach (Mediaitem mediatext in Mediatext)
+            {
+                listBox1.Items.Add(mediatext.Mediaitemid + " " + mediatext.Text);
             }
         }
 
@@ -141,6 +146,7 @@ namespace Proftaak
                 }
                 else
                 {
+       
                     string selecteditem = FileBox.SelectedItem.ToString();
                     string[] selecteditems = selecteditem.Split(':');
                     selecteditem = selecteditems[1];
@@ -156,7 +162,7 @@ namespace Proftaak
 
                 }
             }
-            catch (IOException)
+            catch ( System.IO.FileNotFoundException)
             {
                 { throw; }
                 
@@ -192,7 +198,9 @@ namespace Proftaak
                 int itemfilesize = itemfile.Filesize;
                 string postedby = Userlogin.Loggeduser.Firstname + " " + Userlogin.Loggeduser.Lastname;
                 tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby + "\r\nFiletype: " + itemfiletype + " Filesize: " + itemfilesize;
-               
+
+                Mediatext = mdsb.Getmediatextlist(selecteditemid);
+                Refresh();
             }
            
         }
@@ -241,6 +249,11 @@ namespace Proftaak
                     MessageBox.Show("Error moving file:" + exc.Message);
                 }
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 

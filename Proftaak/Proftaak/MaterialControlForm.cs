@@ -30,6 +30,7 @@ namespace Proftaak
             {
                 dupItem.Items.Add(items[i].Name);
                 dupItemsStock.Items.Add(items[i].Name);
+                lbSelectItem.Items.Add(items[i].Name + " , €" + items[i].Price);
                 lbItems.Items.Add("Product : " + items[i].Name +" , prijs: €" + items[i].Price);
             }
 
@@ -183,6 +184,30 @@ namespace Proftaak
         private void btnAdd_Click(object sender, EventArgs e)
         {
             IB.AddStock(dupItemsStock.SelectedItem.ToString(), Convert.ToInt32(tbAdd.Text));
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            lbYourItem.Items.Add(lbSelectItem.SelectedItem.ToString() + ", " + nudAmount.Value.ToString() + " x");
+            UpdateTotalPrice();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            lbYourItem.Items.Remove(lbYourItem.SelectedItem);
+            UpdateTotalPrice();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void UpdateTotalPrice()
+        {
+            for (int i = 0; i < lbYourItem.Items.Count; i++)
+            {
+                //Soon to come
+            }
         }
     }
 }
