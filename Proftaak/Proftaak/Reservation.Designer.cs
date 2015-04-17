@@ -40,6 +40,11 @@
             this.lblChooseEvent = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabCampspot = new System.Windows.Forms.TabPage();
+            this.btnDeselect = new System.Windows.Forms.Button();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lbselectedcampspots = new System.Windows.Forms.ListBox();
             this.lbAvailablespots = new System.Windows.Forms.ListBox();
             this.tabAddUser = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -80,11 +85,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.lbselectedcampspots = new System.Windows.Forms.ListBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.btnSelect = new System.Windows.Forms.Button();
-            this.btnDeselect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -191,7 +191,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(395, 165);
+            this.comboBox2.Location = new System.Drawing.Point(445, 247);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 24);
             this.comboBox2.TabIndex = 0;
@@ -218,6 +218,53 @@
             this.tabCampspot.Size = new System.Drawing.Size(1170, 671);
             this.tabCampspot.TabIndex = 0;
             this.tabCampspot.Text = "ChooseCampingspot";
+            // 
+            // btnDeselect
+            // 
+            this.btnDeselect.Location = new System.Drawing.Point(176, 222);
+            this.btnDeselect.Name = "btnDeselect";
+            this.btnDeselect.Size = new System.Drawing.Size(62, 37);
+            this.btnDeselect.TabIndex = 11;
+            this.btnDeselect.Text = "<";
+            this.btnDeselect.UseVisualStyleBackColor = true;
+            this.btnDeselect.Click += new System.EventHandler(this.btnDeselect_Click);
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(176, 165);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(62, 40);
+            this.btnSelect.TabIndex = 10;
+            this.btnSelect.Text = ">";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(32, 42);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(160, 17);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "Available CampingSpots";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(229, 42);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(151, 17);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Selected CampingSpot";
+            // 
+            // lbselectedcampspots
+            // 
+            this.lbselectedcampspots.FormattingEnabled = true;
+            this.lbselectedcampspots.ItemHeight = 16;
+            this.lbselectedcampspots.Location = new System.Drawing.Point(244, 62);
+            this.lbselectedcampspots.Name = "lbselectedcampspots";
+            this.lbselectedcampspots.Size = new System.Drawing.Size(120, 436);
+            this.lbselectedcampspots.TabIndex = 7;
             // 
             // lbAvailablespots
             // 
@@ -633,53 +680,6 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // lbselectedcampspots
-            // 
-            this.lbselectedcampspots.FormattingEnabled = true;
-            this.lbselectedcampspots.ItemHeight = 16;
-            this.lbselectedcampspots.Location = new System.Drawing.Point(244, 62);
-            this.lbselectedcampspots.Name = "lbselectedcampspots";
-            this.lbselectedcampspots.Size = new System.Drawing.Size(120, 436);
-            this.lbselectedcampspots.TabIndex = 7;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(229, 42);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(151, 17);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Selected CampingSpot";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(32, 42);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(160, 17);
-            this.label16.TabIndex = 9;
-            this.label16.Text = "Available CampingSpots";
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Location = new System.Drawing.Point(176, 165);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(62, 40);
-            this.btnSelect.TabIndex = 10;
-            this.btnSelect.Text = ">";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // btnDeselect
-            // 
-            this.btnDeselect.Location = new System.Drawing.Point(176, 222);
-            this.btnDeselect.Name = "btnDeselect";
-            this.btnDeselect.Size = new System.Drawing.Size(62, 37);
-            this.btnDeselect.TabIndex = 11;
-            this.btnDeselect.Text = "<";
-            this.btnDeselect.UseVisualStyleBackColor = true;
-            this.btnDeselect.Click += new System.EventHandler(this.btnDeselect_Click);
             // 
             // Reservation
             // 
