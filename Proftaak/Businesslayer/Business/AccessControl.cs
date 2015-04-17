@@ -13,9 +13,9 @@ namespace Businesslayer.Business
             DA.AttachRFID(UserID, EventID, RFID);
         }
 
-        public void DettachRFID(int UserID, int EventID, string RFID)
+        public void DettachRFID(int EventID, string RFID)
         {
-            DA.DettachRFID(UserID, EventID, RFID);
+            DA.DettachRFID(EventID, RFID);
         }
 
         public void DeleteReservation(int DL)
@@ -51,6 +51,12 @@ namespace Businesslayer.Business
         public bool getRFID(string RFID)
         {
             bool isAttached = DA.GetRFIDStatus(RFID);
+            return isAttached;
+        }
+
+        public bool getUserRFID (int UserID)
+        {
+            bool isAttached = DA.GetuserRFID(UserID);
             return isAttached;
         }
 

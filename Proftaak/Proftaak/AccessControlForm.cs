@@ -17,46 +17,8 @@ namespace Proftaak
     public partial class AccessControlForm : Form
     {
         private RFID rfid;
-        private int SelectedReservation = -1;
+        private int SelectedReservation;
         private string TempRFID;
-        public string RFID 
-        {
-            get { return TempRFID; }
-            set
-            {
-                TempRFID = value;
-                OnRFIDChanged();
-            }
-        }
-
-        protected virtual void OnRFIDChanged()
-        {
-            if (RFIDChanged != null) RFIDChanged(this, EventArgs.Empty);
-
-            int SelectedIndex = lbResName.SelectedIndex;
-            bool isAttached = AC.getRFID(TempRFID);
-
-            label4.Text = "isAttached!";
-
-            if (SelectedIndex != -1)
-            {
-                User U = ReservationUsers.ElementAt(SelectedIndex);
-                if (isAttached)
-                {
-                    btnAtt.Enabled = false;
-                    btnUnAtt.Enabled = true;
-                    AC.DettachRFID(U.ID, Convert.ToInt32(cbEvent.Text), TempRFID);
-                }
-                else if (!isAttached)
-                {
-                    btnAtt.Enabled = true;
-                    btnUnAtt.Enabled = false;
-                    AC.AttachRFID(U.ID, Convert.ToInt32(cbEvent.Text), TempRFID);
-                }
-            }
-        }
-
-        public event System.EventHandler RFIDChanged;
 
         AccessControl AC = new AccessControl();
         List<ReservationAccess> Reservations;
@@ -68,18 +30,18 @@ namespace Proftaak
         public AccessControlForm()
         {
             InitializeComponent();
-            RFIDChanged += AccessControlForm_RFIDChanged;
-        }
-
-        void AccessControlForm_RFIDChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void AccessControlForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             StartScreen S = new StartScreen();
             S.Show();
+
+            rfid.Attach -= new AttachEventHandler(rfid_Attach);
+            rfid.Detach -= new DetachEventHandler(rfid_Detach);
+            rfid.Tag -= new TagEventHandler(rfid_Tag);
+            rfid.TagLost -= new TagEventHandler(rfid_TagLost);
+            rfid.close();
         }
 
         private void AccessControlForm_Load(object sender, EventArgs e)
@@ -88,11 +50,11 @@ namespace Proftaak
             rfid.Attach += new AttachEventHandler(rfid_Attach);
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
+            rfid.Detach += new DetachEventHandler(rfid_Detach);
             openCmdLine(rfid);
 
             LoadCBoxEvents();
         }
-
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
@@ -116,6 +78,11 @@ namespace Proftaak
         void rfid_TagLost(object sender, TagEventArgs e)
         {
             label3.Text = "";
+        }
+        void rfid_Detach(object sender, DetachEventArgs e)
+        {
+            RFID detached = (RFID)sender;
+            label3.Text = detached.Attached.ToString();
         }
 
         //Parses command line arguments and calls the appropriate open
@@ -316,31 +283,81 @@ namespace Proftaak
         private void lbResName_SelectedIndexChanged(object sender, EventArgs e)
         {
             int SelectedIndex = lbResName.SelectedIndex;
-            User U = ReservationUsers.ElementAt(SelectedIndex);
-            bool isPresent = AC.getPresents(U.ID);
 
-            if ( U != null )
+            if ( SelectedIndex != -1)
             {
-                tbSurname.Text = U.Lastname;
-                tbName.Text = U.Firstname;
-                tbGrpName.Text = U.Group.Name;
-                tbEmail.Text = U.Email;
-                tbStrNr.Text = U.Address.Street + " " + Convert.ToString(U.Address.Streetnumber);
-                tbReserv.Text = Convert.ToString(U.ReservationID);
-                tbPstlCode.Text = U.Address.PostalCode;
-                tbCity.Text = U.Address.City;
-                tbArrival.Text = U.StartDate.ToString();
-                tbDepature.Text = U.EndDate.ToString();
-                if (isPresent)
+                User U = ReservationUsers.ElementAt(SelectedIndex);
+                bool isPresent = AC.getPresents(U.ID);
+
+                if (U != null)
                 {
-                    pbChecked.BackColor = Color.Green;
-                }
-                else
-                {
-                    pbChecked.BackColor = Color.Red;
+                    tbSurname.Text = U.Lastname;
+                    tbName.Text = U.Firstname;
+                    tbGrpName.Text = U.Group.Name;
+                    tbEmail.Text = U.Email;
+                    tbStrNr.Text = U.Address.Street + " " + Convert.ToString(U.Address.Streetnumber);
+                    tbReserv.Text = Convert.ToString(U.ReservationID);
+                    tbPstlCode.Text = U.Address.PostalCode;
+                    tbCity.Text = U.Address.City;
+                    tbArrival.Text = U.StartDate.ToString();
+                    tbDepature.Text = U.EndDate.ToString();
+                    if (isPresent)
+                    {
+                        pbChecked.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        pbChecked.BackColor = Color.Red;
+                    }
                 }
             }
-            LoadReservationUserListBox();
+        }
+
+        private void btnAtt_Click(object sender, EventArgs e)
+        {
+            int SelectedIndex = lbResName.SelectedIndex;
+
+            if (SelectedIndex != -1)
+            {
+                User U = ReservationUsers.ElementAt(SelectedIndex);
+                bool isAttached = AC.getUserRFID(U.ID);
+
+                if (cbEvent.SelectedIndex != -1 && isAttached == false)
+                {
+                    int SelectedEvent = cbEvent.SelectedIndex;
+                    Event SelEvent = AllEvents.ElementAt(SelectedEvent);
+                    AC.AttachRFID(U.ID, SelEvent.EventID, TempRFID);
+                }
+            }
+        }
+
+        private void btnUnAtt_Click(object sender, EventArgs e)
+        {
+            if (cbEvent.SelectedIndex != -1)
+            {
+                int SelectedEvent = cbEvent.SelectedIndex;
+                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
+                AC.DettachRFID(SelEvent.EventID, TempRFID);
+            }
+        }
+
+        private void label3_TextChanged(object sender, EventArgs e)
+        {
+            if (TempRFID != "")
+            {
+                bool isAttached = AC.getRFID(TempRFID);
+
+                if (isAttached)
+                {
+                    btnAtt.Enabled = false;
+                    btnUnAtt.Enabled = true;
+                }
+                else if (!isAttached)
+                {
+                    btnUnAtt.Enabled = true;
+                    btnAtt.Enabled = false;
+                }
+            }
         }
     }
 }

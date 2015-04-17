@@ -292,7 +292,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "INSERT INTO PTS2_RFID (rfidID, isAttached, eventID, userID) VALUES (':RFID',1,:EventID,:UserID)";
+                cmd.CommandText = "INSERT INTO PTS2_RFID (rfid, isAttached, eventID, userID) VALUES (':RFID',1,:EventID,:UserID)";
                 cmd.Parameters.Add("UserID", UserID);
                 cmd.Parameters.Add("EventID", EventID);
                 cmd.Parameters.Add("RFID", RFID);
@@ -310,14 +310,13 @@ namespace Businesslayer.DAL
             }
         }
 
-        public void DettachRFID(int UserID, int EventID, string RFID)
+        public void DettachRFID(int EventID, string RFID)
         {
             try
             {
 
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "DELETE FROM PTS2_RFID WHERE rfidID = ':RFID' AND EVENTID = :EventID AND USERID = :UserID";
-                cmd.Parameters.Add("UserID", UserID);
+                cmd.CommandText = "UPDATE PTS2_RFID SET RFID = NULL WHERE RFID = ':RFID' AND EVENTID = :EventID;";
                 cmd.Parameters.Add("EventID", EventID);
                 cmd.Parameters.Add("RFID", RFID);
 
@@ -340,10 +339,45 @@ namespace Businesslayer.DAL
             bool isAttached = false;
             try
             {
-
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "SELECT isAttached FROM RFID WHERE rfidID = ':RFID'";
+                cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = ':RFID'";
                 cmd.Parameters.Add("RFID", RFID);
+
+                DbAcces.Open();
+                cmd.ExecuteReader();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if ((Convert.ToInt32(reader["isAttached"])) == 0)
+                    {
+                        isAttached = false;
+                    }
+                    else if ((Convert.ToInt32(reader["isAttached"])) == 1)
+                    {
+                        isAttached = true;
+                    }
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbAcces.Close();
+            }
+            return isAttached;
+        }
+
+        public bool GetuserRFID(int UserID)
+        {
+            bool isAttached = false;
+            try
+            {
+                OracleCommand cmd = this.DbAcces.CreateCommand();
+                cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE UserID = :UserID";
+                cmd.Parameters.Add("UserID", UserID);
 
                 DbAcces.Open();
                 cmd.ExecuteReader();
@@ -378,7 +412,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.DbAcces.CreateCommand();
-                cmd.CommandText = "SELECT isPresent FROM PTS2_Users WHERE userID = :UserID";
+                cmd.CommandText = "SELECT isPresent FROM PTS2_USER WHERE userID = :UserID";
                 cmd.Parameters.Add("UserID", UserID);
 
                 DbAcces.Open();

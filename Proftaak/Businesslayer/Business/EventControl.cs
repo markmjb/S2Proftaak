@@ -8,11 +8,13 @@ namespace Businesslayer.Business
     {
         //FIELDS
         public List<Event> Events { get; set; }
-        private DbRemainder dbRemainder = new DbRemainder();
+        public DbRemainder dbRemainder { get; set; }
 
         //CONSTRUCTORS
         public EventControl()
         {
+            dbRemainder = new DbRemainder();
+
             Events = new List<Event>();
             GetEvents();
         }
@@ -40,12 +42,12 @@ namespace Businesslayer.Business
             dbRemainder.CreateAddress(country, province, city, street, streetnumber, postalcode);
         }
 
-        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
+        public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, int addressID)
         {
-            dbRemainder.CreateEvent(name, description, startDate, Endtime, ticketPrice);
+            dbRemainder.CreateEvent(name, description, startDate, Endtime, ticketPrice, addressID);
         }
 
-        public Event getEvent(int eventID)
+        public Event GetEvent(int eventID)
         {
             foreach (Event ev in Events)
             {
