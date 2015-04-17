@@ -32,14 +32,14 @@
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lbRFIDNr = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label47 = new System.Windows.Forms.Label();
+            this.btnLinks = new System.Windows.Forms.Button();
+            this.btnRechts = new System.Windows.Forms.Button();
+            this.lblTotalPrice = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbYourItem = new System.Windows.Forms.ListBox();
+            this.lbSelectItem = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label41 = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudAmount = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,7 +70,7 @@
             this.tbAdd = new System.Windows.Forms.TextBox();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,14 +97,14 @@
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.lbRFIDNr);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.label47);
+            this.tabPage1.Controls.Add(this.btnLinks);
+            this.tabPage1.Controls.Add(this.btnRechts);
+            this.tabPage1.Controls.Add(this.lblTotalPrice);
             this.tabPage1.Controls.Add(this.label46);
-            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.btnOrder);
             this.tabPage1.Controls.Add(this.label45);
-            this.tabPage1.Controls.Add(this.listBox2);
-            this.tabPage1.Controls.Add(this.listBox1);
+            this.tabPage1.Controls.Add(this.lbYourItem);
+            this.tabPage1.Controls.Add(this.lbSelectItem);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.domainUpDown1);
             this.tabPage1.Controls.Add(this.label41);
@@ -114,7 +114,7 @@
             this.tabPage1.Controls.Add(this.label39);
             this.tabPage1.Controls.Add(this.label40);
             this.tabPage1.Controls.Add(this.label36);
-            this.tabPage1.Controls.Add(this.numericUpDown1);
+            this.tabPage1.Controls.Add(this.nudAmount);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label7);
@@ -139,32 +139,34 @@
             this.lbRFIDNr.TabIndex = 45;
             this.lbRFIDNr.Text = "RFID number";
             // 
-            // button6
+            // btnLinks
             // 
-            this.button6.Location = new System.Drawing.Point(201, 213);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(41, 23);
-            this.button6.TabIndex = 44;
-            this.button6.Text = "<<";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnLinks.Location = new System.Drawing.Point(201, 213);
+            this.btnLinks.Name = "btnLinks";
+            this.btnLinks.Size = new System.Drawing.Size(41, 23);
+            this.btnLinks.TabIndex = 44;
+            this.btnLinks.Text = "<<";
+            this.btnLinks.UseVisualStyleBackColor = true;
+            this.btnLinks.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button5
+            // btnRechts
             // 
-            this.button5.Location = new System.Drawing.Point(201, 184);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(41, 23);
-            this.button5.TabIndex = 43;
-            this.button5.Text = ">>";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnRechts.Location = new System.Drawing.Point(201, 184);
+            this.btnRechts.Name = "btnRechts";
+            this.btnRechts.Size = new System.Drawing.Size(41, 23);
+            this.btnRechts.TabIndex = 43;
+            this.btnRechts.Text = ">>";
+            this.btnRechts.UseVisualStyleBackColor = true;
+            this.btnRechts.Click += new System.EventHandler(this.button5_Click);
             // 
-            // label47
+            // lblTotalPrice
             // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(318, 307);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(10, 13);
-            this.label47.TabIndex = 42;
-            this.label47.Text = "-";
+            this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.Location = new System.Drawing.Point(318, 307);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(10, 13);
+            this.lblTotalPrice.TabIndex = 42;
+            this.lblTotalPrice.Text = "-";
             // 
             // label46
             // 
@@ -175,14 +177,15 @@
             this.label46.TabIndex = 41;
             this.label46.Text = "Total price";
             // 
-            // button3
+            // btnOrder
             // 
-            this.button3.Location = new System.Drawing.Point(354, 300);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 23);
-            this.button3.TabIndex = 40;
-            this.button3.Text = "Order";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnOrder.Location = new System.Drawing.Point(354, 300);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(55, 23);
+            this.btnOrder.TabIndex = 40;
+            this.btnOrder.Text = "Order";
+            this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.button3_Click);
             // 
             // label45
             // 
@@ -193,36 +196,23 @@
             this.label45.TabIndex = 39;
             this.label45.Text = "Your items";
             // 
-            // listBox2
+            // lbYourItem
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "Item 1, amount, price",
-            "Item 2, amount, price",
-            "Item 8, amount, price"});
-            this.listBox2.Location = new System.Drawing.Point(258, 141);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.ScrollAlwaysVisible = true;
-            this.listBox2.Size = new System.Drawing.Size(151, 147);
-            this.listBox2.TabIndex = 38;
+            this.lbYourItem.FormattingEnabled = true;
+            this.lbYourItem.Location = new System.Drawing.Point(258, 141);
+            this.lbYourItem.Name = "lbYourItem";
+            this.lbYourItem.ScrollAlwaysVisible = true;
+            this.lbYourItem.Size = new System.Drawing.Size(151, 147);
+            this.lbYourItem.TabIndex = 38;
             // 
-            // listBox1
+            // lbSelectItem
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "Item 1, price",
-            "Item 2, price",
-            "Item 3, price",
-            "Item 4, price",
-            "Item 5, price",
-            "Item 6, price",
-            "Item 7, price",
-            "Item 8, price"});
-            this.listBox1.Location = new System.Drawing.Point(33, 141);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(151, 147);
-            this.listBox1.TabIndex = 37;
+            this.lbSelectItem.FormattingEnabled = true;
+            this.lbSelectItem.Location = new System.Drawing.Point(33, 141);
+            this.lbSelectItem.Name = "lbSelectItem";
+            this.lbSelectItem.ScrollAlwaysVisible = true;
+            this.lbSelectItem.Size = new System.Drawing.Size(151, 147);
+            this.lbSelectItem.TabIndex = 37;
             // 
             // button1
             // 
@@ -306,12 +296,12 @@
             this.label36.TabIndex = 28;
             this.label36.Text = "Scan RFID from visitor";
             // 
-            // numericUpDown1
+            // nudAmount
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(106, 300);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(41, 20);
-            this.numericUpDown1.TabIndex = 27;
+            this.nudAmount.Location = new System.Drawing.Point(106, 300);
+            this.nudAmount.Name = "nudAmount";
+            this.nudAmount.Size = new System.Drawing.Size(41, 20);
+            this.nudAmount.TabIndex = 27;
             // 
             // label9
             // 
@@ -494,7 +484,7 @@
             this.Lenen.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -523,20 +513,20 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DomainUpDown domainUpDown1;
         private System.Windows.Forms.DomainUpDown dupItemsStock;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Button btnLinks;
+        private System.Windows.Forms.Button btnRechts;
+        private System.Windows.Forms.Label lblTotalPrice;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbYourItem;
+        private System.Windows.Forms.ListBox lbSelectItem;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.TextBox tbPrice;
         private System.Windows.Forms.ListBox lbItems;
