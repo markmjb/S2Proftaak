@@ -56,7 +56,7 @@ namespace Businesslayer.Business
 
         public override string ToString()
         {
-            return Mediaitemid.ToString() + ": " + Title;
+            return Mediaitemid.ToString() + ":" + Title;
         }
     }
          
