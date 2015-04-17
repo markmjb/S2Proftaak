@@ -157,6 +157,7 @@ namespace Businesslayer.DAL
                OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
+                   
                {
 
                    int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
@@ -238,6 +239,50 @@ namespace Businesslayer.DAL
 
                }
               
+
+
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.dbmediaconn.Close();
+
+
+           }
+
+           return mediaitem;
+       }
+       public Mediaitem Getsinglemediaitemfile(int mediaitemid)
+       {
+
+           try
+           {
+
+               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMFILE WHERE Mediaitemid = :Mediaitemid";
+               cmd.Parameters.Add("Mediaitemid", mediaitemid);
+               dbmediaconn.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+
+                   int Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                   string Filepath = Convert.ToString(reader["FILELOCATION"]);
+                   int Filesize = Convert.ToInt32(reader["FILESIZE"]);
+                   string Filetype = Convert.ToString(reader["FILETYPE"]);
+                   int Mediacategoryofid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                   
+                   mediaitem = new Mediaitem(Mediaitemid, Filepath, Filesize, Filetype, Mediacategoryofid);
+
+
+
+
+               }
+
 
 
            }

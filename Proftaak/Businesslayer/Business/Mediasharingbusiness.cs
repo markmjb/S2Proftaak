@@ -37,5 +37,11 @@ namespace Businesslayer.Business
             
         }
 
+        public Mediaitem Getsinglemediaitemfile(int mediaitemid)
+        {
+            return dbmedia.Getsinglemediaitemfile(mediaitemid);
+
+        }
+
     }
 }
