@@ -43,7 +43,6 @@
             this.pbChecked = new System.Windows.Forms.PictureBox();
             this.lblChecked = new System.Windows.Forms.Label();
             this.gbReservations = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbResName = new System.Windows.Forms.ListBox();
@@ -227,7 +226,6 @@
             // 
             // gbReservations
             // 
-            this.gbReservations.Controls.Add(this.label4);
             this.gbReservations.Controls.Add(this.label3);
             this.gbReservations.Controls.Add(this.label2);
             this.gbReservations.Controls.Add(this.lbResName);
@@ -243,19 +241,10 @@
             this.gbReservations.TabStop = false;
             this.gbReservations.Text = "Reservations";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(357, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 113;
-            this.label4.Text = "label4";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(285, 37);
+            this.label3.Location = new System.Drawing.Point(282, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 112;
@@ -687,7 +676,6 @@
         private System.Windows.Forms.Button btnDept;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblReservationNr;
         private System.Windows.Forms.Label lblEvents;
     }
