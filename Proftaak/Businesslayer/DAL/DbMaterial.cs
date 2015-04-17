@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 
@@ -15,15 +16,46 @@ namespace Businesslayer.DAL
             DbMateriall.ConnectionString = db.getstring();
         }
 
+        public List<Item> GetItems()
+        {
+            List<Item> items = new List<Item>();
+            try
+            {
+                OracleCommand cmd = this.DbMateriall.CreateCommand();
+                cmd.CommandText = "select materialtypeName, price from PTS2_MATERIALTYPE";
+
+                DbMateriall.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                string materialtypeName;
+                decimal price;
+
+                while (reader.Read())
+                {
+                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
+                    price = Convert.ToDecimal(reader["price"]);
+                    Item item = new Item(materialtypeName, price);
+                    items.Add(item);               
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.DbMateriall.Close();
+            }
+            return items;
+        }
        public void ChangePrice(string MaterialName, decimal Price)
         {
             try
             {
-                double d = (double)Price;
                 OracleCommand cmd = this.DbMateriall.CreateCommand();
-                cmd.CommandText = "update PTS2_MATERIAL set price = 25.3 where materialName = :MaterialName";
+                cmd.CommandText = "update PTS2_MATERIAL set price =:Price where materialName = :MaterialName";
                 cmd.Parameters.Add("MaterialName", MaterialName);
-                //cmd.Parameters.Add("Price", 30);
+                cmd.Parameters.Add("Price", Price);
                 
 
                 DbMateriall.Open();
