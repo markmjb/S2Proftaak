@@ -48,26 +48,49 @@ namespace Proftaak
             string description = tbDescription.Text;
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
-            decimal ticketPrice = nupTicketprice.Value;
+            decimal ticketPrice = nudTicketprice.Value;
 
             string country = tbCountry.Text;
             string province = tbProvince.Text;
             string city = tbCity.Text;
             string street = tbStreet.Text;
-            int streetnumber = Convert.ToInt32(nupStreetnumber.Value);
+            int streetnumber = Convert.ToInt32(nudStreetnumber.Value);
             string postalcode = tbPostalcode.Text;
 
             if (name != "" && description != "" && startDate > DateTime.Today && endDate > DateTime.Today && endDate > startDate && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode != "")
             {
-                if (!eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
-                {
-                    eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
-                }
-
                 if (!eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
                 {
+                    if (!eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
+                    {
+                        eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
+                    }
+
                     eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice);
-                }                
+                }
+            }
+        }
+
+        private void datagridEvents_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != "" && datagridEvents.CurrentCell.Value != null)
+            {
+                int eventID = Convert.ToInt32(datagridEvents.CurrentCell.Value);
+
+                Event ev = eventControl.getEvent(eventID);
+
+                tbName.Text = ev.Name;
+                tbDescription.Text = ev.Description;
+                dtpStartDate.Value = ev.StartDate;
+                dtpEndDate.Value = ev.EndDate;
+                nudTicketprice.Value = ev.TicketPrice;
+
+                tbCountry.Text = ev.Address.Country;
+                tbProvince.Text = ev.Address.Province;
+                tbCity.Text = ev.Address.City;
+                tbStreet.Text = ev.Address.Street;
+                nudStreetnumber.Value = ev.Address.Streetnumber;
+                tbPostalcode.Text = ev.Address.PostalCode;
             }
         }
     }

@@ -6,6 +6,7 @@ namespace Businesslayer.Business
     public class AccessControl
     {
         DbAccess DA = new DbAccess();
+        DbRemainder DR = new DbRemainder();
 
         public void AttachRFID(int UserID, int EventID, string RFID)
         {
@@ -35,7 +36,7 @@ namespace Businesslayer.Business
             return ReservationUsers;
         }
 
-        public List<ReservationAccess> Search(int EventID, string Search)
+        public List<ReservationAccess> Search(int EventID, int Search)
         {
             List<ReservationAccess> Reservations = DA.Search(EventID, Search);
             return Reservations;
@@ -53,9 +54,21 @@ namespace Businesslayer.Business
             return isAttached;
         }
 
-        public void AcceptPay()
+        public void AcceptPay(int ResNr)
         {
-            int USERID = Userlogin.Loggeduser.ID;
+            DA.AcceptPayment(ResNr);
+        }
+
+        public List<Event> GetEvents()
+        {
+            List<Event> Events = DR.GetEvents();
+            return Events;
+        }
+
+        public List<User> GetAllUsers(int EventID)
+        {
+            List<User> AllUsers = DA.AllPresentUsers(EventID);
+            return AllUsers;
         }
     }
 }

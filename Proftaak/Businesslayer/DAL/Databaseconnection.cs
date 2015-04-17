@@ -6,7 +6,7 @@ namespace Businesslayer.DAL
     public class Databaseconnection
     {
         public List<EventControl> events = new List<EventControl>(); 
-        public static string connectionstring = "User Id=chris;Password=chris;Data Source=" + "127.0.0.1/" + ";";
+        public static string connectionstring = "User Id=mark;Password=mark;Data Source=" + "127.0.0.1/" + ";";
         public Databaseconnection()
         {
 

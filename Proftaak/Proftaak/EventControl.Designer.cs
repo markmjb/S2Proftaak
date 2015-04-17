@@ -55,12 +55,12 @@
             this.tbProvince = new System.Windows.Forms.TextBox();
             this.tbCity = new System.Windows.Forms.TextBox();
             this.tbStreet = new System.Windows.Forms.TextBox();
-            this.nupStreetnumber = new System.Windows.Forms.NumericUpDown();
+            this.nudStreetnumber = new System.Windows.Forms.NumericUpDown();
             this.tbPostalcode = new System.Windows.Forms.TextBox();
-            this.nupTicketprice = new System.Windows.Forms.NumericUpDown();
+            this.nudTicketprice = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupStreetnumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupTicketprice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStreetnumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTicketprice)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreateEvent
@@ -177,6 +177,7 @@
             this.datagridEvents.Name = "datagridEvents";
             this.datagridEvents.Size = new System.Drawing.Size(598, 150);
             this.datagridEvents.TabIndex = 13;
+            this.datagridEvents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridEvents_CellClick);
             // 
             // columnEventID
             // 
@@ -288,12 +289,12 @@
             this.tbStreet.Size = new System.Drawing.Size(100, 20);
             this.tbStreet.TabIndex = 23;
             // 
-            // nupStreetnumber
+            // nudStreetnumber
             // 
-            this.nupStreetnumber.Location = new System.Drawing.Point(702, 117);
-            this.nupStreetnumber.Name = "nupStreetnumber";
-            this.nupStreetnumber.Size = new System.Drawing.Size(100, 20);
-            this.nupStreetnumber.TabIndex = 24;
+            this.nudStreetnumber.Location = new System.Drawing.Point(702, 117);
+            this.nudStreetnumber.Name = "nudStreetnumber";
+            this.nudStreetnumber.Size = new System.Drawing.Size(100, 20);
+            this.nudStreetnumber.TabIndex = 24;
             // 
             // tbPostalcode
             // 
@@ -302,22 +303,22 @@
             this.tbPostalcode.Size = new System.Drawing.Size(100, 20);
             this.tbPostalcode.TabIndex = 25;
             // 
-            // nupTicketprice
+            // nudTicketprice
             // 
-            this.nupTicketprice.DecimalPlaces = 2;
-            this.nupTicketprice.Location = new System.Drawing.Point(405, 207);
-            this.nupTicketprice.Name = "nupTicketprice";
-            this.nupTicketprice.Size = new System.Drawing.Size(120, 20);
-            this.nupTicketprice.TabIndex = 26;
+            this.nudTicketprice.DecimalPlaces = 2;
+            this.nudTicketprice.Location = new System.Drawing.Point(405, 207);
+            this.nudTicketprice.Name = "nudTicketprice";
+            this.nudTicketprice.Size = new System.Drawing.Size(120, 20);
+            this.nudTicketprice.TabIndex = 26;
             // 
             // EventControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 362);
-            this.Controls.Add(this.nupTicketprice);
+            this.Controls.Add(this.nudTicketprice);
             this.Controls.Add(this.tbPostalcode);
-            this.Controls.Add(this.nupStreetnumber);
+            this.Controls.Add(this.nudStreetnumber);
             this.Controls.Add(this.tbStreet);
             this.Controls.Add(this.tbCity);
             this.Controls.Add(this.tbProvince);
@@ -345,8 +346,8 @@
             this.Text = "EventControl";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventControl_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupStreetnumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupTicketprice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStreetnumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTicketprice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,9 +378,9 @@
         private System.Windows.Forms.TextBox tbProvince;
         private System.Windows.Forms.TextBox tbCity;
         private System.Windows.Forms.TextBox tbStreet;
-        private System.Windows.Forms.NumericUpDown nupStreetnumber;
+        private System.Windows.Forms.NumericUpDown nudStreetnumber;
         private System.Windows.Forms.TextBox tbPostalcode;
-        private System.Windows.Forms.NumericUpDown nupTicketprice;
+        private System.Windows.Forms.NumericUpDown nudTicketprice;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEventID;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEventName;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEventStartdate;

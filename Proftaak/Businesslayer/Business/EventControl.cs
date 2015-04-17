@@ -45,5 +45,16 @@ namespace Businesslayer.Business
             dbRemainder.CreateEvent(name, description, startDate, Endtime, ticketPrice);
         }
 
+        public Event getEvent(int eventID)
+        {
+            foreach (Event ev in Events)
+            {
+                if (ev.EventID == eventID)
+                {
+                    return ev;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reservation));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -39,6 +40,7 @@
             this.lblChooseEvent = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabCampspot = new System.Windows.Forms.TabPage();
+            this.lbAvailablespots = new System.Windows.Forms.ListBox();
             this.tabAddUser = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpBirth = new System.Windows.Forms.DateTimePicker();
@@ -78,8 +80,11 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.lbAvailablespots = new System.Windows.Forms.ListBox();
-            this.btnReload = new System.Windows.Forms.Button();
+            this.lbselectedcampspots = new System.Windows.Forms.ListBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.btnDeselect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -94,10 +99,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(316, 30);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(432, 36);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(434, 462);
+            this.pictureBox1.Size = new System.Drawing.Size(700, 462);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -193,7 +199,11 @@
             // tabCampspot
             // 
             this.tabCampspot.BackColor = System.Drawing.SystemColors.Control;
-            this.tabCampspot.Controls.Add(this.btnReload);
+            this.tabCampspot.Controls.Add(this.btnDeselect);
+            this.tabCampspot.Controls.Add(this.btnSelect);
+            this.tabCampspot.Controls.Add(this.label16);
+            this.tabCampspot.Controls.Add(this.label15);
+            this.tabCampspot.Controls.Add(this.lbselectedcampspots);
             this.tabCampspot.Controls.Add(this.lbAvailablespots);
             this.tabCampspot.Controls.Add(this.pictureBox1);
             this.tabCampspot.Controls.Add(this.label2);
@@ -208,6 +218,15 @@
             this.tabCampspot.Size = new System.Drawing.Size(1170, 671);
             this.tabCampspot.TabIndex = 0;
             this.tabCampspot.Text = "ChooseCampingspot";
+            // 
+            // lbAvailablespots
+            // 
+            this.lbAvailablespots.FormattingEnabled = true;
+            this.lbAvailablespots.ItemHeight = 16;
+            this.lbAvailablespots.Location = new System.Drawing.Point(49, 62);
+            this.lbAvailablespots.Name = "lbAvailablespots";
+            this.lbAvailablespots.Size = new System.Drawing.Size(120, 436);
+            this.lbAvailablespots.TabIndex = 6;
             // 
             // tabAddUser
             // 
@@ -615,24 +634,52 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // lbAvailablespots
+            // lbselectedcampspots
             // 
-            this.lbAvailablespots.FormattingEnabled = true;
-            this.lbAvailablespots.ItemHeight = 16;
-            this.lbAvailablespots.Location = new System.Drawing.Point(49, 62);
-            this.lbAvailablespots.Name = "lbAvailablespots";
-            this.lbAvailablespots.Size = new System.Drawing.Size(120, 436);
-            this.lbAvailablespots.TabIndex = 6;
+            this.lbselectedcampspots.FormattingEnabled = true;
+            this.lbselectedcampspots.ItemHeight = 16;
+            this.lbselectedcampspots.Location = new System.Drawing.Point(244, 62);
+            this.lbselectedcampspots.Name = "lbselectedcampspots";
+            this.lbselectedcampspots.Size = new System.Drawing.Size(120, 436);
+            this.lbselectedcampspots.TabIndex = 7;
             // 
-            // btnReload
+            // label15
             // 
-            this.btnReload.Location = new System.Drawing.Point(49, 30);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(120, 31);
-            this.btnReload.TabIndex = 7;
-            this.btnReload.Text = "Reload";
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(229, 42);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(151, 17);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Selected CampingSpot";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(32, 42);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(160, 17);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "Available CampingSpots";
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(176, 165);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(62, 40);
+            this.btnSelect.TabIndex = 10;
+            this.btnSelect.Text = ">";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // btnDeselect
+            // 
+            this.btnDeselect.Location = new System.Drawing.Point(176, 222);
+            this.btnDeselect.Name = "btnDeselect";
+            this.btnDeselect.Size = new System.Drawing.Size(62, 37);
+            this.btnDeselect.TabIndex = 11;
+            this.btnDeselect.Text = "<";
+            this.btnDeselect.UseVisualStyleBackColor = true;
+            this.btnDeselect.Click += new System.EventHandler(this.btnDeselect_Click);
             // 
             // Reservation
             // 
@@ -720,6 +767,10 @@
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.ListBox lbAvailablespots;
-        private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ListBox lbselectedcampspots;
+        private System.Windows.Forms.Button btnDeselect;
+        private System.Windows.Forms.Button btnSelect;
     }
 }
