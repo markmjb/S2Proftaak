@@ -66,9 +66,10 @@ namespace Proftaak
                         eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
                     }
 
-                    eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice);
+                    eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice, eventControl.dbRemainder.GetAddressID(country, province, city, street, streetnumber, postalcode));
                 }
             }
+            FillDatagridEvents();
         }
 
         private void datagridEvents_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -77,7 +78,7 @@ namespace Proftaak
             {
                 int eventID = Convert.ToInt32(datagridEvents.CurrentCell.Value);
 
-                Event ev = eventControl.getEvent(eventID);
+                Event ev = eventControl.GetEvent(eventID);
 
                 tbName.Text = ev.Name;
                 tbDescription.Text = ev.Description;
