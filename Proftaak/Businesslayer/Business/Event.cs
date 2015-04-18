@@ -26,5 +26,10 @@ namespace Businesslayer.Business
             UserID = userID;
             Address = new Address(addressID, street, streetnumber, postalCode, city, province, country);
         }
+
+        public Event()
+        {
+           
+        }
     }
 }
