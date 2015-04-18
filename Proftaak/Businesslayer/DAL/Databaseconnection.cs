@@ -7,7 +7,6 @@ namespace Businesslayer.DAL
 {
     public class Databaseconnection
     {
-        
         public OracleConnection Connection { get; set; }
 
         public static string Connectionstring
