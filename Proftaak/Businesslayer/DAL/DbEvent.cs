@@ -16,37 +16,34 @@ namespace Businesslayer.DAL
         }      
         public List<Event> GetEvents()
         {
+            Event ev = new Event();
+            Address adress = new Address();
             List<Event> events = new List<Event>();
-
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText =
                     "SELECT E.eventID, E.eventName, E.description, E.startDate, E.endDate, E.ticketPrice, E.userID, A.addressID, A.country, A.province, A.city, A.street, A.housenumber, A.postalcode FROM PTS2_EVENT E, PTS2_ADDRESS A WHERE E.addressID = A.addressID";
-
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
-
                 while (reader.Read())
                 {
-                    int eventID = Convert.ToInt32(reader["eventID"]);
-                    string name = Convert.ToString(reader["eventName"]);
-                    string description = Convert.ToString(reader["description"]);
-                    DateTime startDate = Convert.ToDateTime(reader["startDate"]);
-                    DateTime endDate = Convert.ToDateTime(reader["endDate"]);
-                    decimal ticketPrice = Convert.ToDecimal(reader["ticketPrice"]);
-                    int userID = Convert.ToInt32(reader["userID"]);
-
-                    int addressID = Convert.ToInt32(reader["addressID"]);
-                    string street = Convert.ToString(reader["street"]);
-                    int streetnumber = Convert.ToInt32(reader["housenumber"]);
-                    string postalCode = Convert.ToString(reader["postalcode"]);
-                    string city = Convert.ToString(reader["city"]);
-                    string province = Convert.ToString(reader["province"]);
-                    string country = Convert.ToString(reader["country"]);
-
-                    events.Add(new Event(eventID, name, description, startDate, endDate, ticketPrice, userID, addressID,
-                        street, streetnumber, postalCode, city, province, country));
+                    ev.EventID = Convert.ToInt32(reader["eventID"]);
+                    ev.Name = Convert.ToString(reader["eventName"]);
+                    ev.Description = Convert.ToString(reader["description"]);
+                    ev.StartDate = Convert.ToDateTime(reader["startDate"]);
+                    ev.EndDate = Convert.ToDateTime(reader["endDate"]);
+                    ev.TicketPrice = Convert.ToDecimal(reader["ticketPrice"]);
+                    ev.UserID = Convert.ToInt32(reader["userID"]);
+                    adress.AddressID = Convert.ToInt32(reader["addressID"]);
+                    adress.Street = Convert.ToString(reader["street"]);
+                    adress.Streetnumber = Convert.ToInt32(reader["housenumber"]);
+                    adress.PostalCode = Convert.ToString(reader["postalcode"]);
+                    adress.City = Convert.ToString(reader["city"]);
+                    adress.Province = Convert.ToString(reader["province"]);
+                    adress.Country = Convert.ToString(reader["country"]);
+                    ev.Address = adress;
+                    events.Add(ev);
                 }
             }
             catch (Exception e)
@@ -90,14 +87,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    db.Connection.Close();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
+               db.Connection.Close();
             }
             return result;  
         }
@@ -132,14 +122,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    db.Connection.Close();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
+               db.Connection.Close();
             }
             return result;
         }
@@ -166,13 +149,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    db.Connection.Close();
-                }
-                catch (Exception)
-                {
-                }
+               db.Connection.Close();
             }
         }
 
@@ -277,13 +254,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    db.Connection.Close();
-                }
-                catch (Exception)
-                {
-                }
+               db.Connection.Close();
             }
             return eventID;
         }
@@ -305,14 +276,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                try
-                {
-                    db.Connection.Close();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
+                db.Connection.Close();
             }
         }
     }
