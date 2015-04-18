@@ -5,11 +5,11 @@ using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
-    public class DbMedia 
-    {      
-        Mediaitem dalMediaitem= new Mediaitem();
+    public class DbMedia
+    {
+        private Mediaitem dalMediaitem;
         private int Returnint;
-        List<Mediaitem> mediaitems = new List<Mediaitem>();
+        private List<Mediaitem> mediaitems;
         private Databaseconnection db;
 
         public DbMedia()
@@ -65,6 +65,7 @@ namespace Businesslayer.DAL
 
         public int GetMediaItemID(string Title)
         {
+            dalMediaitem = new Mediaitem();
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -114,6 +115,8 @@ namespace Businesslayer.DAL
         
        public List<Mediaitem>Getmediaitems()
        {
+           dalMediaitem = new Mediaitem();
+           mediaitems = new List<Mediaitem>();
           try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -182,6 +185,7 @@ namespace Businesslayer.DAL
 
        public Mediaitem Getsinglemediaitem(int mediaitemid)
        {
+           dalMediaitem = new Mediaitem();
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -209,6 +213,7 @@ namespace Businesslayer.DAL
        }
        public Mediaitem Getsinglemediaitemfile(int mediaitemid)
        {
+           dalMediaitem = new Mediaitem();
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -239,6 +244,8 @@ namespace Businesslayer.DAL
         
        public List<Mediaitem> Getmediatext(int mediaitemid)
        {
+           dalMediaitem = new Mediaitem();
+           mediaitems = new List<Mediaitem>();
             try
             {
                OracleCommand cmd = this.db.Connection.CreateCommand();
