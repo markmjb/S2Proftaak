@@ -30,6 +30,9 @@ namespace Proftaak
         public AccessControlForm()
         {
             InitializeComponent();
+            LoadCBoxEvents();
+            cbEvent.SelectedIndex = 0;
+            LoadReservationListBox();
         }
 
         private void AccessControlForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -51,8 +54,6 @@ namespace Proftaak
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             rfid.Detach += new DetachEventHandler(rfid_Detach);
             openCmdLine(rfid);
-
-            LoadCBoxEvents();
         }
         void rfid_Attach(object sender, AttachEventArgs e)
         {
