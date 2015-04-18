@@ -7,23 +7,13 @@ namespace Businesslayer.DAL
 {
     public class DbMedia 
     {      
-        
-        
         int MediacategoryID;
         Mediaitem mediaitem;
         public int MediaitemID { get; set; }
         private Databaseconnection db;
-        private OracleConnection dbmediaconn;
-        
-
-       
-
         public DbMedia()
         {
-            dbmediaconn = new OracleConnection();
-            db = new Databaseconnection();
-
-            dbmediaconn.ConnectionString = db.Getconnectionstring();
+         db = new Databaseconnection();
         }
 
        public void AddMediaItem(String Title, String Description, int UserID)
@@ -31,13 +21,13 @@ namespace Businesslayer.DAL
            try
            {
 
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText= " INSERT INTO PTS2_MEDIAITEM(Title,Description,UserID) VALUES (:title, :descr, :userid)";
                cmd.Parameters.Add("title", Title);
                cmd.Parameters.Add("descr", Description);
                cmd.Parameters.Add("userid", UserID);
 
-               dbmediaconn.Open();
+               db.Connection.Open();
                
                cmd.ExecuteReader();
            }
@@ -47,7 +37,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
            }
        }
 
@@ -56,7 +46,7 @@ namespace Businesslayer.DAL
            try
            {
 
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMFILE(mediaitemID,Filelocation, Filesize, Filetype,Mediacategoryid) VALUES (:mediaitemID ,:flocation, :fsize, :ftype, :mediacategoryid)";
                cmd.Parameters.Add("mediaitemID", MediaitemID);
                cmd.Parameters.Add("flocation", Filelocation);
@@ -64,7 +54,7 @@ namespace Businesslayer.DAL
                cmd.Parameters.Add("ftype", Filetype );
                cmd.Parameters.Add("mediacateogryid", mediacategoryid);
 
-               dbmediaconn.Open();
+               db.Connection.Open();
                
                cmd.ExecuteReader();
            }
@@ -74,7 +64,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
            }
        }
 
@@ -82,11 +72,11 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = this.dbmediaconn.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT MEDIAITEMID FROM PTS2_MEDIAITEM WHERE TITLE  = :Title";
                 cmd.Parameters.Add("Title", Title);
                 
-                dbmediaconn.Open();
+                db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -104,7 +94,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.dbmediaconn.Close();
+                this.db.Connection.Close();
 
 
             }
@@ -116,7 +106,7 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT MEDIACATEGORY FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME  = :input";
                cmd.Parameters.Add("input", categoryinput);
 
@@ -137,7 +127,7 @@ namespace Businesslayer.DAL
            }
             finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
 
 
            }
@@ -151,9 +141,9 @@ namespace Businesslayer.DAL
            List<Mediaitem> mediaitems = new List<Mediaitem>();
            try
            {
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM";
-               dbmediaconn.Open();
+               db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
@@ -180,7 +170,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
 
 
            }
@@ -194,12 +184,12 @@ namespace Businesslayer.DAL
            {
                int MediaitemID = mediaitem.Mediaitemid;
 
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_MEDIAITEM WHERE MEDIAITEMID = :MediaitemID";
                cmd.Parameters.Add("MediaitemID", MediaitemID);
             
 
-               dbmediaconn.Open();
+               db.Connection.Open();
 
                cmd.ExecuteReader();
            }
@@ -209,7 +199,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
            }
        }
 
@@ -219,12 +209,12 @@ namespace Businesslayer.DAL
            {
                int MediaitemID = mediaitem.Mediaitemid;
 
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_MEDIAITEMFILE WHERE MEDIAITEMID = :MediaitemID";
                cmd.Parameters.Add("MediaitemID", MediaitemID);
 
 
-               dbmediaconn.Open();
+               db.Connection.Open();
 
                cmd.ExecuteReader();
            }
@@ -234,7 +224,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
            }
        }
 
@@ -244,10 +234,10 @@ namespace Businesslayer.DAL
            try
            {
                
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM WHERE Mediaitemid = :Mediaitemid";
                cmd.Parameters.Add("Mediaitemid", mediaitemid);
-               dbmediaconn.Open();
+               db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
@@ -274,7 +264,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
 
 
            }
@@ -287,10 +277,10 @@ namespace Businesslayer.DAL
            try
            {
 
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMFILE WHERE Mediaitemid = :Mediaitemid";
                cmd.Parameters.Add("Mediaitemid", mediaitemid);
-               dbmediaconn.Open();
+               db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
@@ -321,7 +311,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
 
 
            }
@@ -336,11 +326,11 @@ namespace Businesslayer.DAL
 
            try
            {
-               OracleCommand cmd = this.dbmediaconn.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE Mediaitemcommentid = :Mediaitemid";
                cmd.Parameters.Add("Mediaitemid", mediaitemid);
 
-               dbmediaconn.Open();
+               db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
@@ -365,7 +355,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.dbmediaconn.Close();
+               this.db.Connection.Close();
 
 
            }

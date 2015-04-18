@@ -18,7 +18,7 @@ namespace Proftaak
         
             List<int> Availablespots=new List<int>();
             List<int> Selectedspots= new List<int>();
-        private List<Event> Events = new List<Event>();
+        private new List<Event> Events = new List<Event>();
             ReservationCampspot RC = new ReservationCampspot();
         public Reservation()
         {

@@ -166,7 +166,7 @@ namespace Proftaak
             Update();
             MessageBox.Show("gedaan");
         }
-        private void Update()
+        private new void Update()
         {
             lbItems.Items.Clear();
             items = IB.GetItems();
