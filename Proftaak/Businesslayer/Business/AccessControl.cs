@@ -6,7 +6,7 @@ namespace Businesslayer.Business
     public class AccessControl
     {
         DbAccess DA = new DbAccess();
-        DbRemainder DR = new DbRemainder();
+        DbEvent DR = new DbEvent();
 
         public void AttachRFID(int UserID, int EventID, string RFID)
         {

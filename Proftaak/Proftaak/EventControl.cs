@@ -66,7 +66,7 @@ namespace Proftaak
                         eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
                     }
 
-                    eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice, eventControl.dbRemainder.GetAddressID(country, province, city, street, streetnumber, postalcode));
+                    eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice, eventControl.DbEvent.GetAddressID(country, province, city, street, streetnumber, postalcode));
                 }
             }
             FillDatagridEvents();

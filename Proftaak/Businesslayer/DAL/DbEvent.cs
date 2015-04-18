@@ -7,10 +7,10 @@ using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
-    public class DbRemainder
+    public class DbEvent
     {
         private readonly Databaseconnection db;
-        public DbRemainder()
+        public DbEvent()
         {
           db = new Databaseconnection();
         }      

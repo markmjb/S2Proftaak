@@ -11,7 +11,7 @@ namespace Businesslayer.Business
         public List<User> ReservationUsers { get; set; }
 
         private DbReservation dbres = new DbReservation();
-        private DbRemainder dbrem = new DbRemainder();
+        private DbEvent dbrem = new DbEvent();
 
         public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, List<int> campingspots, decimal price, List<User> reservationUsers) : base(beginTime, endtime, employee)
         {

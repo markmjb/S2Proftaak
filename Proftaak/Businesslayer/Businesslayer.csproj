@@ -85,7 +85,7 @@
     <Compile Include="DAL\DbAccess.cs" />
     <Compile Include="DAL\DbMaterial.cs" />
     <Compile Include="DAL\DbMedia.cs" />
-    <Compile Include="DAL\DbRemainder.cs" />
+    <Compile Include="DAL\DbEvent.cs" />
     <Compile Include="DAL\DbReservation.cs" />
     <Compile Include="Business\Event.cs" />
     <Compile Include="Business\EventControl.cs" />
