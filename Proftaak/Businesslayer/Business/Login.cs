@@ -4,13 +4,13 @@ namespace Businesslayer.Business
 {
     public class Login
     {
-    DbRemainder dbr = new DbRemainder();
+    DbUserlogin dbul = new DbUserlogin();
 
 
 
         public bool CheckLogin(string email, string pass)
         {
-            if (dbr.Checklogin(email, pass))
+            if (dbul.Checklogin(email, pass))
             {
                 return true;
             }

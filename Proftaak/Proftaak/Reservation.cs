@@ -36,7 +36,7 @@ namespace Proftaak
             foreach (Event E in RC.Events())
             {
             Events.Add(E);
-                cbEvent.Items.Add(E.Name.ToString());
+                cbEvent.Items.Add(E.Name);
             }
 
 
@@ -56,23 +56,14 @@ namespace Proftaak
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 0)
+            if (tabControl1.SelectedIndex != 0)
             {
-                
-            }
-            else
-            {
-                tabControl1.SelectedIndex--;
+                tabControl1.SelectedIndex--;  
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 3)
-            {
-               
-            }
-            else
+            if (tabControl1.SelectedIndex != 3)
             {
                 tabControl1.SelectedIndex++;
             }
