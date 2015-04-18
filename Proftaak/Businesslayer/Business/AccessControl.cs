@@ -18,10 +18,10 @@ namespace Businesslayer.Business
             DA.DettachRFID(EventID, RFID);
         }
 
-        public void DeleteReservation(int DL)
+        public void DeleteReservation(int ResNr)
         {
-            DA.DeleteUserRes(DL);
-            DA.DeleteRes(DL);
+            DA.DeleteUserRes(ResNr);
+            DA.DeleteRes(ResNr);
         }
 
         public List<ReservationAccess> GetAllReservations(int EventID)
@@ -60,9 +60,20 @@ namespace Businesslayer.Business
             return isAttached;
         }
 
+        public int UserRFID (string RFID)
+        {
+            int UserID = DA.UserRFID(RFID);
+            return UserID;
+        }
+
         public void AcceptPay(int ResNr)
         {
             DA.AcceptPayment(ResNr);
+        }
+
+        public void AcceptDept(int UserID, int EventID)
+        {
+            DA.AcceptDept(UserID, EventID);
         }
 
         public List<Event> GetEvents()
@@ -75,6 +86,11 @@ namespace Businesslayer.Business
         {
             List<User> AllUsers = DA.AllPresentUsers(EventID);
             return AllUsers;
+        }
+
+        public void UpdatePresents(int UserID, int Present)
+        {
+            DA.UpdateisPresent(UserID, Present);
         }
     }
 }
