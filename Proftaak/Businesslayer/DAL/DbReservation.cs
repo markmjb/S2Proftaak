@@ -5,17 +5,13 @@ using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
-    public class DbReservation: Databaseconnection
+    public class DbReservation
     {
         private Databaseconnection db;
-        private readonly OracleConnection dbr;
-
 
         public DbReservation()
         {
-            db = new Databaseconnection();
-            this.dbr = new OracleConnection();
-            dbr.ConnectionString = db.Getconnectionstring();
+            db= new Databaseconnection();
         }
 
 
@@ -24,10 +20,10 @@ namespace Businesslayer.DAL
             List<int> spots = new List<int>();
             try
             {
-                OracleCommand cmd = this.dbr.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText =
                     "select CAMPPLACE FROM PTS2_CAMPINGSPOT INNER JOIN PTS2_EVENT ON CAMPINGSPOTID = PTS2_CAMPINGSPOT.CAMPINGSPOTID AND EVENTID=1";
-                this.dbr.Open();
+                this.db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -41,7 +37,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.dbr.Close();
+                this.db.Connection.Close();
             }
             return spots;
 
