@@ -79,10 +79,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(0, -4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(969, 547);
+            this.tabControl1.Size = new System.Drawing.Size(969, 551);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -102,26 +102,25 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(961, 521);
+            this.tabPage1.Size = new System.Drawing.Size(961, 525);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "MediaSharing";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(208, 87);
+            this.listBox1.Location = new System.Drawing.Point(202, 100);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(537, 290);
+            this.listBox1.Size = new System.Drawing.Size(543, 264);
             this.listBox1.TabIndex = 12;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tbfileinfo);
             this.groupBox3.Controls.Add(this.btnUploadMedia);
-            this.groupBox3.Location = new System.Drawing.Point(202, 6);
+            this.groupBox3.Location = new System.Drawing.Point(208, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(543, 80);
+            this.groupBox3.Size = new System.Drawing.Size(543, 94);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "File Info";
@@ -131,14 +130,14 @@
             this.tbfileinfo.Location = new System.Drawing.Point(6, 14);
             this.tbfileinfo.Multiline = true;
             this.tbfileinfo.Name = "tbfileinfo";
-            this.tbfileinfo.Size = new System.Drawing.Size(388, 61);
+            this.tbfileinfo.Size = new System.Drawing.Size(388, 74);
             this.tbfileinfo.TabIndex = 12;
             // 
             // btnUploadMedia
             // 
             this.btnUploadMedia.Location = new System.Drawing.Point(400, 14);
             this.btnUploadMedia.Name = "btnUploadMedia";
-            this.btnUploadMedia.Size = new System.Drawing.Size(137, 56);
+            this.btnUploadMedia.Size = new System.Drawing.Size(137, 74);
             this.btnUploadMedia.TabIndex = 7;
             this.btnUploadMedia.Text = "Upload media";
             this.btnUploadMedia.UseVisualStyleBackColor = true;
@@ -146,27 +145,28 @@
             // 
             // btnLike
             // 
-            this.btnLike.Location = new System.Drawing.Point(602, 422);
+            this.btnLike.Location = new System.Drawing.Point(602, 412);
             this.btnLike.Name = "btnLike";
-            this.btnLike.Size = new System.Drawing.Size(143, 23);
+            this.btnLike.Size = new System.Drawing.Size(143, 30);
             this.btnLike.TabIndex = 10;
             this.btnLike.Text = "Like";
             this.btnLike.UseVisualStyleBackColor = true;
+            this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
             // 
             // btnReply
             // 
-            this.btnReply.Location = new System.Drawing.Point(602, 393);
+            this.btnReply.Location = new System.Drawing.Point(602, 376);
             this.btnReply.Name = "btnReply";
-            this.btnReply.Size = new System.Drawing.Size(143, 23);
+            this.btnReply.Size = new System.Drawing.Size(143, 30);
             this.btnReply.TabIndex = 9;
             this.btnReply.Text = "Give a reply";
             this.btnReply.UseVisualStyleBackColor = true;
             // 
             // tbReply
             // 
-            this.tbReply.Location = new System.Drawing.Point(202, 395);
+            this.tbReply.Location = new System.Drawing.Point(202, 376);
             this.tbReply.Name = "tbReply";
-            this.tbReply.Size = new System.Drawing.Size(394, 47);
+            this.tbReply.Size = new System.Drawing.Size(394, 66);
             this.tbReply.TabIndex = 8;
             this.tbReply.Text = "";
             // 
@@ -202,9 +202,9 @@
             // FileBox
             // 
             this.FileBox.FormattingEnabled = true;
-            this.FileBox.Location = new System.Drawing.Point(18, 87);
+            this.FileBox.Location = new System.Drawing.Point(18, 100);
             this.FileBox.Name = "FileBox";
-            this.FileBox.Size = new System.Drawing.Size(178, 251);
+            this.FileBox.Size = new System.Drawing.Size(178, 238);
             this.FileBox.TabIndex = 2;
             this.FileBox.SelectedIndexChanged += new System.EventHandler(this.FileBox_SelectedIndexChanged);
             // 
@@ -213,14 +213,14 @@
             this.cbtype.FormattingEnabled = true;
             this.cbtype.Items.AddRange(new object[] {
             "Media"});
-            this.cbtype.Location = new System.Drawing.Point(18, 46);
+            this.cbtype.Location = new System.Drawing.Point(18, 59);
             this.cbtype.Name = "cbtype";
             this.cbtype.Size = new System.Drawing.Size(178, 21);
             this.cbtype.TabIndex = 1;
             // 
             // tbsearch
             // 
-            this.tbsearch.Location = new System.Drawing.Point(18, 20);
+            this.tbsearch.Location = new System.Drawing.Point(18, 33);
             this.tbsearch.Name = "tbsearch";
             this.tbsearch.Size = new System.Drawing.Size(178, 20);
             this.tbsearch.TabIndex = 0;
@@ -232,7 +232,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(961, 521);
+            this.tabPage2.Size = new System.Drawing.Size(961, 525);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Upload media";
             // 
@@ -380,7 +380,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(961, 521);
+            this.tabPage3.Size = new System.Drawing.Size(961, 525);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Reports";
             this.tabPage3.UseVisualStyleBackColor = true;
