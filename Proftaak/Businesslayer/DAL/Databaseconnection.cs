@@ -1,20 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Businesslayer.Business;
+using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
     public class Databaseconnection
     {
-        public List<EventControl> events = new List<EventControl>(); 
-        public static string connectionstring = "User Id=mark;Password=mark;Data Source=" + "127.0.0.1/" + ";";
-        public Databaseconnection()
-        {
+        
+        public OracleConnection Connection { get; set; }
 
+        public static string Connectionstring
+        {
+            get{return "User Id=mark;Password=mark;Data Source=" + "127.0.0.1/" + ";"; }
+            private set {  }
         }
 
-        public string getstring()
+        public Databaseconnection()
         {
-            return connectionstring;
+            Connection = new OracleConnection(Connectionstring);
+        }
+
+        //public Databaseconnection(OracleConnection connection)
+        //{
+        //    Connection = connection;
+        //}
+        public string Getconnectionstring()
+        {
+            return Connectionstring;
         }
 
     }

@@ -35,9 +35,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnChangePass = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbNewpass2 = new System.Windows.Forms.TextBox();
+            this.tbNewpass1 = new System.Windows.Forms.TextBox();
+            this.tbOldpass = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnMediaSharing = new System.Windows.Forms.Button();
@@ -96,9 +96,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnChangePass);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tbNewpass2);
+            this.groupBox1.Controls.Add(this.tbNewpass1);
+            this.groupBox1.Controls.Add(this.tbOldpass);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -117,27 +117,28 @@
             this.btnChangePass.TabIndex = 10;
             this.btnChangePass.Text = "Change Password";
             this.btnChangePass.UseVisualStyleBackColor = true;
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
-            // textBox3
+            // tbNewpass2
             // 
-            this.textBox3.Location = new System.Drawing.Point(86, 85);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(114, 20);
-            this.textBox3.TabIndex = 9;
+            this.tbNewpass2.Location = new System.Drawing.Point(86, 85);
+            this.tbNewpass2.Name = "tbNewpass2";
+            this.tbNewpass2.Size = new System.Drawing.Size(114, 20);
+            this.tbNewpass2.TabIndex = 9;
             // 
-            // textBox2
+            // tbNewpass1
             // 
-            this.textBox2.Location = new System.Drawing.Point(86, 56);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(114, 20);
-            this.textBox2.TabIndex = 8;
+            this.tbNewpass1.Location = new System.Drawing.Point(86, 56);
+            this.tbNewpass1.Name = "tbNewpass1";
+            this.tbNewpass1.Size = new System.Drawing.Size(114, 20);
+            this.tbNewpass1.TabIndex = 8;
             // 
-            // textBox1
+            // tbOldpass
             // 
-            this.textBox1.Location = new System.Drawing.Point(86, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(114, 20);
-            this.textBox1.TabIndex = 7;
+            this.tbOldpass.Location = new System.Drawing.Point(86, 30);
+            this.tbOldpass.Name = "tbOldpass";
+            this.tbOldpass.Size = new System.Drawing.Size(114, 20);
+            this.tbOldpass.TabIndex = 7;
             // 
             // label3
             // 
@@ -196,9 +197,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnChangePass;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbNewpass2;
+        private System.Windows.Forms.TextBox tbNewpass1;
+        private System.Windows.Forms.TextBox tbOldpass;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnMediaSharing;

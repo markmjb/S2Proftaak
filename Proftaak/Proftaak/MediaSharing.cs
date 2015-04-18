@@ -18,7 +18,6 @@ namespace Proftaak
     public partial class Mediasharing : Form
     {
         Mediasharingbusiness mdsb = new Mediasharingbusiness();
-        Userlogin userl = new Userlogin();
         public Mediasharing()
         {
             InitializeComponent();

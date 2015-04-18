@@ -93,6 +93,7 @@
     <Compile Include="Business\Login.cs" />
     <Compile Include="Business\Mediaitem.cs" />
     <Compile Include="Business\Mediasharingbusiness.cs" />
+    <Compile Include="DAL\DbUserlogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Business\ReservationAccess.cs" />
     <Compile Include="Business\ReservationCampspot.cs" />

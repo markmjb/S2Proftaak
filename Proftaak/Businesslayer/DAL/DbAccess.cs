@@ -13,7 +13,7 @@ namespace Businesslayer.DAL
         public DbAccess()
         {
             DbAcces = new OracleConnection();
-            DbAcces.ConnectionString = db.getstring();
+            DbAcces.ConnectionString = db.Getconnectionstring();
         }
 
         public void DeleteRes(int ResNr)

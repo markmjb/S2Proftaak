@@ -23,7 +23,7 @@ namespace Businesslayer.DAL
             dbmediaconn = new OracleConnection();
             db = new Databaseconnection();
 
-            dbmediaconn.ConnectionString = db.getstring();
+            dbmediaconn.ConnectionString = db.Getconnectionstring();
         }
 
        public void AddMediaItem(String Title, String Description, int UserID)

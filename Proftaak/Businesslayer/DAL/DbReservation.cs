@@ -15,7 +15,7 @@ namespace Businesslayer.DAL
         {
             db = new Databaseconnection();
             this.dbr = new OracleConnection();
-            dbr.ConnectionString = db.getstring();
+            dbr.ConnectionString = db.Getconnectionstring();
         }
 
 

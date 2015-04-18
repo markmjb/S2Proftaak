@@ -13,7 +13,7 @@ namespace Businesslayer.DAL
         public DbMaterial()
         {
             DbMateriall = new OracleConnection();
-            DbMateriall.ConnectionString = db.getstring();
+            DbMateriall.ConnectionString = db.Getconnectionstring();
         }
 
         public List<Item> GetItems()

@@ -34,7 +34,6 @@ namespace Proftaak
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            Userlogin U = new Userlogin();
             bool rightcredentials = login.CheckLogin(tbEmail.Text, tbPassword.Text);
             if (rightcredentials==false)
             {
@@ -45,7 +44,7 @@ namespace Proftaak
                 this.Hide();
                 StartScreen S = new StartScreen();
                 S.Show();
-                U.UpdateUser(tbEmail.Text, tbPassword.Text);
+                Userlogin.UpdateUser(tbEmail.Text, tbPassword.Text);
             }
             //Check for correct login, than:
 

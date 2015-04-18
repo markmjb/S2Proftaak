@@ -60,5 +60,17 @@ namespace Proftaak
             M.Show();
         }
 
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            if (tbOldpass.Text != string.Empty && tbNewpass2.Text != string.Empty && tbNewpass2.Text != string.Empty)
+            {
+                MessageBox.Show("Het werkt");
+            }
+            else
+            {
+                MessageBox.Show("One or more of the required fields is empty");
+            }
+        }
+
     }
 }
