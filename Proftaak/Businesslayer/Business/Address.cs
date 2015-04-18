@@ -29,5 +29,10 @@
             Province = province;
             Country = country;
         }
+
+        public Address()
+        {
+            
+        }
     }
 }

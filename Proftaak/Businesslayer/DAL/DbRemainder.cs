@@ -40,6 +40,7 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exception)
             {
+            Console.WriteLine(exception);
             }
             finally
             {
@@ -49,8 +50,10 @@ namespace Businesslayer.DAL
 
 
         }
-        public List<string> Getloggeduser(string email, string pass)
+        public User Getloggeduser(string email, string pass)
         {
+            User user = new User();
+            Address address = new Address();
             List<string> Objects = new List<string>();
             try
             {
@@ -63,27 +66,17 @@ namespace Businesslayer.DAL
                 OracleDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-
-                    String UID = Convert.ToString(reader["USERID"]);
-                    String firstname = Convert.ToString(reader["FIRSTNAME"]);
-                    String lastname = Convert.ToString(reader["LASTNAME"]);
-                    String emaill = Convert.ToString(reader["EMAIL"]);
-                    String street = Convert.ToString(reader["STREET"]);
-                    String housenumber = Convert.ToString(reader["HOUSENUMBER"]);
-                    String postalcode = Convert.ToString(reader["POSTALCODE"]);
-                    String city = Convert.ToString(reader["CITY"]);
-                    String state = Convert.ToString(reader["PROVINCE"]);
-                    String country = Convert.ToString(reader["COUNTRY"]);
-                    Objects.Add(UID);
-                    Objects.Add(firstname);
-                    Objects.Add(lastname);
-                    Objects.Add(emaill);
-                    Objects.Add(street);
-                    Objects.Add(housenumber);
-                    Objects.Add(postalcode);
-                    Objects.Add(city);
-                    Objects.Add(state);
-                    Objects.Add(country);
+                   user.ID = Convert.ToInt32(reader["USERID"]);
+                   user.Firstname = Convert.ToString(reader["FIRSTNAME"]);
+                   user.Lastname = Convert.ToString(reader["LASTNAME"]);
+                   user.Email = Convert.ToString(reader["EMAIL"]);
+                   address.Street = Convert.ToString(reader["STREET"]);
+                   address.Streetnumber = Convert.ToInt32(reader["HOUSENUMBER"]);
+                   address.PostalCode = Convert.ToString(reader["POSTALCODE"]);
+                   address.City = Convert.ToString(reader["CITY"]);
+                   address.Province = Convert.ToString(reader["PROVINCE"]);
+                   address.Country = Convert.ToString(reader["COUNTRY"]);
+                    user.Address = address;
                 }
             }
             
@@ -97,7 +90,7 @@ namespace Businesslayer.DAL
                 
             }
 
-            return Objects;
+            return user;
         }
         public List<Event> GetEvents()
         {
