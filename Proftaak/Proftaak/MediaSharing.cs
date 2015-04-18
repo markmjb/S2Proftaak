@@ -206,7 +206,7 @@ namespace Proftaak
 
         private void cbtypetab2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbtypetab2.SelectedItem == "Text")
+            if (cbtypetab2.SelectedItem.ToString() == "Text")
             {
                 tbSelectFile.Enabled = false;
                 btnBrowse.Enabled = false;

@@ -33,7 +33,7 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exc)
             {
-
+                Console.WriteLine(exc);
             }
             finally
             {

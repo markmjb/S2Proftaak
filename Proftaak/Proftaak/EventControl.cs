@@ -79,8 +79,7 @@ namespace Proftaak
 
         private void OnDatagridEventsCellClick()
         {
-            if (datagridEvents.CurrentCell.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != "" &&
-                datagridEvents.CurrentCell.Value != null)
+            if (datagridEvents.CurrentCell.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != null)
             {
                 int eventID = Convert.ToInt32(datagridEvents.CurrentCell.Value);
 
