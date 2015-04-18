@@ -29,6 +29,7 @@ namespace Businesslayer.Business
         public int Mediaitemid { get; set; }
 
         public string Text { get; set; }
+        public int MediaitemcommentID { get; set; }
 
 
         public Mediaitem(string Type, string Title, string Description, string filepath, int CategoryID, int UserID, int size, string Filetype)
@@ -75,7 +76,12 @@ namespace Businesslayer.Business
         {
             this.Mediaitemid = mediaitemid;
             this.Text = text;
-            this.Mediacategoryofid = mediaitemcommentid;
+            this.MediaitemcommentID= mediaitemcommentid;
+        }
+
+        public Mediaitem()
+        {
+           
         }
     }
          

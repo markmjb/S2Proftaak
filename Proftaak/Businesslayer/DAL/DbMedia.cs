@@ -7,10 +7,11 @@ namespace Businesslayer.DAL
 {
     public class DbMedia 
     {      
-        int MediacategoryID;
-        Mediaitem mediaitem;
-        public int MediaitemID { get; set; }
+        Mediaitem dalMediaitem= new Mediaitem();
+        private int Returnint;
+        List<Mediaitem> mediaitems = new List<Mediaitem>();
         private Databaseconnection db;
+
         public DbMedia()
         {
          db = new Databaseconnection();
@@ -20,15 +21,12 @@ namespace Businesslayer.DAL
        {
            try
            {
-
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText= " INSERT INTO PTS2_MEDIAITEM(Title,Description,UserID) VALUES (:title, :descr, :userid)";
                cmd.Parameters.Add("title", Title);
                cmd.Parameters.Add("descr", Description);
                cmd.Parameters.Add("userid", UserID);
-
                db.Connection.Open();
-               
                cmd.ExecuteReader();
            }
            catch (OracleException exc)
@@ -45,7 +43,6 @@ namespace Businesslayer.DAL
        {
            try
            {
-
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMFILE(mediaitemID,Filelocation, Filesize, Filetype,Mediacategoryid) VALUES (:mediaitemID ,:flocation, :fsize, :ftype, :mediacategoryid)";
                cmd.Parameters.Add("mediaitemID", MediaitemID);
@@ -53,9 +50,7 @@ namespace Businesslayer.DAL
                cmd.Parameters.Add("fsize", Filesize);
                cmd.Parameters.Add("ftype", Filetype );
                cmd.Parameters.Add("mediacateogryid", mediacategoryid);
-
                db.Connection.Open();
-               
                cmd.ExecuteReader();
            }
            catch (OracleException exc)
@@ -75,18 +70,12 @@ namespace Businesslayer.DAL
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT MEDIAITEMID FROM PTS2_MEDIAITEM WHERE TITLE  = :Title";
                 cmd.Parameters.Add("Title", Title);
-                
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
-
                 while (reader.Read())
                 {
-
-                    MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
-
+                Returnint = Convert.ToInt32(reader["MEDIAITEMID"]);
                 }
-
-
             }
             catch (OracleException exc)
             {
@@ -94,12 +83,9 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
-
-
+            this.db.Connection.Close();
             }
-
-            return MediaitemID;
+        return Returnint;
         }
 
        public int GetCategoryID(string categoryinput)
@@ -109,17 +95,11 @@ namespace Businesslayer.DAL
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT MEDIACATEGORY FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME  = :input";
                cmd.Parameters.Add("input", categoryinput);
-
                OracleDataReader reader = cmd.ExecuteReader();
-
                while (reader.Read())
                {
-
-                   MediacategoryID = Convert.ToInt32(reader["MEDIACATEGORYID"]);
-
+               Returnint = Convert.ToInt32(reader["MEDIACATEGORYID"]);
                }
-             
-
            }
            catch (OracleException exc)
            {
@@ -127,42 +107,27 @@ namespace Businesslayer.DAL
            }
             finally
            {
-               this.db.Connection.Close();
-
-
+           this.db.Connection.Close();
            }
-          
-           return MediacategoryID;
+       return Returnint;
        }
-
-
+        
        public List<Mediaitem>Getmediaitems()
        {
-           List<Mediaitem> mediaitems = new List<Mediaitem>();
-           try
+          try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM";
                db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
-
                while (reader.Read())
-                   
                {
-
-                   int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
-                   string Title = Convert.ToString(reader["TITLE"]);
-                   string Description = Convert.ToString(reader["DESCRIPTION"]);
-                   int Userid = Convert.ToInt32(reader["USERID"]);
-
-                   Mediaitem mediaitem = new Mediaitem(MediaitemID, Title, Description, Userid);
-                   mediaitems.Add(mediaitem);
-
-
-
+                   dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                   dalMediaitem.Title = Convert.ToString(reader["TITLE"]);
+                   dalMediaitem.Description = Convert.ToString(reader["DESCRIPTION"]);
+                   dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
+                   mediaitems.Add(dalMediaitem);
                }
-
-
            }
            catch (OracleException exc)
            {
@@ -170,27 +135,19 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.db.Connection.Close();
-
-
+           this.db.Connection.Close();
            }
-
-           return mediaitems;
+       return mediaitems;
        }
 
        public void RemoveMediaItem(Mediaitem mediaitem)
        {
            try
            {
-               int MediaitemID = mediaitem.Mediaitemid;
-
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_MEDIAITEM WHERE MEDIAITEMID = :MediaitemID";
-               cmd.Parameters.Add("MediaitemID", MediaitemID);
-            
-
+               cmd.Parameters.Add("MediaitemID", mediaitem.Mediaitemid);
                db.Connection.Open();
-
                cmd.ExecuteReader();
            }
            catch (OracleException exc)
@@ -207,15 +164,10 @@ namespace Businesslayer.DAL
        {
            try
            {
-               int MediaitemID = mediaitem.Mediaitemid;
-
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_MEDIAITEMFILE WHERE MEDIAITEMID = :MediaitemID";
-               cmd.Parameters.Add("MediaitemID", MediaitemID);
-
-
+               cmd.Parameters.Add("MediaitemID", mediaitem.Mediaitemid);
                db.Connection.Open();
-
                cmd.ExecuteReader();
            }
            catch (OracleException exc)
@@ -230,137 +182,87 @@ namespace Businesslayer.DAL
 
        public Mediaitem Getsinglemediaitem(int mediaitemid)
        {
-           
            try
            {
-               
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM WHERE Mediaitemid = :Mediaitemid";
                cmd.Parameters.Add("Mediaitemid", mediaitemid);
                db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
-
                while (reader.Read())
                {
-
-                   int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
-                   string Title = Convert.ToString(reader["TITLE"]);
-                   string Description = Convert.ToString(reader["DESCRIPTION"]);
-                   int Userid = Convert.ToInt32(reader["USERID"]);
-
-                   mediaitem = new Mediaitem(MediaitemID, Title, Description, Userid);
-            
-
-
-
+               dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+               dalMediaitem.Title = Convert.ToString(reader["TITLE"]);
+               dalMediaitem.Description = Convert.ToString(reader["DESCRIPTION"]);
+               dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
                }
-              
-
-
-           }
+            }
            catch (OracleException exc)
            {
                Console.WriteLine(exc);
            }
            finally
            {
-               this.db.Connection.Close();
-
-
+           this.db.Connection.Close();
            }
-
-           return mediaitem;
+           return dalMediaitem;
        }
        public Mediaitem Getsinglemediaitemfile(int mediaitemid)
        {
-
            try
            {
-
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMFILE WHERE Mediaitemid = :Mediaitemid";
                cmd.Parameters.Add("Mediaitemid", mediaitemid);
                db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
-
                while (reader.Read())
                {
-
-                   int Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
-                   string Filepath = Convert.ToString(reader["FILELOCATION"]);
-                   int Filesize = Convert.ToInt32(reader["FILESIZE"]);
-                   string Filetype = Convert.ToString(reader["FILETYPE"]);
-                   int Mediacategoryofid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
-                   
-                  
-
-                   
-                   mediaitem = new Mediaitem(Mediaitemid, Filepath, Filesize, Filetype, Mediacategoryofid);
-
-
-
-
+               dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+               dalMediaitem.Filepath = Convert.ToString(reader["FILELOCATION"]);
+               dalMediaitem.Filesize = Convert.ToInt32(reader["FILESIZE"]);
+               dalMediaitem.Filetype = Convert.ToString(reader["FILETYPE"]);
+               dalMediaitem.Mediacategoryofid=Convert.ToInt32(reader["MEDIACATEGORYID"]);
                }
-
-
-
            }
            catch (OracleException exc)
            {
-               Console.WriteLine(exc);
+           Console.WriteLine(exc);
            }
            finally
            {
-               this.db.Connection.Close();
-
-
+           this.db.Connection.Close();
            }
 
-           return mediaitem;
+       return dalMediaitem;
        }
-
-
+        
        public List<Mediaitem> Getmediatext(int mediaitemid)
        {
-           List<Mediaitem> mediatextitems = new List<Mediaitem>();
-
-           try
-           {
+            try
+            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE Mediaitemcommentid = :Mediaitemid";
                cmd.Parameters.Add("Mediaitemid", mediaitemid);
-
                db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
-
                while (reader.Read())
                {
-
-                   int MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
-                   string Text = Convert.ToString(reader["TEXT"]);
-                   int Mediaitemcommentid = Convert.ToInt32(reader["MEDIAITEMCOMMENTID"]);
-                  
-                   Mediaitem mediaitem = new Mediaitem(MediaitemID, Text, Mediaitemcommentid);
-                   mediatextitems.Add(mediaitem);
-
-
-
+                dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                dalMediaitem.Text = Convert.ToString(reader["TEXT"]);
+                dalMediaitem.MediaitemcommentID= Convert.ToInt32(reader["MEDIAITEMCOMMENTID"]);
+                mediaitems.Add(dalMediaitem);
                }
-
-
-           }
+            }
            catch (OracleException exc)
            {
-               Console.WriteLine(exc);
+           Console.WriteLine(exc);
            }
            finally
            {
-               this.db.Connection.Close();
-
-
+           this.db.Connection.Close();
            }
-
-           return mediatextitems;
+           return mediaitems;
        }
       
     }
