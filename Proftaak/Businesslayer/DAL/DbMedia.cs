@@ -115,7 +115,7 @@ namespace Businesslayer.DAL
         
        public List<Mediaitem>Getmediaitems()
        {
-           dalMediaitem = new Mediaitem();
+          
            mediaitems = new List<Mediaitem>();
           try
            {
@@ -125,6 +125,7 @@ namespace Businesslayer.DAL
                OracleDataReader reader = cmd.ExecuteReader();
                while (reader.Read())
                {
+                   dalMediaitem = new Mediaitem();
                    dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
                    dalMediaitem.Title = Convert.ToString(reader["TITLE"]);
                    dalMediaitem.Description = Convert.ToString(reader["DESCRIPTION"]);

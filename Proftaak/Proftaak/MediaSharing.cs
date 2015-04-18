@@ -180,12 +180,6 @@ namespace Proftaak
 
         private void FileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FileBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("geen item geselecteerd");
-            }
-            else
-            {
                 tbfileinfo.Clear();
                 
                 string selecteditem = FileBox.SelectedItem.ToString();
@@ -202,7 +196,7 @@ namespace Proftaak
                 Refresh();
             }
            
-        }
+        
 
         private void cbtypetab2_SelectedIndexChanged(object sender, EventArgs e)
         {
