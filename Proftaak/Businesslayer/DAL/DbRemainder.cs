@@ -7,7 +7,7 @@ using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
-    public class DbRemainder : Databaseconnection
+    public class DbRemainder
     {
         private readonly Databaseconnection db;
         private bool Logincheck;
