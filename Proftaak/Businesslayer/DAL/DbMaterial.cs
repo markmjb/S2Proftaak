@@ -5,15 +5,13 @@ using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
-   public class DbMaterial 
-    {
-        private Databaseconnection db = new Databaseconnection();
-        private OracleConnection DbMateriall;
-
+   public class DbMaterial
+   {
+       private readonly Databaseconnection db;
+        
         public DbMaterial()
         {
-            DbMateriall = new OracleConnection();
-            DbMateriall.ConnectionString = db.Getconnectionstring();
+           db = new Databaseconnection();
         }
 
         public List<Item> GetItems()
@@ -21,10 +19,10 @@ namespace Businesslayer.DAL
             List<Item> items = new List<Item>();
             try
             {
-                OracleCommand cmd = this.DbMateriall.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "select materialtypeName, price from PTS2_MATERIALTYPE";
 
-                DbMateriall.Open();
+                db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 string materialtypeName;
@@ -44,7 +42,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.DbMateriall.Close();
+                this.db.Connection.Close();
             }
             return items;
         }
@@ -52,14 +50,14 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = this.DbMateriall.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = String.Format("update PTS2_MATERIALTYPE set price = {0} where materialtypeName = '{1}'", price, materialName);
                // cmd.CommandText = String.Format("update PTS2_MATERIAL set price = {0} where materialName = '{1}'", price, materialName);
                 //cmd.Parameters.Add("materialName", materialName);
                 //cmd.Parameters.Add("price", price);
                 
 
-                DbMateriall.Open();
+                db.Connection.Open();
 
                 cmd.ExecuteReader();
             }
@@ -71,7 +69,7 @@ namespace Businesslayer.DAL
             {
                 try
                 {
-                    OracleCommand cmd = this.DbMateriall.CreateCommand();
+                    OracleCommand cmd = this.db.Connection.CreateCommand();
                     //cmd.CommandText = String.Format("update PTS2_MATERIALTYPE set price = {0} where materialtypeName = '{1}'", price, materialName);
                     cmd.CommandText = String.Format("update PTS2_MATERIAL set price = {0} where materialName = '{1}'", price, materialName);
                     //cmd.Parameters.Add("materialName", materialName);
@@ -88,7 +86,7 @@ namespace Businesslayer.DAL
                 }
                 finally
                 {
-                    this.DbMateriall.Close();
+                    this.db.Connection.Close();
                 }
             }
         }
@@ -96,7 +94,7 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OracleCommand cmd = this.DbMateriall.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialName, description, price, materialTypeID, eventID)VALUES (:materialName, :description, :price, :materialTypeID, :eventID)";
                cmd.Parameters.Add("materialName", materialName);
                cmd.Parameters.Add("description", description);
@@ -104,7 +102,7 @@ namespace Businesslayer.DAL
                cmd.Parameters.Add("materialTypeID", materialTypeID);
                cmd.Parameters.Add("eventID", eventID);
 
-               DbMateriall.Open();
+               db.Connection.Open();
 
                cmd.ExecuteReader();
            }
@@ -114,18 +112,18 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.DbMateriall.Close();
+               this.db.Connection.Close();
            }
        }
        public void LoanMaterial(int MaterialID)
        {
            try
            {
-               OracleCommand cmd = this.DbMateriall.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_MATERIAL WHERE materialID = :MaterialID";
                cmd.Parameters.Add("materialID", MaterialID);              
 
-               DbMateriall.Open();
+               db.Connection.Open();
 
                cmd.ExecuteReader();
            }
@@ -135,14 +133,14 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.DbMateriall.Close();
+               this.db.Connection.Close();
            }
        }
        public void ReturnMaterial(int MaterialID, string MaterialName, string Description, double Price, int MaterialTypeID, int EventID)
        {
            try
            {
-               OracleCommand cmd = this.DbMateriall.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialID, materialName, description, price, materialTypeID, eventID)VALUES (:MaterialID, :MaterialName, :Description, :Price, :MaterialTypeID, :EventID)";
                cmd.Parameters.Add("materialID", MaterialID);
                cmd.Parameters.Add("materialName", MaterialName);
@@ -151,7 +149,7 @@ namespace Businesslayer.DAL
                cmd.Parameters.Add("materialTypeID", MaterialTypeID);
                cmd.Parameters.Add("eventID", EventID);
 
-               DbMateriall.Open();
+               db.Connection.Open();
 
                cmd.ExecuteReader();
            }
@@ -161,7 +159,7 @@ namespace Businesslayer.DAL
            }
            finally
            {
-               this.DbMateriall.Close();
+               this.db.Connection.Close();
            }
        }
     }

@@ -41,12 +41,6 @@ namespace Proftaak
          StartScreen S = new StartScreen();
             S.Show();
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void MaterialControlForm_Load(object sender, EventArgs e)
         {
             rfid = new RFID();
@@ -54,6 +48,7 @@ namespace Proftaak
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
             openCmdLine(rfid);
+            Update();
         }
         void rfid_Attach(object sender, AttachEventArgs e)
         {
