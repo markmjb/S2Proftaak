@@ -100,7 +100,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.UserPassword, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.EventID = :ID";
+                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.EventID = :ID";
                 cmd.Parameters.Add("ID", EventID);
 
                 db.Connection.Open();
@@ -147,7 +147,7 @@ namespace Businesslayer.DAL
                     {
                         isPresent = true;
                     }
-                    UserPassword = Convert.ToString(reader["UserPassword"]);
+                    UserPassword = Convert.ToString(reader["upas"]);
                     StartDate = Convert.ToDateTime(reader["StartDate"]);
                     EndDate = Convert.ToDateTime(reader["EndDate"]);
                     Groupname = Convert.ToString(reader["Groupname"]);
@@ -181,7 +181,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.UserPassword, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.ReservationID = :ID";
+                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
                 db.Connection.Open();
@@ -228,7 +228,7 @@ namespace Businesslayer.DAL
                     {
                         isPresent = true;
                     }
-                    UserPassword = Convert.ToString(reader["UserPassword"]);
+                    UserPassword = Convert.ToString(reader["upas"]);
                     StartDate = Convert.ToDateTime(reader["StartDate"]);
                     EndDate = Convert.ToDateTime(reader["EndDate"]);
                     Groupname = Convert.ToString(reader["Groupname"]);
