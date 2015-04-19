@@ -4,7 +4,7 @@ namespace Businesslayer.Business
 {
     public class Login
     {
-    DbUserlogin dbul = new DbUserlogin();
+        private DbUserlogin dbul = new DbUserlogin();
 
 
 
@@ -20,5 +20,15 @@ namespace Businesslayer.Business
             }
         }
 
+        public void Changepass(string newpass)
+        {
+            dbul.Changepass(3, newpass);
+            ;
+        }
+
+        public void Updateuser(string email, string pass)
+        {
+            Userlogin.Loggeduser = dbul.Getloggeduser(email, pass);
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace Businesslayer.Business
         public int Mediaitemid { get; set; }
 
         public string Text { get; set; }
+        public int Likeid { get; set; }
         public int MediaitemcommentID { get; set; }
 
 
@@ -79,6 +80,12 @@ namespace Businesslayer.Business
             this.MediaitemcommentID= mediaitemcommentid;
         }
 
+        public Mediaitem(int likeid, int userid, int mediaitemid)
+        {
+            this.Likeid = likeid;
+            this.UserID = userid;
+            this.Mediaitemid = mediaitemid;
+        }
         public Mediaitem()
         {
            

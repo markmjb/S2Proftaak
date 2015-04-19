@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Businesslayer.Business;
 
 namespace Proftaak
 {
@@ -22,20 +14,20 @@ namespace Proftaak
         private void btnReservations_Click(object sender, EventArgs e)
         {
             this.Hide();
-        Reservation reservation= new Reservation();
+            Reservation reservation = new Reservation();
             reservation.Show();
         }
 
         private void StartScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-        Loginscreen L = new Loginscreen();
+            Loginscreen L = new Loginscreen();
             L.Show();
         }
 
         private void btnMaterial_Click(object sender, EventArgs e)
         {
             this.Hide();
-        MaterialControlForm M = new MaterialControlForm();
+            MaterialControlForm M = new MaterialControlForm();
             M.Show();
         }
 
@@ -62,15 +54,21 @@ namespace Proftaak
 
         private void btnChangePass_Click(object sender, EventArgs e)
         {
-            if (tbOldpass.Text != string.Empty && tbNewpass2.Text != string.Empty && tbNewpass2.Text != string.Empty)
+            if (tbOldpass.Text == string.Empty || tbNewpass2.Text == string.Empty || tbNewpass2.Text == string.Empty ||
+                tbNewpass1.Text != tbNewpass2.Text || tbOldpass.Text != Userlogin.Loggeduser.Password)
             {
-                MessageBox.Show("Het werkt");
+                MessageBox.Show("Invalid Fields");
             }
             else
             {
-                MessageBox.Show("One or more of the required fields is empty");
+                Login L = new Login();
+                L.Changepass(tbNewpass1.Text);
+                L.Updateuser(Userlogin.Loggeduser.Email, tbNewpass1.Text);
+                MessageBox.Show("password changed to : " + Userlogin.Loggeduser.Password);
+                tbOldpass.Text = string.Empty;
+                tbNewpass1.Text = string.Empty;
+                tbNewpass2.Text = string.Empty;
             }
         }
-
     }
 }

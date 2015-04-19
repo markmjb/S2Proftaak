@@ -55,5 +55,37 @@ namespace Businesslayer.Business
 
         }
 
+        public List<Mediaitem> AlreadyLiked()
+        {
+            return dbmedia.AlreadyLiked();
+
+        }
+
+        public int  GetAllLikes(int mediaitemid)
+        {
+            return dbmedia.GetAllLikes(mediaitemid);
+
+        }
+
+        public void AddLikeToFile(int mediaitemid,int userid)
+        {
+            dbmedia.AddLikeToFile(mediaitemid, userid);
+
+        }
+        public void AddLikeToReply(int mediaitemid,int userid)
+        {
+            dbmedia.AddLikeToReply(mediaitemid, userid);
+
+        }
+        public void RemoveLikeToFile(int mediaitemid, int userid)
+        {
+            dbmedia.RemoveLikeToFile(mediaitemid, userid);
+
+        }
+        public void RemoveLikeToReply(int mediaitemid, int userid)
+        {
+            dbmedia.RemoveLikeToReply(mediaitemid, userid);
+
+        }
     }
 }

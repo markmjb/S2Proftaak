@@ -5,13 +5,14 @@ using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
 {
-    public class DbMedia 
-    {      
-        Mediaitem dalMediaitem= new Mediaitem();
+    public class DbMedia
+    {
+        private Mediaitem dalMediaitem;
         private int Returnint;
-        List<Mediaitem> mediaitems = new List<Mediaitem>();
+        private List<Mediaitem> mediaitems;
         private Databaseconnection db;
-
+        int aantallikes;
+        
         public DbMedia()
         {
          db = new Databaseconnection();
@@ -65,6 +66,7 @@ namespace Businesslayer.DAL
 
         public int GetMediaItemID(string Title)
         {
+            dalMediaitem = new Mediaitem();
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -114,6 +116,8 @@ namespace Businesslayer.DAL
         
        public List<Mediaitem>Getmediaitems()
        {
+          
+           mediaitems = new List<Mediaitem>();
           try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -122,6 +126,7 @@ namespace Businesslayer.DAL
                OracleDataReader reader = cmd.ExecuteReader();
                while (reader.Read())
                {
+                   dalMediaitem = new Mediaitem();
                    dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
                    dalMediaitem.Title = Convert.ToString(reader["TITLE"]);
                    dalMediaitem.Description = Convert.ToString(reader["DESCRIPTION"]);
@@ -182,6 +187,7 @@ namespace Businesslayer.DAL
 
        public Mediaitem Getsinglemediaitem(int mediaitemid)
        {
+           dalMediaitem = new Mediaitem();
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -209,6 +215,7 @@ namespace Businesslayer.DAL
        }
        public Mediaitem Getsinglemediaitemfile(int mediaitemid)
        {
+           dalMediaitem = new Mediaitem();
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -239,6 +246,8 @@ namespace Businesslayer.DAL
         
        public List<Mediaitem> Getmediatext(int mediaitemid)
        {
+           dalMediaitem = new Mediaitem();
+           mediaitems = new List<Mediaitem>();
             try
             {
                OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -264,6 +273,168 @@ namespace Businesslayer.DAL
            }
            return mediaitems;
        }
-      
+
+       public int GetAllLikes(int mediaitemid)
+       {
+           aantallikes = 0;
+
+           try
+           {
+              
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_LIKE WHERE MEDIAITEMID = :mediaitemid";
+               cmd.Parameters.Add("MediaitemID", mediaitemid);
+               db.Connection.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+               cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+                   int Likeid = Convert.ToInt32(reader["LIKEID"]);
+                   int Userid = Convert.ToInt32(reader["USERID"]);
+                   int Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+
+                   if(Mediaitemid == mediaitemid)
+                   {
+                       aantallikes++;
+                   }
+                  
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return aantallikes;
+           
+       }
+
+       public void AddLikeToFile(int mediaitemid, int userid)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = " INSERT INTO PTS2_Like(Userid, MediaitemID) VALUES (:userid, :mediaitemid)";
+
+
+               cmd.Parameters.Add("Userid", userid);
+               cmd.Parameters.Add("MediaitemID", mediaitemid);
+               db.Connection.Open();
+               cmd.ExecuteReader();
+
+              
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
+
+        public void AddLikeToReply(int mediaitemid, int userid)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "INSERT INTO PTS2_Like(Userid, MediaitemID) VALUES (:userid, :mediaitemid) WHERE MEDIAITEMID LIKE (SELECT MEDIAITEMCOMMENTID FROM PTS2_MEDIAITEMTEXT WHERE MEDIAITEMCOMMENTID = :mediaitemid)";
+
+
+               cmd.Parameters.Add("Userid", userid);
+               cmd.Parameters.Add("mediaitemID", mediaitemid);
+               
+               db.Connection.Open();
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
+
+        public List<Mediaitem> AlreadyLiked()
+        {
+            dalMediaitem = new Mediaitem();
+            mediaitems = new List<Mediaitem>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT * FROM PTS2_LIKE";
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
+                    dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    mediaitems.Add(dalMediaitem);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return mediaitems;
+        }
+        public void RemoveLikeToFile(int mediaitemid, int userid)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "DELETE FROM PTS2_Like WHERE MEDIAITEMID = :mediaitemid AND USERID = :userid";
+
+                cmd.Parameters.Add("Userid", userid);
+                cmd.Parameters.Add("mediaitemID", mediaitemid);
+
+                db.Connection.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+
+        public void RemoveLikeToReply(int mediaitemid, int userid)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "DELETE FROM PTS2_Like WHERE MEDIAITEMID = :mediaitemid AND USERID = :userid";
+
+                cmd.Parameters.Add("Userid", userid);
+                cmd.Parameters.Add("mediaitemID", mediaitemid);
+
+                db.Connection.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+        
     }
 }

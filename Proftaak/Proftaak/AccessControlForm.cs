@@ -174,18 +174,14 @@ namespace Proftaak
         void LoadReservationListBox()
         {
             lbResNr.Items.Clear();
-            AllEvents = AC.GetEvents();
 
-            if (cbEvent.SelectedIndex != -1)
+            Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
+            Reservations = AC.GetAllReservations(SelEvent.EventID);
+
+            foreach (ReservationAccess R in Reservations)
             {
-                int SelectedEvent = cbEvent.SelectedIndex;
-                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
-                Reservations = AC.GetAllReservations(SelEvent.EventID);
-
-                foreach (ReservationAccess R in Reservations)
-                {
-                    lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
-                }
+                //Maak ToString()
+                lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
             }
         }
         void LoadReservationUserListBox()
@@ -197,6 +193,7 @@ namespace Proftaak
 
                 foreach (User U in ReservationUsers)
                 {
+                    //Maak ToString()
                     lbResName.Items.Add(U.ReservationID + "  |  " + U.Lastname + "," + U.Firstname);
                 }
             }
@@ -230,32 +227,34 @@ namespace Proftaak
 
         private void btnDelRes_Click(object sender, EventArgs e)
         {
-            AC.DeleteReservation(Convert.ToInt32(tbDelRes.Text));
-            LoadReservationListBox();
+            if (lbResNr.SelectedIndex != -1)
+            {
+                ReservationAccess U = Reservations.ElementAt(lbResNr.SelectedIndex);
+                AC.DeleteReservation(U.ReservationNr);
+                LoadReservationListBox();
+            }
         }
 
         private void btnPaym_Click(object sender, EventArgs e)
         {
-            AC.AcceptPay((Convert.ToInt32(tbDelRes.Text)));
-            LoadReservationListBox();
+            if (lbResNr.SelectedIndex != -1)
+            {
+                ReservationAccess U = Reservations.ElementAt(lbResNr.SelectedIndex);
+                AC.AcceptPay(U.ReservationNr);
+                LoadReservationListBox();
+            }
         }
 
         private void cbEvent_SelectionChangeCommitted(object sender, EventArgs e)
         {
             lbResName.Items.Clear();
             LoadReservationListBox();
-            LoadPresentList();
-
-            if (lbResNr.SelectedIndex == -1)
-            {
-                lbResName.Items.Clear();
-            }
+            LoadPresentList(); 
         }
 
         private void lbResNr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int SelectedIndex = lbResNr.SelectedIndex;
-            ReservationAccess R = Reservations.ElementAt(SelectedIndex);
+            ReservationAccess R = Reservations.ElementAt(lbResNr.SelectedIndex);
             SelectedReservation = R.ReservationNr;
             LoadReservationUserListBox();
         }
@@ -263,29 +262,22 @@ namespace Proftaak
         private void btnSearch_Click(object sender, EventArgs e)
         {
             lbResNr.Items.Clear();
-            AllEvents = AC.GetEvents();
 
-            if (cbEvent.SelectedIndex != -1)
+            Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
+            SearchResults = AC.Search(SelEvent.EventID, (Convert.ToInt32(tbSearch.Text)));
+
+            foreach (ReservationAccess R in SearchResults)
             {
-                Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
-                Reservations = AC.GetAllReservations(SelEvent.EventID);
-
-                lbResNr.Items.Clear();
-                SearchResults = AC.Search(SelEvent.EventID, (Convert.ToInt32(tbSearch.Text)));
-                foreach (ReservationAccess R in SearchResults)
-                {
-                    lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
-                }
+                lbResNr.Items.Add(R.ReservationNr + "\t|\t" + R.Payment);
             }
         }
 
         private void lbResName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int SelectedIndex = lbResName.SelectedIndex;
 
-            if ( SelectedIndex != -1)
+            if ( lbResName.SelectedIndex != -1)
             {
-                User U = ReservationUsers.ElementAt(SelectedIndex);
+                User U = ReservationUsers.ElementAt(lbResName.SelectedIndex);
                 bool isPresent = AC.getPresents(U.ID);
 
                 if (U != null)
@@ -301,45 +293,38 @@ namespace Proftaak
                     tbArrival.Text = U.StartDate.ToString();
                     tbDepature.Text = U.EndDate.ToString();
                     if (isPresent)
-                    {
-                        pbChecked.BackColor = Color.Green;
-                    }
+                    { pbChecked.BackColor = Color.Green; }
                     else
-                    {
-                        pbChecked.BackColor = Color.Red;
-                    }
+                    { pbChecked.BackColor = Color.Red; }
                 }
             }
         }
 
         private void btnAtt_Click(object sender, EventArgs e)
         {
-            int SelectedIndex = lbResName.SelectedIndex;
-
-            if (SelectedIndex != -1)
+            if (lbResName.SelectedIndex != -1)
             {
-                User U = ReservationUsers.ElementAt(SelectedIndex);
+                User U = ReservationUsers.ElementAt(lbResName.SelectedIndex);
                 bool isAttached = AC.getUserRFID(U.ID);
 
-                if (cbEvent.SelectedIndex != -1 && isAttached == false)
+                if (!isAttached)
                 {
                     int SelectedEvent = cbEvent.SelectedIndex;
                     Event SelEvent = AllEvents.ElementAt(SelectedEvent);
                     AC.AttachRFID(U.ID, SelEvent.EventID, TempRFID);
+
+                    btnAtt.Enabled = false;
+                    btnUnAtt.Enabled = true;
                 }
             }
-            btnAtt.Enabled = false;
-            btnUnAtt.Enabled = true;
         }
 
         private void btnUnAtt_Click(object sender, EventArgs e)
         {
-            if (cbEvent.SelectedIndex != -1)
-            {
-                int SelectedEvent = cbEvent.SelectedIndex;
-                Event SelEvent = AllEvents.ElementAt(SelectedEvent);
-                AC.DettachRFID(SelEvent.EventID, TempRFID);
-            }
+
+            Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
+            AC.DettachRFID(SelEvent.EventID, TempRFID);
+
             btnAtt.Enabled = true;
             btnUnAtt.Enabled = false;
         }
@@ -354,6 +339,18 @@ namespace Proftaak
                 {
                     btnAtt.Enabled = false;
                     btnUnAtt.Enabled = true;
+
+                    int RFIDuser = AC.UserRFID(TempRFID);
+                    bool isPresent = AC.getPresents(RFIDuser);
+
+                    if (isPresent)
+                    {
+                        AC.UpdatePresents(RFIDuser, 0);
+                    }
+                    else if (!isPresent)
+                    {
+                        AC.UpdatePresents(RFIDuser, 1);
+                    }
                 }
                 else if (!isAttached)
                 {
@@ -363,6 +360,14 @@ namespace Proftaak
             }
         }
 
+        private void btnDept_Click(object sender, EventArgs e)
+        {
+            Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
+            User U = ReservationUsers.ElementAt(lbResName.SelectedIndex);
+
+            AC.AcceptDept(U.ID, SelEvent.EventID);
+            LoadReservationListBox();
+        }
 
     }
 }

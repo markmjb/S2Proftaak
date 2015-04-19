@@ -21,11 +21,13 @@ namespace Proftaak
         public Mediasharing()
         {
             InitializeComponent();
+            RefreshFilebox();
             Refresh();
 
 
         }
-       
+
+        private int selectedindex;
        private string type;
        private string description;
        private string category;
@@ -33,8 +35,9 @@ namespace Proftaak
        private string title;
        private string filetype;
        private int size;
-       private int userID;
+       private int userID = Userlogin.Loggeduser.ID;
        private int categoryID;
+        private int likes;
        
        public List<Mediaitem> Mediaitems = new List<Mediaitem>();
        public List<Mediaitem> Mediatext = new List<Mediaitem>(); 
@@ -95,6 +98,7 @@ namespace Proftaak
             finally
             {
                 Refresh();
+                RefreshFilebox();
             
             }
 
@@ -121,17 +125,27 @@ namespace Proftaak
         {
             mdsb.Getallmediaitems();
             Mediaitems = mdsb.Getallmediaitems();
-            FileBox.Items.Clear();
+
             listBox1.Items.Clear();
-            foreach (Mediaitem mediaitem in Mediaitems)
+
+            foreach (Mediaitem mediatext in Mediatext)
+            {
+                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + "Likes: ");
+            }
+        }
+
+        public void RefreshFilebox()
+            {
+                mdsb.Getallmediaitems();
+                Mediaitems = mdsb.Getallmediaitems();
+
+               FileBox.Items.Clear();
+                 foreach (Mediaitem mediaitem in Mediaitems)
             {
                 FileBox.Items.Add(mediaitem.ToString());
 
             }
-            foreach (Mediaitem mediatext in Mediatext)
-            {
-                listBox1.Items.Add(mediatext.Mediaitemid + " " + mediatext.Text);
-            }
+            
         }
 
         private void btnDeleteMedia_Click(object sender, EventArgs e)
@@ -180,14 +194,14 @@ namespace Proftaak
 
         private void FileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FileBox.SelectedIndex == -1)
+            if (FileBox.SelectedItem == null)
             {
-                MessageBox.Show("geen item geselecteerd");
+                MessageBox.Show("Selecteer een file");
             }
             else
             {
                 tbfileinfo.Clear();
-                
+
                 string selecteditem = FileBox.SelectedItem.ToString();
                 string[] selecteditems = selecteditem.Split(':');
                 int selecteditemid = Convert.ToInt32(selecteditems[0]);
@@ -196,13 +210,38 @@ namespace Proftaak
                 string itemfiletype = itemfile.Filetype;
                 int itemfilesize = itemfile.Filesize;
                 string postedby = Userlogin.Loggeduser.Firstname + " " + Userlogin.Loggeduser.Lastname;
-                tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby + "\r\nFiletype: " + itemfiletype + " Filesize: " + itemfilesize;
-
                 Mediatext = mdsb.Getmediatextlist(selecteditemid);
+                likes = mdsb.GetAllLikes(selecteditemid);
+                tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby + "\r\nFiletype: " + itemfiletype + " Filesize: " + itemfilesize+"KB" + " \r\nLikes: " + likes;
+
+                selectedindex = 0;
                 Refresh();
+
+                Mediaitems = mdsb.AlreadyLiked();
+                if (Mediaitems.Count == 0)
+                {
+                    btnLike.Text = "Like";
+                }
+                foreach (Mediaitem items in Mediaitems)
+                {
+                    
+                    if (items.UserID == userID && items.Mediaitemid == selecteditemid)
+                    {
+                        btnLike.Text = "Unlike";
+                    }
+                    else
+                    {
+                        btnLike.Text = "Like";
+                    }
+                }
+
             }
-           
+
+              
+                
         }
+           
+        
 
         private void cbtypetab2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -250,10 +289,53 @@ namespace Proftaak
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+     
 
+        private void btnLike_Click(object sender, EventArgs e)
+        {
+           
+            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex == -1) 
+            {
+                if (btnLike.Text == "Unlike")
+                {
+                    string selecteditem = FileBox.SelectedItem.ToString();
+                    string[] selecteditems = selecteditem.Split(':');
+                    int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                    mdsb.RemoveLikeToFile(selecteditemid, userID);
+                }
+                else
+                {
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':');
+                int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                mdsb.AddLikeToFile(selecteditemid, userID);
+                
+                }
+                RefreshFilebox();
+            }
+            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
+            {
+                if (btnLike.Text == "Unlike")
+                {
+                    string selecteditem = listBox1.SelectedItem.ToString();
+                    string[] selecteditems = selecteditem.Split(':', ' ');
+                    int selecteditemid = Convert.ToInt32(selecteditems[2]);
+                    mdsb.RemoveLikeToReply(selecteditemid, userID);
+                }
+                else
+                {
+                    string selecteditem = listBox1.SelectedItem.ToString();
+                    string[] selecteditems = selecteditem.Split(':', ' ');
+                    int selecteditemid = Convert.ToInt32(selecteditems[2]);
+                    mdsb.AddLikeToReply(selecteditemid, userID);
+                    
+                }
+                Refresh();
+                RefreshFilebox();
+            }
         }
+
+       
 
 
 
