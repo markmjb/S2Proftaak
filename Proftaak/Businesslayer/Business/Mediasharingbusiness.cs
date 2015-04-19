@@ -61,9 +61,16 @@ namespace Businesslayer.Business
 
         }
 
+
         public int  GetAllLikes(int mediaitemid)
         {
             return dbmedia.GetAllLikes(mediaitemid);
+
+        }
+
+        public int GetAllLikesReply(int mediacategoryID)
+        {
+            return dbmedia.GetAllLikesReply(mediacategoryID);
 
         }
 

@@ -38,7 +38,7 @@ namespace Proftaak
        private int userID = Userlogin.Loggeduser.ID;
        private int categoryID;
         private int likes;
-       
+        private int likesreply;
        public List<Mediaitem> Mediaitems = new List<Mediaitem>();
        public List<Mediaitem> Mediatext = new List<Mediaitem>(); 
 
@@ -123,14 +123,15 @@ namespace Proftaak
 
         public new void Refresh()
         {
-            mdsb.Getallmediaitems();
+
             Mediaitems = mdsb.Getallmediaitems();
 
             listBox1.Items.Clear();
 
             foreach (Mediaitem mediatext in Mediatext)
             {
-                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + "Likes: ");
+                
+                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + "Likes: "+likesreply);
             }
         }
 
@@ -145,6 +146,11 @@ namespace Proftaak
                 FileBox.Items.Add(mediaitem.ToString());
 
             }
+            
+        }
+
+        public void RefreshListbox()
+        {
             
         }
 
@@ -194,6 +200,7 @@ namespace Proftaak
 
         private void FileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
             if (FileBox.SelectedItem == null)
             {
                 MessageBox.Show("Selecteer een file");
@@ -215,19 +222,17 @@ namespace Proftaak
                 tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby + "\r\nFiletype: " + itemfiletype + " Filesize: " + itemfilesize+"KB" + " \r\nLikes: " + likes;
 
                 selectedindex = 0;
-                Refresh();
+        
 
                 Mediaitems = mdsb.AlreadyLiked();
-                if (Mediaitems.Count == 0)
-                {
-                    btnLike.Text = "Like";
-                }
+               
                 foreach (Mediaitem items in Mediaitems)
                 {
                     
                     if (items.UserID == userID && items.Mediaitemid == selecteditemid)
                     {
                         btnLike.Text = "Unlike";
+                      
                     }
                     else
                     {
@@ -236,9 +241,9 @@ namespace Proftaak
                 }
 
             }
+            Refresh();
 
-              
-                
+
         }
            
         
@@ -302,6 +307,7 @@ namespace Proftaak
                     string[] selecteditems = selecteditem.Split(':');
                     int selecteditemid = Convert.ToInt32(selecteditems[0]);
                     mdsb.RemoveLikeToFile(selecteditemid, userID);
+                    likes = mdsb.GetAllLikes(selecteditemid);
                 }
                 else
                 {
@@ -309,9 +315,11 @@ namespace Proftaak
                 string[] selecteditems = selecteditem.Split(':');
                 int selecteditemid = Convert.ToInt32(selecteditems[0]);
                 mdsb.AddLikeToFile(selecteditemid, userID);
-                
+                likes = mdsb.GetAllLikes(selecteditemid);
+
                 }
-                RefreshFilebox();
+           
+
             }
             if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
             {
@@ -321,6 +329,7 @@ namespace Proftaak
                     string[] selecteditems = selecteditem.Split(':', ' ');
                     int selecteditemid = Convert.ToInt32(selecteditems[2]);
                     mdsb.RemoveLikeToReply(selecteditemid, userID);
+                    likesreply = mdsb.GetAllLikesReply(selecteditemid);
                 }
                 else
                 {
@@ -328,14 +337,49 @@ namespace Proftaak
                     string[] selecteditems = selecteditem.Split(':', ' ');
                     int selecteditemid = Convert.ToInt32(selecteditems[2]);
                     mdsb.AddLikeToReply(selecteditemid, userID);
+                    likesreply = mdsb.GetAllLikesReply(selecteditemid);
                     
                 }
-                Refresh();
-                RefreshFilebox();
+                
             }
+            Refresh();
+            RefreshFilebox();
         }
 
-       
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecteer een reply");
+            }
+            else
+            {
+                    string selecteditem = listBox1.SelectedItem.ToString();
+            string[] selecteditems = selecteditem.Split(':', ' ');
+            int selecteditemid = Convert.ToInt32(selecteditems[2]);
+            likesreply = mdsb.GetAllLikesReply(selecteditemid);
+
+            Mediaitems = mdsb.AlreadyLiked();
+            
+            foreach (Mediaitem items in Mediatext)
+            {
+
+                if (items.UserID == userID && items.Mediaitemid == selecteditemid)
+                {
+                    btnLike.Text = "Unlike";
+                }
+                else
+                {
+                    btnLike.Text = "Like";
+                }
+            }
+            }
+            
+
+        }
+
+     
 
 
 

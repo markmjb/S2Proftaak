@@ -260,6 +260,7 @@ namespace Businesslayer.DAL
                 dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
                 dalMediaitem.Text = Convert.ToString(reader["TEXT"]);
                 dalMediaitem.MediaitemcommentID= Convert.ToInt32(reader["MEDIAITEMCOMMENTID"]);
+                dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
                 mediaitems.Add(dalMediaitem);
                }
             }
@@ -312,6 +313,44 @@ namespace Businesslayer.DAL
            return aantallikes;
            
        }
+       public int GetAllLikesReply(int mediacategoryid)
+       {
+           aantallikes = 0;
+
+           try
+           {
+
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_LIKE WHERE MEDIACATEGORYID = :mediaitemid";
+               cmd.Parameters.Add("MediacategoryID", mediacategoryid);
+               db.Connection.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+               cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+                   int Likeid = Convert.ToInt32(reader["LIKEID"]);
+                   int Userid = Convert.ToInt32(reader["USERID"]);
+                   int Mediacategoryid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+
+                   if (Mediacategoryid == mediacategoryid)
+                   {
+                       aantallikes++;
+                   }
+
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return aantallikes;
+
+       }
 
        public void AddLikeToFile(int mediaitemid, int userid)
        {
@@ -343,7 +382,7 @@ namespace Businesslayer.DAL
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "INSERT INTO PTS2_Like(Userid, MediaitemID) VALUES (:userid, :mediaitemid) WHERE MEDIAITEMID LIKE (SELECT MEDIAITEMCOMMENTID FROM PTS2_MEDIAITEMTEXT WHERE MEDIAITEMCOMMENTID = :mediaitemid)";
+               cmd.CommandText = "INSERT INTO PTS2_Like(Userid, MediaCategoryID) VALUES (:userid, :mediaitemid) ";
 
 
                cmd.Parameters.Add("Userid", userid);
@@ -374,9 +413,42 @@ namespace Businesslayer.DAL
                 OracleDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                
+                        dalMediaitem.Mediaitemid = 0;
+
+
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    {
+                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                    }
+                    else
+                    {
+                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    
+                    }
+                    
+                 
                     dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
-                    dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    {
+                        dalMediaitem.Mediaitemid = 0;
+                    }
+                    else
+                    {
+                        dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    }
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIACATEGORYID")))
+                    {
+                        dalMediaitem.Mediacategoryid = 0;
+                    }
+                    else
+                    {
+                        dalMediaitem.Mediacategoryid = Convert.ToInt32(reader["MediacategoryID"]);
+                    }
+
+
+
                     mediaitems.Add(dalMediaitem);
                 }
             }
@@ -396,9 +468,9 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "DELETE FROM PTS2_Like WHERE MEDIAITEMID = :mediaitemid AND USERID = :userid";
-
-                cmd.Parameters.Add("Userid", userid);
                 cmd.Parameters.Add("mediaitemID", mediaitemid);
+                cmd.Parameters.Add("Userid", userid);
+    
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
@@ -418,10 +490,10 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "DELETE FROM PTS2_Like WHERE MEDIAITEMID = :mediaitemid AND USERID = :userid";
-
-                cmd.Parameters.Add("Userid", userid);
+                cmd.CommandText = "DELETE FROM PTS2_Like WHERE MEDIACATEGORYID = :mediaitemid AND USERID = :userid";
                 cmd.Parameters.Add("mediaitemID", mediaitemid);
+                cmd.Parameters.Add("Userid", userid);
+
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
