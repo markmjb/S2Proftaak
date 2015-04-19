@@ -30,7 +30,7 @@ namespace Businesslayer.Business
             return Reservations;
         }
 
-        public List<User> GetUserInfo(int ResNr)
+        public List<User> GetAllReservationUser(int ResNr)
         {
             List<User> ReservationUsers = DA.ReservationUser(ResNr);
             return ReservationUsers;
@@ -42,19 +42,19 @@ namespace Businesslayer.Business
             return Reservations;
         }
 
-        public bool getPresents(int UserID)
+        public bool GetPresents(int UserID)
         {
             bool isPresent = DA.IsPresent(UserID);
             return isPresent;
         }
 
-        public bool getRFID(string RFID)
+        public bool GetRFID(string RFID)
         {
             bool isAttached = DA.GetRFIDStatus(RFID);
             return isAttached;
         }
 
-        public bool getUserRFID (int UserID)
+        public bool GetUserRFID (int UserID)
         {
             bool isAttached = DA.GetuserRFID(UserID);
             return isAttached;
@@ -66,14 +66,14 @@ namespace Businesslayer.Business
             return UserID;
         }
 
-        public void AcceptPay(int ResNr)
+        public void AcceptPay(int ResNr, decimal Price)
         {
-            DA.AcceptPayment(ResNr);
+            DA.AcceptPayment(ResNr, Price);
         }
 
-        public void AcceptDept(int UserID, int EventID)
+        public void AcceptDebt(int UserID, int EventID)
         {
-            DA.AcceptDept(UserID, EventID);
+            DA.AcceptDebt(UserID, EventID);
         }
 
         public List<Event> GetEvents()
@@ -84,11 +84,11 @@ namespace Businesslayer.Business
 
         public List<User> GetAllUsers(int EventID)
         {
-            List<User> AllUsers = DA.AllPresentUsers(EventID);
+            List<User> AllUsers = DA.AllUsers(EventID);
             return AllUsers;
         }
 
-        public void UpdatePresents(int UserID, int Present)
+        public void UpdatePresents(int UserID, bool Present)
         {
             DA.UpdateisPresent(UserID, Present);
         }

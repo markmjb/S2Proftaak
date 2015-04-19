@@ -39,21 +39,20 @@
             this.lblEvents = new System.Windows.Forms.Label();
             this.btnDept = new System.Windows.Forms.Button();
             this.cbEvent = new System.Windows.Forms.ComboBox();
-            this.pbChecked = new System.Windows.Forms.PictureBox();
-            this.lblChecked = new System.Windows.Forms.Label();
             this.gbReservations = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lbResName = new System.Windows.Forms.ListBox();
             this.lbResNr = new System.Windows.Forms.ListBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblResName = new System.Windows.Forms.Label();
+            this.lblResNr = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.gbSelectName = new System.Windows.Forms.GroupBox();
             this.tbReserv = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbPstlCode = new System.Windows.Forms.TextBox();
+            this.lblChecked = new System.Windows.Forms.Label();
+            this.pbChecked = new System.Windows.Forms.PictureBox();
             this.tbGrpName = new System.Windows.Forms.TextBox();
             this.tbDepature = new System.Windows.Forms.TextBox();
             this.tbArrival = new System.Windows.Forms.TextBox();
@@ -77,13 +76,17 @@
             this.btnDelRes = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gbPresentList = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPresentList = new System.Windows.Forms.Label();
             this.lbPresentList = new System.Windows.Forms.ListBox();
+            this.lblRFIDreader = new System.Windows.Forms.Label();
+            this.lblConnected = new System.Windows.Forms.Label();
+            this.lblRFIDtag = new System.Windows.Forms.Label();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.Presentlist.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
             this.gbReservations.SuspendLayout();
             this.gbSelectName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.gbPresentList.SuspendLayout();
             this.SuspendLayout();
@@ -147,11 +150,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblRFIDtag);
+            this.tabPage1.Controls.Add(this.lblRFIDreader);
+            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.lblEvents);
+            this.tabPage1.Controls.Add(this.lblConnected);
             this.tabPage1.Controls.Add(this.btnDept);
             this.tabPage1.Controls.Add(this.cbEvent);
-            this.tabPage1.Controls.Add(this.pbChecked);
-            this.tabPage1.Controls.Add(this.lblChecked);
             this.tabPage1.Controls.Add(this.gbReservations);
             this.tabPage1.Controls.Add(this.gbSelectName);
             this.tabPage1.Controls.Add(this.btnUnAtt);
@@ -169,7 +174,7 @@
             // lblEvents
             // 
             this.lblEvents.AutoSize = true;
-            this.lblEvents.Location = new System.Drawing.Point(451, 12);
+            this.lblEvents.Location = new System.Drawing.Point(451, 8);
             this.lblEvents.Name = "lblEvents";
             this.lblEvents.Size = new System.Drawing.Size(40, 13);
             this.lblEvents.TabIndex = 117;
@@ -177,9 +182,9 @@
             // 
             // btnDept
             // 
-            this.btnDept.Location = new System.Drawing.Point(454, 181);
+            this.btnDept.Location = new System.Drawing.Point(454, 170);
             this.btnDept.Name = "btnDept";
-            this.btnDept.Size = new System.Drawing.Size(141, 42);
+            this.btnDept.Size = new System.Drawing.Size(153, 41);
             this.btnDept.TabIndex = 116;
             this.btnDept.Text = "Accept dept";
             this.btnDept.UseVisualStyleBackColor = true;
@@ -189,37 +194,19 @@
             // 
             this.cbEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEvent.FormattingEnabled = true;
-            this.cbEvent.Location = new System.Drawing.Point(454, 28);
+            this.cbEvent.Location = new System.Drawing.Point(454, 24);
             this.cbEvent.Name = "cbEvent";
-            this.cbEvent.Size = new System.Drawing.Size(141, 21);
+            this.cbEvent.Size = new System.Drawing.Size(153, 21);
             this.cbEvent.TabIndex = 112;
             this.cbEvent.SelectionChangeCommitted += new System.EventHandler(this.cbEvent_SelectionChangeCommitted);
             // 
-            // pbChecked
-            // 
-            this.pbChecked.Location = new System.Drawing.Point(454, 346);
-            this.pbChecked.Name = "pbChecked";
-            this.pbChecked.Size = new System.Drawing.Size(141, 56);
-            this.pbChecked.TabIndex = 115;
-            this.pbChecked.TabStop = false;
-            // 
-            // lblChecked
-            // 
-            this.lblChecked.AutoSize = true;
-            this.lblChecked.Location = new System.Drawing.Point(451, 330);
-            this.lblChecked.Name = "lblChecked";
-            this.lblChecked.Size = new System.Drawing.Size(62, 13);
-            this.lblChecked.TabIndex = 114;
-            this.lblChecked.Text = "Checked In";
-            // 
             // gbReservations
             // 
-            this.gbReservations.Controls.Add(this.label3);
-            this.gbReservations.Controls.Add(this.label2);
+            this.gbReservations.Controls.Add(this.lblSearch);
             this.gbReservations.Controls.Add(this.lbResName);
             this.gbReservations.Controls.Add(this.lbResNr);
-            this.gbReservations.Controls.Add(this.label7);
-            this.gbReservations.Controls.Add(this.label6);
+            this.gbReservations.Controls.Add(this.lblResName);
+            this.gbReservations.Controls.Add(this.lblResNr);
             this.gbReservations.Controls.Add(this.btnSearch);
             this.gbReservations.Controls.Add(this.tbSearch);
             this.gbReservations.Location = new System.Drawing.Point(6, 3);
@@ -232,19 +219,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(282, 42);
+            this.label3.Location = new System.Drawing.Point(495, 300);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 112;
             this.label3.TextChanged += new System.EventHandler(this.label3_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(282, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 111;
             // 
             // lbResName
             // 
@@ -264,29 +243,29 @@
             this.lbResNr.TabIndex = 105;
             this.lbResNr.SelectedIndexChanged += new System.EventHandler(this.lbResNr_SelectedIndexChanged);
             // 
-            // label7
+            // lblResName
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(210, 71);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 13);
-            this.label7.TabIndex = 110;
-            this.label7.Text = "Reservation | Name";
+            this.lblResName.AutoSize = true;
+            this.lblResName.Location = new System.Drawing.Point(210, 71);
+            this.lblResName.Name = "lblResName";
+            this.lblResName.Size = new System.Drawing.Size(92, 13);
+            this.lblResName.TabIndex = 110;
+            this.lblResName.Text = "Reservation users";
             // 
-            // label6
+            // lblResNr
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(148, 13);
-            this.label6.TabIndex = 108;
-            this.label6.Text = "Reservationnumber | Payment";
+            this.lblResNr.AutoSize = true;
+            this.lblResNr.Location = new System.Drawing.Point(17, 73);
+            this.lblResNr.Name = "lblResNr";
+            this.lblResNr.Size = new System.Drawing.Size(69, 13);
+            this.lblResNr.TabIndex = 108;
+            this.lblResNr.Text = "Reservations";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(182, 23);
+            this.btnSearch.Location = new System.Drawing.Point(182, 38);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 24);
             this.btnSearch.TabIndex = 107;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -294,7 +273,7 @@
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(20, 23);
+            this.tbSearch.Location = new System.Drawing.Point(20, 40);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(156, 20);
             this.tbSearch.TabIndex = 109;
@@ -304,6 +283,8 @@
             this.gbSelectName.Controls.Add(this.tbReserv);
             this.gbSelectName.Controls.Add(this.tbEmail);
             this.gbSelectName.Controls.Add(this.tbPstlCode);
+            this.gbSelectName.Controls.Add(this.lblChecked);
+            this.gbSelectName.Controls.Add(this.pbChecked);
             this.gbSelectName.Controls.Add(this.tbGrpName);
             this.gbSelectName.Controls.Add(this.tbDepature);
             this.gbSelectName.Controls.Add(this.tbArrival);
@@ -321,9 +302,9 @@
             this.gbSelectName.Controls.Add(this.lblEmail);
             this.gbSelectName.Controls.Add(this.lblPstlCode);
             this.gbSelectName.Controls.Add(this.lblSurname);
-            this.gbSelectName.Location = new System.Drawing.Point(603, 3);
+            this.gbSelectName.Location = new System.Drawing.Point(613, 3);
             this.gbSelectName.Name = "gbSelectName";
-            this.gbSelectName.Size = new System.Drawing.Size(313, 402);
+            this.gbSelectName.Size = new System.Drawing.Size(303, 402);
             this.gbSelectName.TabIndex = 112;
             this.gbSelectName.TabStop = false;
             this.gbSelectName.Text = "Selected Name";
@@ -331,7 +312,7 @@
             // tbReserv
             // 
             this.tbReserv.Enabled = false;
-            this.tbReserv.Location = new System.Drawing.Point(126, 332);
+            this.tbReserv.Location = new System.Drawing.Point(126, 294);
             this.tbReserv.Name = "tbReserv";
             this.tbReserv.Size = new System.Drawing.Size(165, 20);
             this.tbReserv.TabIndex = 147;
@@ -339,7 +320,7 @@
             // tbEmail
             // 
             this.tbEmail.Enabled = false;
-            this.tbEmail.Location = new System.Drawing.Point(126, 281);
+            this.tbEmail.Location = new System.Drawing.Point(126, 258);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(165, 20);
             this.tbEmail.TabIndex = 146;
@@ -347,15 +328,32 @@
             // tbPstlCode
             // 
             this.tbPstlCode.Enabled = false;
-            this.tbPstlCode.Location = new System.Drawing.Point(126, 250);
+            this.tbPstlCode.Location = new System.Drawing.Point(126, 131);
             this.tbPstlCode.Name = "tbPstlCode";
             this.tbPstlCode.Size = new System.Drawing.Size(165, 20);
             this.tbPstlCode.TabIndex = 144;
             // 
+            // lblChecked
+            // 
+            this.lblChecked.AutoSize = true;
+            this.lblChecked.Location = new System.Drawing.Point(18, 348);
+            this.lblChecked.Name = "lblChecked";
+            this.lblChecked.Size = new System.Drawing.Size(64, 13);
+            this.lblChecked.TabIndex = 114;
+            this.lblChecked.Text = "Checked in:";
+            // 
+            // pbChecked
+            // 
+            this.pbChecked.Location = new System.Drawing.Point(126, 335);
+            this.pbChecked.Name = "pbChecked";
+            this.pbChecked.Size = new System.Drawing.Size(165, 44);
+            this.pbChecked.TabIndex = 115;
+            this.pbChecked.TabStop = false;
+            // 
             // tbGrpName
             // 
             this.tbGrpName.Enabled = false;
-            this.tbGrpName.Location = new System.Drawing.Point(126, 200);
+            this.tbGrpName.Location = new System.Drawing.Point(126, 230);
             this.tbGrpName.Name = "tbGrpName";
             this.tbGrpName.Size = new System.Drawing.Size(165, 20);
             this.tbGrpName.TabIndex = 142;
@@ -363,7 +361,7 @@
             // tbDepature
             // 
             this.tbDepature.Enabled = false;
-            this.tbDepature.Location = new System.Drawing.Point(126, 157);
+            this.tbDepature.Location = new System.Drawing.Point(126, 193);
             this.tbDepature.Name = "tbDepature";
             this.tbDepature.Size = new System.Drawing.Size(165, 20);
             this.tbDepature.TabIndex = 141;
@@ -371,7 +369,7 @@
             // tbArrival
             // 
             this.tbArrival.Enabled = false;
-            this.tbArrival.Location = new System.Drawing.Point(126, 132);
+            this.tbArrival.Location = new System.Drawing.Point(126, 167);
             this.tbArrival.Name = "tbArrival";
             this.tbArrival.Size = new System.Drawing.Size(165, 20);
             this.tbArrival.TabIndex = 140;
@@ -379,7 +377,7 @@
             // tbCity
             // 
             this.tbCity.Enabled = false;
-            this.tbCity.Location = new System.Drawing.Point(126, 93);
+            this.tbCity.Location = new System.Drawing.Point(126, 105);
             this.tbCity.Name = "tbCity";
             this.tbCity.Size = new System.Drawing.Size(165, 20);
             this.tbCity.TabIndex = 139;
@@ -387,7 +385,7 @@
             // tbStrNr
             // 
             this.tbStrNr.Enabled = false;
-            this.tbStrNr.Location = new System.Drawing.Point(126, 68);
+            this.tbStrNr.Location = new System.Drawing.Point(126, 80);
             this.tbStrNr.Name = "tbStrNr";
             this.tbStrNr.Size = new System.Drawing.Size(165, 20);
             this.tbStrNr.TabIndex = 138;
@@ -395,7 +393,7 @@
             // tbSurname
             // 
             this.tbSurname.Enabled = false;
-            this.tbSurname.Location = new System.Drawing.Point(126, 42);
+            this.tbSurname.Location = new System.Drawing.Point(126, 44);
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.Size = new System.Drawing.Size(165, 20);
             this.tbSurname.TabIndex = 137;
@@ -420,7 +418,7 @@
             // lblReserv
             // 
             this.lblReserv.AutoSize = true;
-            this.lblReserv.Location = new System.Drawing.Point(18, 335);
+            this.lblReserv.Location = new System.Drawing.Point(18, 297);
             this.lblReserv.Name = "lblReserv";
             this.lblReserv.Size = new System.Drawing.Size(70, 13);
             this.lblReserv.TabIndex = 135;
@@ -429,7 +427,7 @@
             // lblStrNr
             // 
             this.lblStrNr.AutoSize = true;
-            this.lblStrNr.Location = new System.Drawing.Point(18, 71);
+            this.lblStrNr.Location = new System.Drawing.Point(18, 83);
             this.lblStrNr.Name = "lblStrNr";
             this.lblStrNr.Size = new System.Drawing.Size(90, 13);
             this.lblStrNr.TabIndex = 114;
@@ -438,7 +436,7 @@
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(18, 96);
+            this.lblCity.Location = new System.Drawing.Point(18, 108);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(30, 13);
             this.lblCity.TabIndex = 115;
@@ -447,7 +445,7 @@
             // lblGrpName
             // 
             this.lblGrpName.AutoSize = true;
-            this.lblGrpName.Location = new System.Drawing.Point(18, 203);
+            this.lblGrpName.Location = new System.Drawing.Point(18, 233);
             this.lblGrpName.Name = "lblGrpName";
             this.lblGrpName.Size = new System.Drawing.Size(71, 13);
             this.lblGrpName.TabIndex = 116;
@@ -456,7 +454,7 @@
             // lblDepature
             // 
             this.lblDepature.AutoSize = true;
-            this.lblDepature.Location = new System.Drawing.Point(18, 160);
+            this.lblDepature.Location = new System.Drawing.Point(18, 196);
             this.lblDepature.Name = "lblDepature";
             this.lblDepature.Size = new System.Drawing.Size(84, 13);
             this.lblDepature.TabIndex = 117;
@@ -465,7 +463,7 @@
             // lblArrival
             // 
             this.lblArrival.AutoSize = true;
-            this.lblArrival.Location = new System.Drawing.Point(18, 135);
+            this.lblArrival.Location = new System.Drawing.Point(18, 170);
             this.lblArrival.Name = "lblArrival";
             this.lblArrival.Size = new System.Drawing.Size(66, 13);
             this.lblArrival.TabIndex = 118;
@@ -474,7 +472,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(18, 284);
+            this.lblEmail.Location = new System.Drawing.Point(18, 261);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 13);
             this.lblEmail.TabIndex = 129;
@@ -483,7 +481,7 @@
             // lblPstlCode
             // 
             this.lblPstlCode.AutoSize = true;
-            this.lblPstlCode.Location = new System.Drawing.Point(18, 253);
+            this.lblPstlCode.Location = new System.Drawing.Point(18, 134);
             this.lblPstlCode.Name = "lblPstlCode";
             this.lblPstlCode.Size = new System.Drawing.Size(69, 13);
             this.lblPstlCode.TabIndex = 127;
@@ -492,7 +490,7 @@
             // lblSurname
             // 
             this.lblSurname.AutoSize = true;
-            this.lblSurname.Location = new System.Drawing.Point(18, 45);
+            this.lblSurname.Location = new System.Drawing.Point(18, 47);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(55, 13);
             this.lblSurname.TabIndex = 126;
@@ -500,9 +498,9 @@
             // 
             // btnUnAtt
             // 
-            this.btnUnAtt.Location = new System.Drawing.Point(454, 287);
+            this.btnUnAtt.Location = new System.Drawing.Point(454, 359);
             this.btnUnAtt.Name = "btnUnAtt";
-            this.btnUnAtt.Size = new System.Drawing.Size(141, 23);
+            this.btnUnAtt.Size = new System.Drawing.Size(153, 23);
             this.btnUnAtt.TabIndex = 92;
             this.btnUnAtt.Text = "Unattach RFID";
             this.btnUnAtt.UseVisualStyleBackColor = true;
@@ -510,9 +508,9 @@
             // 
             // btnAtt
             // 
-            this.btnAtt.Location = new System.Drawing.Point(454, 258);
+            this.btnAtt.Location = new System.Drawing.Point(454, 330);
             this.btnAtt.Name = "btnAtt";
-            this.btnAtt.Size = new System.Drawing.Size(141, 23);
+            this.btnAtt.Size = new System.Drawing.Size(153, 23);
             this.btnAtt.TabIndex = 91;
             this.btnAtt.Text = "Attach RFID";
             this.btnAtt.UseVisualStyleBackColor = true;
@@ -520,9 +518,9 @@
             // 
             // btnPaym
             // 
-            this.btnPaym.Location = new System.Drawing.Point(454, 134);
+            this.btnPaym.Location = new System.Drawing.Point(454, 123);
             this.btnPaym.Name = "btnPaym";
-            this.btnPaym.Size = new System.Drawing.Size(141, 41);
+            this.btnPaym.Size = new System.Drawing.Size(153, 41);
             this.btnPaym.TabIndex = 90;
             this.btnPaym.Text = "Accept payment reservation";
             this.btnPaym.UseVisualStyleBackColor = true;
@@ -530,9 +528,9 @@
             // 
             // btnDelRes
             // 
-            this.btnDelRes.Location = new System.Drawing.Point(454, 85);
+            this.btnDelRes.Location = new System.Drawing.Point(454, 76);
             this.btnDelRes.Name = "btnDelRes";
-            this.btnDelRes.Size = new System.Drawing.Size(141, 41);
+            this.btnDelRes.Size = new System.Drawing.Size(153, 41);
             this.btnDelRes.TabIndex = 89;
             this.btnDelRes.Text = "Delete Reservation";
             this.btnDelRes.UseVisualStyleBackColor = true;
@@ -551,7 +549,7 @@
             // 
             // gbPresentList
             // 
-            this.gbPresentList.Controls.Add(this.label1);
+            this.gbPresentList.Controls.Add(this.lblPresentList);
             this.gbPresentList.Controls.Add(this.lbPresentList);
             this.gbPresentList.Location = new System.Drawing.Point(3, 3);
             this.gbPresentList.Name = "gbPresentList";
@@ -560,14 +558,14 @@
             this.gbPresentList.TabStop = false;
             this.gbPresentList.Text = "Present List";
             // 
-            // label1
+            // lblPresentList
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Reservation | Name |  ";
+            this.lblPresentList.AutoSize = true;
+            this.lblPresentList.Location = new System.Drawing.Point(6, 16);
+            this.lblPresentList.Name = "lblPresentList";
+            this.lblPresentList.Size = new System.Drawing.Size(88, 13);
+            this.lblPresentList.TabIndex = 1;
+            this.lblPresentList.Text = "Present event list";
             // 
             // lbPresentList
             // 
@@ -576,6 +574,42 @@
             this.lbPresentList.Name = "lbPresentList";
             this.lbPresentList.Size = new System.Drawing.Size(405, 368);
             this.lbPresentList.TabIndex = 0;
+            // 
+            // lblRFIDreader
+            // 
+            this.lblRFIDreader.AutoSize = true;
+            this.lblRFIDreader.Location = new System.Drawing.Point(466, 240);
+            this.lblRFIDreader.Name = "lblRFIDreader";
+            this.lblRFIDreader.Size = new System.Drawing.Size(125, 13);
+            this.lblRFIDreader.TabIndex = 118;
+            this.lblRFIDreader.Text = "RFID reader connected :";
+            // 
+            // lblConnected
+            // 
+            this.lblConnected.AutoSize = true;
+            this.lblConnected.Location = new System.Drawing.Point(510, 253);
+            this.lblConnected.Name = "lblConnected";
+            this.lblConnected.Size = new System.Drawing.Size(29, 13);
+            this.lblConnected.TabIndex = 111;
+            this.lblConnected.Text = "false";
+            // 
+            // lblRFIDtag
+            // 
+            this.lblRFIDtag.AutoSize = true;
+            this.lblRFIDtag.Location = new System.Drawing.Point(472, 284);
+            this.lblRFIDtag.Name = "lblRFIDtag";
+            this.lblRFIDtag.Size = new System.Drawing.Size(104, 13);
+            this.lblRFIDtag.TabIndex = 119;
+            this.lblRFIDtag.Text = "RFID-Tag scanned :";
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(17, 21);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(145, 13);
+            this.lblSearch.TabIndex = 111;
+            this.lblSearch.Text = "Search Reservation number :";
             // 
             // AccessControlForm
             // 
@@ -590,11 +624,11 @@
             this.Presentlist.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).EndInit();
             this.gbReservations.ResumeLayout(false);
             this.gbReservations.PerformLayout();
             this.gbSelectName.ResumeLayout(false);
             this.gbSelectName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChecked)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.gbPresentList.ResumeLayout(false);
             this.gbPresentList.PerformLayout();
@@ -612,9 +646,9 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TabControl Presentlist;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblResName;
         private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblResNr;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox lbResName;
         private System.Windows.Forms.ListBox lbResNr;
@@ -636,7 +670,7 @@
         private System.Windows.Forms.Label lblPstlCode;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.GroupBox gbPresentList;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPresentList;
         private System.Windows.Forms.ListBox lbPresentList;
         private System.Windows.Forms.Label lblChecked;
         private System.Windows.Forms.TextBox tbName;
@@ -652,8 +686,11 @@
         private System.Windows.Forms.PictureBox pbChecked;
         private System.Windows.Forms.ComboBox cbEvent;
         private System.Windows.Forms.Button btnDept;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblEvents;
+        private System.Windows.Forms.Label lblRFIDreader;
+        private System.Windows.Forms.Label lblRFIDtag;
+        private System.Windows.Forms.Label lblConnected;
+        private System.Windows.Forms.Label lblSearch;
     }
 }

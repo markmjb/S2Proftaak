@@ -10,7 +10,7 @@ namespace Businesslayer.Business
         public Group Group { get; set; }
         public bool Isadmin { get; set; }
         public string Email { get; set; }
-        public Decimal Debt { get; set; }
+        public decimal Debt { get; set; }
         public string Password { get; set; }
         public int ID { get; set; }
         public int ReservationID { get; set; }
@@ -40,7 +40,7 @@ namespace Businesslayer.Business
             ID = id;
         }
 
-        public User(int reservationid, int userid, string lastname, string firstname, string email, string password, bool isAdmin, DateTime startdate, DateTime enddate, bool isPresent, Address address, Group group )
+        public User(int reservationid, int userid, string lastname, string firstname, string email, string password, bool isAdmin, DateTime startdate, DateTime enddate, bool isPresent, Address address, Group group, decimal debt )
         {
             ReservationID = reservationid;
             ID = userid;
@@ -54,11 +54,17 @@ namespace Businesslayer.Business
             StartDate = startdate;
             EndDate = enddate;
             IsPresent = isPresent;
+            Debt = debt;
         }
 
         public User()
         {
             
+        }
+
+        public override string ToString()
+        {
+            return ReservationID + "\t|  " + Lastname + "," + Firstname + "  debt: " + Debt;
         }
     }
 }

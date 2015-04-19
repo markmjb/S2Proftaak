@@ -10,5 +10,9 @@
             ReservationNr = reservationNr;
             Payment = payment;
 	    }
+        public override string ToString()
+        {
+            return ReservationNr + "\t|  payment: " + Payment;
+        }
     }
 }

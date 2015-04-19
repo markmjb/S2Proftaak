@@ -59,7 +59,6 @@ namespace Businesslayer.DAL
 
         public List<ReservationAccess> AllReservations(int EventID)
         {
-
             List<ReservationAccess> Reservations = new List<ReservationAccess>();
 
             try
@@ -93,15 +92,53 @@ namespace Businesslayer.DAL
             return Reservations;
         }
 
-        public List<User> AllPresentUsers(int EventID)
+        public List<ReservationAccess> Search(int EventID, int Search)
+        {
+            List<ReservationAccess> Reservations = new List<ReservationAccess>();
+            string search = Convert.ToString(Search);
+            search = search + "%";
+
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
+                cmd.Parameters.Add("eID", EventID);
+                cmd.Parameters.Add("Search", Search);
+
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                int ReservationNr;
+                int Price;
+
+                while (reader.Read())
+                {
+                    ReservationNr = Convert.ToInt32(reader["ReservationID"]);
+                    Price = Convert.ToInt32(reader["Price"]);
+                    ReservationAccess Reservation = new ReservationAccess(ReservationNr, Price);
+                    Reservations.Add(Reservation);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return Reservations;
+        }
+
+        public List<User> AllUsers(int EventID)
         {
             List<User> ReservUsers = new List<User>();
 
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.EventID = :ID";
-                cmd.Parameters.Add("ID", EventID);
+                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND R.EventID = :eID";
+                cmd.Parameters.Add("eID", EventID);
 
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -123,6 +160,7 @@ namespace Businesslayer.DAL
                 string Province;
                 string City;
                 string Country;
+                decimal Debt;
 
                 while (reader.Read())
                 {
@@ -157,10 +195,11 @@ namespace Businesslayer.DAL
                     Province = Convert.ToString(reader["province"]);
                     City = Convert.ToString(reader["City"]);
                     Country = Convert.ToString(reader["Country"]);
+                    Debt = Convert.ToDecimal(reader["amount"]);
 
                     Address Address = new Address(Street, Housenumber, Postalcode, City, Province, Country);
                     Group Group = new Group(Groupname);
-                    User User = new User(ReservationNr, UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, isPresent, Address, Group);
+                    User User = new User(ReservationNr, UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, isPresent, Address, Group, Debt);
                     ReservUsers.Add(User);
                 }
             }
@@ -181,7 +220,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.ReservationID = :ID";
+                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.Amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND R.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
                 db.Connection.Open();
@@ -204,6 +243,7 @@ namespace Businesslayer.DAL
                 string Province;
                 string City;
                 string Country;
+                decimal Debt;
 
                 while (reader.Read())
                 {
@@ -238,11 +278,12 @@ namespace Businesslayer.DAL
                     Province = Convert.ToString(reader["province"]);
                     City = Convert.ToString(reader["City"]);
                     Country = Convert.ToString(reader["Country"]);
+                    Debt = Convert.ToDecimal(reader["amount"]);
 
 
                     Address Address = new Address(Street, Housenumber, Postalcode, City, Province, Country);
                     Group Group = new Group(Groupname);
-                    User User = new User(ReservationNr, UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, isPresent, Address, Group);
+                    User User = new User(ReservationNr, UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, isPresent, Address, Group, Debt);
                     ReservUsers.Add(User);
                 }
             }
@@ -255,27 +296,6 @@ namespace Businesslayer.DAL
                 this.db.Connection.Close();
             }
             return ReservUsers;
-        }
-
-        public void ShowUserDept(int ResNr, int UserID)
-        {
-            try
-            {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.Price FROM PTS2_Reservation R WHERE R.ReservationID = :ID AND R.EventID = :ID";
-                cmd.Parameters.Add("ID", ResNr);
-
-                db.Connection.Open();
-                cmd.ExecuteReader();
-            }
-            catch (OracleException exc)
-            {
-                Console.WriteLine(exc);
-            }
-            finally
-            {
-                this.db.Connection.Close();
-            }
         }
 
         public void AttachRFID(int UserID, int EventID, string RFID)
@@ -332,8 +352,8 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = :RFID";
-                cmd.Parameters.Add("RFID", RFID);
+                cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = :rID";
+                cmd.Parameters.Add("rID", RFID);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
@@ -463,18 +483,18 @@ namespace Businesslayer.DAL
             return UserID;
         }
 
-        public void UpdateisPresent(int UserID, int Present)
+        public void UpdateisPresent(int UserID, bool isPresent)
         {
-            //int P = 0;
+            int Present = 0;
 
-            //if (Present)
-            //{
-            //    P = 1;
-            //}
-            //else if(!Present)
-            //{
-            //    P = 0;
-            //} 
+            if (isPresent)
+            {
+                Present = 1;
+            }
+            else if(!isPresent)
+            {
+                Present = 0;
+            } 
 
             try
             {
@@ -484,7 +504,7 @@ namespace Businesslayer.DAL
                 cmd.Parameters.Add("userID", UserID);
 
                 db.Connection.Open();
-                cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
             }
             catch (OracleException exc)
             {
@@ -496,50 +516,13 @@ namespace Businesslayer.DAL
             }
         }
 
-        public List<ReservationAccess> Search(int EventID, int Search)
-        {
-            List<ReservationAccess> Reservations = new List<ReservationAccess>();
-            string search = Convert.ToString(Search);
-            search = search + "%";
-            
-            try
-            {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
-                cmd.Parameters.Add("eID", EventID);
-                cmd.Parameters.Add("Search", Search);
-
-                db.Connection.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
-
-                int ReservationNr;
-                int Price;
-
-                while (reader.Read())
-                {
-                    ReservationNr = Convert.ToInt32(reader["ReservationID"]);
-                    Price = Convert.ToInt32(reader["Price"]);
-                    ReservationAccess Reservation = new ReservationAccess(ReservationNr, Price);
-                    Reservations.Add(Reservation);
-                }
-            }
-            catch (OracleException exc)
-            {
-                Console.WriteLine(exc);
-            }
-            finally
-            {
-                this.db.Connection.Close();
-            }
-            return Reservations;
-        }
-
-        public void AcceptPayment(int ResNr)
+        public void AcceptPayment(int ResNr, decimal Price)
         {
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "UPDATE PTS2_Reservation SET Price = 0 WHERE ReservationID = :ID";
+                cmd.CommandText = "UPDATE PTS2_Reservation SET Price = :Price WHERE ReservationID = :ID";
+                cmd.Parameters.Add("Price", Price);
                 cmd.Parameters.Add("ID", ResNr);
 
                 db.Connection.Open();
@@ -555,14 +538,14 @@ namespace Businesslayer.DAL
             }
         }
 
-        public void AcceptDept(int userID, int eventID)
+        public void AcceptDebt(int UserID, int EventID)
         {
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_Debt SET amount = 0 WHERE UserID = :usID AND EventID = :evID";
-                cmd.Parameters.Add("usID", userID);
-                cmd.Parameters.Add("evID", eventID);
+                cmd.Parameters.Add("usID", UserID);
+                cmd.Parameters.Add("evID", EventID);
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
