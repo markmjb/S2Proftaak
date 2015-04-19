@@ -34,5 +34,10 @@
         {
             
         }
+
+        public override string ToString()
+        {
+            return Country + ", " + City + ", " + Street + " " + Streetnumber;
+        }
     }
 }
