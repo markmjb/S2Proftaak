@@ -162,5 +162,57 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
+       public int UpdateTotalPrice(string materialName)
+       {
+           int price = 0;
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "select price from PTS2_MATERIALTYPE where materialtypeName = :materialName";
+               cmd.Parameters.Add("materialName", materialName);
+
+               db.Connection.Open();
+
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+                   price = Convert.ToInt32(reader["price"]);
+               }
+
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return price;
+       }
+       public void GiveUserDept(int userId, int eventId, int debt)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "INSERT INTO PTS2_DEBT  (userID, eventID, amount)VALUES  (:userId, :eventId, :debt)";
+               cmd.Parameters.Add("userId", userId);
+               cmd.Parameters.Add("eventId", eventId);
+               cmd.Parameters.Add("debt", debt);
+
+               db.Connection.Open();
+
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
     }
 }

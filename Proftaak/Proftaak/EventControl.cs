@@ -57,7 +57,7 @@ namespace Proftaak
             int streetnumber = Convert.ToInt32(nudStreetnumber.Value);
             string postalcode = tbPostalcode.Text;
 
-            if (name != "" && description != "" && startDate > DateTime.Today && endDate > DateTime.Today && endDate > startDate && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode != "")
+            if (name != "" && description != "" && startDate > DateTime.Today && endDate > DateTime.Today && endDate >= startDate && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode != "")
             {
                 if (!eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
                 {
@@ -74,10 +74,10 @@ namespace Proftaak
 
         private void datagridEvents_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            OnDatagridEventsCellClick();
+            RefreshData();
         }
 
-        private void OnDatagridEventsCellClick()
+        private void RefreshData()
         {
             if (datagridEvents.CurrentCell.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != null)
             {
@@ -85,32 +85,81 @@ namespace Proftaak
 
                 Event ev = eventControl.GetEvent(eventID);
 
-                tbName.Text = ev.Name;
-                tbDescription.Text = ev.Description;
-                dtpStartDate.Value = ev.StartDate;
-                dtpEndDate.Value = ev.EndDate;
-                nudTicketprice.Value = ev.TicketPrice;
+                if (ev != null)
+                {
+                    lblEventIDValue.Text = Convert.ToString(ev.EventID);
+                    tbName.Text = ev.Name;
+                    tbDescription.Text = ev.Description;
+                    dtpStartDate.Value = ev.StartDate;
+                    dtpEndDate.Value = ev.EndDate;
+                    nudTicketprice.Value = ev.TicketPrice;
 
-                tbCountry.Text = ev.Address.Country;
-                tbProvince.Text = ev.Address.Province;
-                tbCity.Text = ev.Address.City;
-                tbStreet.Text = ev.Address.Street;
-                nudStreetnumber.Value = ev.Address.Streetnumber;
-                tbPostalcode.Text = ev.Address.PostalCode;
+                    tbCountry.Text = ev.Address.Country;
+                    tbProvince.Text = ev.Address.Province;
+                    tbCity.Text = ev.Address.City;
+                    tbStreet.Text = ev.Address.Street;
+                    nudStreetnumber.Value = ev.Address.Streetnumber;
+                    tbPostalcode.Text = ev.Address.PostalCode;                    
+                }
+                else
+                {
+                    MessageBox.Show("geen overeenkomend event gevonden");
+                }
             }
         }
 
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
-            //if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
-            //{
-            //    int eventID = eventControl.GetEventID(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value);
+            if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
+            {
+                int eventID = eventControl.GetEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value).EventID;
 
-            //    eventControl.DeleteEvent(eventID);
+                if (eventID != -1)
+                {
+                    eventControl.DeleteEvent(eventID);
+                    MessageBox.Show("event is verwijderd");
+                }
+                else
+                {
+                    MessageBox.Show("event niet gevonden");
+                }
+            }
 
-            //    FillDatagridEvents();
-            //    OnDatagridEventsCellClick();
-            //}
+            FillDatagridEvents();
+            RefreshData();                    
+        }
+
+        private void btnEditEvent_Click(object sender, EventArgs e)
+        {
+            if (eventControl.CheckEvent(Convert.ToInt32(lblEventIDValue.Text)))
+            {
+                Event ev = eventControl.GetEvent(Convert.ToInt32(lblEventIDValue.Text));
+
+                if (tbName.Text != ev.Name)
+                {
+                    eventControl.EditEvent(ev.EventID, "eventName", tbName.Text);
+                }
+                if (dtpStartDate.Value != ev.StartDate)
+                {
+                    eventControl.EditEvent(ev.EventID, "startDate", dtpStartDate.Value.ToShortDateString());
+                }
+                if (dtpEndDate.Value != ev.EndDate)
+                {
+                    eventControl.EditEvent(ev.EventID, "endDate", dtpEndDate.Value.ToShortDateString());
+                }
+                if (tbDescription.Text != ev.Description)
+                {
+                    eventControl.EditEvent(ev.EventID, "description", tbDescription.Text);
+                }
+                if (nudTicketprice.Value != ev.TicketPrice)
+                {
+                    eventControl.EditEvent(ev.EventID, "ticketPrice", nudTicketprice.Value);
+                }
+
+                eventControl.GetEvents();
+                FillDatagridEvents();
+                RefreshData();                    
+            }
         }
     }
 }

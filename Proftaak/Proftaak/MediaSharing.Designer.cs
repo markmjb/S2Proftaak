@@ -113,6 +113,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(543, 264);
             this.listBox1.TabIndex = 12;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -161,6 +162,7 @@
             this.btnReply.TabIndex = 9;
             this.btnReply.Text = "Give a reply";
             this.btnReply.UseVisualStyleBackColor = true;
+            this.btnReply.Click += new System.EventHandler(this.btnReply_Click);
             // 
             // tbReply
             // 
@@ -178,6 +180,7 @@
             this.btnSpam.TabIndex = 6;
             this.btnSpam.Text = "Report as spam";
             this.btnSpam.UseVisualStyleBackColor = true;
+            this.btnSpam.Click += new System.EventHandler(this.btnSpam_Click);
             // 
             // btnDownloadMedia
             // 

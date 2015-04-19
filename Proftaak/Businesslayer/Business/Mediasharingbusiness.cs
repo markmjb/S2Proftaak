@@ -61,9 +61,16 @@ namespace Businesslayer.Business
 
         }
 
+
         public int  GetAllLikes(int mediaitemid)
         {
             return dbmedia.GetAllLikes(mediaitemid);
+
+        }
+
+        public int GetAllLikesReply(int mediacategoryID)
+        {
+            return dbmedia.GetAllLikesReply(mediacategoryID);
 
         }
 
@@ -77,6 +84,18 @@ namespace Businesslayer.Business
             dbmedia.AddLikeToReply(mediaitemid, userid);
 
         }
+
+        public void AddReport(int mediaitemid, int userid)
+        {
+            dbmedia.AddReport(mediaitemid, userid);
+
+        }
+
+        public void AddReplytofile(string text, int mediaitemid, int userid)
+        {
+            dbmedia.AddReplytofile(text, mediaitemid, userid);
+
+        }
         public void RemoveLikeToFile(int mediaitemid, int userid)
         {
             dbmedia.RemoveLikeToFile(mediaitemid, userid);
@@ -85,6 +104,12 @@ namespace Businesslayer.Business
         public void RemoveLikeToReply(int mediaitemid, int userid)
         {
             dbmedia.RemoveLikeToReply(mediaitemid, userid);
+
+        }
+
+        public List<Report> Getallreports()
+        {
+          return dbmedia.Getallreports();
 
         }
     }
