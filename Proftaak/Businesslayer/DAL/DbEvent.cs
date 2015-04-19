@@ -264,7 +264,11 @@ namespace Businesslayer.DAL
 
                 while (reader.Read())
                 {
-                    eventID = Convert.ToInt32(reader["eventID"]);                    
+                    if (reader.IsDBNull(reader.GetOrdinal("eventID")))
+                    {
+                        eventID = Convert.ToInt32(reader["eventID"]);                                                                    
+                    }
+            
                 }
             }
             catch (Exception e)
