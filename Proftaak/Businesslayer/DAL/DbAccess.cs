@@ -18,7 +18,7 @@ namespace Businesslayer.DAL
             try
             {
 
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "DELETE FROM PTS2_Reservation R WHERE R.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
@@ -31,7 +31,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
 
@@ -40,7 +40,7 @@ namespace Businesslayer.DAL
             try
             {
 
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
@@ -53,7 +53,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
 
@@ -64,7 +64,7 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :ID";
                 cmd.Parameters.Add("ID", EventID);
 
@@ -88,7 +88,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return Reservations;
         }
@@ -99,7 +99,7 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.EventID = :ID";
                 cmd.Parameters.Add("ID", EventID);
 
@@ -170,7 +170,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return ReservUsers;
         }
@@ -180,7 +180,7 @@ namespace Businesslayer.DAL
             List<User> ReservUsers = new List<User>();
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
@@ -252,7 +252,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return ReservUsers;
         }
@@ -274,7 +274,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
 
@@ -282,7 +282,7 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO PTS2_RFID (rfid, isAttached, eventID, userID) VALUES (:RFID,1,:EventID,:UserID)";
                 cmd.Parameters.Add("RFID", RFID);
                 cmd.Parameters.Add("EventID", EventID);
@@ -305,7 +305,7 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM PTS2_RFID WHERE RFID = :RFID AND EventID = :EventID";
                 cmd.Parameters.Add("RFID", RFID);
@@ -316,10 +316,6 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exc)
             {
-<<<<<<< HEAD
-=======
-                throw (exc);
->>>>>>> origin/master
                 throw exc;
             }
             finally
@@ -334,7 +330,7 @@ namespace Businesslayer.DAL
             bool isAttached = false;
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = :RFID";
                 cmd.Parameters.Add("RFID", RFID);
 
@@ -360,7 +356,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return isAttached;
         }
@@ -370,7 +366,7 @@ namespace Businesslayer.DAL
             bool isAttached = false;
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE UserID = :UserID";
                 cmd.Parameters.Add("UserID", UserID);
 
@@ -396,7 +392,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return isAttached;
         }
@@ -406,7 +402,7 @@ namespace Businesslayer.DAL
             bool isPresent = false;
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isPresent FROM PTS2_USER WHERE UserID = :UserID";
                 cmd.Parameters.Add("UserID", UserID);
 
@@ -432,7 +428,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return isPresent;
         }
@@ -442,7 +438,7 @@ namespace Businesslayer.DAL
             int UserID = -1;
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT U.UserID FROM PTS2_User U, PTS2_RFID R WHERE U.UserID = R.UserID AND R.RFID = :rID";
                 cmd.Parameters.Add("rID", RFID);
 
@@ -461,7 +457,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return UserID;
         }
@@ -481,7 +477,7 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_USER SET isPresent = :isPresent WHERE UserID = :userID";
                 cmd.Parameters.Add("isPresent", Present);
                 cmd.Parameters.Add("userID", UserID);
@@ -495,7 +491,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
 
@@ -507,7 +503,7 @@ namespace Businesslayer.DAL
             
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
                 cmd.Parameters.Add("eID", EventID);
                 cmd.Parameters.Add("Search", Search);
@@ -532,7 +528,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
             return Reservations;
         }
@@ -541,7 +537,7 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_Reservation SET Price = 0 WHERE ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
@@ -554,7 +550,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
 
@@ -562,7 +558,7 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_Debt SET amount = 0 WHERE UserID = :usID AND EventID = :evID";
                 cmd.Parameters.Add("usID", userID);
                 cmd.Parameters.Add("evID", eventID);
@@ -576,7 +572,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
     }
