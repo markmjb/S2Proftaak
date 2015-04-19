@@ -41,7 +41,7 @@ namespace Proftaak
         private int likesreply;
        public List<Mediaitem> Mediaitems = new List<Mediaitem>();
        public List<Mediaitem> Mediatext = new List<Mediaitem>(); 
-       public List<Mediaitem> Reports = new List<Mediaitem>(); 
+       public List<Report> Reports = new List<Report>(); 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -65,6 +65,16 @@ namespace Proftaak
     
 
            
+        }
+
+        private void RefreshReportList()
+        {
+            listBox2.Items.Clear();
+            Reports = mdsb.Getallreports();
+            foreach (Report report in Reports)
+            {
+                listBox2.Items.Add("ReportID: " + report.ReportedID + " MediaitemID of reported file: " + report.MediaitemID + " Reported by User: " + report.UserID);
+            }
         }
 
         private void btnUploadMediaTab2_Click(object sender, EventArgs e)
@@ -424,11 +434,7 @@ namespace Proftaak
               
                 
             }
-          //Reports = mdsb.Getallreports();
-          foreach (Mediaitem report in Reports)
-          {
-             // listBox2.Items.Add("ReportID: " + report.ReportedID + " MediaitemID of reported file: "+ report.Mediaitemid + " Reported by User: " + report.UserID);
-          }
+            RefreshReportList();
         }
 
      

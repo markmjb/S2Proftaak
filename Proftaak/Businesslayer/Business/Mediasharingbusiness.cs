@@ -107,7 +107,7 @@ namespace Businesslayer.Business
 
         }
 
-        public List<Mediaitem> Getallreports()
+        public List<Report> Getallreports()
         {
           return dbmedia.Getallreports();
 

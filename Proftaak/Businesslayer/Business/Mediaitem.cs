@@ -34,7 +34,7 @@ namespace Businesslayer.Business
 
         public int Mediacategoryid { get; set; }
 
-        public int ReportedID { get; set; }
+
 
 
         public Mediaitem(string Type, string Title, string Description, string filepath, int CategoryID, int UserID, int size, string Filetype)
@@ -92,13 +92,7 @@ namespace Businesslayer.Business
             this.Mediacategoryid = mediacategoryid;
         }
 
-        public Mediaitem(int reportedID, int mediaitemid, int UserID)
-        {
-            this.ReportedID = reportedID;
-            this.Mediaitemid = mediaitemid;
-            this.UserID = UserID;
-
-        }
+       
         public Mediaitem()
         {
            

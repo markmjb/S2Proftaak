@@ -7,8 +7,10 @@ namespace Businesslayer.DAL
 {
     public class DbMedia
     {
+        private Report dalReport;
         private Mediaitem dalMediaitem;
         private int Returnint;
+        private List<Report> reports;
         private List<Mediaitem> mediaitems;
         private Databaseconnection db;
         int aantallikes;
@@ -152,7 +154,7 @@ namespace Businesslayer.DAL
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE MEDIAITEMID = :mediaitemid";
+               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE MEDIAITEMCOMMENTID = :mediaitemid";
                cmd.Parameters.Add("MEDIAITEMID", mediaitemid);
                db.Connection.Open();
                OracleDataReader reader = cmd.ExecuteReader();
@@ -558,55 +560,28 @@ namespace Businesslayer.DAL
             }
         }
 
-        public List<Mediaitem> Getallreports()
+        public List<Report> Getallreports()
         {
-            dalMediaitem = new Mediaitem();
-            mediaitems = new List<Mediaitem>();
+           
+            reports = new List<Report>();
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT * FROM PTS2_REPORTS";
+                cmd.CommandText = "SELECT * FROM PTS2_REPORTED";
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
 
-                    dalMediaitem.Mediaitemid = 0;
+                    dalReport = new Report();
 
+                    dalReport.ReportedID = Convert.ToInt32(reader["REPORTEDID"]);
+                    dalReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    dalReport.UserID = Convert.ToInt32(reader["USERID"]);
+                    
 
-                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
-                    {
-                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
-                    }
-                    else
-                    {
-                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
-
-                    }
-
-
-                    dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
-
-                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
-                    {
-                        dalMediaitem.Mediaitemid = 0;
-                    }
-                    else
-                    {
-                        dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
-                    }
-                    if (reader.IsDBNull(reader.GetOrdinal("MEDIACATEGORYID")))
-                    {
-                        dalMediaitem.Mediacategoryid = 0;
-                    }
-                    else
-                    {
-                        dalMediaitem.Mediacategoryid = Convert.ToInt32(reader["MediacategoryID"]);
-                    }
-
-
-
-                    mediaitems.Add(dalMediaitem);
+                    reports.Add(dalReport);
+                    
                 }
             }
             catch (OracleException exc)
@@ -617,7 +592,7 @@ namespace Businesslayer.DAL
             {
                 this.db.Connection.Close();
             }
-            return mediaitems;
+            return reports;
         }
         
     }
