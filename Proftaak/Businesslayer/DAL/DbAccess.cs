@@ -326,15 +326,11 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exc)
             {
-
-                throw (exc);
-
                 throw exc;
-
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
 
         }

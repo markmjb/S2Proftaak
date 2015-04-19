@@ -74,10 +74,10 @@ namespace Proftaak
 
         private void datagridEvents_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            OnDatagridEventsCellClick();
+            RefreshData();
         }
 
-        private void OnDatagridEventsCellClick()
+        private void RefreshData()
         {
             if (datagridEvents.CurrentCell.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != null)
             {
@@ -102,15 +102,18 @@ namespace Proftaak
 
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
-            //if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
-            //{
-            //    int eventID = eventControl.GetEventID(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value);
+            if (eventControl.CheckEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value))
+            {
+                int eventID = eventControl.GetEventID(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value);
 
-            //    eventControl.DeleteEvent(eventID);
+                if (eventID != -1)
+                {
+                    eventControl.DeleteEvent(eventID);
+                }
+            }
 
-            //    FillDatagridEvents();
-            //    OnDatagridEventsCellClick();
-            //}
+            FillDatagridEvents();
+            RefreshData();                    
         }
     }
 }
