@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCreateEvent = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEditEvent = new System.Windows.Forms.Button();
             this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +58,8 @@
             this.nudStreetnumber = new System.Windows.Forms.NumericUpDown();
             this.tbPostalcode = new System.Windows.Forms.TextBox();
             this.nudTicketprice = new System.Windows.Forms.NumericUpDown();
+            this.lblEventID = new System.Windows.Forms.Label();
+            this.lblEventIDValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStreetnumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTicketprice)).BeginInit();
@@ -73,14 +75,15 @@
             this.btnCreateEvent.UseVisualStyleBackColor = true;
             this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
             // 
-            // button2
+            // btnEditEvent
             // 
-            this.button2.Location = new System.Drawing.Point(449, 168);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Edit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditEvent.Location = new System.Drawing.Point(449, 168);
+            this.btnEditEvent.Name = "btnEditEvent";
+            this.btnEditEvent.Size = new System.Drawing.Size(76, 23);
+            this.btnEditEvent.TabIndex = 1;
+            this.btnEditEvent.Text = "Edit";
+            this.btnEditEvent.UseVisualStyleBackColor = true;
+            this.btnEditEvent.Click += new System.EventHandler(this.btnEditEvent_Click);
             // 
             // btnDeleteEvent
             // 
@@ -312,11 +315,30 @@
             this.nudTicketprice.Size = new System.Drawing.Size(120, 20);
             this.nudTicketprice.TabIndex = 26;
             // 
+            // lblEventID
+            // 
+            this.lblEventID.AutoSize = true;
+            this.lblEventID.Location = new System.Drawing.Point(8, 173);
+            this.lblEventID.Name = "lblEventID";
+            this.lblEventID.Size = new System.Drawing.Size(45, 13);
+            this.lblEventID.TabIndex = 27;
+            this.lblEventID.Text = "eventID";
+            // 
+            // lblEventIDValue
+            // 
+            this.lblEventIDValue.AutoSize = true;
+            this.lblEventIDValue.Location = new System.Drawing.Point(72, 173);
+            this.lblEventIDValue.Name = "lblEventIDValue";
+            this.lblEventIDValue.Size = new System.Drawing.Size(0, 13);
+            this.lblEventIDValue.TabIndex = 28;
+            // 
             // EventControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 362);
+            this.Controls.Add(this.lblEventIDValue);
+            this.Controls.Add(this.lblEventID);
             this.Controls.Add(this.nudTicketprice);
             this.Controls.Add(this.tbPostalcode);
             this.Controls.Add(this.nudStreetnumber);
@@ -341,7 +363,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteEvent);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnEditEvent);
             this.Controls.Add(this.btnCreateEvent);
             this.Name = "EventControl";
             this.Text = "EventControl";
@@ -357,7 +379,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnCreateEvent;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEditEvent;
         private System.Windows.Forms.Button btnDeleteEvent;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -386,5 +408,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEventName;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEventStartdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEventEnddate;
+        private System.Windows.Forms.Label lblEventID;
+        private System.Windows.Forms.Label lblEventIDValue;
     }
 }
