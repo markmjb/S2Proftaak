@@ -543,11 +543,13 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO PTS2_REPORTED(mediaitemID, Userid) VALUES (:mediaitemID, :Userid)";
+                //cmd.CommandText = "INSERT INTO PTS2_REPORTED(mediaitemID, Userid) VALUES (:mediaitemID, :Userid) WHERE NOT EXISTS (SELECT * FROM PTS2_REPORTED WHERE MEDIAITEMID = :mediaitemID AND USERID = :Userid)";
                 cmd.Parameters.Add("mediaitemID", mediaitemid);
                 cmd.Parameters.Add("Userid", userid);
 
 
                 db.Connection.Open();
+ 
                 cmd.ExecuteReader();
             }
             catch (OracleException exc)
@@ -579,7 +581,7 @@ namespace Businesslayer.DAL
                     dalReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
                     dalReport.UserID = Convert.ToInt32(reader["USERID"]);
                     
-
+                    
                     reports.Add(dalReport);
                     
                 }
