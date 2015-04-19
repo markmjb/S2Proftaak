@@ -161,7 +161,7 @@
             // lblTotalPrice
             // 
             this.lblTotalPrice.AutoSize = true;
-            this.lblTotalPrice.Location = new System.Drawing.Point(318, 307);
+            this.lblTotalPrice.Location = new System.Drawing.Point(329, 307);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(10, 13);
             this.lblTotalPrice.TabIndex = 42;
@@ -170,11 +170,11 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(255, 307);
+            this.label46.Location = new System.Drawing.Point(251, 307);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(57, 13);
+            this.label46.Size = new System.Drawing.Size(72, 13);
             this.label46.TabIndex = 41;
-            this.label46.Text = "Total price";
+            this.label46.Text = "Total price:  €";
             // 
             // btnOrder
             // 

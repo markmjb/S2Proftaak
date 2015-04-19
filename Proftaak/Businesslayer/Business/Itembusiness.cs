@@ -41,5 +41,10 @@ namespace Businesslayer.Business
                 }
             }
         }
+        public int UpdateTotalPrice(string name)
+        {
+            int price =  DM.UpdateTotalPrice(name);
+            return price;
+        }
     }
 }

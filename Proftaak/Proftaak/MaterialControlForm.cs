@@ -21,6 +21,7 @@ namespace Proftaak
         private string TempRFID;
         Itembusiness IB = new Itembusiness();
         public List<Item> items = new List<Item>();
+        private int totalprice;
 
         public MaterialControlForm()
         {
@@ -169,10 +170,12 @@ namespace Proftaak
         private new void Update()
         {
             lbItems.Items.Clear();
+            lbSelectItem.Items.Clear();
             items = IB.GetItems();
             for (int i = 0; i < items.Count; i++)
             {
                 lbItems.Items.Add("Product : " + items[i].Name + " , prijs: €" + items[i].Price);
+                lbSelectItem.Items.Add(items[i].Name + " , €" + items[i].Price);
             }
         }
 
@@ -183,8 +186,15 @@ namespace Proftaak
 
         private void button5_Click(object sender, EventArgs e)
         {
-            lbYourItem.Items.Add(lbSelectItem.SelectedItem.ToString() + ", " + nudAmount.Value.ToString() + " x");
-            UpdateTotalPrice();
+            if(nudAmount.Value == 0)
+            {
+                MessageBox.Show("Aantal mag geen 0 zijn!");
+            }
+            else
+            {
+                lbYourItem.Items.Add(lbSelectItem.SelectedItem.ToString() + ", " + nudAmount.Value.ToString() + " x");
+                UpdateTotalPrice();
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -199,10 +209,29 @@ namespace Proftaak
         }
         public void UpdateTotalPrice()
         {
-            for (int i = 0; i < lbYourItem.Items.Count; i++)
+            int price;
+            int tempprice = 0;
+            for (int i = 0;  i < lbYourItem.Items.Count; i++)          
             {
-                //Soon to come
+                string naam;              
+                int found = 0;
+                int found2 = 0;
+                string substring;
+                string substring2;
+                naam = lbYourItem.Items[i].ToString();
+                found = naam.IndexOf(",");
+                found2 = naam.IndexOf("x");
+                substring = naam.Substring(0, found - 1);
+                substring2 = naam.Substring(found2 - 2, 1);
+                for (int j = 0; j < Convert.ToInt32(substring2); j++)
+                {
+                    price = IB.UpdateTotalPrice(substring);
+                    tempprice = price + tempprice;
+                }
             }
+            totalprice = tempprice + totalprice;
+            lblTotalPrice.Text = Convert.ToString(totalprice);
+            totalprice = 0;
         }
     }
 }
