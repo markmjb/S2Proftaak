@@ -191,5 +191,28 @@ namespace Businesslayer.DAL
            }
            return price;
        }
+       public void GiveUserDept(int userId, int eventId, int debt)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "INSERT INTO PTS2_DEBT  (userID, eventID, amount)VALUES  (:userId, :eventId, :debt)";
+               cmd.Parameters.Add("userId", userId);
+               cmd.Parameters.Add("eventId", eventId);
+               cmd.Parameters.Add("debt", debt);
+
+               db.Connection.Open();
+
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
     }
 }

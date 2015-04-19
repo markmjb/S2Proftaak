@@ -68,10 +68,16 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblRFIDID = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.nudEvent = new System.Windows.Forms.NumericUpDown();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -96,6 +102,11 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.nudEvent);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.lblRFIDID);
+            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.lbRFIDNr);
             this.tabPage1.Controls.Add(this.btnLinks);
             this.tabPage1.Controls.Add(this.btnRechts);
@@ -132,7 +143,7 @@
             // lbRFIDNr
             // 
             this.lbRFIDNr.AutoSize = true;
-            this.lbRFIDNr.Location = new System.Drawing.Point(241, 21);
+            this.lbRFIDNr.Location = new System.Drawing.Point(308, 21);
             this.lbRFIDNr.Name = "lbRFIDNr";
             this.lbRFIDNr.Size = new System.Drawing.Size(70, 13);
             this.lbRFIDNr.TabIndex = 45;
@@ -297,7 +308,7 @@
             // 
             // nudAmount
             // 
-            this.nudAmount.Location = new System.Drawing.Point(106, 300);
+            this.nudAmount.Location = new System.Drawing.Point(91, 294);
             this.nudAmount.Name = "nudAmount";
             this.nudAmount.Size = new System.Drawing.Size(41, 20);
             this.nudAmount.TabIndex = 27;
@@ -305,7 +316,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(54, 307);
+            this.label9.Location = new System.Drawing.Point(39, 300);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 13);
             this.label9.TabIndex = 25;
@@ -470,6 +481,49 @@
             this.tbAdd.Size = new System.Drawing.Size(61, 20);
             this.tbAdd.TabIndex = 92;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(232, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "RFID ID";
+            // 
+            // lblRFIDID
+            // 
+            this.lblRFIDID.AutoSize = true;
+            this.lblRFIDID.Location = new System.Drawing.Point(251, 50);
+            this.lblRFIDID.Name = "lblRFIDID";
+            this.lblRFIDID.Size = new System.Drawing.Size(13, 13);
+            this.lblRFIDID.TabIndex = 47;
+            this.lblRFIDID.Text = "1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(329, 50);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(10, 13);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "-";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(39, 322);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "Event:";
+            // 
+            // nudEvent
+            // 
+            this.nudEvent.Location = new System.Drawing.Point(91, 320);
+            this.nudEvent.Name = "nudEvent";
+            this.nudEvent.Size = new System.Drawing.Size(41, 20);
+            this.nudEvent.TabIndex = 50;
+            // 
             // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -486,6 +540,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -532,5 +587,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbRFIDNr;
         private System.Windows.Forms.DomainUpDown dupItem;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblRFIDID;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nudEvent;
+        private System.Windows.Forms.Label label10;
     }
 }

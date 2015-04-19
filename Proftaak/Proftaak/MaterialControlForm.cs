@@ -205,7 +205,14 @@ namespace Proftaak
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            if(nudEvent.Value == 0)
+            {
+                MessageBox.Show("Event mag geen 0 zijn!");
+            }
+            else
+            {
+                GiveUserDept();
+            }           
         }
         public void UpdateTotalPrice()
         {
@@ -232,6 +239,10 @@ namespace Proftaak
             totalprice = tempprice + totalprice;
             lblTotalPrice.Text = Convert.ToString(totalprice);
             totalprice = 0;
+        }
+        public void GiveUserDept()
+        {
+            IB.GiveUserDebt(Convert.ToInt32(lblRFIDID.Text), Convert.ToInt32(nudEvent.Value), Convert.ToInt32(lblTotalPrice.Text));
         }
     }
 }

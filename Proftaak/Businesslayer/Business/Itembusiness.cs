@@ -46,5 +46,9 @@ namespace Businesslayer.Business
             int price =  DM.UpdateTotalPrice(name);
             return price;
         }
+        public void GiveUserDebt(int userId, int eventId, int debt)
+        {
+            DM.GiveUserDept(userId, eventId, debt);
+        }
     }
 }
