@@ -145,6 +145,38 @@ namespace Businesslayer.DAL
        return mediaitems;
        }
 
+       public List<Mediaitem> Getmediatext(int mediaitemid)
+       {
+
+           mediaitems = new List<Mediaitem>();
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE MEDIAITEMID = :mediaitemid";
+               cmd.Parameters.Add("MEDIAITEMID", mediaitemid);
+               db.Connection.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+               while (reader.Read())
+               {
+                   dalMediaitem = new Mediaitem();
+                   dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                   dalMediaitem.Text = Convert.ToString(reader["TEXT"]);
+                   dalMediaitem.MediaitemcommentID = Convert.ToInt32(reader["MEDIAITEMCOMMENTID"]);
+                   dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
+                   mediaitems.Add(dalMediaitem);
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return mediaitems;
+       }
+
        public void RemoveMediaItem(Mediaitem mediaitem)
        {
            try
@@ -243,37 +275,6 @@ namespace Businesslayer.DAL
 
        return dalMediaitem;
        }
-        
-       public List<Mediaitem> Getmediatext(int mediaitemid)
-       {
-           dalMediaitem = new Mediaitem();
-           mediaitems = new List<Mediaitem>();
-            try
-            {
-               OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEMTEXT WHERE Mediaitemcommentid = :Mediaitemid";
-               cmd.Parameters.Add("Mediaitemid", mediaitemid);
-               db.Connection.Open();
-               OracleDataReader reader = cmd.ExecuteReader();
-               while (reader.Read())
-               {
-                dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
-                dalMediaitem.Text = Convert.ToString(reader["TEXT"]);
-                dalMediaitem.MediaitemcommentID= Convert.ToInt32(reader["MEDIAITEMCOMMENTID"]);
-                dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
-                mediaitems.Add(dalMediaitem);
-               }
-            }
-           catch (OracleException exc)
-           {
-           Console.WriteLine(exc);
-           }
-           finally
-           {
-           this.db.Connection.Close();
-           }
-           return mediaitems;
-       }
 
        public int GetAllLikes(int mediaitemid)
        {
@@ -366,6 +367,32 @@ namespace Businesslayer.DAL
                cmd.ExecuteReader();
 
               
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
+
+       public void AddReplytofile(string text, int mediaitemcommentid, int userid)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = " INSERT INTO PTS2_MEDIAITEMTEXT(Text,Mediaitemcommentid,userid) VALUES (:text, :mediaitemcommentid, :userid)";
+
+               cmd.Parameters.Add("Text", text);
+               cmd.Parameters.Add("Mediaitemcommentid", mediaitemcommentid);
+               cmd.Parameters.Add("Userid", userid);
+
+               db.Connection.Open();
+               cmd.ExecuteReader();
+
+
            }
            catch (OracleException exc)
            {
@@ -506,6 +533,91 @@ namespace Businesslayer.DAL
             {
                 this.db.Connection.Close();
             }
+        }
+
+        public void AddReport(int mediaitemid, int userid)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "INSERT INTO PTS2_REPORTED(mediaitemID, Userid) VALUES (:mediaitemID, :Userid)";
+                cmd.Parameters.Add("mediaitemID", mediaitemid);
+                cmd.Parameters.Add("Userid", userid);
+
+
+                db.Connection.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+
+        public List<Mediaitem> Getallreports()
+        {
+            dalMediaitem = new Mediaitem();
+            mediaitems = new List<Mediaitem>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT * FROM PTS2_REPORTS";
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    dalMediaitem.Mediaitemid = 0;
+
+
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    {
+                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                    }
+                    else
+                    {
+                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
+
+                    }
+
+
+                    dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
+
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    {
+                        dalMediaitem.Mediaitemid = 0;
+                    }
+                    else
+                    {
+                        dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    }
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIACATEGORYID")))
+                    {
+                        dalMediaitem.Mediacategoryid = 0;
+                    }
+                    else
+                    {
+                        dalMediaitem.Mediacategoryid = Convert.ToInt32(reader["MediacategoryID"]);
+                    }
+
+
+
+                    mediaitems.Add(dalMediaitem);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return mediaitems;
         }
         
     }

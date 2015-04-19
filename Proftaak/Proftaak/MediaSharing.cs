@@ -41,6 +41,7 @@ namespace Proftaak
         private int likesreply;
        public List<Mediaitem> Mediaitems = new List<Mediaitem>();
        public List<Mediaitem> Mediatext = new List<Mediaitem>(); 
+       public List<Mediaitem> Reports = new List<Mediaitem>(); 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -131,7 +132,7 @@ namespace Proftaak
             foreach (Mediaitem mediatext in Mediatext)
             {
                 
-                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + "Likes: "+likesreply);
+                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + " Likes: "+likesreply);
             }
         }
 
@@ -180,6 +181,9 @@ namespace Proftaak
 
 
                 }
+                Refresh();
+                RefreshFilebox();
+                RefreshListbox();
             }
             catch ( System.IO.FileNotFoundException)
             {
@@ -355,7 +359,7 @@ namespace Proftaak
             }
             else
             {
-                    string selecteditem = listBox1.SelectedItem.ToString();
+            string selecteditem = listBox1.SelectedItem.ToString();
             string[] selecteditems = selecteditem.Split(':', ' ');
             int selecteditemid = Convert.ToInt32(selecteditems[2]);
             likesreply = mdsb.GetAllLikesReply(selecteditemid);
@@ -377,6 +381,54 @@ namespace Proftaak
             }
             
 
+        }
+
+        private void btnReply_Click(object sender, EventArgs e)
+        {
+            if (FileBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a file");
+            }
+            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
+            {
+                MessageBox.Show("You cannot give a reply on a reply, please select a file only");
+            }
+            else
+            {
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':');
+                selecteditem = selecteditems[0];
+                mdsb.AddReplytofile(tbReply.Text, Convert.ToInt32(selecteditem), userID);
+            }
+            Refresh();
+            RefreshFilebox();
+            RefreshListbox();
+    }
+
+        private void btnSpam_Click(object sender, EventArgs e)
+        {
+            if (FileBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Kies een file");
+            }
+            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
+            {
+                MessageBox.Show("Please report only files");
+            }
+            else
+            {
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':', ' ');
+                int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                mdsb.AddReport(selecteditemid, userID);
+              
+                
+            }
+          //Reports = mdsb.Getallreports();
+          foreach (Mediaitem report in Reports)
+          {
+             // listBox2.Items.Add("ReportID: " + report.ReportedID + " MediaitemID of reported file: "+ report.Mediaitemid + " Reported by User: " + report.UserID);
+          }
         }
 
      
