@@ -64,7 +64,10 @@ namespace Proftaak
                 Login L = new Login();
                 L.Changepass(tbNewpass1.Text);
                 L.Updateuser(Userlogin.Loggeduser.Email, tbNewpass1.Text);
-                MessageBox.Show(Userlogin.Loggeduser.Password);
+                MessageBox.Show("password changed to : " + Userlogin.Loggeduser.Password);
+                tbOldpass.Text = string.Empty;
+                tbNewpass1.Text = string.Empty;
+                tbNewpass2.Text = string.Empty;
             }
         }
     }
