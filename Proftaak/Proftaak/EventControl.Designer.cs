@@ -137,6 +137,7 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(220, 20);
             this.dtpStartDate.TabIndex = 7;
+            this.dtpStartDate.Value = new System.DateTime(2015, 4, 19, 22, 3, 51, 0);
             // 
             // dtpEndDate
             // 
@@ -144,6 +145,7 @@
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(220, 20);
             this.dtpEndDate.TabIndex = 8;
+            this.dtpEndDate.Value = new System.DateTime(2015, 4, 19, 22, 4, 2, 0);
             // 
             // tbName
             // 
@@ -296,13 +298,24 @@
             // nudStreetnumber
             // 
             this.nudStreetnumber.Location = new System.Drawing.Point(702, 117);
+            this.nudStreetnumber.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.nudStreetnumber.Name = "nudStreetnumber";
             this.nudStreetnumber.Size = new System.Drawing.Size(100, 20);
             this.nudStreetnumber.TabIndex = 24;
+            this.nudStreetnumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // tbPostalcode
             // 
             this.tbPostalcode.Location = new System.Drawing.Point(702, 143);
+            this.tbPostalcode.MaxLength = 6;
             this.tbPostalcode.Name = "tbPostalcode";
             this.tbPostalcode.Size = new System.Drawing.Size(100, 20);
             this.tbPostalcode.TabIndex = 25;
@@ -310,7 +323,17 @@
             // nudTicketprice
             // 
             this.nudTicketprice.DecimalPlaces = 2;
+            this.nudTicketprice.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.nudTicketprice.Location = new System.Drawing.Point(405, 207);
+            this.nudTicketprice.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.nudTicketprice.Name = "nudTicketprice";
             this.nudTicketprice.Size = new System.Drawing.Size(120, 20);
             this.nudTicketprice.TabIndex = 26;
