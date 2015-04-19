@@ -100,7 +100,7 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
                 cmd.Parameters.Add("eID", EventID);
                 cmd.Parameters.Add("Search", Search);
@@ -136,15 +136,10 @@ namespace Businesslayer.DAL
 
             try
             {
-<<<<<<< HEAD
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND R.EventID = :eID";
                 cmd.Parameters.Add("eID", EventID);
-=======
-                OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.EventID = :ID";
-                cmd.Parameters.Add("ID", EventID);
->>>>>>> origin/master
 
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -225,13 +220,9 @@ namespace Businesslayer.DAL
             List<User> ReservUsers = new List<User>();
             try
             {
-<<<<<<< HEAD
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.Amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND R.ReservationID = :ID";
-=======
-                OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND U.UserID = R.UserID AND R.ReservationID = :ID";
->>>>>>> origin/master
+
                 cmd.Parameters.Add("ID", ResNr);
 
                 db.Connection.Open();
@@ -309,13 +300,11 @@ namespace Businesslayer.DAL
             return ReservUsers;
         }
 
-<<<<<<< HEAD
-=======
         public void ShowUserDept(int ResNr, int UserID)
         {
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.Price FROM PTS2_Reservation R WHERE R.ReservationID = :ID AND R.EventID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
 
@@ -332,7 +321,6 @@ namespace Businesslayer.DAL
             }
         }
 
->>>>>>> origin/master
         public void AttachRFID(int UserID, int EventID, string RFID)
         {
             try
@@ -352,7 +340,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Close();
+                db.Connection.Close();
             }
         }
 
@@ -385,15 +373,10 @@ namespace Businesslayer.DAL
             bool isAttached = false;
             try
             {
-<<<<<<< HEAD
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = :rID";
                 cmd.Parameters.Add("rID", RFID);
-=======
-                OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = :RFID";
-                cmd.Parameters.Add("RFID", RFID);
->>>>>>> origin/master
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
@@ -525,56 +508,22 @@ namespace Businesslayer.DAL
 
         public void UpdateisPresent(int UserID, bool isPresent)
         {
-<<<<<<< HEAD
             int Present = 0;
-=======
-            //int P = 0;
-
-            //if (Present)
-            //{
-            //    P = 1;
-            //}
-            //else if(!Present)
-            //{
-            //    P = 0;
-            //} 
-
-            try
-            {
-                OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "UPDATE PTS2_USER SET isPresent = :isPresent WHERE UserID = :userID";
-                cmd.Parameters.Add("isPresent", Present);
-                cmd.Parameters.Add("userID", UserID);
->>>>>>> origin/master
-
             if (isPresent)
             {
                 Present = 1;
             }
-            else if(!isPresent)
+            else if (!isPresent)
             {
-<<<<<<< HEAD
                 Present = 0;
-            } 
-=======
-                db.Connection.Close();
             }
-        }
->>>>>>> origin/master
 
             try
             {
-<<<<<<< HEAD
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_USER SET isPresent = :isPresent WHERE UserID = :userID";
                 cmd.Parameters.Add("isPresent", Present);
                 cmd.Parameters.Add("userID", UserID);
-=======
-                OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
-                cmd.Parameters.Add("eID", EventID);
-                cmd.Parameters.Add("Search", Search);
->>>>>>> origin/master
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -593,14 +542,9 @@ namespace Businesslayer.DAL
         {
             try
             {
-<<<<<<< HEAD
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_Reservation SET Price = :Price WHERE ReservationID = :ID";
                 cmd.Parameters.Add("Price", Price);
-=======
-                OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "UPDATE PTS2_Reservation SET Price = 0 WHERE ReservationID = :ID";
->>>>>>> origin/master
                 cmd.Parameters.Add("ID", ResNr);
 
                 db.Connection.Open();
