@@ -69,7 +69,7 @@ namespace Businesslayer.Business
 
         public void CreateEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice, int addressID)
         {
-            DbEvent.CreateEvent(name, description, startDate, Endtime, ticketPrice, addressID);
+            DbEvent.CreateEvent(name, description, startDate, endDate, ticketPrice, addressID);
         }
 
         public Event GetEvent(string eventName, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
