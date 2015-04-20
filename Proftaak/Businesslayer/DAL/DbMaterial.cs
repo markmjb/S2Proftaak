@@ -214,7 +214,7 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-       public void GetReservedItems()
+       public void GetReservedItems(DateTime beginTime, DateTime endtime, User employee, int amount, int price, Item item)
        {
            List<ReservationMaterial> Reservations = new List<ReservationMaterial>();
            try

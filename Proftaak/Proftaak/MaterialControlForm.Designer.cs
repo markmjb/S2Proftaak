@@ -46,7 +46,6 @@
             this.lbYourItem = new System.Windows.Forms.ListBox();
             this.lbSelectItem = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -62,6 +61,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblItems = new System.Windows.Forms.Label();
+            this.lblChangePrice = new System.Windows.Forms.Label();
+            this.cbItemStock = new System.Windows.Forms.ComboBox();
+            this.cbItem = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnChange = new System.Windows.Forms.Button();
             this.tbPrice = new System.Windows.Forms.TextBox();
@@ -70,10 +73,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
-            this.cbItem = new System.Windows.Forms.ComboBox();
-            this.cbItemStock = new System.Windows.Forms.ComboBox();
-            this.lblChangePrice = new System.Windows.Forms.Label();
-            this.lblItems = new System.Windows.Forms.Label();
+            this.cbYourItems = new System.Windows.Forms.ComboBox();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).BeginInit();
@@ -103,6 +103,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.cbYourItems);
             this.tabPage1.Controls.Add(this.nudEvent);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.lbRFIDNr);
@@ -118,7 +119,6 @@
             this.tabPage1.Controls.Add(this.lbYourItem);
             this.tabPage1.Controls.Add(this.lbSelectItem);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.domainUpDown1);
             this.tabPage1.Controls.Add(this.label41);
             this.tabPage1.Controls.Add(this.label42);
             this.tabPage1.Controls.Add(this.label37);
@@ -278,16 +278,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // domainUpDown1
-            // 
-            this.domainUpDown1.Items.Add("Item 1");
-            this.domainUpDown1.Items.Add("Item 5");
-            this.domainUpDown1.Location = new System.Drawing.Point(33, 479);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(104, 20);
-            this.domainUpDown1.TabIndex = 35;
-            this.domainUpDown1.Text = "Item 1";
-            // 
             // label41
             // 
             this.label41.AutoSize = true;
@@ -432,6 +422,42 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stock";
             // 
+            // lblItems
+            // 
+            this.lblItems.AutoSize = true;
+            this.lblItems.Location = new System.Drawing.Point(129, 37);
+            this.lblItems.Name = "lblItems";
+            this.lblItems.Size = new System.Drawing.Size(32, 13);
+            this.lblItems.TabIndex = 107;
+            this.lblItems.Text = "Items";
+            // 
+            // lblChangePrice
+            // 
+            this.lblChangePrice.AutoSize = true;
+            this.lblChangePrice.Location = new System.Drawing.Point(47, 265);
+            this.lblChangePrice.Name = "lblChangePrice";
+            this.lblChangePrice.Size = new System.Drawing.Size(71, 13);
+            this.lblChangePrice.TabIndex = 106;
+            this.lblChangePrice.Text = "Change Price";
+            // 
+            // cbItemStock
+            // 
+            this.cbItemStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbItemStock.FormattingEnabled = true;
+            this.cbItemStock.Location = new System.Drawing.Point(50, 408);
+            this.cbItemStock.Name = "cbItemStock";
+            this.cbItemStock.Size = new System.Drawing.Size(144, 21);
+            this.cbItemStock.TabIndex = 105;
+            // 
+            // cbItem
+            // 
+            this.cbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbItem.FormattingEnabled = true;
+            this.cbItem.Location = new System.Drawing.Point(50, 291);
+            this.cbItem.Name = "cbItem";
+            this.cbItem.Size = new System.Drawing.Size(144, 21);
+            this.cbItem.TabIndex = 104;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -502,41 +528,14 @@
             this.tbAdd.Size = new System.Drawing.Size(87, 20);
             this.tbAdd.TabIndex = 92;
             // 
-            // cbItem
+            // cbYourItems
             // 
-            this.cbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbItem.FormattingEnabled = true;
-            this.cbItem.Location = new System.Drawing.Point(50, 291);
-            this.cbItem.Name = "cbItem";
-            this.cbItem.Size = new System.Drawing.Size(144, 21);
-            this.cbItem.TabIndex = 104;
-            // 
-            // cbItemStock
-            // 
-            this.cbItemStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbItemStock.FormattingEnabled = true;
-            this.cbItemStock.Location = new System.Drawing.Point(50, 408);
-            this.cbItemStock.Name = "cbItemStock";
-            this.cbItemStock.Size = new System.Drawing.Size(144, 21);
-            this.cbItemStock.TabIndex = 105;
-            // 
-            // lblChangePrice
-            // 
-            this.lblChangePrice.AutoSize = true;
-            this.lblChangePrice.Location = new System.Drawing.Point(47, 265);
-            this.lblChangePrice.Name = "lblChangePrice";
-            this.lblChangePrice.Size = new System.Drawing.Size(71, 13);
-            this.lblChangePrice.TabIndex = 106;
-            this.lblChangePrice.Text = "Change Price";
-            // 
-            // lblItems
-            // 
-            this.lblItems.AutoSize = true;
-            this.lblItems.Location = new System.Drawing.Point(129, 37);
-            this.lblItems.Name = "lblItems";
-            this.lblItems.Size = new System.Drawing.Size(32, 13);
-            this.lblItems.TabIndex = 107;
-            this.lblItems.Text = "Items";
+            this.cbYourItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbYourItems.FormattingEnabled = true;
+            this.cbYourItems.Location = new System.Drawing.Point(33, 476);
+            this.cbYourItems.Name = "cbYourItems";
+            this.cbYourItems.Size = new System.Drawing.Size(96, 21);
+            this.cbYourItems.TabIndex = 105;
             // 
             // MaterialControlForm
             // 
@@ -583,7 +582,6 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button btnLinks;
         private System.Windows.Forms.Button btnRechts;
@@ -607,5 +605,6 @@
         private System.Windows.Forms.ComboBox cbItem;
         private System.Windows.Forms.Label lblItems;
         private System.Windows.Forms.Label lblChangePrice;
+        private System.Windows.Forms.ComboBox cbYourItems;
     }
 }
