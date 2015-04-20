@@ -233,7 +233,7 @@ namespace Businesslayer.DAL
                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
                    price = Convert.ToInt32(reader["price"]);
                    Item item = new Item(materialtypeName, price);
-                   items.Add(item);
+                   //items.Add(item);
                }
            }
            catch (OracleException exc)
@@ -244,7 +244,7 @@ namespace Businesslayer.DAL
            {
                this.db.Connection.Close();
            }
-           return items;
+          // return items;
        }
     }
 }
