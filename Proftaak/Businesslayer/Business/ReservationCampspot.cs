@@ -44,9 +44,9 @@ namespace Businesslayer.Business
         {
             return dbres.FilterCampspots(evid,filter);
         }
-        public void CheckorCreateGroup()
+        public bool CheckGroup(string text)
         {
-            
+            return dbres.Groupexists(text);
         }
         public void HandlePayment()
         {

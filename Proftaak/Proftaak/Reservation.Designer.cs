@@ -695,6 +695,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Enabled = false;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Red;
             this.label15.Location = new System.Drawing.Point(8, 63);
@@ -712,6 +713,7 @@
             this.btnCreateGroup.TabIndex = 20;
             this.btnCreateGroup.Text = "Create Group";
             this.btnCreateGroup.UseVisualStyleBackColor = true;
+            this.btnCreateGroup.Click += new System.EventHandler(this.btnCreateGroup_Click);
             // 
             // Reservation
             // 

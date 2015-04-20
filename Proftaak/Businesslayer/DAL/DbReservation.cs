@@ -132,5 +132,37 @@ namespace Businesslayer.DAL
             return groups;
 
         }
+
+        public bool Groupexists(string text)
+        {
+            bool exists = false;
+            try
+            {
+                
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "select * from group where groupid=:GID";
+                cmd.Parameters.Add("GID", text);
+                this.db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    exists = true;
+                }
+                else
+                {
+                    exists = false;
+                }
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return exists;
+
+        }
     }
 }

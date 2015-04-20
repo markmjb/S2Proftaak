@@ -94,6 +94,12 @@ namespace Proftaak
                 }
                
             }
+
+        private void btnCreateGroup_Click(object sender, EventArgs e)
+        {
+         bool Groupexists = RC.CheckGroup(tbNewGroup.Text);
+        
+        }
         }
     }
 
