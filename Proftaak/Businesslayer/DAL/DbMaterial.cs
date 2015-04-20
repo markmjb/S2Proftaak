@@ -244,7 +244,11 @@ namespace Businesslayer.DAL
            {
                this.db.Connection.Close();
            }
+<<<<<<< HEAD
            //return items;
+=======
+          // return items;
+>>>>>>> origin/master
        }
 
       public User ReservationUser(string RFID)

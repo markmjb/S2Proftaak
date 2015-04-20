@@ -54,7 +54,9 @@ namespace Proftaak
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
-            //attachedTxt.Text = e.Device.Attached.ToString();
+            lbRFIDNr.Text = "-";
+            lbRFIDNr2.Text = "-";
+            rfid.Antenna = true;
 
             switch (attached.ID)
             {
@@ -69,11 +71,17 @@ namespace Proftaak
         void rfid_Tag(object sender, TagEventArgs e)
         {
             lbRFIDNr.Text = e.Tag;
+            lbRFIDNr2.Text = e.Tag;
             TempRFID = e.Tag;
         }
         void rfid_TagLost(object sender, TagEventArgs e)
         {
-            lbRFIDNr.Text = "";
+            //lbRFIDNr.Text = "";
+        }
+        void rfid_Detach(object sender, DetachEventArgs e)
+        {
+            RFID detached = (RFID)sender;
+            lbRFIDNr.Text = e.Device.Attached.ToString();
         }
         //Parses command line arguments and calls the appropriate open
         #region Command line open functions
