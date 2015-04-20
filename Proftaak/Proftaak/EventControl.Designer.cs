@@ -306,6 +306,11 @@
             0,
             0,
             0});
+            this.nudStreetnumber.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudStreetnumber.Name = "nudStreetnumber";
             this.nudStreetnumber.Size = new System.Drawing.Size(100, 20);
             this.nudStreetnumber.TabIndex = 24;
@@ -394,6 +399,7 @@
             this.Name = "EventControl";
             this.Text = "EventControl";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventControl_FormClosing);
+            this.Load += new System.EventHandler(this.EventControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStreetnumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTicketprice)).EndInit();
