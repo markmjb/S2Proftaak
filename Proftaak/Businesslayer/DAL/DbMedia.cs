@@ -788,6 +788,41 @@ namespace Businesslayer.DAL
             return mediaitems;
         }
 
+        public List<Mediaitem> SearchOnCategory(string categorytitle)
+        {
+
+            mediaitems = new List<Mediaitem>();
+            try
+            {
+                categorytitle = "%" + categorytitle + "%";
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT MI.MEDIAITEMID, MI.TITLE, MI.DESCRIPTION, MI.USERID FROM PTS2_MEDIAITEM MI, PTS2_MEDIAITEMFILE MF, PTS2_MEDIACATEGORY MC WHERE MI.MEDIAITEMID = MF.MEDIAITEMID AND MF.MEDIACATEGORYID = MC.MEDIACATEGORYID AND MEDIACATEGORYNAME LIKE :categorytitle";
+
+
+                cmd.Parameters.Add("categorytitle", categorytitle);
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dalMediaitem = new Mediaitem();
+                    dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    dalMediaitem.Title = Convert.ToString(reader["TITLE"]);
+                    dalMediaitem.Description = Convert.ToString(reader["DESCRIPTION"]);
+                    dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
+                    mediaitems.Add(dalMediaitem);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return mediaitems;
+        }
+
         public int GetUserID(int itemid)
         {
             

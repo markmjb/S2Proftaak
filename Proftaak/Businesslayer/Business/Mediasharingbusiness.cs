@@ -23,6 +23,13 @@ namespace Businesslayer.Business
             return dbmedia.SearchOnTitle(Title);
         }
 
+        public List<Mediaitem> SearchOnCategory(string Categorytitle)
+        {
+
+
+
+            return dbmedia.SearchOnCategory(Categorytitle);
+        }
 
         public int GetUserID(int mediaitemid)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -101,21 +102,27 @@ namespace Proftaak
                 userID = Userlogin.Loggeduser.ID;             
                 MediaCategoryID = mdsb.GetMediaCategory(cbCategory.SelectedItem.ToString());
 
-
-
-                int mediaitemID = mdsb.GetmediaitemID(title);
-                Mediaitems = mdsb.Getallmediaitems();
-                FileInfo f = new FileInfo(filepath);
-                string uploadloc = @"C:\Opdracht" + "/" + f.Name;
-                System.IO.File.Copy(filepath, uploadloc, false);
-                MessageBox.Show("File uploaded: " + f.Name);
-                this.Close();
-                Mediaitem newmedia = new Mediaitem(type, title, description, filepath, userID, size,
-                    filetype, MediaCategoryID);
+                if (type == "" || title == "" || description == "" || category == null || filepath == null)
+                {
+                    MessageBox.Show("Not all info is filled in");
+                }
+                else
+                {
+                    int mediaitemID = mdsb.GetmediaitemID(title);
+                    Mediaitems = mdsb.Getallmediaitems();
+                    FileInfo f = new FileInfo(filepath);
+                    string uploadloc = @"C:\Opdracht" + "/" + f.Name;
+                    System.IO.File.Copy(filepath, uploadloc, false);
+                    MessageBox.Show("File uploaded: " + f.Name);
+                    this.Close();
+                    Mediaitem newmedia = new Mediaitem(type, title, description, filepath, userID, size,
+                        filetype, MediaCategoryID);
+                }
+                
             }
             catch (SystemException exc)
             {
-                MessageBox.Show("Error moving file:" + exc.Message);
+                MessageBox.Show("Error moving file:" + exc.Message + "Something wrong with the file, or not all textboxes filled in");
             }
             finally
             {
@@ -197,43 +204,46 @@ namespace Proftaak
         {
             try
             {
-
-                string selecteditem = FileBox.SelectedItem.ToString();
-                string[] selecteditems = selecteditem.Split(':');
-                selecteditem = selecteditems[1];
-                Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
-                int selectedid = Convert.ToInt32(selecteditems[0]);
-                Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
-                int itemUserID = mdsb.GetUserID(selectedid);
-                if (Userlogin.Loggeduser.Isadmin == false)
+                if (FileBox.SelectedIndex == -1 || listBox1.SelectedIndex != -1)
                 {
-                    if (userID == itemUserID)
-                    {
-                        if (FileBox.SelectedIndex == -1)
-                        {
-                            MessageBox.Show("geen item geselecteerd");
-                        }
-                        else
-                        {
-                            System.IO.File.Delete(itemfile.Filepath);
-                            mdsb.RemoveMediaItem(item);
-                            mdsb.RemoveMediaItemFile(item);
-                        }
-
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
-                    }
-
+                    MessageBox.Show("No item selected / cant delete an reply");
+                    
                 }
                 else
                 {
-                    System.IO.File.Delete(itemfile.Filepath);
-                    mdsb.RemoveMediaItem(item);
-                    mdsb.RemoveMediaItemFile(item);
+                    string selecteditem = FileBox.SelectedItem.ToString();
+                    string[] selecteditems = selecteditem.Split(':');
+                    selecteditem = selecteditems[1];
+                    Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
+                    int selectedid = Convert.ToInt32(selecteditems[0]);
+                    Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
+                    int itemUserID = mdsb.GetUserID(selectedid);
+                    if (Userlogin.Loggeduser.Isadmin == false)
+                    {
+                        if (userID == itemUserID)
+                        {
+                           
+                                System.IO.File.Delete(itemfile.Filepath);
+                                mdsb.RemoveMediaItem(item);
+                                mdsb.RemoveMediaItemFile(item);
+                            
+
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
+                        }
+
+                    }
+                    else
+                    {
+                        System.IO.File.Delete(itemfile.Filepath);
+                        mdsb.RemoveMediaItem(item);
+                        mdsb.RemoveMediaItemFile(item);
+                    }
                 }
+                
                
 
                   
@@ -280,7 +290,7 @@ namespace Proftaak
 
             if (FileBox.SelectedItem == null)
             {
-                MessageBox.Show("Selecteer een file");
+                //Not needed, already implemented in another event
             }
             else
             {
@@ -477,7 +487,7 @@ namespace Proftaak
             {
                 MessageBox.Show("Please select a file");
             }
-            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
+            else if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
             {
                 MessageBox.Show("You cannot give a reply on a reply, please select a file only");
             }
@@ -499,7 +509,7 @@ namespace Proftaak
             {
                 MessageBox.Show("Kies een file");
             }
-            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
+            else if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
             {
                 MessageBox.Show("Please report only files");
             }
@@ -546,11 +556,19 @@ namespace Proftaak
 
         private void button9_Click(object sender, EventArgs e)
         {
-            string selecteditem = listBox2.SelectedItem.ToString();
-            string[] selecteditems = selecteditem.Split(':', ' ');
-            int selecteditemid = Convert.ToInt32(selecteditems[8]);
-            tabControl1.SelectedTab = tabPage1;
-            FileBox.SelectedIndex = selecteditemid -1;
+            if (listBox2.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a file");
+            }
+            else
+            {
+                string selecteditem = listBox2.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':', ' ');
+                int selecteditemid = Convert.ToInt32(selecteditems[8]);
+                tabControl1.SelectedTab = tabPage1;
+                FileBox.SelectedIndex = selecteditemid - 1;
+            }
+   
 
 
 
@@ -570,11 +588,19 @@ namespace Proftaak
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string selecteditem = listBox2.SelectedItem.ToString();
-            string[] selecteditems = selecteditem.Split(':', ' ');
-            int selecteditemid = Convert.ToInt32(selecteditems[8]);
-            mdsb.RemoveReportedFile(selecteditemid, userID);
-            RefreshReportList();          
+            if (listBox2.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a report");
+            }
+            else
+            {
+                string selecteditem = listBox2.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':', ' ');
+                int selecteditemid = Convert.ToInt32(selecteditems[8]);
+                mdsb.RemoveReportedFile(selecteditemid, userID);
+                RefreshReportList();          
+            }
+            
         }
         
 
@@ -583,28 +609,37 @@ namespace Proftaak
             string Title = tbsearch.Text;
             string SortOn = cbsearch.Text;
 
-            if (SortOn == "Title")
+            if (Title == "" || SortOn == "")
             {
-              Mediaitems = mdsb.SearchOnTitle(Title);
-              
-                if (Title == "")
-                {
-                    RefreshFilebox();
-                }
-                else
-                {
-                    RefreshFilebox2();
-                }
-                
+                MessageBox.Show("fill in the boxes");
             }
             else
             {
-                if (SortOn == "Category")
+                if (SortOn == "Title")
                 {
-                  
-                }
+                    Mediaitems = mdsb.SearchOnTitle(Title);
 
+                    if (Title == "")
+                    {
+                        RefreshFilebox();
+                    }
+                    else
+                    {
+                        RefreshFilebox2();
+                    }
+
+                }
+                else
+                {
+                    if (SortOn == "Category")
+                    {
+                        Mediaitems = mdsb.SearchOnCategory(Title);
+
+                    }
+
+                }
             }
+          
             RefreshFilebox2();
         }
 

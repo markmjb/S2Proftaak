@@ -229,7 +229,7 @@
             this.cbsearch.FormattingEnabled = true;
             this.cbsearch.Items.AddRange(new object[] {
             "Title",
-            "Categorie"});
+            "Category"});
             this.cbsearch.Location = new System.Drawing.Point(18, 38);
             this.cbsearch.Name = "cbsearch";
             this.cbsearch.Size = new System.Drawing.Size(178, 21);
