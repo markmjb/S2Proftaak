@@ -623,6 +623,7 @@
             this.btnFinishReservation.TabIndex = 2;
             this.btnFinishReservation.Text = "Save Reservation";
             this.btnFinishReservation.UseVisualStyleBackColor = true;
+            this.btnFinishReservation.Click += new System.EventHandler(this.btnFinishReservation_Click);
             // 
             // label14
             // 

@@ -19,12 +19,14 @@ namespace Proftaak
     {
 
         private List<Businesslayer.Business.Campspot> Campspots;
+        private List<Campspot> Selectedcampspots; 
         private List<Event> Events = new List<Event>();
         private List<Group> groups = new List<Group>(); 
         private ReservationCampspot RC = new ReservationCampspot();
         private List<User> users; 
         private User user = new User();
         private Address address= new Address();
+        private Event _event;
         private bool Isloaded = new bool();
 
         public Reservation()
@@ -84,11 +86,43 @@ namespace Proftaak
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex != 3)
+            bool nonexttab = new bool();
+            nonexttab = false;
+            if (tabControl1.SelectedTab == tabEvent)
             {
-                tabControl1.SelectedIndex++;
+                _event = (Event) cbEvent.SelectedItem;
             }
-        }
+            if (tabControl1.SelectedTab==tabCampspot)
+            {
+                if (lbAvailablespots.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Select one or more campspots first");
+                    nonexttab = true;
+                }
+                else { 
+                foreach (var C in lbAvailablespots.SelectedItems)
+                {
+                 Selectedcampspots = new List<Campspot>();
+                Selectedcampspots.Add((Campspot)C);
+                }
+                }
+            }
+            if (tabControl1.SelectedTab == tabAddUser)
+            {
+                if (cbAddedusers.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Add one or more users");
+                    nonexttab = true;
+
+                }
+            }
+            if (!nonexttab)
+                {
+                    tabControl1.SelectedIndex++;
+                }
+            }
+
+        
 
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
@@ -219,6 +253,12 @@ namespace Proftaak
             {
                 users.Remove((User)cbAddedusers.SelectedItem);
             }
+        }
+
+        private void btnFinishReservation_Click(object sender, EventArgs e)
+        {
+            
+            RC.SaveReservation(users,Selectedcampspots,_event);
         }
         
         }

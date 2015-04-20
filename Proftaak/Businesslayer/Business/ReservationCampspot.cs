@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 using Businesslayer.DAL;
 
 namespace Businesslayer.Business
@@ -65,6 +67,24 @@ namespace Businesslayer.Business
         public void CreateGroup(string text)
         {
             dbres.Creategroup(text);
+        }
+
+        public void SaveReservation(List<User> users, List<Campspot> selectedcampspots, Event _event)
+        {
+            decimal price = selectedcampspots.Sum(c => c.Price);
+            double days = (_event.EndDate - _event.StartDate).TotalDays;
+            int fulldays = (int)(days += 0.5);
+            decimal totalprice = price*fulldays;
+            int Resid = dbres.SelectMaxID();
+            dbres.Insertreservation(_event, totalprice);
+            foreach (Campspot c in selectedcampspots)
+            {
+                dbres.Insertreservation2(Resid, c.CampspotId);
+            }
+            foreach (User u in users)
+            {
+                dbres.Insertreservation3(u.ID,Resid);
+            }
         }
     }
 }

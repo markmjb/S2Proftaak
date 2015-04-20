@@ -13,6 +13,8 @@ namespace Businesslayer.DAL
         private List<Campspot> spots;
         private Campspot singlespot;
         private List<Group> groups;
+        private int returnint;
+
         public DbReservation()
         {
             db = new Databaseconnection();
@@ -33,7 +35,7 @@ namespace Businesslayer.DAL
                              " = C.CAMPINGSPOTID WHERE EVENTID=:evid AND C.CAMPINGSPOTID" +
                              " NOT IN (Select CAMPSPOTID FROM PTS2_RESCAMP WHERE RESID IN (SELECT RESID FROM PTS2_RESERVATION))";
                 cmd.CommandText = sql;
-                    
+
                 cmd.Parameters.Add("evid", evid);
                 this.db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -60,6 +62,7 @@ namespace Businesslayer.DAL
             return spots;
 
         }
+
         public List<Campspot> FilterCampspots(int evid, string filter)
         {
             spots = new List<Campspot>();
@@ -69,10 +72,10 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 string sql = "select C.CAMPINGSPOTID,C.CAMPPLACE,C.DESCRIPTION" +
-             ",C.CAMPINGSPOTTYPE,C.PRICEPERDAY FROM PTS2_CAMPINGSPOT C FULL JOIN" +
-             " PTS2_EVENT_CAMPINGSPOT ON PTS2_EVENT_CAMPINGSPOT.CAMPINGSPOTID" +
-             " = C.CAMPINGSPOTID WHERE EVENTID=:evid AND CAMPINGSPOTTYPE=:ctype AND C.CAMPINGSPOTID" +
-             " NOT IN (Select CAMPSPOTID FROM PTS2_RESCAMP WHERE RESID IN (SELECT RESID FROM PTS2_RESERVATION))";
+                             ",C.CAMPINGSPOTTYPE,C.PRICEPERDAY FROM PTS2_CAMPINGSPOT C FULL JOIN" +
+                             " PTS2_EVENT_CAMPINGSPOT ON PTS2_EVENT_CAMPINGSPOT.CAMPINGSPOTID" +
+                             " = C.CAMPINGSPOTID WHERE EVENTID=:evid AND CAMPINGSPOTTYPE=:ctype AND C.CAMPINGSPOTID" +
+                             " NOT IN (Select CAMPSPOTID FROM PTS2_RESCAMP WHERE RESID IN (SELECT RESID FROM PTS2_RESERVATION))";
                 cmd.CommandText = sql;
                 cmd.Parameters.Add("evid", evid);
                 cmd.Parameters.Add("ctype", filter);
@@ -138,7 +141,7 @@ namespace Businesslayer.DAL
             bool exists = false;
             try
             {
-                
+
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "select * from PTS2_Group where Groupname=:GID";
                 cmd.Parameters.Add("GID", text);
@@ -173,7 +176,7 @@ namespace Businesslayer.DAL
                 cmd.CommandText = "insert INTO PTS2_GROUP(GROUPNAME) VALUES (:groupname)";
                 cmd.Parameters.Add("groupname", text);
                 this.db.Connection.Open();
-                cmd.ExecuteNonQuery();
+                cmd.ExecuteScalar();
             }
             catch (Exception e)
             {
@@ -186,5 +189,77 @@ namespace Businesslayer.DAL
             }
 
         }
+
+        public int SelectMaxID()
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "select Max(RESERVATIONID) FROM PTS2_RESERVATION";
+                this.db.Connection.Open();
+                returnint = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return returnint;
+
+        }
+
+        public void Insertreservation(Event _event, decimal totalprice)
+        {
+            try { 
+            OracleCommand cmd = this.db.Connection.CreateCommand();
+            cmd.CommandText =
+                "INSERT INTO PTS2_RESERVATION (STARTDATE,ENDDATE,PRICE) VALUES (:datestart,:dateend,:totalprice)";
+            cmd.Parameters.Add("datestart", _event.StartDate);
+            cmd.Parameters.Add("dateend", _event.EndDate);
+            cmd.Parameters.Add("totalprice", totalprice);
+            this.db.Connection.Open();
+            cmd.ExecuteNonQuery();
+                }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Open();
+            }
+        }
+
+        public void Insertreservation2(int resid, int campspotId)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "INSERT INTO (RESID,CAMPSPOTID) VALUES (:RES,:CAMP)";
+                cmd.Parameters.Add("RES", resid);
+                cmd.Parameters.Add("CAMP", campspotId);
+                this.db.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Open();
+            }
+            }
+
+        public void Insertreservation3(int id, int resid)
+        {
+            OracleCommand cmd = this.db.Connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO USER_RESERVATION";
+            
+        }
     }
 }
+
