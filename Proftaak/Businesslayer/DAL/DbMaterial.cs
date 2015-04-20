@@ -214,7 +214,7 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-      public void GetReservedItems()
+       public void GetReservedItems()
        {
            List<ReservationMaterial> Reservations = new List<ReservationMaterial>();
            try
@@ -244,14 +244,8 @@ namespace Businesslayer.DAL
            {
                this.db.Connection.Close();
            }
-<<<<<<< HEAD
-           //return items;
-=======
-          // return items;
->>>>>>> origin/master
        }
-
-      public User ReservationUser(string RFID)
+      public User GetRFIDuser(string RFID)
       {
           User RFIDuser = null;
           try

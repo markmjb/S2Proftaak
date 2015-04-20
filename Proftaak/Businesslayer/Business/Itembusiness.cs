@@ -10,6 +10,7 @@ namespace Businesslayer.Business
     public class Itembusiness
     {
         DbMaterial DM = new DbMaterial();
+        DbAccess DA = new DbAccess();
         public List<Item> GetItems()
         {
             List<Item> items = DM.GetItems();
@@ -53,6 +54,14 @@ namespace Businesslayer.Business
         public void ReturnMaterial(int materialID, string materialName, string description, double price, int materialTypeID, int eventID)
         {
             DM.ReturnMaterial(materialID, materialName, description, price, materialTypeID, eventID);
+        }
+        public User RFIDuser(string RFID)
+        {
+            if (DA.GetRFIDStatus(RFID))
+            {
+                return DM.GetRFIDuser(RFID);
+            }
+            return null;
         }
     }
 }
