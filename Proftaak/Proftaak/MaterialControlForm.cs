@@ -222,40 +222,68 @@ namespace Proftaak
         }
 
         private void btnChange_Click(object sender, EventArgs e)
-        {            
-            IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
-            Update();
+        {     
+            string test = tbPrice.Text;
+            int num1;
+            bool isNummer = int.TryParse(test, out num1);
+            if(cbItem.SelectedItem != null && tbPrice.Text !=  "" && isNummer == true)
+            {
+                IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
+                Update();
+            }
+            else
+            {
+                MessageBox.Show("Vul alle velden correct in");
+            }
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), cbEvents.SelectedIndex + 1);
-            Update();
+            string test = tbAdd.Text;
+            int num1;
+            bool isNummer = int.TryParse(test, out num1);
+            if (cbItemStock.SelectedItem != null && tbAdd.Text != "" && isNummer == true)
+            {
+                IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), cbEvents.SelectedIndex + 1);
+                Update();
+            }
+            else
+            {
+                MessageBox.Show("Vul alle velden correct in");
+            }
         }
         private void button3_Click(object sender, EventArgs e)  
         {
             Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
-            Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
-            totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
-
-            List<Item> StockItems = IB.GetStockItems();
-            List<Item> SelectedStockItems = new List<Item>();
-
-            foreach (Item I in StockItems)
+            if(lbSelectItem.SelectedIndex != -1)
             {
-                  if (I.Name == Select.Name)
+                 Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
+                 totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
+
+                 List<Item> StockItems = IB.GetStockItems();
+                 List<Item> SelectedStockItems = new List<Item>();
+
+                 foreach (Item I in StockItems)
                   {
-                      SelectedStockItems.Add(I);
+                      if (I.Name == Select.Name)
+                      {
+                           SelectedStockItems.Add(I);
+                      }
                   }
-            }
-            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+                  int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
 
-            for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
+                  for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
+                  {
+                     Item SelItem = StockItems.ElementAt(i);
+                     IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
+                  }
+
+              IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);   
+
+           }
+            else
             {
-                Item SelItem = StockItems.ElementAt(i);
-                IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
+                MessageBox.Show("Selecteer een item");
             }
-
-            IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);     
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -266,6 +294,10 @@ namespace Proftaak
 
                 Item I = LoanItems.ElementAt(cbYourItems.SelectedIndex);
                 IB.DeleteLoan(I.ID, RFIDID);
+            }
+            else
+            {
+                MessageBox.Show("Selecteer een item");
             }
         }
         private void lbRFIDNr_TextChanged(object sender, EventArgs e)
