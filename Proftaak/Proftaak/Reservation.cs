@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Businesslayer;
 using Businesslayer.Business;
 using Businesslayer.DAL;
@@ -15,11 +16,12 @@ namespace Proftaak
 {
     public partial class Reservation : Form
     {
-        
-            List<int> Availablespots=new List<int>();
-            List<int> Selectedspots= new List<int>();
-        private new List<Event> Events = new List<Event>();
-            ReservationCampspot RC = new ReservationCampspot();
+
+        private List<Businesslayer.Business.Campspot> Campspots;
+        private List<Event> Events = new List<Event>();
+        private List<Group> groups = new List<Group>(); 
+        private ReservationCampspot RC = new ReservationCampspot();
+
         public Reservation()
         {
             InitializeComponent();
@@ -27,40 +29,31 @@ namespace Proftaak
 
         private void Reservation_FormClosing(object sender, FormClosingEventArgs e)
         {
-        StartScreen S = new StartScreen();
+            StartScreen S = new StartScreen();
             S.Show();
         }
-        
+
         private void Reservation_Load(object sender, EventArgs e)
         {
-            foreach (Event E in RC.Events())
-            {
-            Events.Add(E);
-                cbEvent.Items.Add(E.Name);
-            }
-
-
-            Updatespots();
-            foreach (int I in Availablespots)
-            {
-                lbAvailablespots.Items.Add(Convert.ToString(I));
-            }
-            
-            cbEvent.SelectedIndex = 0;
+            Events = RC.Events();
+            cbEvent.DataSource = Events;
+            cbEvent.DisplayMember = "Name";
+            Campspots = RC.UpdateCampingSpots(((Event) cbEvent.SelectedItem).EventID);
+            lbAvailablespots.DataSource = Campspots;
+            lbAvailablespots.DisplayMember = "Campplace";
+            groups = RC.GetAllGroups();
+            cbGroup.DataSource = groups;
+            cbGroup.DisplayMember = "Name";
         }
 
-        private void Updatespots()
-        {
-            Availablespots = RC.UpdateCampingSpots();
-
-        }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex != 0)
             {
-                tabControl1.SelectedIndex--;  
+                tabControl1.SelectedIndex--;
             }
         }
+
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex != 3)
@@ -69,41 +62,37 @@ namespace Proftaak
             }
         }
 
-
-        
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (lbAvailablespots.SelectedIndex == -1)
-            {
-                MessageBox.Show("Select A Campingspot");
-            }
-            else
-            {
-                lbselectedcampspots.Items.Add(lbAvailablespots.SelectedItem);
-                lbAvailablespots.Items.Remove(lbAvailablespots.SelectedItem);
-            }
-        }
-
-        private void btnDeselect_Click(object sender, EventArgs e)
-        {
-            if (lbselectedcampspots.SelectedIndex == -1)
-            {
-                MessageBox.Show("Select A Campingspot");
-            }
-            else
-            {
-                lbAvailablespots.Items.Add(lbselectedcampspots.SelectedItem);
-                lbselectedcampspots.Items.Remove(lbselectedcampspots.SelectedItem);
-            }
-
-        }
-
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
 
-            
-        
+
+
         }
+
+        private void cbCSprop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCSprop.SelectedItem.ToString()  == "Show All")
+            {
+                Campspots = RC.UpdateCampingSpots(((Event)cbEvent.SelectedItem).EventID);
+                lbAvailablespots.DataSource = Campspots;
+            }
+            else if (cbCSprop.SelectedItem.ToString() == "Show Impaired")
+            {
+                   Campspots = RC.FilterCampingSpots(((Event) cbEvent.SelectedItem).EventID, "handicap");
+                   lbAvailablespots.DataSource = Campspots;       
+            }
+            else if (cbCSprop.SelectedItem.ToString() == "Show Normal")
+            {
+                Campspots = RC.FilterCampingSpots(((Event)cbEvent.SelectedItem).EventID, "normaal");
+                lbAvailablespots.DataSource = Campspots;
+            }
+            else if (cbCSprop.SelectedItem.ToString() =="Show Quiet")   
+                {
+                  Campspots = RC.FilterCampingSpots(((Event) cbEvent.SelectedItem).EventID, "rustig");
+                  lbAvailablespots.DataSource = Campspots;
+                }
+               
+            }
         }
-}
+    }
+

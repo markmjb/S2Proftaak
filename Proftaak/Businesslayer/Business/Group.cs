@@ -4,18 +4,24 @@ namespace Businesslayer.Business
 {
     public class Group
     {
-        public List<User> GroupMembers { get; set; }
         public string Name { get; set; }
 
-        public Group(List<User> groupMembers, string name)
+        public int ID { get; set; }
+
+        public Group()
         {
-            GroupMembers = groupMembers;
-            Name = name;
+            
         }
 
-        public Group(string name)
+        public Group(string name, int id)
         {
             Name = name;
+            ID = id;
+        }
+
+        public Group(string groupname)
+        {
+            Name = groupname;
         }
     }
 }

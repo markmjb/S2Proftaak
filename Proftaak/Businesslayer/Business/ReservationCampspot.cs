@@ -11,7 +11,7 @@ namespace Businesslayer.Business
         public List<User> ReservationUsers { get; set; }
 
         private DbReservation dbres = new DbReservation();
-        private DbEvent dbrem = new DbEvent();
+        private DbEvent dbEvent = new DbEvent();
 
         public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, List<int> campingspots, decimal price, List<User> reservationUsers) : base(beginTime, endtime, employee)
         {
@@ -22,7 +22,7 @@ namespace Businesslayer.Business
 
         public List<Event> Events()
         {
-         return   dbrem.GetEvents();
+         return   dbEvent.GetEvents();
         }
         public ReservationCampspot()
         {
@@ -36,9 +36,13 @@ namespace Businesslayer.Business
         {
             
         }
-        public List<int> UpdateCampingSpots()
+        public List<Campspot> UpdateCampingSpots(int evid)
         {
-            return dbres.Campspots();
+            return dbres.Campspots(evid);
+        }
+        public List<Campspot> FilterCampingSpots(int evid, string filter)
+        {
+            return dbres.FilterCampspots(evid,filter);
         }
         public void CheckorCreateGroup()
         {
@@ -51,6 +55,11 @@ namespace Businesslayer.Business
         public void SaveReservation()
         {
             
+        }
+
+        public List<Group> GetAllGroups()
+        {
+           return dbres.GetAllGroups();
         }
     }
 }

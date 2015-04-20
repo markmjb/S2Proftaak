@@ -32,7 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
@@ -74,16 +74,16 @@
             this.tbPassword.TabIndex = 3;
             this.tbPassword.Text = "kevin";
             // 
-            // label3
+            // lblWarning
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(58, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Wrong Combination Email/Password";
-            this.label3.Visible = false;
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.ForeColor = System.Drawing.Color.Red;
+            this.lblWarning.Location = new System.Drawing.Point(58, 102);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(179, 13);
+            this.lblWarning.TabIndex = 4;
+            this.lblWarning.Text = "Wrong Combination Email/Password";
+            this.lblWarning.Visible = false;
             // 
             // btnLogin
             // 
@@ -100,7 +100,7 @@
             this.groupBox1.Controls.Add(this.tbEmail);
             this.groupBox1.Controls.Add(this.btnLogin);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblWarning);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tbPassword);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -130,7 +130,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.TextBox tbPassword;

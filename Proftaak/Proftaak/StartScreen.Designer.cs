@@ -123,6 +123,7 @@
             // 
             this.tbNewpass2.Location = new System.Drawing.Point(86, 85);
             this.tbNewpass2.Name = "tbNewpass2";
+            this.tbNewpass2.PasswordChar = '*';
             this.tbNewpass2.Size = new System.Drawing.Size(114, 20);
             this.tbNewpass2.TabIndex = 9;
             // 
@@ -130,6 +131,7 @@
             // 
             this.tbNewpass1.Location = new System.Drawing.Point(86, 56);
             this.tbNewpass1.Name = "tbNewpass1";
+            this.tbNewpass1.PasswordChar = '*';
             this.tbNewpass1.Size = new System.Drawing.Size(114, 20);
             this.tbNewpass1.TabIndex = 8;
             // 
@@ -137,6 +139,7 @@
             // 
             this.tbOldpass.Location = new System.Drawing.Point(86, 30);
             this.tbOldpass.Name = "tbOldpass";
+            this.tbOldpass.PasswordChar = '*';
             this.tbOldpass.Size = new System.Drawing.Size(114, 20);
             this.tbOldpass.TabIndex = 7;
             // 
