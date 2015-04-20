@@ -22,18 +22,28 @@ namespace Proftaak
         User ScannedUser;
 
         Itembusiness IB = new Itembusiness();
-        public List<Item> items = new List<Item>();
+        List<Item> items;
+        List<Event> Events;
+
         private int totalprice;
 
         public MaterialControlForm()
         {
             InitializeComponent();
             LoadComboBoxes();
+            cbEvents.SelectedIndex = 0;
         }
 
         void LoadComboBoxes()
         {
             items = IB.GetItems();
+            Events = IB.GetEvents();
+
+            foreach (Event E in Events)
+            {
+                cbEvents.Items.Add(E.Name);
+            }
+
             foreach (Item I in items)
             {
                 cbItem.Items.Add(I.Name);
@@ -184,7 +194,6 @@ namespace Proftaak
         {            
             IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
             Update();
-            MessageBox.Show("gedaan");
         }
         private new void Update()
         {
@@ -201,6 +210,7 @@ namespace Proftaak
         private void btnAdd_Click(object sender, EventArgs e)
         {
             IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
+            Update();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -224,14 +234,9 @@ namespace Proftaak
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(nudEvent.Value == 0)
-            {
-                MessageBox.Show("Event mag geen 0 zijn!");
-            }
-            else
-            {
-                GiveUserDept();
-            }           
+            totalprice += Convert.ToInt32(ScannedUser.Debt);
+            Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
+            IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);    
         }
         public void UpdateTotalPrice()
         {
@@ -258,10 +263,6 @@ namespace Proftaak
             totalprice = tempprice + totalprice;
             lblTotalPrice.Text = Convert.ToString(totalprice);
             totalprice = 0;
-        }
-        public void GiveUserDept()
-        {
-            IB.GiveUserDebt(Convert.ToInt32(ScannedUser.ID), Convert.ToInt32(nudEvent.Value), Convert.ToInt32(lblTotalPrice.Text));
         }
 
         private void button1_Click(object sender, EventArgs e)
