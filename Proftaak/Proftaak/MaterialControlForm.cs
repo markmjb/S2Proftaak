@@ -38,6 +38,7 @@ namespace Proftaak
         {
             items = IB.GetItems();
             Events = IB.GetEvents();
+            ScannedUser = IB.RFIDuser(TempRFID);
 
             foreach (Event E in Events)
             {
@@ -50,6 +51,15 @@ namespace Proftaak
                 cbItemStock.Items.Add(I.Name + " , €" + I.Price);
                 lbSelectItem.Items.Add(I.Name + " , €" + I.Price);
                 lbItems.Items.Add("Product : " + I.Name + " , prijs: €" + I.Price);
+            }
+            if (ScannedUser != null)
+            {
+                int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+                List<Item> cbReserveredIt = IB.GetReservedItems(RFIDID);
+                foreach (Item I in cbReserveredIt)
+                {
+                    cbYourItems.Items.Add(I.Name);
+                }
             }
         }
 
@@ -215,29 +225,7 @@ namespace Proftaak
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //lbYourItem.Items.Add(lbSelectItem.SelectedItem.ToString() + ", " + nudAmount.Value.ToString() + " x");
-            //UpdateTotalPrice();
-            Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
-            totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
 
-            List<Item> StockItems = IB.GetStockItems();
-            List<Item> SelectedStockItems = new List<Item>();
-
-            foreach (Item I in StockItems)
-            {
-                if (I.Name == Select.Name)
-                {
-                    SelectedStockItems.Add(I);
-                }
-            }
-            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
-
-            for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
-            {
-                Item SelItem = StockItems.ElementAt(i);
-                IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
-            }
-            IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);
         }        
 
         private void button6_Click(object sender, EventArgs e)
@@ -248,36 +236,29 @@ namespace Proftaak
 
         private void button3_Click(object sender, EventArgs e)  
         {
-            UpdateTotalPrice();
-            totalprice = Convert.ToInt32(ScannedUser.Debt) + totalprice;
             Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
-            IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);    
-        }
-        public void UpdateTotalPrice()
-        {
-            totalprice = 0;
-            int price;
-            int tempprice = 0;
-            for (int i = 0;  i < lbYourItem.Items.Count; i++)          
+            Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
+            totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
+
+            List<Item> StockItems = IB.GetStockItems();
+            List<Item> SelectedStockItems = new List<Item>();
+
+            foreach (Item I in StockItems)
             {
-                string naam;              
-                int found = 0;
-                int found2 = 0;
-                string substring;
-                string substring2;
-                naam = lbYourItem.Items[i].ToString();
-                found = naam.IndexOf(",");
-                found2 = naam.IndexOf("x");
-                substring = naam.Substring(0, found - 1);
-                substring2 = naam.Substring(found2 - 2, 1);
-                for (int j = 0; j < Convert.ToInt32(substring2); j++)
-                {
-                    price = IB.UpdateTotalPrice(substring);
-                    tempprice = price + tempprice;
-                }
+                  if (I.Name == Select.Name)
+                  {
+                      SelectedStockItems.Add(I);
+                  }
             }
-            totalprice = tempprice + totalprice;
-            lblTotalPrice.Text = Convert.ToString(totalprice);
+            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+
+            for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
+            {
+                Item SelItem = StockItems.ElementAt(i);
+                IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
+            }
+
+            IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);     
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -288,9 +269,10 @@ namespace Proftaak
         {
             //IB.ReturnMaterial();
         }
-        public void GetReservedItems()
+        public List<Item> GetReservedItems()
         {
-            IB.GetReservedItems();
+            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+            return IB.GetReservedItems(RFIDID);
         }
 
         private void lbRFIDNr_TextChanged(object sender, EventArgs e)

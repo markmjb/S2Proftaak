@@ -26,25 +26,25 @@ namespace Businesslayer.Business
         {
             DM.ChangePrice(name, price);
         }
-        public void AddStock(string naam, int aantal)
+        public void AddStock(string naam, int aantal, int eventID)
         {
             for(int i = 0; i < aantal; i++)
             {
                 if(naam == "USBstick")
                 {
-                    DM.AddStock(naam, "Een 16GB USB stick", 35, 1, 1);
+                    DM.AddStock(naam, "Een 16GB USB stick", 35, 1, eventID);
                 }
                 if (naam == "Ethernetkabel")
                 {
-                    DM.AddStock(naam, "Een internetkabel van 10meter", 20, 2, 1);
+                    DM.AddStock(naam, "Een internetkabel van 10meter", 20, 2, eventID);
                 }
                 if (naam == "Laptop")
                 {
-                    DM.AddStock(naam, "Een gemiddelde laptop", 200, 3, 1);
+                    DM.AddStock(naam, "Een gemiddelde laptop", 200, 3, eventID);
                 }
                 if (naam == "Accu")
                 {
-                    DM.AddStock(naam, "Een goede accu voor de laptop", 15, 4, 1);
+                    DM.AddStock(naam, "Een goede accu voor de laptop", 15, 4, eventID);
                 }
             }
         }
