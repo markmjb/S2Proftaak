@@ -81,9 +81,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tabConf = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnFinishReservation = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
@@ -260,7 +258,7 @@
             this.tabAddUser.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabAddUser.Size = new System.Drawing.Size(876, 543);
             this.tabAddUser.TabIndex = 1;
-            this.tabAddUser.Text = "s";
+            this.tabAddUser.Text = "Add Users";
             // 
             // groupBox2
             // 
@@ -293,13 +291,13 @@
             this.dtpBirth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpBirth.Name = "dtpBirth";
             this.dtpBirth.Size = new System.Drawing.Size(108, 20);
-            this.dtpBirth.TabIndex = 19;
+            this.dtpBirth.TabIndex = 10;
             // 
             // btnAddEdit
             // 
-            this.btnAddEdit.Location = new System.Drawing.Point(225, 311);
+            this.btnAddEdit.Location = new System.Drawing.Point(225, 303);
             this.btnAddEdit.Name = "btnAddEdit";
-            this.btnAddEdit.Size = new System.Drawing.Size(86, 67);
+            this.btnAddEdit.Size = new System.Drawing.Size(86, 30);
             this.btnAddEdit.TabIndex = 18;
             this.btnAddEdit.Text = "Add User";
             this.btnAddEdit.UseVisualStyleBackColor = true;
@@ -344,13 +342,14 @@
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // tbEmail
             // 
             this.tbEmail.Location = new System.Drawing.Point(112, 80);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(108, 20);
-            this.tbEmail.TabIndex = 17;
+            this.tbEmail.TabIndex = 8;
             // 
             // cbGroup
             // 
@@ -359,7 +358,7 @@
             this.cbGroup.Location = new System.Drawing.Point(99, 167);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(121, 21);
-            this.cbGroup.TabIndex = 19;
+            this.cbGroup.TabIndex = 11;
             // 
             // label13
             // 
@@ -375,7 +374,7 @@
             this.tbPassword.Location = new System.Drawing.Point(112, 106);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(108, 20);
-            this.tbPassword.TabIndex = 16;
+            this.tbPassword.TabIndex = 9;
             // 
             // tbLastname
             // 
@@ -408,7 +407,7 @@
             this.gBgroup.Controls.Add(this.lblGroup);
             this.gBgroup.Location = new System.Drawing.Point(6, 384);
             this.gBgroup.Name = "gBgroup";
-            this.gBgroup.Size = new System.Drawing.Size(250, 81);
+            this.gBgroup.Size = new System.Drawing.Size(305, 81);
             this.gBgroup.TabIndex = 2;
             this.gBgroup.TabStop = false;
             this.gBgroup.Text = "Group";
@@ -541,28 +540,28 @@
             this.tbCountry.Location = new System.Drawing.Point(84, 162);
             this.tbCountry.Name = "tbCountry";
             this.tbCountry.Size = new System.Drawing.Size(100, 20);
-            this.tbCountry.TabIndex = 9;
+            this.tbCountry.TabIndex = 17;
             // 
             // tbState
             // 
             this.tbState.Location = new System.Drawing.Point(86, 132);
             this.tbState.Name = "tbState";
             this.tbState.Size = new System.Drawing.Size(100, 20);
-            this.tbState.TabIndex = 10;
+            this.tbState.TabIndex = 16;
             // 
             // tbCity
             // 
             this.tbCity.Location = new System.Drawing.Point(86, 110);
             this.tbCity.Name = "tbCity";
             this.tbCity.Size = new System.Drawing.Size(100, 20);
-            this.tbCity.TabIndex = 11;
+            this.tbCity.TabIndex = 15;
             // 
             // tbPostalcode
             // 
             this.tbPostalcode.Location = new System.Drawing.Point(86, 77);
             this.tbPostalcode.Name = "tbPostalcode";
             this.tbPostalcode.Size = new System.Drawing.Size(100, 20);
-            this.tbPostalcode.TabIndex = 12;
+            this.tbPostalcode.TabIndex = 14;
             // 
             // tbStreetnumber
             // 
@@ -576,7 +575,7 @@
             this.tbStreet.Location = new System.Drawing.Point(86, 19);
             this.tbStreet.Name = "tbStreet";
             this.tbStreet.Size = new System.Drawing.Size(100, 20);
-            this.tbStreet.TabIndex = 14;
+            this.tbStreet.TabIndex = 12;
             // 
             // label9
             // 
@@ -608,9 +607,7 @@
             // tabConf
             // 
             this.tabConf.BackColor = System.Drawing.SystemColors.Control;
-            this.tabConf.Controls.Add(this.button6);
-            this.tabConf.Controls.Add(this.button5);
-            this.tabConf.Controls.Add(this.textBox3);
+            this.tabConf.Controls.Add(this.btnFinishReservation);
             this.tabConf.Controls.Add(this.label14);
             this.tabConf.Location = new System.Drawing.Point(4, 22);
             this.tabConf.Name = "tabConf";
@@ -618,31 +615,14 @@
             this.tabConf.TabIndex = 2;
             this.tabConf.Text = "Confirmation Screen";
             // 
-            // button6
+            // btnFinishReservation
             // 
-            this.button6.Location = new System.Drawing.Point(206, 195);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Pay Later";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(6, 195);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Pay Now";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(7, 35);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(274, 112);
-            this.textBox3.TabIndex = 1;
+            this.btnFinishReservation.Location = new System.Drawing.Point(16, 156);
+            this.btnFinishReservation.Name = "btnFinishReservation";
+            this.btnFinishReservation.Size = new System.Drawing.Size(197, 23);
+            this.btnFinishReservation.TabIndex = 2;
+            this.btnFinishReservation.Text = "Save Reservation";
+            this.btnFinishReservation.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -749,9 +729,7 @@
         private System.Windows.Forms.Button btnAddEdit;
         private System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnFinishReservation;
         private System.Windows.Forms.DateTimePicker dtpBirth;
         private System.Windows.Forms.TabPage tabEvent;
         private System.Windows.Forms.Label lblChooseEvent;
