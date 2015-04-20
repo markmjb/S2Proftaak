@@ -92,7 +92,7 @@ namespace Proftaak
                 address = new Address(tbStreetnumber.Text, Convert.ToInt32(tbStreetnumber.Text), tbPostalcode.Text,
                       tbCity.Text, tbState.Text, tbCountry.Text);
                 user = new User(tbFirstname.Text, tbLastname.Text, address, tbEmail.Text, tbPassword.Text,
-                    (Group)cbGroup.SelectedItem);
+                    (Group)cbGroup.SelectedItem,dtpBirth.Value);
                 
             }
             else
@@ -102,6 +102,8 @@ namespace Proftaak
             users.Add(user);
             UpdateUsers();
         }
+
+
 
         private void cbCSprop_SelectedIndexChanged(object sender, EventArgs e)
         {

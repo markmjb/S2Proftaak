@@ -4,6 +4,12 @@ namespace Businesslayer.Business
 {
     public  class User
     {
+        private string p1;
+        private string p2;
+        private string p3;
+        private string p4;
+        private DateTime dateTime;
+
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public Address Address { get; set; }
@@ -17,7 +23,7 @@ namespace Businesslayer.Business
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsPresent { get; set; }
-
+        public DateTime Birthdate { get; set; } 
         public User(string firstname, string lastname, Address address, Group @group, bool isadmin, string email, decimal debt, string password, int ID )
         {
             Firstname = firstname;
@@ -62,7 +68,7 @@ namespace Businesslayer.Business
             
         }
 
-        public User(string firstname,string lastname,Address address,string email, string password,Group group)
+        public User(string firstname, string lastname, Address address, string email, string password, Group group, DateTime dateTime)
         {
             this.Firstname = firstname;
             this.Lastname = lastname;
@@ -70,8 +76,8 @@ namespace Businesslayer.Business
             this.Email = email;
             this.Password = password;
             this.Group = group;
+            this.Birthdate = dateTime;
         }
-
         public override string ToString()
         {
             return ReservationID + "\t|  " + Lastname + "," + Firstname + "  debt: " + Debt;
