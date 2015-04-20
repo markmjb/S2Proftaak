@@ -49,7 +49,6 @@
             this.btnAddEdit = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.lbAddedUsers = new System.Windows.Forms.ListBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbLastname = new System.Windows.Forms.TextBox();
@@ -86,6 +85,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.btnCreateGroup = new System.Windows.Forms.Button();
+            this.cbAddedusers = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -278,6 +278,8 @@
             this.groupBox2.Controls.Add(this.btnAddEdit);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.tbEmail);
+            this.groupBox2.Controls.Add(this.cbGroup);
+            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.tbPassword);
             this.groupBox2.Controls.Add(this.tbLastname);
             this.groupBox2.Controls.Add(this.tbFirstname);
@@ -299,7 +301,7 @@
             // 
             // dtpBirth
             // 
-            this.dtpBirth.Location = new System.Drawing.Point(120, 161);
+            this.dtpBirth.Location = new System.Drawing.Point(149, 160);
             this.dtpBirth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpBirth.Name = "dtpBirth";
             this.dtpBirth.Size = new System.Drawing.Size(143, 22);
@@ -307,7 +309,7 @@
             // 
             // btnAddEdit
             // 
-            this.btnAddEdit.Location = new System.Drawing.Point(309, 327);
+            this.btnAddEdit.Location = new System.Drawing.Point(300, 383);
             this.btnAddEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddEdit.Name = "btnAddEdit";
             this.btnAddEdit.Size = new System.Drawing.Size(114, 82);
@@ -318,20 +320,20 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.cbAddedusers);
             this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.lbAddedUsers);
-            this.groupBox4.Location = new System.Drawing.Point(539, 23);
+            this.groupBox4.Location = new System.Drawing.Point(424, 38);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(212, 276);
+            this.groupBox4.Size = new System.Drawing.Size(212, 97);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Added Users";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(9, 240);
+            this.button2.Location = new System.Drawing.Point(8, 55);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 28);
@@ -339,19 +341,9 @@
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // lbAddedUsers
-            // 
-            this.lbAddedUsers.FormattingEnabled = true;
-            this.lbAddedUsers.ItemHeight = 16;
-            this.lbAddedUsers.Location = new System.Drawing.Point(9, 25);
-            this.lbAddedUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.lbAddedUsers.Name = "lbAddedUsers";
-            this.lbAddedUsers.Size = new System.Drawing.Size(159, 212);
-            this.lbAddedUsers.TabIndex = 0;
-            // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(120, 100);
+            this.tbEmail.Location = new System.Drawing.Point(149, 98);
             this.tbEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(143, 22);
@@ -359,7 +351,7 @@
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(120, 132);
+            this.tbPassword.Location = new System.Drawing.Point(149, 130);
             this.tbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(143, 22);
@@ -367,7 +359,7 @@
             // 
             // tbLastname
             // 
-            this.tbLastname.Location = new System.Drawing.Point(120, 70);
+            this.tbLastname.Location = new System.Drawing.Point(149, 69);
             this.tbLastname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbLastname.Name = "tbLastname";
             this.tbLastname.Size = new System.Drawing.Size(143, 22);
@@ -375,7 +367,7 @@
             // 
             // tbFirstname
             // 
-            this.tbFirstname.Location = new System.Drawing.Point(120, 38);
+            this.tbFirstname.Location = new System.Drawing.Point(149, 38);
             this.tbFirstname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbFirstname.Name = "tbFirstname";
             this.tbFirstname.Size = new System.Drawing.Size(143, 22);
@@ -428,7 +420,7 @@
             // 
             this.cbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(112, 243);
+            this.cbGroup.Location = new System.Drawing.Point(132, 205);
             this.cbGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(160, 24);
@@ -437,7 +429,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 246);
+            this.label13.Location = new System.Drawing.Point(9, 199);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(56, 17);
@@ -490,9 +482,7 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.tbCountry);
-            this.groupBox1.Controls.Add(this.cbGroup);
             this.groupBox1.Controls.Add(this.tbState);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.tbCity);
             this.groupBox1.Controls.Add(this.tbPostalcode);
             this.groupBox1.Controls.Add(this.tbStreetnumber);
@@ -500,11 +490,11 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(8, 198);
+            this.groupBox1.Location = new System.Drawing.Point(8, 237);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(284, 267);
+            this.groupBox1.Size = new System.Drawing.Size(284, 228);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Address";
@@ -610,7 +600,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 33);
+            this.label7.Location = new System.Drawing.Point(7, 26);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 17);
@@ -715,6 +705,15 @@
             this.btnCreateGroup.UseVisualStyleBackColor = true;
             this.btnCreateGroup.Click += new System.EventHandler(this.btnCreateGroup_Click);
             // 
+            // cbAddedusers
+            // 
+            this.cbAddedusers.FormattingEnabled = true;
+            this.cbAddedusers.Location = new System.Drawing.Point(8, 23);
+            this.cbAddedusers.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAddedusers.Name = "cbAddedusers";
+            this.cbAddedusers.Size = new System.Drawing.Size(160, 24);
+            this.cbAddedusers.TabIndex = 20;
+            // 
             // Reservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -763,7 +762,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ListBox lbAddedUsers;
         private System.Windows.Forms.GroupBox gBgroup;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl;
@@ -807,5 +805,6 @@
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnCreateGroup;
+        private System.Windows.Forms.ComboBox cbAddedusers;
     }
 }

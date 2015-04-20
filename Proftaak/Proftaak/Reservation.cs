@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,9 @@ namespace Proftaak
         private List<Event> Events = new List<Event>();
         private List<Group> groups = new List<Group>(); 
         private ReservationCampspot RC = new ReservationCampspot();
+        private List<User> users = new List<User>(); 
         private User user = new User();
+        private Address address= new Address();
 
         public Reservation()
         {
@@ -38,13 +41,29 @@ namespace Proftaak
         {
             Events = RC.Events();
             cbEvent.DataSource = Events;
-            cbEvent.DisplayMember = "Name";
+            cbEvent.DisplayMember = "Description";
             Campspots = RC.UpdateCampingSpots(((Event) cbEvent.SelectedItem).EventID);
             lbAvailablespots.DataSource = Campspots;
             lbAvailablespots.DisplayMember = "Campplace";
+            Updategroups();
+            UpdateUsers();
+            tbPassword.Text = string.Empty;
+        }
+
+        private void Updategroups()
+        {
             groups = RC.GetAllGroups();
             cbGroup.DataSource = groups;
             cbGroup.DisplayMember = "Name";
+        }
+
+        private void UpdateUsers()
+        {
+         foreach (User U in users)
+         {
+         cbAddedusers.Items.Add(U.Firstname + " " + U.Lastname)
+             ;
+         }
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -65,9 +84,22 @@ namespace Proftaak
 
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
-        user=new User();
-
-
+            if (tbFirstname.Text != string.Empty && tbLastname.Text != string.Empty && tbEmail.Text != string.Empty &&
+                tbPostalcode.Text != string.Empty && tbStreet.Text != string.Empty &&
+                tbStreetnumber.Text != string.Empty && tbCountry.Text != string.Empty && tbState.Text != string.Empty &&
+                cbGroup.SelectedIndex != -1)
+            {
+                address = new Address(tbStreetnumber.Text, tbStreetnumber.Text, tbPostalcode.Text,
+                      tbCity.Text, tbState.Text, tbCountry.Text);
+                user = new User(tbFirstname.Text, tbLastname.Text, address, tbEmail.Text, tbPassword.Text,
+                    (Group)cbGroup.SelectedItem);
+                users.Add(user);
+                UpdateUsers();
+            }
+            else
+            {
+                 MessageBox.Show("Please fill in all required fields");
+            }
         }
 
         private void cbCSprop_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,9 +129,26 @@ namespace Proftaak
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
+            if (tbNewGroup.Text!=string.Empty)
+            { 
          bool Groupexists = RC.CheckGroup(tbNewGroup.Text);
+            if (Groupexists)
+            {
+                MessageBox.Show("Group already exists");
+            }
+            else
+            {
+                RC.CreateGroup(tbNewGroup.Text);
+            }
         
         }
+            else
+            {
+                MessageBox.Show("Fill In A Groupname");
+            }
+            tbNewGroup.Text = string.Empty;
+            Updategroups();
         }
     }
+}
 

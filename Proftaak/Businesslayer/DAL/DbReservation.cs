@@ -140,7 +140,7 @@ namespace Businesslayer.DAL
             {
                 
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "select * from group where groupid=:GID";
+                cmd.CommandText = "select * from PTS2_Group where Groupname=:GID";
                 cmd.Parameters.Add("GID", text);
                 this.db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -162,6 +162,28 @@ namespace Businesslayer.DAL
                 this.db.Connection.Close();
             }
             return exists;
+
+        }
+
+        public void Creategroup(string text)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "insert INTO PTS2_GROUP(GROUPNAME) VALUES (:groupname)";
+                cmd.Parameters.Add("groupname", text);
+                this.db.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
 
         }
     }

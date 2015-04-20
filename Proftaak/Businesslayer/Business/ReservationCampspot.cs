@@ -61,5 +61,10 @@ namespace Businesslayer.Business
         {
            return dbres.GetAllGroups();
         }
+
+        public void CreateGroup(string text)
+        {
+            dbres.Creategroup(text);
+        }
     }
 }
