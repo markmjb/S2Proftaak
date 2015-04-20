@@ -39,7 +39,6 @@ namespace Businesslayer.DAL
         {
             try
             {
-
                 OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = :ID";
                 cmd.Parameters.Add("ID", ResNr);
