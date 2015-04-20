@@ -14,6 +14,15 @@ namespace Businesslayer.Business
 
             return mediaitemsbusiness;
         }
+
+        public List<Mediaitem> SearchOnTitle(string Title)
+        {
+          
+
+
+            return dbmedia.SearchOnTitle(Title);
+        }
+
         
 
 
