@@ -61,7 +61,7 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText =
-                    "select U.userid,U.firstname,U.lastname,U.email,U.upas,A.Street,A.Housenumber,A.postalcode,A.city,A.province,A.country from PTS2_user U,PTS2_Address A where U.ADDRESSID=A.ADDRESSID and U.EMAIL=:emo and U.upas=:upass";
+                    "select U.userid,U.firstname,U.lastname,U.email,U.upas,U.Isadmin,A.Street,A.Housenumber,A.postalcode,A.city,A.province,A.country from PTS2_user U,PTS2_Address A where U.ADDRESSID=A.ADDRESSID and U.EMAIL=:emo and U.upas=:upass";
                 cmd.Parameters.Add("emo", email);
                 cmd.Parameters.Add("upass", pass);
                 db.Connection.Open();
@@ -75,6 +75,15 @@ namespace Businesslayer.DAL
                         user.Lastname = Convert.ToString(reader["LASTNAME"]);
                         user.Email = Convert.ToString(reader["EMAIL"]);
                         user.Password = Convert.ToString(reader["upas"]);
+                        int I = Convert.ToInt32(reader["Isadmin"]);
+                        if (I==1)
+                        {
+                            user.Isadmin = true;
+                        }
+                        if (I == 0)
+                        {
+                            user.Isadmin = false;
+                        }
                         address.Street = Convert.ToString(reader["STREET"]);
                         address.Streetnumber = Convert.ToInt32(reader["HOUSENUMBER"]);
                         address.PostalCode = Convert.ToString(reader["POSTALCODE"]);
