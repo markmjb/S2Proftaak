@@ -325,8 +325,10 @@ namespace Proftaak
         {
             lbResNr.Items.Clear();
             lbResName.Items.Clear();
+            int number;
+            bool isNumber = int.TryParse(tbSearch.Text, out number);
 
-            if (tbSearch.Text != "" )
+            if (tbSearch.Text != "" && isNumber == true )
             {
                 Event SelEvent = AllEvents.ElementAt(cbEvent.SelectedIndex);
                 Reservations = AC.Search(SelEvent.EventID, (Convert.ToInt32(tbSearch.Text)));
