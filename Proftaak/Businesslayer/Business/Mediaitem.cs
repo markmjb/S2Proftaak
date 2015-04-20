@@ -37,7 +37,7 @@ namespace Businesslayer.Business
 
 
 
-        public Mediaitem(string Type, string Title, string Description, string filepath, int CategoryID, int UserID, int size, string Filetype)
+        public Mediaitem(string Type, string Title, string Description, string filepath, int UserID, int size, string Filetype, int mediacategoryid)
         {
             this.Filetype = Type;
             this.Title = Title;
@@ -46,10 +46,10 @@ namespace Businesslayer.Business
             this.UserID = UserID;
             this.Filesize = size;
             this.Filepath = filepath;
-
+            this.Mediacategoryid = mediacategoryid;
             dbm.AddMediaItem(Title, Description, UserID);
             Mediaitemid = dbm.GetMediaItemID(Title);
-            dbm.AddMediaItemFile(Mediaitemid,filepath, size, Filetype, 2);
+            dbm.AddMediaItemFile(Mediaitemid,filepath, size, Filetype, Mediacategoryid);
             dbm.Getmediaitems();
 
         }

@@ -31,7 +31,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.cbEvents = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lbRFIDNr = new System.Windows.Forms.Label();
             this.lblRFIDreader = new System.Windows.Forms.Label();
@@ -46,7 +45,6 @@
             this.lbYourItem = new System.Windows.Forms.ListBox();
             this.lbSelectItem = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -74,6 +72,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
+            this.cbYourItems = new System.Windows.Forms.ComboBox();
+            this.cbEvents = new System.Windows.Forms.ComboBox();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
@@ -96,12 +96,13 @@
             this.Lenen.Location = new System.Drawing.Point(-4, 1);
             this.Lenen.Name = "Lenen";
             this.Lenen.SelectedIndex = 0;
-            this.Lenen.Size = new System.Drawing.Size(538, 546);
+            this.Lenen.Size = new System.Drawing.Size(564, 546);
             this.Lenen.TabIndex = 20;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.cbYourItems);
             this.tabPage1.Controls.Add(this.cbEvents);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.lbRFIDNr);
@@ -117,7 +118,6 @@
             this.tabPage1.Controls.Add(this.lbYourItem);
             this.tabPage1.Controls.Add(this.lbSelectItem);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.domainUpDown1);
             this.tabPage1.Controls.Add(this.label41);
             this.tabPage1.Controls.Add(this.label42);
             this.tabPage1.Controls.Add(this.label37);
@@ -136,18 +136,9 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(530, 520);
+            this.tabPage1.Size = new System.Drawing.Size(556, 520);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
-            // 
-            // cbEvents
-            // 
-            this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEvents.FormattingEnabled = true;
-            this.cbEvents.Location = new System.Drawing.Point(86, 332);
-            this.cbEvents.Name = "cbEvents";
-            this.cbEvents.Size = new System.Drawing.Size(125, 21);
-            this.cbEvents.TabIndex = 51;
             // 
             // label10
             // 
@@ -196,7 +187,7 @@
             // 
             // btnLinks
             // 
-            this.btnLinks.Location = new System.Drawing.Point(242, 214);
+            this.btnLinks.Location = new System.Drawing.Point(230, 214);
             this.btnLinks.Name = "btnLinks";
             this.btnLinks.Size = new System.Drawing.Size(41, 23);
             this.btnLinks.TabIndex = 44;
@@ -206,7 +197,7 @@
             // 
             // btnRechts
             // 
-            this.btnRechts.Location = new System.Drawing.Point(242, 185);
+            this.btnRechts.Location = new System.Drawing.Point(230, 185);
             this.btnRechts.Name = "btnRechts";
             this.btnRechts.Size = new System.Drawing.Size(41, 23);
             this.btnRechts.TabIndex = 43;
@@ -266,7 +257,7 @@
             this.lbSelectItem.Location = new System.Drawing.Point(33, 141);
             this.lbSelectItem.Name = "lbSelectItem";
             this.lbSelectItem.ScrollAlwaysVisible = true;
-            this.lbSelectItem.Size = new System.Drawing.Size(178, 147);
+            this.lbSelectItem.Size = new System.Drawing.Size(155, 147);
             this.lbSelectItem.TabIndex = 37;
             // 
             // button1
@@ -278,16 +269,6 @@
             this.button1.Text = "hand in";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // domainUpDown1
-            // 
-            this.domainUpDown1.Items.Add("Item 1");
-            this.domainUpDown1.Items.Add("Item 5");
-            this.domainUpDown1.Location = new System.Drawing.Point(33, 479);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(104, 20);
-            this.domainUpDown1.TabIndex = 35;
-            this.domainUpDown1.Text = "Item 1";
             // 
             // label41
             // 
@@ -439,7 +420,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(530, 520);
+            this.tabPage2.Size = new System.Drawing.Size(556, 520);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stock";
             // 
@@ -549,6 +530,23 @@
             this.tbAdd.Size = new System.Drawing.Size(87, 20);
             this.tbAdd.TabIndex = 92;
             // 
+            // cbYourItems
+            // 
+            this.cbYourItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbYourItems.FormattingEnabled = true;
+            this.cbYourItems.Location = new System.Drawing.Point(33, 476);
+            this.cbYourItems.Name = "cbYourItems";
+            this.cbYourItems.Size = new System.Drawing.Size(96, 21);
+            this.cbYourItems.TabIndex = 105;
+            // cbEvents
+            // 
+            this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEvents.FormattingEnabled = true;
+            this.cbEvents.Location = new System.Drawing.Point(86, 332);
+            this.cbEvents.Name = "cbEvents";
+            this.cbEvents.Size = new System.Drawing.Size(125, 21);
+            this.cbEvents.TabIndex = 51;
+            // 
             // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -593,7 +591,6 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button btnLinks;
         private System.Windows.Forms.Button btnRechts;
@@ -616,6 +613,8 @@
         private System.Windows.Forms.ComboBox cbItem;
         private System.Windows.Forms.Label lblItems;
         private System.Windows.Forms.Label lblChangePrice;
+        private System.Windows.Forms.ComboBox cbYourItems;
         private System.Windows.Forms.ComboBox cbEvents;
+
     }
 }

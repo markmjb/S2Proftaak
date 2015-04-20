@@ -235,7 +235,7 @@ namespace Businesslayer.DAL
                cmd.Parameters.Add("evID", eventId);
 
                db.Connection.Open();
-               cmd.ExecuteScalar();
+               cmd.ExecuteNonQuery();
            }
            catch (OracleException exc)
            {
@@ -246,7 +246,7 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-       public void GetReservedItems()
+       public void GetReservedItems(DateTime beginTime, DateTime endtime, User employee, int amount, int price, Item item)
        {
            List<ReservationMaterial> Reservations = new List<ReservationMaterial>();
            try
@@ -258,13 +258,13 @@ namespace Businesslayer.DAL
                OracleDataReader reader = cmd.ExecuteReader();
 
                string materialtypeName;
-               int price;
+               //int price;
 
                while (reader.Read())
                {
                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
                    price = Convert.ToInt32(reader["price"]);
-                   Item item = new Item(materialtypeName, price);
+                 //  Item item = new Item(materialtypeName, price);
                    //items.Add(item);
                }
            }

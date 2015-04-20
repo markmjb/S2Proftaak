@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Businesslayer;
 using System.IO;
 using Businesslayer.Business;
+using Businesslayer.DAL;
 
 
 namespace Proftaak
@@ -37,12 +38,14 @@ namespace Proftaak
         private string filetype;
         private int size;
         private int userID = Userlogin.Loggeduser.ID;
-        private int categoryID;
+        private int MediaCategoryID;
         private int likes;
         private int likesreply;
+        private int categoryID;
         public List<Mediaitem> Mediaitems = new List<Mediaitem>();
         public List<Mediaitem> Mediatext = new List<Mediaitem>();
         public List<Report> Reports = new List<Report>();
+        public List<string> Categories = new List<string>(); 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -88,9 +91,10 @@ namespace Proftaak
                 description = tbDescription.Text;
                 filepath = tbSelectFile.Text;
                 category = cbCategory.Text;
-                categoryID = 3;
+                
                 userID = Userlogin.Loggeduser.ID;
-
+              
+                MediaCategoryID = mdsb.GetMediaCategory(cbCategory.SelectedItem.ToString());
 
 
 
@@ -101,8 +105,8 @@ namespace Proftaak
                 System.IO.File.Copy(filepath, uploadloc, false);
                 MessageBox.Show("File uploaded: " + f.Name);
                 this.Close();
-                Mediaitem newmedia = new Mediaitem(type, title, description, filepath, categoryID, userID, size,
-                    filetype);
+                Mediaitem newmedia = new Mediaitem(type, title, description, filepath, userID, size,
+                    filetype, MediaCategoryID);
             }
             catch (SystemException exc)
             {
@@ -137,12 +141,14 @@ namespace Proftaak
         public new void Refresh()
         {
 
-            Mediaitems = mdsb.Getallmediaitems();
+       
 
             listBox1.Items.Clear();
-
+            Mediaitems = mdsb.Getallmediaitems();
+            
             foreach (Mediaitem mediatext in Mediatext)
             {
+                likesreply = mdsb.GetAllLikesReply(mediatext.Mediaitemid);
 
                 listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + " Likes: " +
                                    likesreply);
@@ -165,7 +171,7 @@ namespace Proftaak
 
         public void RefreshListbox()
         {
-
+            
         }
 
         private void btnDeleteMedia_Click(object sender, EventArgs e)
@@ -282,6 +288,8 @@ namespace Proftaak
                 tbSelectFile.Enabled = true;
                 btnBrowse.Enabled = true;
             }
+
+            
         }
 
         private void btnDownloadMedia_Click(object sender, EventArgs e)
@@ -330,6 +338,8 @@ namespace Proftaak
                     int selecteditemid = Convert.ToInt32(selecteditems[0]);
                     mdsb.RemoveLikeToFile(selecteditemid, userID);
                     likes = mdsb.GetAllLikes(selecteditemid);
+                    MessageBox.Show("Unliked!");
+                    tbfileinfo.Clear();
                 }
                 else
                 {
@@ -338,6 +348,8 @@ namespace Proftaak
                     int selecteditemid = Convert.ToInt32(selecteditems[0]);
                     mdsb.AddLikeToFile(selecteditemid, userID);
                     likes = mdsb.GetAllLikes(selecteditemid);
+                    MessageBox.Show("Liked!");
+                    tbfileinfo.Clear();
 
                 }
 
@@ -364,6 +376,7 @@ namespace Proftaak
                 }
 
             }
+
             Refresh();
             RefreshFilebox();
         }
@@ -389,9 +402,10 @@ namespace Proftaak
                 {
                     foreach (Mediaitem itemslikes in Mediaitems)
                     {
-                    if (itemstext.UserID == userID && itemstext.Mediaitemid == selecteditemid && itemstext.MediaitemcommentID == itemslikes.Mediacategoryid)
+                    if (itemstext.UserID == userID && itemstext.Mediaitemid == selecteditemid && itemstext.Mediaitemid == itemslikes.Mediacategoryid)
                     {
                         btnLike.Text = "Unlike";
+                        break;
                     }
                     else
                     {
@@ -447,7 +461,7 @@ namespace Proftaak
                 int selecteditemid = Convert.ToInt32(selecteditems[0]);
 
                 Report checkreport = mdsb.GetSingleReport(selecteditemid, userID);
-                if( checkreport == null)
+                if( checkreport.MediaitemID == 0)
              {
                  mdsb.AddReport(selecteditemid, userID);
              }
@@ -459,6 +473,58 @@ namespace Proftaak
               
                 
             }
+            RefreshReportList();
+        }
+
+        private void FileBox_Click(object sender, EventArgs e)
+        {
+            if (FileBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a file");
+            }
+            else
+            {
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':', ' ');
+                int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                Mediatext = mdsb.Getmediatextlist(selecteditemid);
+            }
+            
+
+            Refresh();
+            RefreshListbox();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string selecteditem = listBox2.SelectedItem.ToString();
+            string[] selecteditems = selecteditem.Split(':', ' ');
+            int selecteditemid = Convert.ToInt32(selecteditems[8]);
+            tabControl1.SelectedTab = tabPage1;
+            FileBox.SelectedIndex = selecteditemid -1;
+
+
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshReportList();
+            cbCategory.Items.Clear();
+            Categories = mdsb.GetAllCategories();
+            foreach (string categorie in Categories)
+            {
+                cbCategory.Items.Add(categorie);
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string selecteditem = listBox2.SelectedItem.ToString();
+            string[] selecteditems = selecteditem.Split(':', ' ');
+            int selecteditemid = Convert.ToInt32(selecteditems[8]);
+            mdsb.RemoveReportedFile(selecteditemid, userID);
             RefreshReportList();
         }
 

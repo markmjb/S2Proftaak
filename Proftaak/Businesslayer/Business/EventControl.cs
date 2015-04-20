@@ -30,6 +30,8 @@ namespace Businesslayer.Business
         public bool CheckEvent(string name, string description, DateTime startDate, DateTime endDate, decimal ticketPrice)
         {
             bool result = false;
+            startDate = Convert.ToDateTime(startDate.ToShortDateString());
+            endDate = Convert.ToDateTime(endDate.ToShortDateString());
 
             foreach (Event event2 in Events)
             {

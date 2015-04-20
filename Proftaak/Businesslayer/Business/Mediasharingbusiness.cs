@@ -62,6 +62,13 @@ namespace Businesslayer.Business
         }
 
 
+
+        public List<string> GetAllCategories()
+        {
+        return dbmedia.GetAllCategories();
+        }
+
+
         public int  GetAllLikes(int mediaitemid)
         {
             return dbmedia.GetAllLikes(mediaitemid);
@@ -117,6 +124,16 @@ namespace Businesslayer.Business
         {
             return dbmedia.GetSingleReport(mediaitemid, userid);
 
+        }
+
+        public void RemoveReportedFile(int mediaitemid, int userid)
+        {
+            dbmedia.RemoveReportedFile(mediaitemid, userid);
+        }
+
+        public int GetMediaCategory(string categoryname)
+        {
+           return dbmedia.GetMediaCategory(categoryname);
         }
 
 

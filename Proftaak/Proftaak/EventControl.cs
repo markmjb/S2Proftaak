@@ -17,16 +17,12 @@ namespace Proftaak
     {
         //FIELDS
         private Businesslayer.Business.EventControl eventControl = new Businesslayer.Business.EventControl();
+        private bool eventSelected = false;
 
         //CONSTRUCTORS
         public EventControl()
         {
             InitializeComponent();
-
-            FillDatagridEvents();
-
-            dtpStartDate.Value = DateTime.Now;
-            dtpEndDate.Value = DateTime.Now;
         }
 
         //EVENTS
@@ -41,27 +37,51 @@ namespace Proftaak
         {
             if (datagridEvents.RowCount > 0)
             {
-                if (datagridEvents.CurrentCell.ColumnIndex == 0 && datagridEvents.CurrentCell.Value != null)
+                if (datagridEvents.SelectedCells.Count != 0)
                 {
-                    int eventID = Convert.ToInt32(datagridEvents.CurrentCell.Value);
-
-                    Event ev = eventControl.GetEvent(eventID);
-
-                    if (ev != null)
+                    if (datagridEvents.SelectedCells[0].ColumnIndex == 0)
                     {
-                        lblEventIDValue.Text = Convert.ToString(ev.EventID);
-                        tbName.Text = ev.Name;
-                        tbDescription.Text = ev.Description;
-                        dtpStartDate.Value = ev.StartDate;
-                        dtpEndDate.Value = ev.EndDate;
-                        nudTicketprice.Value = ev.TicketPrice;
+                        int eventID = Convert.ToInt32(datagridEvents.CurrentCell.Value);
 
-                        tbCountry.Text = ev.Address.Country;
-                        tbProvince.Text = ev.Address.Province;
-                        tbCity.Text = ev.Address.City;
-                        tbStreet.Text = ev.Address.Street;
-                        nudStreetnumber.Value = ev.Address.Streetnumber;
-                        tbPostalcode.Text = ev.Address.PostalCode;
+                        Event ev = eventControl.GetEvent(eventID);
+
+                        if (ev != null)
+                        {
+                            lblEventIDValue.Text = Convert.ToString(ev.EventID);
+                            tbName.Text = ev.Name;
+                            tbDescription.Text = ev.Description;
+                            dtpStartDate.Value = ev.StartDate;
+                            dtpEndDate.Value = ev.EndDate;
+                            nudTicketprice.Value = ev.TicketPrice;
+
+                            tbCountry.Text = ev.Address.Country;
+                            tbProvince.Text = ev.Address.Province;
+                            tbCity.Text = ev.Address.City;
+                            tbStreet.Text = ev.Address.Street;
+                            nudStreetnumber.Value = ev.Address.Streetnumber;
+                            tbPostalcode.Text = ev.Address.PostalCode;
+
+                            eventSelected = true;
+                        }
+                        else
+                        {
+                            lblEventIDValue.Text = "";
+                            tbName.Text = "";
+                            tbDescription.Text = "";
+                            dtpStartDate.Value = DateTime.Now;
+                            dtpEndDate.Value = DateTime.Now;
+                            nudTicketprice.Value = 0;
+
+                            tbCountry.Text = "";
+                            tbProvince.Text = "";
+                            tbCity.Text = "";
+                            tbStreet.Text = "";
+                            nudStreetnumber.Value = 1;
+                            tbPostalcode.Text = "";
+                            eventSelected = false;
+
+                            MessageBox.Show("No events found");
+                        }
                     }
                     else
                     {
@@ -76,29 +96,11 @@ namespace Proftaak
                         tbProvince.Text = "";
                         tbCity.Text = "";
                         tbStreet.Text = "";
-                        nudStreetnumber.Value = 0;
+                        nudStreetnumber.Value = 1;
                         tbPostalcode.Text = "";
 
-                        MessageBox.Show("No events found");
+                        eventSelected = false;
                     }
-                }
-                else
-                {
-                    lblEventIDValue.Text = "";
-                    tbName.Text = "";
-                    tbDescription.Text = "";
-                    dtpStartDate.Value = DateTime.Now;
-                    dtpEndDate.Value = DateTime.Now;
-                    nudTicketprice.Value = 0;
-
-                    tbCountry.Text = "";
-                    tbProvince.Text = "";
-                    tbCity.Text = "";
-                    tbStreet.Text = "";
-                    nudStreetnumber.Value = 0;
-                    tbPostalcode.Text = "";
-
-                    MessageBox.Show("No even selected");
                 }
             }
             else
@@ -114,10 +116,10 @@ namespace Proftaak
                 tbProvince.Text = "";
                 tbCity.Text = "";
                 tbStreet.Text = "";
-                nudStreetnumber.Value = 0;
+                nudStreetnumber.Value = 1;
                 tbPostalcode.Text = "";
 
-                MessageBox.Show("No even selected");
+                eventSelected = false;
             }
         }
         private void FillDatagridEvents()
@@ -149,7 +151,7 @@ namespace Proftaak
             string postalcode = tbPostalcode.Text;
 
             if (name != "" && description != "" && startDate >= DateTime.Now && endDate >= DateTime.Now &&
-                endDate >= startDate && ticketPrice >= 0 && country != "" && province != "" && city != "" &&
+                endDate >= startDate && country != "" && province != "" && city != "" &&
                 street != "" && streetnumber > 0 && postalcode.Length == 6)
             {
                 if (!eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
@@ -157,10 +159,19 @@ namespace Proftaak
                     if (!eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
                     {
                         eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
+                        MessageBox.Show("New Address has been created");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Address already exists");
                     }
 
                     eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice, eventControl.DbEvent.GetAddressID(country, province, city, street, streetnumber, postalcode));
                     MessageBox.Show("New event has been created");
+                }
+                else
+                {
+                    MessageBox.Show("The event already exists");
                 }
             }
             else
@@ -180,10 +191,6 @@ namespace Proftaak
                 if (endDate < dtpStartDate.Value)
                 {
                     MessageBox.Show("The endDate is invalid");
-                }
-                if (ticketPrice < 0)
-                {
-                    MessageBox.Show("The ticketPrice is invalid");
                 }
                 if (country == "")
                 {
@@ -225,15 +232,12 @@ namespace Proftaak
             {
                 int eventID = eventControl.GetEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value).EventID;
 
-                if (eventID != -1)
-                {
-                    eventControl.DeleteEvent(eventID);
-                    MessageBox.Show("Event has been deleted");
-                }
-                else
-                {
-                    MessageBox.Show("The event already doesn't exist");
-                }
+                eventControl.DeleteEvent(eventID);
+                MessageBox.Show("Event has been deleted");
+            }
+            else
+            {
+                MessageBox.Show("The event already doesn't exist");
             }
 
             FillDatagridEvents();
@@ -242,48 +246,53 @@ namespace Proftaak
 
         private void btnEditEvent_Click(object sender, EventArgs e)
         {
-            int eventID = Convert.ToInt32(lblEventIDValue.Text);
-            string name = tbName.Text;
-            string description = tbDescription.Text;
-            DateTime startDate = dtpStartDate.Value;
-            DateTime endDate = dtpEndDate.Value;
-            decimal ticketPrice = nudTicketprice.Value;
-
-            string country = tbCountry.Text;
-            string province = tbProvince.Text;
-            string city = tbCity.Text;
-            string street = tbStreet.Text;
-            int streetnumber = Convert.ToInt32(nudStreetnumber.Value);
-            string postalcode = tbPostalcode.Text;
-
-
-            if (name != "" && description != "" && startDate >= DateTime.Now && endDate >= DateTime.Now && endDate >= startDate && ticketPrice >= 0 && country != "" && province != "" && city != "" && street != "" && streetnumber > 0 && postalcode.Length == 6)
+            if (eventSelected)
             {
-                if (eventControl.CheckEvent(eventID))
-                {
-                    Event ev = eventControl.GetEvent(eventID);
+                int eventID = Convert.ToInt32(lblEventIDValue.Text);
+                string name = tbName.Text;
+                string description = tbDescription.Text;
+                DateTime startDate = dtpStartDate.Value;
+                DateTime endDate = dtpEndDate.Value;
+                decimal ticketPrice = nudTicketprice.Value;
 
-                    if (name != ev.Name)
+                string country = tbCountry.Text;
+                string province = tbProvince.Text;
+                string city = tbCity.Text;
+                string street = tbStreet.Text;
+                int streetnumber = Convert.ToInt32(nudStreetnumber.Value);
+                string postalcode = tbPostalcode.Text;
+
+                if (name != "" && description != "" && startDate >= DateTime.Now && endDate >= DateTime.Now &&
+                    endDate >= startDate && ticketPrice >= 0 && country != "" && province != "" && city != "" &&
+                    street != "" && streetnumber > 0 && postalcode.Length == 6)
+                {
+                    if (eventControl.CheckEvent(eventID))
                     {
-                        eventControl.EditEvent(ev.EventID, "eventName", name);
+                        Event ev = eventControl.GetEvent(eventID);
+
+                        if (name != ev.Name)
+                        {
+                            eventControl.EditEvent(ev.EventID, "eventName", name);
+                        }
+                        if (startDate != ev.StartDate)
+                        {
+                            eventControl.EditEvent(ev.EventID, "startDate", startDate.ToShortDateString());
+                        }
+                        if (endDate != ev.EndDate)
+                        {
+                            eventControl.EditEvent(ev.EventID, "endDate", endDate.ToShortDateString());
+                        }
+                        if (description != ev.Description)
+                        {
+                            eventControl.EditEvent(ev.EventID, "description", description);
+                        }
+                        if (ticketPrice != ev.TicketPrice)
+                        {
+                            eventControl.EditEvent(ev.EventID, "ticketPrice", ticketPrice);
+                        }
+
+                        MessageBox.Show("The event has been edited");
                     }
-                    if (startDate != ev.StartDate)
-                    {
-                        eventControl.EditEvent(ev.EventID, "startDate", startDate.ToShortDateString());
-                    }
-                    if (endDate != ev.EndDate)
-                    {
-                        eventControl.EditEvent(ev.EventID, "endDate", endDate.ToShortDateString());
-                    }
-                    if (description != ev.Description)
-                    {
-                        eventControl.EditEvent(ev.EventID, "description", description);
-                    }
-                    if (ticketPrice != ev.TicketPrice)
-                    {
-                        eventControl.EditEvent(ev.EventID, "ticketPrice", ticketPrice);
-                    }
-                    MessageBox.Show("The event has been edited");
                 }
                 else
                 {
@@ -331,12 +340,22 @@ namespace Proftaak
                     {
                         MessageBox.Show("The postalcode is invalid");
                     }
-
-                    eventControl.GetEvents();
-                    FillDatagridEvents();
-                    RefreshData();
                 }
             }
+            else
+            {
+                MessageBox.Show("No event selected");
+            }
+            FillDatagridEvents();
+            RefreshData();
+
+        }
+
+        private void EventControl_Load(object sender, EventArgs e)
+        {
+            FillDatagridEvents();
+
+            RefreshData();
         }
     }
 }

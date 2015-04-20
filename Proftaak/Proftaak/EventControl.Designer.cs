@@ -181,10 +181,13 @@
             this.columnEventName,
             this.columnEventStartdate,
             this.columnEventEnddate});
+            this.datagridEvents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.datagridEvents.Location = new System.Drawing.Point(8, 12);
+            this.datagridEvents.MultiSelect = false;
             this.datagridEvents.Name = "datagridEvents";
-            this.datagridEvents.ReadOnly = true;
+            this.datagridEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.datagridEvents.Size = new System.Drawing.Size(598, 150);
+            this.datagridEvents.StandardTab = true;
             this.datagridEvents.TabIndex = 13;
             this.datagridEvents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridEvents_CellClick);
             // 
@@ -192,14 +195,12 @@
             // 
             this.columnEventID.HeaderText = "EventID";
             this.columnEventID.Name = "columnEventID";
-            this.columnEventID.ReadOnly = true;
             this.columnEventID.Width = 125;
             // 
             // columnEventName
             // 
             this.columnEventName.HeaderText = "Name";
             this.columnEventName.Name = "columnEventName";
-            this.columnEventName.ReadOnly = true;
             this.columnEventName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.columnEventName.Width = 125;
             // 
@@ -207,14 +208,12 @@
             // 
             this.columnEventStartdate.HeaderText = "Startdate";
             this.columnEventStartdate.Name = "columnEventStartdate";
-            this.columnEventStartdate.ReadOnly = true;
             this.columnEventStartdate.Width = 125;
             // 
             // columnEventEnddate
             // 
             this.columnEventEnddate.HeaderText = "Enddate";
             this.columnEventEnddate.Name = "columnEventEnddate";
-            this.columnEventEnddate.ReadOnly = true;
             this.columnEventEnddate.Width = 125;
             // 
             // lblCountry
@@ -307,6 +306,11 @@
             0,
             0,
             0});
+            this.nudStreetnumber.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudStreetnumber.Name = "nudStreetnumber";
             this.nudStreetnumber.Size = new System.Drawing.Size(100, 20);
             this.nudStreetnumber.TabIndex = 24;
@@ -395,6 +399,7 @@
             this.Name = "EventControl";
             this.Text = "EventControl";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventControl_FormClosing);
+            this.Load += new System.EventHandler(this.EventControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagridEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStreetnumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTicketprice)).EndInit();

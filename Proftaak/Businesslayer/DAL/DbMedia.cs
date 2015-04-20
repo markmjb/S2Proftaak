@@ -11,10 +11,12 @@ namespace Businesslayer.DAL
         private Report dalSingleReport;
         private Mediaitem dalMediaitem;
         private int Returnint;
+        private List<string> Categories;
         private List<Report> reports;
         private List<Mediaitem> mediaitems;
         private Databaseconnection db;
         int aantallikes;
+        int categoryid;
         
         public DbMedia()
         {
@@ -433,7 +435,7 @@ namespace Businesslayer.DAL
 
         public List<Mediaitem> AlreadyLiked()
         {
-            dalMediaitem = new Mediaitem();
+           
             mediaitems = new List<Mediaitem>();
             try
             {
@@ -443,17 +445,18 @@ namespace Businesslayer.DAL
                 OracleDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                     dalMediaitem = new Mediaitem();
                 
-                        dalMediaitem.Mediaitemid = 0;
+                
+                   
 
-
-                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    if (reader.IsDBNull(reader.GetOrdinal("LIKEID")))
                     {
-                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                        dalMediaitem.Likeid = 0;
                     }
                     else
                     {
-                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                        dalMediaitem.Likeid = Convert.ToInt32(reader["LIKEID"]);
                     
                     }
                     
@@ -608,7 +611,7 @@ namespace Businesslayer.DAL
 
         public Report GetSingleReport(int mediaitemid, int userid)
         {
-
+            dalSingleReport = new Report();
             reports = new List<Report>();
             try
             {
@@ -624,12 +627,35 @@ namespace Businesslayer.DAL
 
                     dalSingleReport = new Report();
 
-                    dalReport.ReportedID = Convert.ToInt32(reader["REPORTEDID"]);
-                    dalReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
-                    dalReport.UserID = Convert.ToInt32(reader["USERID"]);
+                    if (reader.IsDBNull(reader.GetOrdinal("REPORTEDID")))
+                    {
+                        dalSingleReport.ReportedID = 0;
+                        
+                    }
+                    else
+                    {
+                        dalSingleReport.ReportedID = Convert.ToInt32(reader["REPORTEDID"]); 
+                    }
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    {
+                        dalSingleReport.MediaitemID = 0;
+                    }
+                    else
+                    {
+                        dalSingleReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    }
+                    
+                    if (reader.IsDBNull(reader.GetOrdinal("USERID")))
+                    {
+                        dalSingleReport.UserID = 0;
+                    }
+                    else
+                    {
+                        dalSingleReport.UserID = Convert.ToInt32(reader["USERID"]);
+                    }
 
 
-                    reports.Add(dalReport);
+                    reports.Add(dalSingleReport);
 
                 }
             }
@@ -643,6 +669,89 @@ namespace Businesslayer.DAL
             }
             return dalSingleReport;
         }
-        
+
+        public List<string> GetAllCategories()
+        {
+
+            Categories = new List<string>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT * FROM PTS2_MEDIACATEGORY";
+           
+
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+
+                    string Categoryname = Convert.ToString(reader["MEDIACATEGORYNAME"]);
+
+
+                    Categories.Add(Categoryname);
+
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return Categories;
+        }
+
+        public void RemoveReportedFile(int mediaitemid, int userid)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "DELETE FROM PTS2_REPORTED WHERE MEDIAITEMID = :MediaitemID AND USERID = :userid";
+                cmd.Parameters.Add("MediaitemID", mediaitemid);
+                cmd.Parameters.Add("Userid", userid);
+
+                db.Connection.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+
+        public int GetMediaCategory(string naam)
+        {
+      
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = " SELECT MEDIACATEGORYID FROM PTS2_MEDIACATEGORY WHERE MEDIACATEGORYNAME = :naam";
+                cmd.Parameters.Add("MEDIACATEOGRYNAME", naam);
+
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                   categoryid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return categoryid;
+        }
     }
 }
