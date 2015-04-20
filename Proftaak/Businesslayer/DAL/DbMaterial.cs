@@ -196,14 +196,13 @@ namespace Businesslayer.DAL
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "INSERT INTO PTS2_DEBT  (userID, eventID, amount)VALUES  (:userId, :eventId, :debt)";
-               cmd.Parameters.Add("userId", userId);
-               cmd.Parameters.Add("eventId", eventId);
+               cmd.CommandText = "UPDATE PTS2_DEBT SET amount = :debt WHERE userID = :usID AND EventID = :evID";
                cmd.Parameters.Add("debt", debt);
+               cmd.Parameters.Add("usID", userId);
+               cmd.Parameters.Add("evID", eventId);
 
                db.Connection.Open();
-
-               cmd.ExecuteReader();
+               cmd.ExecuteScalar();
            }
            catch (OracleException exc)
            {

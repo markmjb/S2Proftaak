@@ -173,6 +173,8 @@
             // 
             // datagridEvents
             // 
+            this.datagridEvents.AllowUserToAddRows = false;
+            this.datagridEvents.AllowUserToDeleteRows = false;
             this.datagridEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnEventID,
@@ -181,6 +183,7 @@
             this.columnEventEnddate});
             this.datagridEvents.Location = new System.Drawing.Point(8, 12);
             this.datagridEvents.Name = "datagridEvents";
+            this.datagridEvents.ReadOnly = true;
             this.datagridEvents.Size = new System.Drawing.Size(598, 150);
             this.datagridEvents.TabIndex = 13;
             this.datagridEvents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridEvents_CellClick);
@@ -189,6 +192,7 @@
             // 
             this.columnEventID.HeaderText = "EventID";
             this.columnEventID.Name = "columnEventID";
+            this.columnEventID.ReadOnly = true;
             this.columnEventID.Width = 125;
             // 
             // columnEventName
