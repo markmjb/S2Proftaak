@@ -61,8 +61,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button9 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -84,6 +82,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(969, 551);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -378,8 +377,6 @@
             // 
             this.tabPage3.Controls.Add(this.button9);
             this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.textBox3);
             this.tabPage3.Controls.Add(this.listBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -391,37 +388,23 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(9, 129);
+            this.button9.Location = new System.Drawing.Point(20, 49);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(115, 23);
             this.button9.TabIndex = 4;
             this.button9.Text = "Navigate to post";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(9, 81);
+            this.button2.Location = new System.Drawing.Point(19, 20);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(116, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Delete Report";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Delete Report:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(8, 55);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(116, 20);
-            this.textBox3.TabIndex = 1;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listBox2
             // 
@@ -462,7 +445,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -499,8 +481,6 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;

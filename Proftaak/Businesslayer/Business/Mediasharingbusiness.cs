@@ -126,6 +126,16 @@ namespace Businesslayer.Business
 
         }
 
+        public void RemoveReportedFile(int mediaitemid, int userid)
+        {
+            dbmedia.RemoveReportedFile(mediaitemid, userid);
+        }
+
+        public int GetMediaCategory(string categoryname)
+        {
+           return dbmedia.GetMediaCategory(categoryname);
+        }
+
 
     }
 }
