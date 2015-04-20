@@ -46,7 +46,6 @@ namespace Proftaak
             lbAvailablespots.DataSource = Campspots;
             lbAvailablespots.DisplayMember = "Campplace";
             Updategroups();
-            UpdateUsers();
             tbPassword.Text = string.Empty;
         }
 
@@ -59,16 +58,26 @@ namespace Proftaak
 
         private void UpdateUsers()
         {
-            foreach (User U in users)
+            //foreach (User U in users)
+            //{
+            //    cbAddedusers.Items.Add(U.Firstname)
+            //        ;
+
+            //}
+            try
             {
-                cbAddedusers.Items.Add(U.Firstname)
-                    ;
-
+                cbAddedusers.ValueMember = "Firstname";
+                cbAddedusers.DisplayMember = "Firstname";
+                cbAddedusers.DataSource = users;
+                cbAddedusers.SelectedIndex = 0;
             }
-            //cbAddedusers.DataSource = users;
-            //cbAddedusers.DisplayMember = "Firstname";
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+           
+            
         }
-
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex != 0)
@@ -99,13 +108,15 @@ namespace Proftaak
             }
             else
             {
-                 MessageBox.Show("Please fill in all required fields");
+                 MessageBox.Show("Please fill in all required fields");          
             }
             users.Add(user);
             UpdateUsers();
             ClearallFields();
         }
 
+       
+       
         private void ClearallFields()
         {
             tbFirstname.Text = string.Empty;
@@ -178,15 +189,17 @@ namespace Proftaak
             }
             else
             {
-                foreach (User U in users)
-                {
-                    if (U.Firstname == cbAddedusers.SelectedValue.ToString())
-                    {
-                        user = new User();
-                        user = U;
-                    }
+                //foreach (User U in users)
+                //{
+                //    if (U.Firstname == cbAddedusers.SelectedValue.ToString())
+                //    {
+                //        user = new User();
+                //        user = U;
+                //    }
                         
-                }
+                //}
+                user = new User();
+                user = (User) cbAddedusers.SelectedItem;
                 tbFirstname.Text = user.Firstname;
                 tbLastname.Text = user.Lastname;
                 tbStreet.Text = user.Address.Street;
