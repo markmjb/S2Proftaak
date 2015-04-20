@@ -61,7 +61,7 @@ namespace Proftaak
         {
          foreach (User U in users)
          {
-         cbAddedusers.Items.Add(U.Firstname + " " + U.Lastname)
+         cbAddedusers.Items.Add(U.Firstname)
              ;
          }
         }
@@ -89,17 +89,18 @@ namespace Proftaak
                 tbStreetnumber.Text != string.Empty && tbCountry.Text != string.Empty && tbState.Text != string.Empty &&
                 cbGroup.SelectedIndex != -1)
             {
-                address = new Address(tbStreetnumber.Text, tbStreetnumber.Text, tbPostalcode.Text,
+                address = new Address(tbStreetnumber.Text, Convert.ToInt32(tbStreetnumber.Text), tbPostalcode.Text,
                       tbCity.Text, tbState.Text, tbCountry.Text);
                 user = new User(tbFirstname.Text, tbLastname.Text, address, tbEmail.Text, tbPassword.Text,
                     (Group)cbGroup.SelectedItem);
-                users.Add(user);
-                UpdateUsers();
+                
             }
             else
             {
                  MessageBox.Show("Please fill in all required fields");
             }
+            users.Add(user);
+            UpdateUsers();
         }
 
         private void cbCSprop_SelectedIndexChanged(object sender, EventArgs e)

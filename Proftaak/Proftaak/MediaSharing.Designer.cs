@@ -42,7 +42,7 @@
             this.btnDownloadMedia = new System.Windows.Forms.Button();
             this.btnDeleteMedia = new System.Windows.Forms.Button();
             this.FileBox = new System.Windows.Forms.ListBox();
-            this.cbtype = new System.Windows.Forms.ComboBox();
+            this.cbsearch = new System.Windows.Forms.ComboBox();
             this.tbsearch = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,6 +64,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.Searchbutton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,6 +88,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.Searchbutton);
             this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.btnLike);
@@ -96,7 +98,7 @@
             this.tabPage1.Controls.Add(this.btnDownloadMedia);
             this.tabPage1.Controls.Add(this.btnDeleteMedia);
             this.tabPage1.Controls.Add(this.FileBox);
-            this.tabPage1.Controls.Add(this.cbtype);
+            this.tabPage1.Controls.Add(this.cbsearch);
             this.tabPage1.Controls.Add(this.tbsearch);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -211,19 +213,20 @@
             this.FileBox.Click += new System.EventHandler(this.FileBox_Click);
             this.FileBox.SelectedIndexChanged += new System.EventHandler(this.FileBox_SelectedIndexChanged);
             // 
-            // cbtype
+            // cbsearch
             // 
-            this.cbtype.FormattingEnabled = true;
-            this.cbtype.Items.AddRange(new object[] {
-            "Media"});
-            this.cbtype.Location = new System.Drawing.Point(18, 59);
-            this.cbtype.Name = "cbtype";
-            this.cbtype.Size = new System.Drawing.Size(178, 21);
-            this.cbtype.TabIndex = 1;
+            this.cbsearch.FormattingEnabled = true;
+            this.cbsearch.Items.AddRange(new object[] {
+            "Title",
+            "Categorie"});
+            this.cbsearch.Location = new System.Drawing.Point(18, 38);
+            this.cbsearch.Name = "cbsearch";
+            this.cbsearch.Size = new System.Drawing.Size(178, 21);
+            this.cbsearch.TabIndex = 1;
             // 
             // tbsearch
             // 
-            this.tbsearch.Location = new System.Drawing.Point(18, 33);
+            this.tbsearch.Location = new System.Drawing.Point(18, 16);
             this.tbsearch.Name = "tbsearch";
             this.tbsearch.Size = new System.Drawing.Size(178, 20);
             this.tbsearch.TabIndex = 0;
@@ -427,6 +430,16 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // Searchbutton
+            // 
+            this.Searchbutton.Location = new System.Drawing.Point(18, 65);
+            this.Searchbutton.Name = "Searchbutton";
+            this.Searchbutton.Size = new System.Drawing.Size(178, 23);
+            this.Searchbutton.TabIndex = 13;
+            this.Searchbutton.Text = "Search";
+            this.Searchbutton.UseVisualStyleBackColor = true;
+            this.Searchbutton.Click += new System.EventHandler(this.Searchbutton_Click);
+            // 
             // Mediasharing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -453,7 +466,7 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox cbtype;
+        private System.Windows.Forms.ComboBox cbsearch;
         private System.Windows.Forms.TextBox tbsearch;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnLike;
@@ -486,5 +499,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TextBox tbfileinfo;
+        private System.Windows.Forms.Button Searchbutton;
     }
 }

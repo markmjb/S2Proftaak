@@ -157,9 +157,23 @@ namespace Proftaak
 
         public void RefreshFilebox()
         {
+        
             mdsb.Getallmediaitems();
             Mediaitems = mdsb.Getallmediaitems();
 
+            FileBox.Items.Clear();
+            foreach (Mediaitem mediaitem in Mediaitems)
+            {
+                FileBox.Items.Add(mediaitem.ToString());
+
+            }
+
+        }
+
+        public void RefreshFilebox2()
+        {
+
+            
             FileBox.Items.Clear();
             foreach (Mediaitem mediaitem in Mediaitems)
             {
@@ -526,6 +540,31 @@ namespace Proftaak
             int selecteditemid = Convert.ToInt32(selecteditems[8]);
             mdsb.RemoveReportedFile(selecteditemid, userID);
             RefreshReportList();
+        }
+
+        private void Searchbutton_Click(object sender, EventArgs e)
+        {
+            string Title = tbsearch.Text;
+            string SortOn = cbsearch.Text;
+
+            if (SortOn == "Title")
+            {
+              Mediaitems = mdsb.SearchOnTitle(Title);
+                if (Title == "")
+                {
+                    RefreshFilebox();
+                }
+                else
+                {
+                    RefreshFilebox2();
+                }
+                
+            }
+            else
+            {
+                
+            }
+
         }
 
      

@@ -62,6 +62,16 @@ namespace Businesslayer.Business
             
         }
 
+        public User(string firstname,string lastname,Address address,string email, string password,Group group)
+        {
+            this.Firstname = firstname;
+            this.Lastname = lastname;
+            this.Address = address;
+            this.Email = email;
+            this.Password = password;
+            this.Group = group;
+        }
+
         public override string ToString()
         {
             return ReservationID + "\t|  " + Lastname + "," + Firstname + "  debt: " + Debt;

@@ -753,5 +753,38 @@ namespace Businesslayer.DAL
             }
             return categoryid;
         }
+
+        public List<Mediaitem> SearchOnTitle(string Title)
+        {
+
+            mediaitems = new List<Mediaitem>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM WHERE Title = :Title";
+                cmd.Parameters.Add("TITLE", Title);
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dalMediaitem = new Mediaitem();
+                    dalMediaitem.Mediaitemid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    dalMediaitem.Title = Convert.ToString(reader["TITLE"]);
+                    dalMediaitem.Description = Convert.ToString(reader["DESCRIPTION"]);
+                    dalMediaitem.UserID = Convert.ToInt32(reader["USERID"]);
+                    mediaitems.Add(dalMediaitem);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return mediaitems;
+        }
+
     }
 }

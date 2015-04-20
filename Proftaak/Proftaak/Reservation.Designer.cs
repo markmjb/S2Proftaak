@@ -707,6 +707,7 @@
             // 
             // cbAddedusers
             // 
+            this.cbAddedusers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAddedusers.FormattingEnabled = true;
             this.cbAddedusers.Location = new System.Drawing.Point(8, 23);
             this.cbAddedusers.Margin = new System.Windows.Forms.Padding(4);
