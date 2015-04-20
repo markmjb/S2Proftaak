@@ -30,14 +30,6 @@ namespace Businesslayer.Business
         {
             
         }
-        public void AddToGroup()
-        {
-            
-        }
-        public void AddUser()
-        {
-            
-        }
         public List<Campspot> UpdateCampingSpots(int evid)
         {
             return dbres.Campspots(evid);
@@ -50,15 +42,6 @@ namespace Businesslayer.Business
         {
             return dbres.Groupexists(text);
         }
-        public void HandlePayment()
-        {
-            
-        }
-        public void SaveReservation()
-        {
-            
-        }
-
         public List<Group> GetAllGroups()
         {
            return dbres.GetAllGroups();
@@ -76,13 +59,19 @@ namespace Businesslayer.Business
             int fulldays = (int)(days += 0.5);
             decimal totalprice = price*fulldays;
             int Resid = dbres.SelectMaxID();
+            Resid++;
             dbres.Insertreservation(_event, totalprice);
             foreach (Campspot c in selectedcampspots)
             {
                 dbres.Insertreservation2(Resid, c.CampspotId);
             }
+
             foreach (User u in users)
             {
+                dbres.insertAddress(u.Address);
+                u.Address.AddressID = dbres.GetAddressID();
+                dbres.InsertUser(u);
+                u.ID = dbres.GetUserID();
                 dbres.Insertreservation3(u.ID,Resid);
             }
         }

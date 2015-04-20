@@ -216,10 +216,11 @@ namespace Businesslayer.DAL
             try { 
             OracleCommand cmd = this.db.Connection.CreateCommand();
             cmd.CommandText =
-                "INSERT INTO PTS2_RESERVATION (STARTDATE,ENDDATE,PRICE) VALUES (:datestart,:dateend,:totalprice)";
+                "INSERT INTO PTS2_RESERVATION (STARTDATE,ENDDATE,PRICE,EVENTID) VALUES (:datestart,:dateend,:totalprice,:evid)";
             cmd.Parameters.Add("datestart", _event.StartDate);
             cmd.Parameters.Add("dateend", _event.EndDate);
             cmd.Parameters.Add("totalprice", totalprice);
+            cmd.Parameters.Add("evid", _event.EventID);
             this.db.Connection.Open();
             cmd.ExecuteNonQuery();
                 }
@@ -229,7 +230,7 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Open();
+                this.db.Connection.Close();
             }
         }
 
@@ -238,7 +239,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO (RESID,CAMPSPOTID) VALUES (:RES,:CAMP)";
+                cmd.CommandText = "INSERT INTO PTS2_RESCAMP(RESID,CAMPSPOTID) VALUES (:RES,:CAMP)";
                 cmd.Parameters.Add("RES", resid);
                 cmd.Parameters.Add("CAMP", campspotId);
                 this.db.Connection.Open();
@@ -250,15 +251,121 @@ namespace Businesslayer.DAL
             }
             finally
             {
-                this.db.Connection.Open();
+                this.db.Connection.Close();
             }
             }
 
         public void Insertreservation3(int id, int resid)
         {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "INSERT INTO PTS2_USER_RESERVATION(USERID,RESERVATIONID) VALUES (:usid,:resid)";
+                cmd.Parameters.Add("usid", id);
+                cmd.Parameters.Add("resid", resid);
+               
+                this.db.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+
+        public void InsertUser(User user)
+        {
+            try{
             OracleCommand cmd = this.db.Connection.CreateCommand();
-            cmd.CommandText = "INSERT INTO USER_RESERVATION";
-            
+            cmd.CommandText =
+                "INSERT INTO PTS2_USER(FIRSTNAME,LASTNAME,EMAIL,UPAS,GROUPID,ADDRESSID) VALUES (:firstname,:lastname,:email,:upas,:groupid,:addressid)";
+                cmd.Parameters.Add("FIRSTNAME",user.Firstname);
+                cmd.Parameters.Add("LASTNAME",user.Lastname);
+                cmd.Parameters.Add("EMAIL",user.Email);
+                cmd.Parameters.Add("upas", user.Password);
+                cmd.Parameters.Add("groupid", user.Group.ID);
+                cmd.Parameters.Add("addressid", user.Address.AddressID);
+            this.db.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+
+        public void insertAddress(Address address)
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText =
+                    "INSERT INTO PTS2_ADDRESS(COUNTRY,PROVINCE,CITY,STREET,HOUSENUMBER,POSTALCODE) VALUES (:country,:prov,:city,:street,:housenumber,:postalcode)";
+                cmd.Parameters.Add("country", address.Country);
+                cmd.Parameters.Add("prov", address.Province);
+                cmd.Parameters.Add("city", address.City);
+                cmd.Parameters.Add("street", address.Street);
+                cmd.Parameters.Add("housenumber", address.Streetnumber);
+                cmd.Parameters.Add("postalcode", address.PostalCode);
+                this.db.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+
+        public int GetAddressID()
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "select Max(ADDRESSID) FROM PTS2_ADDRESS";
+                this.db.Connection.Open();
+                returnint = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return returnint;
+        }
+
+        public int GetUserID()
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "select Max(USERID) FROM PTS2_USER";
+                this.db.Connection.Open();
+                returnint = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return returnint;
         }
     }
 }

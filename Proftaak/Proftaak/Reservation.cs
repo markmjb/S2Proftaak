@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -99,10 +100,11 @@ namespace Proftaak
                     MessageBox.Show("Select one or more campspots first");
                     nonexttab = true;
                 }
-                else { 
+                else {
+                    Selectedcampspots = new List<Campspot>();
                 foreach (var C in lbAvailablespots.SelectedItems)
                 {
-                 Selectedcampspots = new List<Campspot>();
+                 
                 Selectedcampspots.Add((Campspot)C);
                 }
                 }
@@ -257,9 +259,48 @@ namespace Proftaak
 
         private void btnFinishReservation_Click(object sender, EventArgs e)
         {
-            
             RC.SaveReservation(users,Selectedcampspots,_event);
+            foreach (User U in users)
+            {
+            SendEmails(U);
+            }
+            
+            this.Hide();
+            StartScreen S = new StartScreen();
+            S.Show();
+           
         }
-        
+
+        private void SendEmails(User user)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("proftaakgroepA@gmail.com");
+                mail.To.Add(user.Email);
+                mail.Subject = "Camping registratie";
+                string sql = string.Format("Welkom op de camping! \n\n Hier is uw (tijdelijke) wachtwoord: {0}\n"
+                                           +
+                                           "Log hiermee in op de portal \n\n Uw Reserveringsnummer is : {1} Met vriendelijke groet, \n\n De Camping",
+                    user.Password, user.ReservationID);
+                mail.Body = sql;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("proftaakgroepA@gmail.com", "Proftaak_19");
+
+                // Email, Password
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("mail Send");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         }
     }
