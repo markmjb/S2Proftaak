@@ -46,6 +46,40 @@ namespace Businesslayer.DAL
             }
             return items;
         }
+       public List<Item> GetStockItems()
+        {
+        List<Item> items = new List<Item>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT MT.materialtypeName, M.Price, M.MaterialID FROM PTS2_Materialtype MT, PTS2_Material M WHERE MT.materialTypeID = M.MaterialTypeID AND M.MaterialID NOT IN (SELECT materialID FROM PTS2_LOAN)";
+
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                string materialtypeName;
+                int materialID;
+                int price;
+
+                while (reader.Read())
+                {
+                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
+                    price = Convert.ToInt32(reader["price"]);
+                    materialID = Convert.ToInt32(reader["MaterialID"]);
+                    Item item = new Item(materialtypeName, price);
+                    items.Add(item);               
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+        finally
+        {
+            this.db.Connection.Close();
+        }
+        return items;
+        }
        public void ChangePrice(string materialName, int price)
         {
             try
@@ -172,7 +206,6 @@ namespace Businesslayer.DAL
                cmd.Parameters.Add("materialName", materialName);
 
                db.Connection.Open();
-
                OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
@@ -244,7 +277,7 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-      public User GetRFIDuser(string RFID)
+       public User GetRFIDuser(string RFID)
       {
           User RFIDuser = null;
           try
@@ -328,5 +361,60 @@ namespace Businesslayer.DAL
           }
           return RFIDuser;
       }
+       public void UpdateLoan(int materialID, int RFIDID, int UserID, DateTime StartDate, DateTime Enddate )
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "INSERT INTO PTS2_LOAN (materialID, rfidID, userID, startDate, endDate) VALUES (:mID, :rID, :uID, TO_DATE(:sDate, 'MM/DD/YYYY'), TO_DATE(:eDate, 'MM/DD/YYYY'))";
+               cmd.Parameters.Add("mID", materialID);
+               cmd.Parameters.Add("rID", RFIDID);
+               cmd.Parameters.Add("uID", UserID);
+               cmd.Parameters.Add("sDate", StartDate);
+               cmd.Parameters.Add("eDate", Enddate);
+
+               db.Connection.Open();
+               cmd.ExecuteNonQuery();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
+       public int GetRFIDID(int UserID)
+       {
+           int RFIDID = 0;
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT RFIDID FROM PTS2_RFID WHERE UserID = :usID";
+               cmd.Parameters.Add("usID", UserID);
+
+               db.Connection.Open();
+               cmd.ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+                   RFIDID = Convert.ToInt32(reader["RFIDID"]);
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return RFIDID;
+       }
+
+       //SELECT COUNT(L.RFIDID) As Aantal, MT.MaterialTypeName FROM PTS2_LOAN L, PTS2_MATERIAL M, PTS2_MATERIALTYPE MT WHERE L.MaterialID = M.MaterialID AND M.MaterialtypeID = MT.MaterialtypeID GROUP BY MT.MaterialTypeName;
+
     }
 }

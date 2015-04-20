@@ -17,6 +17,11 @@ namespace Businesslayer.Business
             List<Item> items = DM.GetItems();
             return items;
         }
+        public List<Item> GetStockItems()
+        {
+            List<Item> StockItems = DM.GetStockItems();
+            return StockItems;
+        }
         public void ChangePrice(string name, int price)
         {
             DM.ChangePrice(name, price);
@@ -68,6 +73,16 @@ namespace Businesslayer.Business
         {
             List<Event> Events = DE.GetEvents();
             return Events;
+        }
+
+        public int GetRFIDIDUser(int UserID)
+        {
+            return DM.GetRFIDID(UserID);
+        }
+
+        public void UpdateLoan(int materialID, int RFIDID, int UserID, DateTime StartDate, DateTime Enddate)
+        {
+            DM.UpdateLoan(materialID, RFIDID, UserID, StartDate, Enddate);
         }
     }
 }

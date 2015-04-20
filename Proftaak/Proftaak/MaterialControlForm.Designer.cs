@@ -31,6 +31,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbEvents = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lbRFIDNr = new System.Windows.Forms.Label();
             this.lblRFIDreader = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
-            this.cbEvents = new System.Windows.Forms.ComboBox();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
@@ -96,7 +96,7 @@
             this.Lenen.Location = new System.Drawing.Point(-4, 1);
             this.Lenen.Name = "Lenen";
             this.Lenen.SelectedIndex = 0;
-            this.Lenen.Size = new System.Drawing.Size(564, 546);
+            this.Lenen.Size = new System.Drawing.Size(538, 546);
             this.Lenen.TabIndex = 20;
             // 
             // tabPage1
@@ -136,9 +136,18 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(556, 520);
+            this.tabPage1.Size = new System.Drawing.Size(530, 520);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
+            // 
+            // cbEvents
+            // 
+            this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEvents.FormattingEnabled = true;
+            this.cbEvents.Location = new System.Drawing.Point(86, 332);
+            this.cbEvents.Name = "cbEvents";
+            this.cbEvents.Size = new System.Drawing.Size(125, 21);
+            this.cbEvents.TabIndex = 51;
             // 
             // label10
             // 
@@ -187,7 +196,7 @@
             // 
             // btnLinks
             // 
-            this.btnLinks.Location = new System.Drawing.Point(230, 214);
+            this.btnLinks.Location = new System.Drawing.Point(242, 214);
             this.btnLinks.Name = "btnLinks";
             this.btnLinks.Size = new System.Drawing.Size(41, 23);
             this.btnLinks.TabIndex = 44;
@@ -197,7 +206,7 @@
             // 
             // btnRechts
             // 
-            this.btnRechts.Location = new System.Drawing.Point(230, 185);
+            this.btnRechts.Location = new System.Drawing.Point(242, 185);
             this.btnRechts.Name = "btnRechts";
             this.btnRechts.Size = new System.Drawing.Size(41, 23);
             this.btnRechts.TabIndex = 43;
@@ -257,7 +266,7 @@
             this.lbSelectItem.Location = new System.Drawing.Point(33, 141);
             this.lbSelectItem.Name = "lbSelectItem";
             this.lbSelectItem.ScrollAlwaysVisible = true;
-            this.lbSelectItem.Size = new System.Drawing.Size(155, 147);
+            this.lbSelectItem.Size = new System.Drawing.Size(178, 147);
             this.lbSelectItem.TabIndex = 37;
             // 
             // button1
@@ -430,7 +439,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(556, 520);
+            this.tabPage2.Size = new System.Drawing.Size(530, 520);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stock";
             // 
@@ -539,15 +548,6 @@
             this.tbAdd.Name = "tbAdd";
             this.tbAdd.Size = new System.Drawing.Size(87, 20);
             this.tbAdd.TabIndex = 92;
-            // 
-            // cbEvents
-            // 
-            this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEvents.FormattingEnabled = true;
-            this.cbEvents.Location = new System.Drawing.Point(86, 332);
-            this.cbEvents.Name = "cbEvents";
-            this.cbEvents.Size = new System.Drawing.Size(125, 21);
-            this.cbEvents.TabIndex = 51;
             // 
             // MaterialControlForm
             // 
