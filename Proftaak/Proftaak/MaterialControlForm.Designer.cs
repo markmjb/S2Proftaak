@@ -72,11 +72,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
-<<<<<<< HEAD
             this.cbYourItems = new System.Windows.Forms.ComboBox();
-=======
             this.cbEvents = new System.Windows.Forms.ComboBox();
->>>>>>> origin/master
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
@@ -105,12 +102,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-<<<<<<< HEAD
             this.tabPage1.Controls.Add(this.cbYourItems);
-            this.tabPage1.Controls.Add(this.nudEvent);
-=======
             this.tabPage1.Controls.Add(this.cbEvents);
->>>>>>> origin/master
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.lbRFIDNr);
             this.tabPage1.Controls.Add(this.lblRFIDreader);
@@ -537,7 +530,6 @@
             this.tbAdd.Size = new System.Drawing.Size(87, 20);
             this.tbAdd.TabIndex = 92;
             // 
-<<<<<<< HEAD
             // cbYourItems
             // 
             this.cbYourItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -546,7 +538,6 @@
             this.cbYourItems.Name = "cbYourItems";
             this.cbYourItems.Size = new System.Drawing.Size(96, 21);
             this.cbYourItems.TabIndex = 105;
-=======
             // cbEvents
             // 
             this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -555,7 +546,6 @@
             this.cbEvents.Name = "cbEvents";
             this.cbEvents.Size = new System.Drawing.Size(125, 21);
             this.cbEvents.TabIndex = 51;
->>>>>>> origin/master
             // 
             // MaterialControlForm
             // 
@@ -623,10 +613,8 @@
         private System.Windows.Forms.ComboBox cbItem;
         private System.Windows.Forms.Label lblItems;
         private System.Windows.Forms.Label lblChangePrice;
-<<<<<<< HEAD
         private System.Windows.Forms.ComboBox cbYourItems;
-=======
         private System.Windows.Forms.ComboBox cbEvents;
->>>>>>> origin/master
+
     }
 }

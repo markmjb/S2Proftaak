@@ -232,14 +232,16 @@ namespace Proftaak
             UpdateTotalPrice();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)  
         {
-            totalprice += Convert.ToInt32(ScannedUser.Debt);
+            UpdateTotalPrice();
+            totalprice = Convert.ToInt32(ScannedUser.Debt) + totalprice;
             Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
             IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);    
         }
         public void UpdateTotalPrice()
         {
+            totalprice = 0;
             int price;
             int tempprice = 0;
             for (int i = 0;  i < lbYourItem.Items.Count; i++)          
@@ -262,7 +264,6 @@ namespace Proftaak
             }
             totalprice = tempprice + totalprice;
             lblTotalPrice.Text = Convert.ToString(totalprice);
-            totalprice = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
