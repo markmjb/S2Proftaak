@@ -26,6 +26,10 @@ namespace Proftaak
             RefreshFilebox();
             Refresh();
 
+            if (Userlogin.Loggeduser.Isadmin == false)
+            {
+                tabPage3.Enabled = false;
+            }
 
         }
 
