@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Searchbutton = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbfileinfo = new System.Windows.Forms.TextBox();
@@ -64,7 +65,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.Searchbutton = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -106,6 +107,16 @@
             this.tabPage1.Size = new System.Drawing.Size(961, 525);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "MediaSharing";
+            // 
+            // Searchbutton
+            // 
+            this.Searchbutton.Location = new System.Drawing.Point(18, 65);
+            this.Searchbutton.Name = "Searchbutton";
+            this.Searchbutton.Size = new System.Drawing.Size(178, 23);
+            this.Searchbutton.TabIndex = 13;
+            this.Searchbutton.Text = "Search";
+            this.Searchbutton.UseVisualStyleBackColor = true;
+            this.Searchbutton.Click += new System.EventHandler(this.Searchbutton_Click);
             // 
             // listBox1
             // 
@@ -223,6 +234,7 @@
             this.cbsearch.Name = "cbsearch";
             this.cbsearch.Size = new System.Drawing.Size(178, 21);
             this.cbsearch.TabIndex = 1;
+            this.cbsearch.SelectedIndexChanged += new System.EventHandler(this.cbsearch_SelectedIndexChanged);
             // 
             // tbsearch
             // 
@@ -430,16 +442,6 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // Searchbutton
-            // 
-            this.Searchbutton.Location = new System.Drawing.Point(18, 65);
-            this.Searchbutton.Name = "Searchbutton";
-            this.Searchbutton.Size = new System.Drawing.Size(178, 23);
-            this.Searchbutton.TabIndex = 13;
-            this.Searchbutton.Text = "Search";
-            this.Searchbutton.UseVisualStyleBackColor = true;
-            this.Searchbutton.Click += new System.EventHandler(this.Searchbutton_Click);
-            // 
             // Mediasharing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,5 +502,6 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TextBox tbfileinfo;
         private System.Windows.Forms.Button Searchbutton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

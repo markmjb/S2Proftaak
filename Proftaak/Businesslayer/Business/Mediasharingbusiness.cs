@@ -23,8 +23,11 @@ namespace Businesslayer.Business
             return dbmedia.SearchOnTitle(Title);
         }
 
-        
 
+        public int GetUserID(int mediaitemid)
+        {
+            return dbmedia.GetUserID(mediaitemid);
+        }
 
         public int getcategory(string category)
         {
@@ -40,6 +43,7 @@ namespace Businesslayer.Business
         {
             dbmedia.RemoveMediaItem(mediaitem);
         }
+
 
         public void RemoveMediaItemFile(Mediaitem mediaitem)
         {

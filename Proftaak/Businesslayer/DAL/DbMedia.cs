@@ -11,6 +11,7 @@ namespace Businesslayer.DAL
         private Report dalSingleReport;
         private Mediaitem dalMediaitem;
         private int Returnint;
+        private int UserID;
         private List<string> Categories;
         private List<Report> reports;
         private List<Mediaitem> mediaitems;
@@ -785,6 +786,34 @@ namespace Businesslayer.DAL
                 this.db.Connection.Close();
             }
             return mediaitems;
+        }
+
+        public int GetUserID(int itemid)
+        {
+            
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT USERID FROM PTS2_MEDIAITEM WHERE MEDIAITEMID = :itemid";
+                cmd.Parameters.Add("itemid", itemid);
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+               
+                    UserID = Convert.ToInt32(reader["USERID"]);
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return UserID;
         }
 
     }

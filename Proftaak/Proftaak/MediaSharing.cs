@@ -28,7 +28,7 @@ namespace Proftaak
 
             if (Userlogin.Loggeduser.Isadmin == false)
             {
-                tabPage3.Enabled = false;
+                tabControl1.TabPages.RemoveAt(2);
             }
 
         }
@@ -65,12 +65,14 @@ namespace Proftaak
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            tbSelectFile.Text = openFileDialog1.FileName;
-            FileInfo F = new FileInfo(openFileDialog1.FileName);
-            size = Convert.ToInt32(F.Length/1000);
-            filetype = F.Extension;
 
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tbSelectFile.Text = openFileDialog1.FileName;
+                FileInfo F = new FileInfo(openFileDialog1.FileName);
+                size = Convert.ToInt32(F.Length/1000);
+                filetype = F.Extension;
+            }
 
 
         }
@@ -90,14 +92,13 @@ namespace Proftaak
         {
             try
             {
+
                 type = cbtypetab2.Text;
                 title = tbTitle.Text;
                 description = tbDescription.Text;
                 filepath = tbSelectFile.Text;
                 category = cbCategory.Text;
-                
-                userID = Userlogin.Loggeduser.ID;
-              
+                userID = Userlogin.Loggeduser.ID;             
                 MediaCategoryID = mdsb.GetMediaCategory(cbCategory.SelectedItem.ToString());
 
 
@@ -105,7 +106,7 @@ namespace Proftaak
                 int mediaitemID = mdsb.GetmediaitemID(title);
                 Mediaitems = mdsb.Getallmediaitems();
                 FileInfo f = new FileInfo(filepath);
-                string uploadloc = @"C:\Users\nickbijmoer\Pictures\Server" + "/" + f.Name;
+                string uploadloc = @"C:\Opdracht" + "/" + f.Name;
                 System.IO.File.Copy(filepath, uploadloc, false);
                 MessageBox.Show("File uploaded: " + f.Name);
                 this.Close();
@@ -194,33 +195,66 @@ namespace Proftaak
 
         private void btnDeleteMedia_Click(object sender, EventArgs e)
         {
-
             try
             {
-                if (FileBox.SelectedIndex == -1)
+
+                string selecteditem = FileBox.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':');
+                selecteditem = selecteditems[1];
+                Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
+                int selectedid = Convert.ToInt32(selecteditems[0]);
+                Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
+                int itemUserID = mdsb.GetUserID(selectedid);
+                if (Userlogin.Loggeduser.Isadmin == false)
                 {
-                    MessageBox.Show("geen item geselecteerd");
+                    if (userID == itemUserID)
+                    {
+                        if (FileBox.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("geen item geselecteerd");
+                        }
+                        else
+                        {
+                            System.IO.File.Delete(itemfile.Filepath);
+                            mdsb.RemoveMediaItem(item);
+                            mdsb.RemoveMediaItemFile(item);
+                        }
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
+                    }
+
                 }
                 else
                 {
-
-                    string selecteditem = FileBox.SelectedItem.ToString();
-                    string[] selecteditems = selecteditem.Split(':');
-                    selecteditem = selecteditems[1];
-                    Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
-                    int selectedid = Convert.ToInt32(selecteditems[0]);
-                    Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
-
-
                     System.IO.File.Delete(itemfile.Filepath);
                     mdsb.RemoveMediaItem(item);
                     mdsb.RemoveMediaItemFile(item);
-
-
                 }
+               
+
+                  
+                    
+                    
+                 
+
+                    
+
+                    
+                   
+
+
+                        
+                       
+                    
+              
                 Refresh();
                 RefreshFilebox();
                 RefreshListbox();
+
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -296,16 +330,7 @@ namespace Proftaak
 
         private void cbtypetab2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbtypetab2.SelectedItem.ToString() == "Text")
-            {
-                tbSelectFile.Enabled = false;
-                btnBrowse.Enabled = false;
-            }
-            else
-            {
-                tbSelectFile.Enabled = true;
-                btnBrowse.Enabled = true;
-            }
+           
 
             
         }
@@ -325,20 +350,26 @@ namespace Proftaak
                 string filepath = itemfile.Filepath;
 
 
-                FileInfo f = new FileInfo(filepath);
-
-                string uploadloc = @"C:\Users\nickbijmoer\Pictures\Server" + "/" + f.Name;
-
-                try
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    System.IO.File.Copy(uploadloc, filepath, false);
-                    MessageBox.Show("File uploaded: " + f.Name);
-                    this.Close();
+                    try
+                    {
+                        FileInfo f = new FileInfo(filepath);
+                        string uploadloc = @"C:\Opdracht" + "/" + f.Name;
+                        System.IO.File.Copy(uploadloc, openFileDialog1.FileName, false);
+                     
+                        this.Close();
+                    }
+                    catch (SystemException exc)
+                    {
+                        MessageBox.Show("Error moving file:" + exc.Message);
+                    }
                 }
-                catch (SystemException exc)
-                {
-                    MessageBox.Show("Error moving file:" + exc.Message);
-                }
+               
+
+            
+
+                
             }
         }
 
@@ -555,6 +586,7 @@ namespace Proftaak
             if (SortOn == "Title")
             {
               Mediaitems = mdsb.SearchOnTitle(Title);
+              
                 if (Title == "")
                 {
                     RefreshFilebox();
@@ -567,8 +599,17 @@ namespace Proftaak
             }
             else
             {
-                
+                if (SortOn == "Category")
+                {
+                  
+                }
+
             }
+            RefreshFilebox2();
+        }
+
+        private void cbsearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
