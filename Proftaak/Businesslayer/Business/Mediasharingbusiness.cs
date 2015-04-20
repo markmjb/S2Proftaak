@@ -112,5 +112,13 @@ namespace Businesslayer.Business
           return dbmedia.Getallreports();
 
         }
+
+        public Report GetSingleReport(int mediaitemid, int userid)
+        {
+            return dbmedia.GetSingleReport(mediaitemid, userid);
+
+        }
+
+
     }
 }

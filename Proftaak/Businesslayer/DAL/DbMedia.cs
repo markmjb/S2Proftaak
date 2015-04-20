@@ -8,6 +8,7 @@ namespace Businesslayer.DAL
     public class DbMedia
     {
         private Report dalReport;
+        private Report dalSingleReport;
         private Mediaitem dalMediaitem;
         private int Returnint;
         private List<Report> reports;
@@ -576,12 +577,20 @@ namespace Businesslayer.DAL
                 {
 
                     dalReport = new Report();
-
-                    dalReport.ReportedID = Convert.ToInt32(reader["REPORTEDID"]);
-                    dalReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
                     dalReport.UserID = Convert.ToInt32(reader["USERID"]);
-                    
-                    
+                    dalReport.ReportedID = Convert.ToInt32(reader["REPORTEDID"]);
+                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    {
+                    dalReport.MediaitemID = 0;
+                    }
+                    else
+                    {
+                    dalReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    }
+                  
+
+
+
                     reports.Add(dalReport);
                     
                 }
@@ -595,6 +604,44 @@ namespace Businesslayer.DAL
                 this.db.Connection.Close();
             }
             return reports;
+        }
+
+        public Report GetSingleReport(int mediaitemid, int userid)
+        {
+
+            reports = new List<Report>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT * FROM PTS2_REPORTED WHERE MEDIAITEMID = :mediaitemid AND USERID = :userid";
+                cmd.Parameters.Add("mediaitemID", mediaitemid);
+                cmd.Parameters.Add("Userid", userid);
+
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    dalSingleReport = new Report();
+
+                    dalReport.ReportedID = Convert.ToInt32(reader["REPORTEDID"]);
+                    dalReport.MediaitemID = Convert.ToInt32(reader["MEDIAITEMID"]);
+                    dalReport.UserID = Convert.ToInt32(reader["USERID"]);
+
+
+                    reports.Add(dalReport);
+
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return dalSingleReport;
         }
         
     }

@@ -17,7 +17,8 @@ namespace Proftaak
 {
     public partial class Mediasharing : Form
     {
-        Mediasharingbusiness mdsb = new Mediasharingbusiness();
+        private Mediasharingbusiness mdsb = new Mediasharingbusiness();
+
         public Mediasharing()
         {
             InitializeComponent();
@@ -28,20 +29,20 @@ namespace Proftaak
         }
 
         private int selectedindex;
-       private string type;
-       private string description;
-       private string category;
-       private string filepath;
-       private string title;
-       private string filetype;
-       private int size;
-       private int userID = Userlogin.Loggeduser.ID;
-       private int categoryID;
+        private string type;
+        private string description;
+        private string category;
+        private string filepath;
+        private string title;
+        private string filetype;
+        private int size;
+        private int userID = Userlogin.Loggeduser.ID;
+        private int categoryID;
         private int likes;
         private int likesreply;
-       public List<Mediaitem> Mediaitems = new List<Mediaitem>();
-       public List<Mediaitem> Mediatext = new List<Mediaitem>(); 
-       public List<Report> Reports = new List<Report>(); 
+        public List<Mediaitem> Mediaitems = new List<Mediaitem>();
+        public List<Mediaitem> Mediatext = new List<Mediaitem>();
+        public List<Report> Reports = new List<Report>();
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -52,7 +53,7 @@ namespace Proftaak
         private void btnUploadMedia_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage2;
-            
+
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -60,11 +61,11 @@ namespace Proftaak
             openFileDialog1.ShowDialog();
             tbSelectFile.Text = openFileDialog1.FileName;
             FileInfo F = new FileInfo(openFileDialog1.FileName);
-            size = Convert.ToInt32(F.Length / 1000);
+            size = Convert.ToInt32(F.Length/1000);
             filetype = F.Extension;
-    
 
-           
+
+
         }
 
         private void RefreshReportList()
@@ -73,13 +74,14 @@ namespace Proftaak
             Reports = mdsb.Getallreports();
             foreach (Report report in Reports)
             {
-                listBox2.Items.Add("ReportID: " + report.ReportedID + " MediaitemID of reported file: " + report.MediaitemID + " Reported by User: " + report.UserID);
+                listBox2.Items.Add("ReportID: " + report.ReportedID + " MediaitemID of reported file: " +
+                                   report.MediaitemID + " Reported by User: " + report.UserID);
             }
         }
 
         private void btnUploadMediaTab2_Click(object sender, EventArgs e)
         {
-          try
+            try
             {
                 type = cbtypetab2.Text;
                 title = tbTitle.Text;
@@ -89,7 +91,7 @@ namespace Proftaak
                 categoryID = 3;
                 userID = Userlogin.Loggeduser.ID;
 
-              
+
 
 
                 int mediaitemID = mdsb.GetmediaitemID(title);
@@ -100,7 +102,7 @@ namespace Proftaak
                 MessageBox.Show("File uploaded: " + f.Name);
                 this.Close();
                 Mediaitem newmedia = new Mediaitem(type, title, description, filepath, categoryID, userID, size,
-                  filetype);
+                    filetype);
             }
             catch (SystemException exc)
             {
@@ -110,7 +112,7 @@ namespace Proftaak
             {
                 Refresh();
                 RefreshFilebox();
-            
+
             }
 
 
@@ -141,33 +143,34 @@ namespace Proftaak
 
             foreach (Mediaitem mediatext in Mediatext)
             {
-                
-                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + " Likes: "+likesreply);
+
+                listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + " Likes: " +
+                                   likesreply);
             }
         }
 
         public void RefreshFilebox()
-            {
-                mdsb.Getallmediaitems();
-                Mediaitems = mdsb.Getallmediaitems();
+        {
+            mdsb.Getallmediaitems();
+            Mediaitems = mdsb.Getallmediaitems();
 
-               FileBox.Items.Clear();
-                 foreach (Mediaitem mediaitem in Mediaitems)
+            FileBox.Items.Clear();
+            foreach (Mediaitem mediaitem in Mediaitems)
             {
                 FileBox.Items.Add(mediaitem.ToString());
 
             }
-            
+
         }
 
         public void RefreshListbox()
         {
-            
+
         }
 
         private void btnDeleteMedia_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (FileBox.SelectedIndex == -1)
@@ -176,7 +179,7 @@ namespace Proftaak
                 }
                 else
                 {
-       
+
                     string selecteditem = FileBox.SelectedItem.ToString();
                     string[] selecteditems = selecteditem.Split(':');
                     selecteditem = selecteditems[1];
@@ -195,17 +198,19 @@ namespace Proftaak
                 RefreshFilebox();
                 RefreshListbox();
             }
-            catch ( System.IO.FileNotFoundException)
+            catch (System.IO.FileNotFoundException)
             {
-                { throw; }
-                
+                {
+                    throw;
+                }
+
             }
-           
-            
+
+
             Refresh();
 
 
-            
+
 
 
 
@@ -214,7 +219,7 @@ namespace Proftaak
 
         private void FileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             if (FileBox.SelectedItem == null)
             {
                 MessageBox.Show("Selecteer een file");
@@ -233,20 +238,23 @@ namespace Proftaak
                 string postedby = Userlogin.Loggeduser.Firstname + " " + Userlogin.Loggeduser.Lastname;
                 Mediatext = mdsb.Getmediatextlist(selecteditemid);
                 likes = mdsb.GetAllLikes(selecteditemid);
-                tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title + "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby + "\r\nFiletype: " + itemfiletype + " Filesize: " + itemfilesize+"KB" + " \r\nLikes: " + likes;
+                tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title +
+                                  "\r\nDescription: " + selected.Description + "\r\nPosted by: " + postedby +
+                                  "\r\nFiletype: " + itemfiletype + " Filesize: " + itemfilesize + "KB" + " \r\nLikes: " +
+                                  likes;
 
                 selectedindex = 0;
-        
+
 
                 Mediaitems = mdsb.AlreadyLiked();
-               
+
                 foreach (Mediaitem items in Mediaitems)
                 {
-                    
+
                     if (items.UserID == userID && items.Mediaitemid == selecteditemid)
                     {
                         btnLike.Text = "Unlike";
-                      
+
                     }
                     else
                     {
@@ -259,8 +267,8 @@ namespace Proftaak
 
 
         }
-           
-        
+
+
 
         private void cbtypetab2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -289,7 +297,7 @@ namespace Proftaak
                 int selecteditemid = Convert.ToInt32(selecteditems[0]);
                 Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selecteditemid);
                 string filepath = itemfile.Filepath;
-                
+
 
                 FileInfo f = new FileInfo(filepath);
 
@@ -308,12 +316,12 @@ namespace Proftaak
             }
         }
 
-     
+
 
         private void btnLike_Click(object sender, EventArgs e)
         {
-           
-            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex == -1) 
+
+            if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex == -1)
             {
                 if (btnLike.Text == "Unlike")
                 {
@@ -325,14 +333,14 @@ namespace Proftaak
                 }
                 else
                 {
-                string selecteditem = FileBox.SelectedItem.ToString();
-                string[] selecteditems = selecteditem.Split(':');
-                int selecteditemid = Convert.ToInt32(selecteditems[0]);
-                mdsb.AddLikeToFile(selecteditemid, userID);
-                likes = mdsb.GetAllLikes(selecteditemid);
+                    string selecteditem = FileBox.SelectedItem.ToString();
+                    string[] selecteditems = selecteditem.Split(':');
+                    int selecteditemid = Convert.ToInt32(selecteditems[0]);
+                    mdsb.AddLikeToFile(selecteditemid, userID);
+                    likes = mdsb.GetAllLikes(selecteditemid);
 
                 }
-           
+
 
             }
             if (FileBox.SelectedIndex != -1 && listBox1.SelectedIndex != -1)
@@ -352,9 +360,9 @@ namespace Proftaak
                     int selecteditemid = Convert.ToInt32(selecteditems[2]);
                     mdsb.AddLikeToReply(selecteditemid, userID);
                     likesreply = mdsb.GetAllLikesReply(selecteditemid);
-                    
+
                 }
-                
+
             }
             Refresh();
             RefreshFilebox();
@@ -369,29 +377,36 @@ namespace Proftaak
             }
             else
             {
-            string selecteditem = listBox1.SelectedItem.ToString();
-            string[] selecteditems = selecteditem.Split(':', ' ');
-            int selecteditemid = Convert.ToInt32(selecteditems[2]);
-            likesreply = mdsb.GetAllLikesReply(selecteditemid);
+                string selecteditem = listBox1.SelectedItem.ToString();
+                string[] selecteditems = selecteditem.Split(':', ' ');
+                int selecteditemid = Convert.ToInt32(selecteditems[2]);
+                likesreply = mdsb.GetAllLikesReply(selecteditemid);
 
-            Mediaitems = mdsb.AlreadyLiked();
-            
-            foreach (Mediaitem items in Mediatext)
-            {
+                Mediaitems = mdsb.AlreadyLiked();
 
-                if (items.UserID == userID && items.Mediaitemid == selecteditemid)
+
+                foreach (Mediaitem itemstext in Mediatext)
                 {
-                    btnLike.Text = "Unlike";
+                    foreach (Mediaitem itemslikes in Mediaitems)
+                    {
+                    if (itemstext.UserID == userID && itemstext.Mediaitemid == selecteditemid && itemstext.MediaitemcommentID == itemslikes.Mediacategoryid)
+                    {
+                        btnLike.Text = "Unlike";
+                    }
+                    else
+                    {
+                        btnLike.Text = "Like";
+                    }
+                    }
+                    
                 }
-                else
-                {
-                    btnLike.Text = "Like";
-                }
-            }
-            }
-            
 
-        }
+
+            
+        
+                }
+
+}
 
         private void btnReply_Click(object sender, EventArgs e)
         {
@@ -430,7 +445,17 @@ namespace Proftaak
                 string selecteditem = FileBox.SelectedItem.ToString();
                 string[] selecteditems = selecteditem.Split(':', ' ');
                 int selecteditemid = Convert.ToInt32(selecteditems[0]);
-                mdsb.AddReport(selecteditemid, userID);
+
+                Report checkreport = mdsb.GetSingleReport(selecteditemid, userID);
+                if( checkreport == null)
+             {
+                 mdsb.AddReport(selecteditemid, userID);
+             }
+             else
+                {
+                    MessageBox.Show("already reported");
+                }
+              
               
                 
             }
