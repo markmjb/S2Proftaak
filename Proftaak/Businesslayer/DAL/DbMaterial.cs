@@ -196,14 +196,13 @@ namespace Businesslayer.DAL
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "INSERT INTO PTS2_DEBT  (userID, eventID, amount)VALUES  (:userId, :eventId, :debt)";
-               cmd.Parameters.Add("userId", userId);
-               cmd.Parameters.Add("eventId", eventId);
+               cmd.CommandText = "UPDATE PTS2_DEBT SET amount = :debt WHERE userID = :usID AND EventID = :evID";
                cmd.Parameters.Add("debt", debt);
+               cmd.Parameters.Add("usID", userId);
+               cmd.Parameters.Add("evID", eventId);
 
                db.Connection.Open();
-
-               cmd.ExecuteReader();
+               cmd.ExecuteNonQuery();
            }
            catch (OracleException exc)
            {
@@ -214,7 +213,7 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-       public void GetReservedItems()
+       public void GetReservedItems(DateTime beginTime, DateTime endtime, User employee, int amount, int price, Item item)
        {
            List<ReservationMaterial> Reservations = new List<ReservationMaterial>();
            try
@@ -226,13 +225,13 @@ namespace Businesslayer.DAL
                OracleDataReader reader = cmd.ExecuteReader();
 
                string materialtypeName;
-               int price;
+               //int price;
 
                while (reader.Read())
                {
                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
                    price = Convert.ToInt32(reader["price"]);
-                   Item item = new Item(materialtypeName, price);
+                 //  Item item = new Item(materialtypeName, price);
                    //items.Add(item);
                }
            }

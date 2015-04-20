@@ -21,6 +21,7 @@ namespace Proftaak
         private List<Event> Events = new List<Event>();
         private List<Group> groups = new List<Group>(); 
         private ReservationCampspot RC = new ReservationCampspot();
+        private User user = new User();
 
         public Reservation()
         {
@@ -64,7 +65,7 @@ namespace Proftaak
 
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
-
+        user=new User();
 
 
         }

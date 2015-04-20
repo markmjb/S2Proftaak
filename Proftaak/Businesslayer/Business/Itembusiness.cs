@@ -11,6 +11,7 @@ namespace Businesslayer.Business
     {
         DbMaterial DM = new DbMaterial();
         DbAccess DA = new DbAccess();
+        DbEvent DE = new DbEvent();
         public List<Item> GetItems()
         {
             List<Item> items = DM.GetItems();
@@ -62,6 +63,11 @@ namespace Businesslayer.Business
                 return DM.GetRFIDuser(RFID);
             }
             return null;
+        }
+        public List<Event> GetEvents()
+        {
+            List<Event> Events = DE.GetEvents();
+            return Events;
         }
     }
 }
