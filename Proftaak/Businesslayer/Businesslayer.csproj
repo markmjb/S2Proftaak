@@ -83,6 +83,7 @@
     <Compile Include="Business\Item.cs" />
     <Compile Include="Business\Itembusiness.cs" />
     <Compile Include="Business\Report.cs" />
+    <Compile Include="Business\ReservationItem.cs" />
     <Compile Include="DAL\Databaseconnection.cs" />
     <Compile Include="DAL\DbAccess.cs" />
     <Compile Include="DAL\DbMaterial.cs" />

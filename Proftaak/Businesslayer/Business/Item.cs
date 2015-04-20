@@ -14,6 +14,8 @@ namespace Businesslayer.Business
         public int ID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
+        public DateTime EndDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         public Item(string name, int price)
         {
@@ -25,6 +27,14 @@ namespace Businesslayer.Business
             Name = name;
             ID = id;
             Price = price;
+        }
+
+        public Item(string name, int price, DateTime startdate, DateTime enddate)
+        {
+            Name = name;
+            Price = price;
+            StartDate = startdate;
+            EndDate = enddate;
         }
     }
 }

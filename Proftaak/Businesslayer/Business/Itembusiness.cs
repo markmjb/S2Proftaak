@@ -57,10 +57,6 @@ namespace Businesslayer.Business
         {
             DM.GiveUserDept(userId, eventId, debt);
         }
-        public void ReturnMaterial(int materialID, string materialName, string description, double price, int materialTypeID, int eventID)
-        {
-            DM.ReturnMaterial(materialID, materialName, description, price, materialTypeID, eventID);
-        }
         public User RFIDuser(string RFID)
         {
             if (DA.GetRFIDStatus(RFID))
@@ -78,6 +74,11 @@ namespace Businesslayer.Business
         public int GetRFIDIDUser(int UserID)
         {
             return DM.GetRFIDID(UserID);
+        }
+
+        public void DeleteLoan(int materialID, int RFIDID)
+        {
+            DM.DeleteLoan(materialID, RFIDID);
         }
 
         public void UpdateLoan(int materialID, int RFIDID, int UserID, DateTime StartDate, DateTime Enddate)

@@ -19,13 +19,13 @@ namespace Proftaak
         
         private RFID rfid;
         private string TempRFID;
+        private int totalprice;
         User ScannedUser;
 
         Itembusiness IB = new Itembusiness();
         List<Item> items;
         List<Event> Events;
-
-        private int totalprice;
+        List<Item> LoanItems;
 
         public MaterialControlForm()
         {
@@ -33,36 +33,6 @@ namespace Proftaak
             LoadComboBoxes();
             cbEvents.SelectedIndex = 0;
         }
-
-        void LoadComboBoxes()
-        {
-            items = IB.GetItems();
-            Events = IB.GetEvents();
-            ScannedUser = IB.RFIDuser(TempRFID);
-
-            foreach (Event E in Events)
-            {
-                cbEvents.Items.Add(E.Name);
-            }
-
-            foreach (Item I in items)
-            {
-                cbItem.Items.Add(I.Name);
-                cbItemStock.Items.Add(I.Name + " , €" + I.Price);
-                lbSelectItem.Items.Add(I.Name + " , €" + I.Price);
-                lbItems.Items.Add("Product : " + I.Name + " , prijs: €" + I.Price);
-            }
-            if (ScannedUser != null)
-            {
-                int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
-                List<Item> cbReserveredIt = IB.GetReservedItems(RFIDID);
-                foreach (Item I in cbReserveredIt)
-                {
-                    cbYourItems.Items.Add(I.Name);
-                }
-            }
-        }
-
         private void MaterialControlForm_FormClosing(object sender, FormClosingEventArgs e)
         {
          StartScreen S = new StartScreen();
@@ -200,12 +170,7 @@ namespace Proftaak
         }
         #endregion
 
-        private void btnChange_Click(object sender, EventArgs e)
-        {            
-            IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
-            Update();
-        }
-        private new void Update()
+        void Update()
         {
             lbItems.Items.Clear();
             lbSelectItem.Items.Clear();
@@ -216,24 +181,56 @@ namespace Proftaak
                 lbSelectItem.Items.Add(items[i].Name + " , €" + items[i].Price);
             }
         }
+        void LoadComboBoxes()
+        {
+            items = IB.GetItems();
+            Events = IB.GetEvents();
+            ScannedUser = IB.RFIDuser(TempRFID);
 
+            foreach (Event E in Events)
+            {
+                cbEvents.Items.Add(E.Name);
+            }
+
+            foreach (Item I in items)
+            {
+                cbItem.Items.Add(I.Name);
+                cbItemStock.Items.Add(I.Name + " , €" + I.Price);
+                lbSelectItem.Items.Add(I.Name + " , €" + I.Price);
+                lbItems.Items.Add("Product : " + I.Name + " , prijs: €" + I.Price);
+            }
+            //if (ScannedUser != null)
+            //{
+            //    int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+            //    List<Item> cbReserveredIt = IB.GetReservedItems(RFIDID);
+            //    foreach (Item I in cbReserveredIt)
+            //    {
+            //        cbYourItems.Items.Add(I.Name);
+            //    }
+            //}
+        }
+        void LoadCbItems()
+        {
+            cbYourItems.Items.Clear();
+            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+            LoanItems = IB.GetReservedItems(RFIDID);
+
+            foreach (Item I in LoanItems)
+            {
+                cbYourItems.Items.Add(I.Name);
+            }
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {            
+            IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
+            Update();
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), cbEvents.SelectedIndex + 1);
             Update();
         }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }        
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            //lbYourItem.Items.Remove(lbYourItem.SelectedItem);
-            //UpdateTotalPrice();
-        }
-
         private void button3_Click(object sender, EventArgs e)  
         {
             Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
@@ -260,30 +257,29 @@ namespace Proftaak
 
             IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);     
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            if (cbYourItems.SelectedIndex != -1)
+            {
+                int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+                LoanItems = IB.GetReservedItems(RFIDID);
 
+                Item I = LoanItems.ElementAt(cbYourItems.SelectedIndex);
+                IB.DeleteLoan(I.ID, RFIDID);
+            }
         }
-        public void ReturnMaterial()
-        {
-            //IB.ReturnMaterial();
-        }
-        public List<Item> GetReservedItems()
-        {
-            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
-            return IB.GetReservedItems(RFIDID);
-        }
-
         private void lbRFIDNr_TextChanged(object sender, EventArgs e)
         {
             ScannedUser = IB.RFIDuser(TempRFID);
+
             if (ScannedUser != null )
             {
                 label7.Text = ScannedUser.Lastname + ", " + ScannedUser.Firstname;
                 label8.Text = Convert.ToString(ScannedUser.ReservationID);
                 label38.Text = ScannedUser.Lastname + ", " + ScannedUser.Firstname;
                 label37.Text = Convert.ToString(ScannedUser.ReservationID);
+
+                LoadCbItems();
             }
             else
             {
@@ -291,6 +287,14 @@ namespace Proftaak
                 label8.Text = "";
                 label38.Text = "";
                 label37.Text = "";
+            }
+        }
+        private void cbYourItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbYourItems.SelectedIndex != -1 )
+            {
+                Item I = LoanItems.ElementAt(cbYourItems.SelectedIndex);
+                lblSETime.Text = I.StartDate.ToShortDateString() + "  /  " + I.EndDate.ToShortDateString();
             }
         }
     }
