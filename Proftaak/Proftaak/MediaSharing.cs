@@ -539,8 +539,9 @@ namespace Proftaak
             string[] selecteditems = selecteditem.Split(':', ' ');
             int selecteditemid = Convert.ToInt32(selecteditems[8]);
             mdsb.RemoveReportedFile(selecteditemid, userID);
-            RefreshReportList();
+            RefreshReportList();          
         }
+        
 
         private void Searchbutton_Click(object sender, EventArgs e)
         {

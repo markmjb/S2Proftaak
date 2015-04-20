@@ -760,8 +760,9 @@ namespace Businesslayer.DAL
             mediaitems = new List<Mediaitem>();
             try
             {
+                Title = "%" + Title + "%";
                 OracleCommand cmd = this.db.Connection.CreateCommand();
-                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM WHERE Title = :Title";
+                cmd.CommandText = "SELECT * FROM PTS2_MEDIAITEM WHERE TITLE LIKE :Title";
                 cmd.Parameters.Add("TITLE", Title);
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
