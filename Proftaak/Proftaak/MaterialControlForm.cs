@@ -19,6 +19,8 @@ namespace Proftaak
         
         private RFID rfid;
         private string TempRFID;
+        User ScannedUser;
+
         Itembusiness IB = new Itembusiness();
         public List<Item> items = new List<Item>();
         private int totalprice;
@@ -26,21 +28,31 @@ namespace Proftaak
         public MaterialControlForm()
         {
             InitializeComponent();
-            items = IB.GetItems();
-            for(int i = 0; i < items.Count; i++)
-            {
-                dupItem.Items.Add(items[i].Name);
-                dupItemsStock.Items.Add(items[i].Name);
-                lbSelectItem.Items.Add(items[i].Name + " , €" + items[i].Price);
-                lbItems.Items.Add("Product : " + items[i].Name +" , prijs: €" + items[i].Price);
-            }
+            LoadComboBoxes();
+        }
 
+        void LoadComboBoxes()
+        {
+            items = IB.GetItems();
+            foreach (Item I in items)
+            {
+                cbItem.Items.Add(I.Name);
+                cbItemStock.Items.Add(I.Name + " , €" + I.Price);
+                lbSelectItem.Items.Add(I.Name + " , €" + I.Price);
+                lbItems.Items.Add("Product : " + I.Name + " , prijs: €" + I.Price);
+            }
         }
 
         private void MaterialControlForm_FormClosing(object sender, FormClosingEventArgs e)
         {
          StartScreen S = new StartScreen();
             S.Show();
+
+            rfid.Attach -= new AttachEventHandler(rfid_Attach);
+            rfid.Detach -= new DetachEventHandler(rfid_Detach);
+            rfid.Tag -= new TagEventHandler(rfid_Tag);
+            rfid.TagLost -= new TagEventHandler(rfid_TagLost);
+            rfid.close();
         }
         private void MaterialControlForm_Load(object sender, EventArgs e)
         {
@@ -48,14 +60,14 @@ namespace Proftaak
             rfid.Attach += new AttachEventHandler(rfid_Attach);
             rfid.Tag += new TagEventHandler(rfid_Tag);
             rfid.TagLost += new TagEventHandler(rfid_TagLost);
+            rfid.Detach += new DetachEventHandler(rfid_Detach);
             openCmdLine(rfid);
             Update();
         }
         void rfid_Attach(object sender, AttachEventArgs e)
         {
             RFID attached = (RFID)sender;
-            lbRFIDNr.Text = "-";
-            lbRFIDNr2.Text = "-";
+            lblRFIDreader.Text = e.Device.Attached.ToString();
             rfid.Antenna = true;
 
             switch (attached.ID)
@@ -71,17 +83,16 @@ namespace Proftaak
         void rfid_Tag(object sender, TagEventArgs e)
         {
             lbRFIDNr.Text = e.Tag;
-            lbRFIDNr2.Text = e.Tag;
             TempRFID = e.Tag;
         }
         void rfid_TagLost(object sender, TagEventArgs e)
         {
-            //lbRFIDNr.Text = "";
+            lbRFIDNr.Text = "";
         }
         void rfid_Detach(object sender, DetachEventArgs e)
         {
             RFID detached = (RFID)sender;
-            lbRFIDNr.Text = e.Device.Attached.ToString();
+            lblRFIDreader.Text = e.Device.Attached.ToString();
         }
         //Parses command line arguments and calls the appropriate open
         #region Command line open functions
@@ -171,7 +182,7 @@ namespace Proftaak
 
         private void btnChange_Click(object sender, EventArgs e)
         {            
-            IB.ChangePrice(dupItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
+            IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
             Update();
             MessageBox.Show("gedaan");
         }
@@ -189,7 +200,7 @@ namespace Proftaak
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            IB.AddStock(dupItemsStock.SelectedItem.ToString(), Convert.ToInt32(tbAdd.Text));
+            IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -250,7 +261,7 @@ namespace Proftaak
         }
         public void GiveUserDept()
         {
-            IB.GiveUserDebt(Convert.ToInt32(lblRFIDID.Text), Convert.ToInt32(nudEvent.Value), Convert.ToInt32(lblTotalPrice.Text));
+            IB.GiveUserDebt(Convert.ToInt32(ScannedUser.ID), Convert.ToInt32(nudEvent.Value), Convert.ToInt32(lblTotalPrice.Text));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -264,6 +275,25 @@ namespace Proftaak
         public void GetReservedItems()
         {
 
+        }
+
+        private void lbRFIDNr_TextChanged(object sender, EventArgs e)
+        {
+            ScannedUser = IB.RFIDuser(TempRFID);
+            if (ScannedUser != null )
+            {
+                label7.Text = ScannedUser.Lastname + ", " + ScannedUser.Firstname;
+                label8.Text = Convert.ToString(ScannedUser.ReservationID);
+                label38.Text = ScannedUser.Lastname + ", " + ScannedUser.Firstname;
+                label37.Text = Convert.ToString(ScannedUser.ReservationID);
+            }
+            else
+            {
+                label7.Text = "";
+                label8.Text = "";
+                label38.Text = "";
+                label37.Text = "";
+            }
         }
     }
 }
