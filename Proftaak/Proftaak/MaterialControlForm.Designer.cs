@@ -31,18 +31,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbYourItems = new System.Windows.Forms.ComboBox();
+            this.cbEvents = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lbRFIDNr = new System.Windows.Forms.Label();
             this.lblRFIDreader = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblniks = new System.Windows.Forms.Label();
-            this.btnLinks = new System.Windows.Forms.Button();
-            this.btnRechts = new System.Windows.Forms.Button();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.btnOrder = new System.Windows.Forms.Button();
-            this.label45 = new System.Windows.Forms.Label();
-            this.lbYourItem = new System.Windows.Forms.ListBox();
             this.lbSelectItem = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label41 = new System.Windows.Forms.Label();
@@ -72,8 +70,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
-            this.cbYourItems = new System.Windows.Forms.ComboBox();
-            this.cbEvents = new System.Windows.Forms.ComboBox();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
@@ -109,13 +105,9 @@
             this.tabPage1.Controls.Add(this.lblRFIDreader);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.lblniks);
-            this.tabPage1.Controls.Add(this.btnLinks);
-            this.tabPage1.Controls.Add(this.btnRechts);
             this.tabPage1.Controls.Add(this.lblTotalPrice);
             this.tabPage1.Controls.Add(this.label46);
             this.tabPage1.Controls.Add(this.btnOrder);
-            this.tabPage1.Controls.Add(this.label45);
-            this.tabPage1.Controls.Add(this.lbYourItem);
             this.tabPage1.Controls.Add(this.lbSelectItem);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.label41);
@@ -139,6 +131,24 @@
             this.tabPage1.Size = new System.Drawing.Size(556, 520);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
+            // 
+            // cbYourItems
+            // 
+            this.cbYourItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbYourItems.FormattingEnabled = true;
+            this.cbYourItems.Location = new System.Drawing.Point(33, 476);
+            this.cbYourItems.Name = "cbYourItems";
+            this.cbYourItems.Size = new System.Drawing.Size(96, 21);
+            this.cbYourItems.TabIndex = 105;
+            // 
+            // cbEvents
+            // 
+            this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEvents.FormattingEnabled = true;
+            this.cbEvents.Location = new System.Drawing.Point(86, 332);
+            this.cbEvents.Name = "cbEvents";
+            this.cbEvents.Size = new System.Drawing.Size(125, 21);
+            this.cbEvents.TabIndex = 51;
             // 
             // label10
             // 
@@ -185,26 +195,6 @@
             this.lblniks.TabIndex = 45;
             this.lblniks.Text = "RFID:";
             // 
-            // btnLinks
-            // 
-            this.btnLinks.Location = new System.Drawing.Point(230, 214);
-            this.btnLinks.Name = "btnLinks";
-            this.btnLinks.Size = new System.Drawing.Size(41, 23);
-            this.btnLinks.TabIndex = 44;
-            this.btnLinks.Text = "<<";
-            this.btnLinks.UseVisualStyleBackColor = true;
-            this.btnLinks.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // btnRechts
-            // 
-            this.btnRechts.Location = new System.Drawing.Point(230, 185);
-            this.btnRechts.Name = "btnRechts";
-            this.btnRechts.Size = new System.Drawing.Size(41, 23);
-            this.btnRechts.TabIndex = 43;
-            this.btnRechts.Text = ">>";
-            this.btnRechts.UseVisualStyleBackColor = true;
-            this.btnRechts.Click += new System.EventHandler(this.button5_Click);
-            // 
             // lblTotalPrice
             // 
             this.lblTotalPrice.AutoSize = true;
@@ -232,24 +222,6 @@
             this.btnOrder.Text = "Order";
             this.btnOrder.UseVisualStyleBackColor = true;
             this.btnOrder.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(365, 114);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(56, 13);
-            this.label45.TabIndex = 39;
-            this.label45.Text = "Your items";
-            // 
-            // lbYourItem
-            // 
-            this.lbYourItem.FormattingEnabled = true;
-            this.lbYourItem.Location = new System.Drawing.Point(311, 141);
-            this.lbYourItem.Name = "lbYourItem";
-            this.lbYourItem.ScrollAlwaysVisible = true;
-            this.lbYourItem.Size = new System.Drawing.Size(155, 147);
-            this.lbYourItem.TabIndex = 38;
             // 
             // lbSelectItem
             // 
@@ -530,23 +502,6 @@
             this.tbAdd.Size = new System.Drawing.Size(87, 20);
             this.tbAdd.TabIndex = 92;
             // 
-            // cbYourItems
-            // 
-            this.cbYourItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbYourItems.FormattingEnabled = true;
-            this.cbYourItems.Location = new System.Drawing.Point(33, 476);
-            this.cbYourItems.Name = "cbYourItems";
-            this.cbYourItems.Size = new System.Drawing.Size(96, 21);
-            this.cbYourItems.TabIndex = 105;
-            // cbEvents
-            // 
-            this.cbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEvents.FormattingEnabled = true;
-            this.cbEvents.Location = new System.Drawing.Point(86, 332);
-            this.cbEvents.Name = "cbEvents";
-            this.cbEvents.Size = new System.Drawing.Size(125, 21);
-            this.cbEvents.TabIndex = 51;
-            // 
             // MaterialControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,13 +547,9 @@
         private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Button btnLinks;
-        private System.Windows.Forms.Button btnRechts;
         private System.Windows.Forms.Label lblTotalPrice;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Button btnOrder;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.ListBox lbYourItem;
         private System.Windows.Forms.ListBox lbSelectItem;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.TextBox tbPrice;

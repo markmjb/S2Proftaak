@@ -209,27 +209,41 @@ namespace Proftaak
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
+            IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), cbEvents.SelectedIndex + 1);
             Update();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if(nudAmount.Value == 0)
+            //lbYourItem.Items.Add(lbSelectItem.SelectedItem.ToString() + ", " + nudAmount.Value.ToString() + " x");
+            //UpdateTotalPrice();
+            Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
+            totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
+
+            List<Item> StockItems = IB.GetStockItems();
+            List<Item> SelectedStockItems = new List<Item>();
+
+            foreach (Item I in StockItems)
             {
-                MessageBox.Show("Aantal mag geen 0 zijn!");
+                if (I.Name == Select.Name)
+                {
+                    SelectedStockItems.Add(I);
+                }
             }
-            else
+            int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+
+            for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
             {
-                lbYourItem.Items.Add(lbSelectItem.SelectedItem.ToString() + ", " + nudAmount.Value.ToString() + " x");
-                UpdateTotalPrice();
+                Item SelItem = StockItems.ElementAt(i);
+                IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
             }
-        }
+            IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);
+        }        
 
         private void button6_Click(object sender, EventArgs e)
         {
-            lbYourItem.Items.Remove(lbYourItem.SelectedItem);
-            UpdateTotalPrice();
+            //lbYourItem.Items.Remove(lbYourItem.SelectedItem);
+            //UpdateTotalPrice();
         }
 
         private void button3_Click(object sender, EventArgs e)  
@@ -276,7 +290,7 @@ namespace Proftaak
         }
         public void GetReservedItems()
         {
-
+            IB.GetReservedItems();
         }
 
         private void lbRFIDNr_TextChanged(object sender, EventArgs e)

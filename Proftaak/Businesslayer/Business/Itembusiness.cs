@@ -84,5 +84,10 @@ namespace Businesslayer.Business
         {
             DM.UpdateLoan(materialID, RFIDID, UserID, StartDate, Enddate);
         }
+        public List<Item> GetReservedItems(int RFIDID)
+        {
+            List<Item> items = DM.GetReservedItems(RFIDID);
+            return items;
+        }
     }
 }

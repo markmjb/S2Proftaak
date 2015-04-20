@@ -80,6 +80,40 @@ namespace Businesslayer.DAL
         }
         return items;
         }
+       public List<Item> GetStockItems()
+       {
+           List<Item> items = new List<Item>();
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT MT.materialtypeName, M.Price, M.MaterialID FROM PTS2_Materialtype MT, PTS2_Material M WHERE MT.materialTypeID = M.MaterialTypeID AND M.MaterialID NOT IN (SELECT materialID FROM PTS2_LOAN)";
+
+               db.Connection.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               string materialtypeName;
+               int materialID;
+               int price;
+
+               while (reader.Read())
+               {
+                   materialtypeName = Convert.ToString(reader["materialtypeName"]);
+                   price = Convert.ToInt32(reader["price"]);
+                   materialID = Convert.ToInt32(reader["MaterialID"]);
+                   Item item = new Item(materialtypeName, price);
+                   items.Add(item);
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return items;
+       }
        public void ChangePrice(string materialName, int price)
         {
             try
@@ -246,37 +280,6 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-       public void GetReservedItems(DateTime beginTime, DateTime endtime, User employee, int amount, int price, Item item)
-       {
-           List<ReservationMaterial> Reservations = new List<ReservationMaterial>();
-           try
-           {
-               OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "select materialtypeName, price from PTS2_MATERIALTYPE";
-
-               db.Connection.Open();
-               OracleDataReader reader = cmd.ExecuteReader();
-
-               string materialtypeName;
-               //int price;
-
-               while (reader.Read())
-               {
-                   materialtypeName = Convert.ToString(reader["materialtypeName"]);
-                   price = Convert.ToInt32(reader["price"]);
-                 //  Item item = new Item(materialtypeName, price);
-                   //items.Add(item);
-               }
-           }
-           catch (OracleException exc)
-           {
-               Console.WriteLine(exc);
-           }
-           finally
-           {
-               this.db.Connection.Close();
-           }
-       }
        public User GetRFIDuser(string RFID)
       {
           User RFIDuser = null;
@@ -413,8 +416,93 @@ namespace Businesslayer.DAL
            }
            return RFIDID;
        }
+       public void UpdateLoan(int materialID, int RFIDID, int UserID, DateTime StartDate, DateTime Enddate)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "INSERT INTO PTS2_LOAN (materialID, rfidID, userID, startDate, endDate) VALUES (:mID, :rID, :uID, TO_DATE(:sDate, 'MM/DD/YYYY'), TO_DATE(:eDate, 'MM/DD/YYYY'))";
+               cmd.Parameters.Add("mID", materialID);
+               cmd.Parameters.Add("rID", RFIDID);
+               cmd.Parameters.Add("uID", UserID);
+               cmd.Parameters.Add("sDate", StartDate);
+               cmd.Parameters.Add("eDate", Enddate);
 
-       //SELECT COUNT(L.RFIDID) As Aantal, MT.MaterialTypeName FROM PTS2_LOAN L, PTS2_MATERIAL M, PTS2_MATERIALTYPE MT WHERE L.MaterialID = M.MaterialID AND M.MaterialtypeID = MT.MaterialtypeID GROUP BY MT.MaterialTypeName;
+               db.Connection.Open();
+               cmd.ExecuteNonQuery();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       }
+       public int GetRFIDID(int UserID)
+       {
+           int RFIDID = 0;
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT RFIDID FROM PTS2_RFID WHERE UserID = :usID";
+               cmd.Parameters.Add("usID", UserID);
 
+               db.Connection.Open();
+               cmd.ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+                   RFIDID = Convert.ToInt32(reader["RFIDID"]);
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return RFIDID;
+       }
+       public List<Item> GetReservedItems(int RFIDID)
+       {
+           List<Item> items = new List<Item>();
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT M.Price, MT.MaterialTypeName FROM PTS2_LOAN L, PTS2_MATERIAL M, PTS2_MATERIALTYPE MT WHERE L.MaterialID = M.MaterialID AND M.MaterialtypeID = MT.MaterialtypeID AND L.RFIDID = :rfID";
+               cmd.Parameters.Add("rfID", RFIDID);
+
+               db.Connection.Open();
+               cmd.ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               string materialtypeName;
+               int materialID;
+               int price;
+
+               while (reader.Read())
+               {
+                   materialtypeName = Convert.ToString(reader["materialtypeName"]);
+                   price = Convert.ToInt32(reader["price"]);
+                   materialID = Convert.ToInt32(reader["MaterialID"]);
+                   Item item = new Item(materialtypeName, price);
+                   items.Add(item);
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return items;
+       }
     }
 }
