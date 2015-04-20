@@ -93,7 +93,6 @@ namespace Proftaak
                       tbCity.Text, tbState.Text, tbCountry.Text);
                 user = new User(tbFirstname.Text, tbLastname.Text, address, tbEmail.Text, tbPassword.Text,
                     (Group)cbGroup.SelectedItem,dtpBirth.Value);
-                
             }
             else
             {
@@ -101,9 +100,21 @@ namespace Proftaak
             }
             users.Add(user);
             UpdateUsers();
+            ClearallFields();
         }
 
-
+        private void ClearallFields()
+        {
+            tbFirstname.Text = string.Empty;
+            tbLastname.Text = string.Empty;
+            tbStreet.Text = string.Empty;
+            tbStreetnumber.Text = string.Empty;
+            tbCity.Text = string.Empty;
+            tbState.Text = string.Empty;
+            tbNewGroup.Text = string.Empty;
+            tbEmail.Text = string.Empty;
+            tbPassword.Text = string.Empty; 
+        }
 
         private void cbCSprop_SelectedIndexChanged(object sender, EventArgs e)
         {

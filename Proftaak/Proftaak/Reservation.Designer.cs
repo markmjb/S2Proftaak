@@ -86,6 +86,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnCreateGroup = new System.Windows.Forms.Button();
             this.cbAddedusers = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -314,26 +315,27 @@
             this.btnAddEdit.Name = "btnAddEdit";
             this.btnAddEdit.Size = new System.Drawing.Size(114, 82);
             this.btnAddEdit.TabIndex = 18;
-            this.btnAddEdit.Text = "Add/Edit  User";
+            this.btnAddEdit.Text = "Add User";
             this.btnAddEdit.UseVisualStyleBackColor = true;
             this.btnAddEdit.Click += new System.EventHandler(this.btnAddEdit_Click);
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.Controls.Add(this.cbAddedusers);
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Location = new System.Drawing.Point(424, 38);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(212, 97);
+            this.groupBox4.Size = new System.Drawing.Size(212, 155);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Added Users";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(8, 55);
+            this.button2.Location = new System.Drawing.Point(8, 92);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 28);
@@ -715,6 +717,16 @@
             this.cbAddedusers.Size = new System.Drawing.Size(160, 24);
             this.cbAddedusers.TabIndex = 20;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(8, 55);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(160, 28);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Load/Unload";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Reservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -807,5 +819,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnCreateGroup;
         private System.Windows.Forms.ComboBox cbAddedusers;
+        private System.Windows.Forms.Button button3;
     }
 }

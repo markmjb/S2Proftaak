@@ -95,7 +95,7 @@ namespace Businesslayer.DAL
                 }
                 catch (Exception e)
                 {
-                    throw;
+                    throw e;
                 }
 
             }
@@ -125,7 +125,7 @@ namespace Businesslayer.DAL
             }
             catch (OracleException exception)
             {
-
+                throw exception;
             }
 
             finally

@@ -4,12 +4,6 @@ namespace Businesslayer.Business
 {
     public  class User
     {
-        private string p1;
-        private string p2;
-        private string p3;
-        private string p4;
-        private DateTime dateTime;
-
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public Address Address { get; set; }
