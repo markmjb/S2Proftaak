@@ -233,7 +233,7 @@ namespace Businesslayer.DAL
                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
                    price = Convert.ToInt32(reader["price"]);
                    Item item = new Item(materialtypeName, price);
-                   items.Add(item);
+                   //items.Add(item);
                }
            }
            catch (OracleException exc)
@@ -244,7 +244,92 @@ namespace Businesslayer.DAL
            {
                this.db.Connection.Close();
            }
-           return items;
+           //return items;
        }
+
+      public User ReservationUser(string RFID)
+      {
+          User RFIDuser = null;
+          try
+          {
+              OracleCommand cmd = this.db.Connection.CreateCommand();
+              cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.Amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR, PTS2_RFID RF WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND RF.UserID = U.UserID AND RF.RFID = 280049616 :riID";
+
+              cmd.Parameters.Add("riID", RFID);
+
+              db.Connection.Open();
+              OracleDataReader reader = cmd.ExecuteReader();
+
+              int ReservationNr;
+              int UserID;
+              string LastName;
+              string FirstName;
+              string Email;
+              bool isAdmin = false;
+              bool isPresent = false;
+              string UserPassword;
+              DateTime StartDate;
+              DateTime EndDate;
+              string Groupname;
+              string Street;
+              int Housenumber;
+              string Postalcode;
+              string Province;
+              string City;
+              string Country;
+              decimal Debt;
+
+              while (reader.Read())
+              {
+                  ReservationNr = Convert.ToInt32(reader["ReservationID"]);
+                  LastName = Convert.ToString(reader["lastname"]);
+                  FirstName = Convert.ToString(reader["firstname"]);
+                  UserID = Convert.ToInt32(reader["UserID"]);
+                  Email = Convert.ToString(reader["Email"]);
+                  if ((Convert.ToInt32(reader["isAdmin"])) == 0)
+                  {
+                      isAdmin = false;
+                  }
+                  else if ((Convert.ToInt32(reader["isAdmin"])) == 1)
+                  {
+                      isAdmin = true;
+                  }
+                  if ((Convert.ToInt32(reader["isPresent"])) == 0)
+                  {
+                      isPresent = false;
+                  }
+                  else if ((Convert.ToInt32(reader["isPresent"])) == 1)
+                  {
+                      isPresent = true;
+                  }
+                  UserPassword = Convert.ToString(reader["upas"]);
+                  StartDate = Convert.ToDateTime(reader["StartDate"]);
+                  EndDate = Convert.ToDateTime(reader["EndDate"]);
+                  Groupname = Convert.ToString(reader["Groupname"]);
+                  Street = Convert.ToString(reader["street"]);
+                  Housenumber = Convert.ToInt32(reader["Housenumber"]);
+                  Postalcode = Convert.ToString(reader["Postalcode"]);
+                  Province = Convert.ToString(reader["province"]);
+                  City = Convert.ToString(reader["City"]);
+                  Country = Convert.ToString(reader["Country"]);
+                  Debt = Convert.ToDecimal(reader["amount"]);
+
+
+                  Address Address = new Address(Street, Housenumber, Postalcode, City, Province, Country);
+                  Group Group = new Group(Groupname);
+                  User User = new User(ReservationNr, UserID, LastName, FirstName, Email, UserPassword, isAdmin, StartDate, EndDate, isPresent, Address, Group, Debt);
+                  RFIDuser = User;
+              }
+          }
+          catch (OracleException exc)
+          {
+              Console.WriteLine(exc);
+          }
+          finally
+          {
+              db.Connection.Close();
+          }
+          return RFIDuser;
+      }
     }
 }

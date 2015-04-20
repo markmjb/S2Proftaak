@@ -251,7 +251,7 @@ namespace Proftaak
         }
         public void ReturnMaterial()
         {
-            IB.ReturnMaterial();
+            //IB.ReturnMaterial();
         }
         public void GetReservedItems()
         {
