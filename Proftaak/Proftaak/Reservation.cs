@@ -41,7 +41,7 @@ namespace Proftaak
         {
             Events = RC.Events();
             cbEvent.DataSource = Events;
-            cbEvent.DisplayMember = "Description";
+            cbEvent.DisplayMember = "Name";
             Campspots = RC.UpdateCampingSpots(((Event) cbEvent.SelectedItem).EventID);
             lbAvailablespots.DataSource = Campspots;
             lbAvailablespots.DisplayMember = "Campplace";
@@ -59,11 +59,14 @@ namespace Proftaak
 
         private void UpdateUsers()
         {
-         foreach (User U in users)
-         {
-         cbAddedusers.Items.Add(U.Firstname)
-             ;
-         }
+            foreach (User U in users)
+            {
+                cbAddedusers.Items.Add(U.Firstname)
+                    ;
+
+            }
+            //cbAddedusers.DataSource = users;
+            //cbAddedusers.DisplayMember = "Firstname";
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -109,8 +112,11 @@ namespace Proftaak
             tbLastname.Text = string.Empty;
             tbStreet.Text = string.Empty;
             tbStreetnumber.Text = string.Empty;
+            tbPostalcode.Text = string.Empty;
             tbCity.Text = string.Empty;
             tbState.Text = string.Empty;
+            tbCountry.Text = string.Empty;
+            dtpBirth.Value = DateTime.Now;
             tbNewGroup.Text = string.Empty;
             tbEmail.Text = string.Empty;
             tbPassword.Text = string.Empty; 
@@ -163,6 +169,37 @@ namespace Proftaak
             tbNewGroup.Text = string.Empty;
             Updategroups();
         }
-    }
-}
 
+        private void btnLoadUser_Click(object sender, EventArgs e)
+        {
+            if (cbAddedusers.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a User");
+            }
+            else
+            {
+                foreach (User U in users)
+                {
+                    if (U.Firstname == cbAddedusers.SelectedValue.ToString())
+                    {
+                        user = new User();
+                        user = U;
+                    }
+                        
+                }
+                tbFirstname.Text = user.Firstname;
+                tbLastname.Text = user.Lastname;
+                tbStreet.Text = user.Address.Street;
+                tbStreetnumber.Text = user.Address.Streetnumber.ToString();
+                tbPostalcode.Text = user.Address.PostalCode;
+                tbCity.Text = user.Address.City;
+                tbState.Text = user.Address.Province;
+                tbCountry.Text = user.Address.Country;
+                dtpBirth.Value = user.Birthdate;
+                tbEmail.Text = user.Email;
+                tbPassword.Text = user.Password;
+                cbGroup.SelectedItem = user.Group;
+            }
+        }
+        }
+    }

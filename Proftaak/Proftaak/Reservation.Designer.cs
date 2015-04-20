@@ -48,7 +48,7 @@
             this.dtpBirth = new System.Windows.Forms.DateTimePicker();
             this.btnAddEdit = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbLastname = new System.Windows.Forms.TextBox();
@@ -86,7 +86,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnCreateGroup = new System.Windows.Forms.Button();
             this.cbAddedusers = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnLoadUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEvent.SuspendLayout();
@@ -271,7 +271,7 @@
             this.tabAddUser.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabAddUser.Size = new System.Drawing.Size(1171, 671);
             this.tabAddUser.TabIndex = 1;
-            this.tabAddUser.Text = "Add Users";
+            this.tabAddUser.Text = "s";
             // 
             // groupBox2
             // 
@@ -321,9 +321,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.btnLoadUser);
             this.groupBox4.Controls.Add(this.cbAddedusers);
-            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.btnDelete);
             this.groupBox4.Location = new System.Drawing.Point(424, 38);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox4.Name = "groupBox4";
@@ -333,15 +333,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Added Users";
             // 
-            // button2
+            // btnDelete
             // 
-            this.button2.Location = new System.Drawing.Point(8, 92);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 28);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(8, 92);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(160, 28);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // tbEmail
             // 
@@ -717,15 +717,16 @@
             this.cbAddedusers.Size = new System.Drawing.Size(160, 24);
             this.cbAddedusers.TabIndex = 20;
             // 
-            // button3
+            // btnLoadUser
             // 
-            this.button3.Location = new System.Drawing.Point(8, 55);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 28);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "Load/Unload";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnLoadUser.Location = new System.Drawing.Point(8, 55);
+            this.btnLoadUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLoadUser.Name = "btnLoadUser";
+            this.btnLoadUser.Size = new System.Drawing.Size(160, 28);
+            this.btnLoadUser.TabIndex = 21;
+            this.btnLoadUser.Text = "Load/Unload";
+            this.btnLoadUser.UseVisualStyleBackColor = true;
+            this.btnLoadUser.Click += new System.EventHandler(this.btnLoadUser_Click);
             // 
             // Reservation
             // 
@@ -788,7 +789,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.TextBox tbLastname;
@@ -819,6 +820,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnCreateGroup;
         private System.Windows.Forms.ComboBox cbAddedusers;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnLoadUser;
     }
 }
