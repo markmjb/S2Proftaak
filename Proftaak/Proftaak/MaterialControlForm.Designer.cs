@@ -69,6 +69,8 @@
             this.tbAdd = new System.Windows.Forms.TextBox();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblSETime = new System.Windows.Forms.Label();
+            this.cbEventsStock = new System.Windows.Forms.ComboBox();
+            this.lblEvent = new System.Windows.Forms.Label();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
@@ -347,6 +349,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.lblEvent);
+            this.tabPage2.Controls.Add(this.cbEventsStock);
             this.tabPage2.Controls.Add(this.lblItems);
             this.tabPage2.Controls.Add(this.lblChangePrice);
             this.tabPage2.Controls.Add(this.cbItemStock);
@@ -369,7 +373,7 @@
             // lblItems
             // 
             this.lblItems.AutoSize = true;
-            this.lblItems.Location = new System.Drawing.Point(129, 37);
+            this.lblItems.Location = new System.Drawing.Point(231, 35);
             this.lblItems.Name = "lblItems";
             this.lblItems.Size = new System.Drawing.Size(32, 13);
             this.lblItems.TabIndex = 107;
@@ -378,7 +382,7 @@
             // lblChangePrice
             // 
             this.lblChangePrice.AutoSize = true;
-            this.lblChangePrice.Location = new System.Drawing.Point(47, 265);
+            this.lblChangePrice.Location = new System.Drawing.Point(36, 309);
             this.lblChangePrice.Name = "lblChangePrice";
             this.lblChangePrice.Size = new System.Drawing.Size(71, 13);
             this.lblChangePrice.TabIndex = 106;
@@ -388,7 +392,7 @@
             // 
             this.cbItemStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItemStock.FormattingEnabled = true;
-            this.cbItemStock.Location = new System.Drawing.Point(50, 408);
+            this.cbItemStock.Location = new System.Drawing.Point(39, 389);
             this.cbItemStock.Name = "cbItemStock";
             this.cbItemStock.Size = new System.Drawing.Size(144, 21);
             this.cbItemStock.TabIndex = 105;
@@ -397,7 +401,7 @@
             // 
             this.cbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItem.FormattingEnabled = true;
-            this.cbItem.Location = new System.Drawing.Point(50, 291);
+            this.cbItem.Location = new System.Drawing.Point(39, 325);
             this.cbItem.Name = "cbItem";
             this.cbItem.Size = new System.Drawing.Size(144, 21);
             this.cbItem.TabIndex = 104;
@@ -405,7 +409,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(224, 294);
+            this.label5.Location = new System.Drawing.Point(213, 331);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 102;
@@ -413,7 +417,7 @@
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(381, 292);
+            this.btnChange.Location = new System.Drawing.Point(402, 323);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(75, 23);
             this.btnChange.TabIndex = 101;
@@ -423,24 +427,24 @@
             // 
             // tbPrice
             // 
-            this.tbPrice.Location = new System.Drawing.Point(288, 292);
+            this.tbPrice.Location = new System.Drawing.Point(277, 326);
             this.tbPrice.Name = "tbPrice";
-            this.tbPrice.Size = new System.Drawing.Size(87, 20);
+            this.tbPrice.Size = new System.Drawing.Size(105, 20);
             this.tbPrice.TabIndex = 100;
             // 
             // lbItems
             // 
             this.lbItems.FormattingEnabled = true;
-            this.lbItems.Location = new System.Drawing.Point(132, 71);
+            this.lbItems.Location = new System.Drawing.Point(234, 51);
             this.lbItems.Name = "lbItems";
             this.lbItems.ScrollAlwaysVisible = true;
-            this.lbItems.Size = new System.Drawing.Size(222, 160);
+            this.lbItems.Size = new System.Drawing.Size(222, 199);
             this.lbItems.TabIndex = 98;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(47, 380);
+            this.label44.Location = new System.Drawing.Point(36, 373);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(55, 13);
             this.label44.TabIndex = 96;
@@ -448,7 +452,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(381, 408);
+            this.btnAdd.Location = new System.Drawing.Point(402, 391);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 21);
             this.btnAdd.TabIndex = 94;
@@ -459,7 +463,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(224, 412);
+            this.label35.Location = new System.Drawing.Point(213, 392);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(29, 13);
             this.label35.TabIndex = 93;
@@ -467,9 +471,9 @@
             // 
             // tbAdd
             // 
-            this.tbAdd.Location = new System.Drawing.Point(288, 409);
+            this.tbAdd.Location = new System.Drawing.Point(277, 392);
             this.tbAdd.Name = "tbAdd";
-            this.tbAdd.Size = new System.Drawing.Size(87, 20);
+            this.tbAdd.Size = new System.Drawing.Size(105, 20);
             this.tbAdd.TabIndex = 92;
             // 
             // lblTime
@@ -488,6 +492,24 @@
             this.lblSETime.Name = "lblSETime";
             this.lblSETime.Size = new System.Drawing.Size(0, 13);
             this.lblSETime.TabIndex = 107;
+            // 
+            // cbEventsStock
+            // 
+            this.cbEventsStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEventsStock.FormattingEnabled = true;
+            this.cbEventsStock.Location = new System.Drawing.Point(39, 269);
+            this.cbEventsStock.Name = "cbEventsStock";
+            this.cbEventsStock.Size = new System.Drawing.Size(144, 21);
+            this.cbEventsStock.TabIndex = 108;
+            // 
+            // lblEvent
+            // 
+            this.lblEvent.AutoSize = true;
+            this.lblEvent.Location = new System.Drawing.Point(36, 253);
+            this.lblEvent.Name = "lblEvent";
+            this.lblEvent.Size = new System.Drawing.Size(35, 13);
+            this.lblEvent.TabIndex = 109;
+            this.lblEvent.Text = "Event";
             // 
             // MaterialControlForm
             // 
@@ -552,6 +574,8 @@
         private System.Windows.Forms.ComboBox cbEvents;
         private System.Windows.Forms.Label lblSETime;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblEvent;
+        private System.Windows.Forms.ComboBox cbEventsStock;
 
     }
 }

@@ -32,6 +32,7 @@ namespace Proftaak
             InitializeComponent();
             LoadComboBoxes();
             cbEvents.SelectedIndex = 0;
+            cbEventsStock.SelectedIndex = 0;
         }
         private void MaterialControlForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -190,6 +191,7 @@ namespace Proftaak
             foreach (Event E in Events)
             {
                 cbEvents.Items.Add(E.Name);
+                cbEventsStock.Items.Add(E.Name);
             }
 
             foreach (Item I in items)
@@ -199,15 +201,6 @@ namespace Proftaak
                 lbSelectItem.Items.Add(I.Name + " , €" + I.Price);
                 lbItems.Items.Add("Product : " + I.Name + " , prijs: €" + I.Price);
             }
-            //if (ScannedUser != null)
-            //{
-            //    int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
-            //    List<Item> cbReserveredIt = IB.GetReservedItems(RFIDID);
-            //    foreach (Item I in cbReserveredIt)
-            //    {
-            //        cbYourItems.Items.Add(I.Name);
-            //    }
-            //}
         }
         void LoadCbItems()
         {
@@ -233,7 +226,7 @@ namespace Proftaak
             }
             else
             {
-                MessageBox.Show("Vul alle velden correct in");
+                MessageBox.Show("Enter a value of each field");
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -241,14 +234,16 @@ namespace Proftaak
             string test = tbAdd.Text;
             int num1;
             bool isNummer = int.TryParse(test, out num1);
-            if (cbItemStock.SelectedItem != null && tbAdd.Text != "" && isNummer == true)
+
+            if ( tbAdd.Text != "" && isNummer == true)
             {
-                IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), cbEvents.SelectedIndex + 1);
+                Event E = Events.ElementAt(cbEventsStock.SelectedIndex);
+                IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), E.EventID );
                 Update();
             }
             else
             {
-                MessageBox.Show("Vul alle velden correct in");
+                MessageBox.Show("Enter a value of each field");
             }
         }
         private void button3_Click(object sender, EventArgs e)  
@@ -277,12 +272,12 @@ namespace Proftaak
                      IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
                   }
 
-              IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);   
-
+                IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);
+                MessageBox.Show("The order has been completed");
            }
             else
             {
-                MessageBox.Show("Selecteer een item");
+                MessageBox.Show("Select an item");
             }
         }
         private void button1_Click(object sender, EventArgs e)
