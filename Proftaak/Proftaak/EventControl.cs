@@ -25,8 +25,7 @@ namespace Proftaak
 
             FillDatagridEvents();
 
-            dtpStartDate.Value = DateTime.Now;
-            dtpEndDate.Value = DateTime.Now;
+            RefreshData();
         }
 
         //EVENTS
@@ -97,8 +96,6 @@ namespace Proftaak
                     tbStreet.Text = "";
                     nudStreetnumber.Value = 0;
                     tbPostalcode.Text = "";
-
-                    MessageBox.Show("No even selected");
                 }
             }
             else
@@ -116,8 +113,6 @@ namespace Proftaak
                 tbStreet.Text = "";
                 nudStreetnumber.Value = 0;
                 tbPostalcode.Text = "";
-
-                MessageBox.Show("No even selected");
             }
         }
         private void FillDatagridEvents()
@@ -157,10 +152,19 @@ namespace Proftaak
                     if (!eventControl.CheckAddress(country, province, city, street, streetnumber, postalcode))
                     {
                         eventControl.CreateAddress(country, province, city, street, streetnumber, postalcode);
+                        MessageBox.Show("New Address has been created");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Address already exists");
                     }
 
                     eventControl.CreateEvent(name, description, startDate, endDate, ticketPrice, eventControl.DbEvent.GetAddressID(country, province, city, street, streetnumber, postalcode));
                     MessageBox.Show("New event has been created");
+                }
+                else
+                {
+                    MessageBox.Show("The event already exists");
                 }
             }
             else
@@ -225,15 +229,12 @@ namespace Proftaak
             {
                 int eventID = eventControl.GetEvent(tbName.Text, tbDescription.Text, dtpStartDate.Value, dtpEndDate.Value, nudTicketprice.Value).EventID;
 
-                if (eventID != -1)
-                {
-                    eventControl.DeleteEvent(eventID);
-                    MessageBox.Show("Event has been deleted");
-                }
-                else
-                {
-                    MessageBox.Show("The event already doesn't exist");
-                }
+                eventControl.DeleteEvent(eventID);
+                MessageBox.Show("Event has been deleted");
+            }
+            else
+            {
+                MessageBox.Show("The event already doesn't exist");
             }
 
             FillDatagridEvents();
@@ -331,12 +332,10 @@ namespace Proftaak
                     {
                         MessageBox.Show("The postalcode is invalid");
                     }
-
-                    eventControl.GetEvents();
-                    FillDatagridEvents();
-                    RefreshData();
                 }
             }
+            FillDatagridEvents();
+            RefreshData();
         }
     }
 }
