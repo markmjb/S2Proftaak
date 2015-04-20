@@ -11,6 +11,7 @@ namespace Businesslayer.DAL
         private Report dalSingleReport;
         private Mediaitem dalMediaitem;
         private int Returnint;
+        private List<string> Categories;
         private List<Report> reports;
         private List<Mediaitem> mediaitems;
         private Databaseconnection db;
@@ -433,7 +434,7 @@ namespace Businesslayer.DAL
 
         public List<Mediaitem> AlreadyLiked()
         {
-            dalMediaitem = new Mediaitem();
+           
             mediaitems = new List<Mediaitem>();
             try
             {
@@ -443,17 +444,18 @@ namespace Businesslayer.DAL
                 OracleDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                     dalMediaitem = new Mediaitem();
                 
-                        dalMediaitem.Mediaitemid = 0;
+                
+                   
 
-
-                    if (reader.IsDBNull(reader.GetOrdinal("MEDIAITEMID")))
+                    if (reader.IsDBNull(reader.GetOrdinal("LIKEID")))
                     {
-                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIACATEGORYID"]);
+                        dalMediaitem.Likeid = 0;
                     }
                     else
                     {
-                        dalMediaitem.Likeid = Convert.ToInt32(reader["MEDIAITEMID"]);
+                        dalMediaitem.Likeid = Convert.ToInt32(reader["LIKEID"]);
                     
                     }
                     
@@ -643,6 +645,41 @@ namespace Businesslayer.DAL
             }
             return dalSingleReport;
         }
+
+        public List<string> GetAllCategories()
+        {
+
+            Categories = new List<string>();
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "SELECT * FROM PTS2_MEDIACATEGORY";
+           
+
+                db.Connection.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+
+                    string Categoryname = Convert.ToString(reader["MEDIACATEGORYNAME"]);
+
+
+                    Categories.Add(Categoryname);
+
+                }
+            }
+            catch (OracleException exc)
+            {
+                Console.WriteLine(exc);
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return Categories;
+        }
+        
         
     }
 }

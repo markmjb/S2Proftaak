@@ -43,6 +43,7 @@ namespace Proftaak
         public List<Mediaitem> Mediaitems = new List<Mediaitem>();
         public List<Mediaitem> Mediatext = new List<Mediaitem>();
         public List<Report> Reports = new List<Report>();
+        public List<string> Categories = new List<string>(); 
 
         private void Mediasharing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -137,12 +138,14 @@ namespace Proftaak
         public new void Refresh()
         {
 
-            Mediaitems = mdsb.Getallmediaitems();
+       
 
             listBox1.Items.Clear();
-
+            Mediaitems = mdsb.Getallmediaitems();
+            
             foreach (Mediaitem mediatext in Mediatext)
             {
+                likesreply = mdsb.GetAllLikesReply(mediatext.Mediaitemid);
 
                 listBox1.Items.Add("Reply ID:" + mediatext.Mediaitemid + " Description: " + mediatext.Text + " Likes: " +
                                    likesreply);
@@ -165,7 +168,7 @@ namespace Proftaak
 
         public void RefreshListbox()
         {
-
+            
         }
 
         private void btnDeleteMedia_Click(object sender, EventArgs e)
@@ -282,6 +285,14 @@ namespace Proftaak
                 tbSelectFile.Enabled = true;
                 btnBrowse.Enabled = true;
             }
+
+            cbCategory.Items.Clear();
+            Categories = mdsb.GetAllCategories();
+            foreach (string categorie in Categories)
+            {
+                cbCategory.Items.Add(categorie);
+            }
+            
         }
 
         private void btnDownloadMedia_Click(object sender, EventArgs e)
@@ -330,6 +341,8 @@ namespace Proftaak
                     int selecteditemid = Convert.ToInt32(selecteditems[0]);
                     mdsb.RemoveLikeToFile(selecteditemid, userID);
                     likes = mdsb.GetAllLikes(selecteditemid);
+                    MessageBox.Show("Unliked!");
+                    tbfileinfo.Clear();
                 }
                 else
                 {
@@ -338,6 +351,8 @@ namespace Proftaak
                     int selecteditemid = Convert.ToInt32(selecteditems[0]);
                     mdsb.AddLikeToFile(selecteditemid, userID);
                     likes = mdsb.GetAllLikes(selecteditemid);
+                    MessageBox.Show("Liked!");
+                    tbfileinfo.Clear();
 
                 }
 
@@ -364,6 +379,7 @@ namespace Proftaak
                 }
 
             }
+
             Refresh();
             RefreshFilebox();
         }
@@ -389,9 +405,10 @@ namespace Proftaak
                 {
                     foreach (Mediaitem itemslikes in Mediaitems)
                     {
-                    if (itemstext.UserID == userID && itemstext.Mediaitemid == selecteditemid && itemstext.MediaitemcommentID == itemslikes.Mediacategoryid)
+                    if (itemstext.UserID == userID && itemstext.Mediaitemid == selecteditemid && itemstext.Mediaitemid == itemslikes.Mediacategoryid)
                     {
                         btnLike.Text = "Unlike";
+                        break;
                     }
                     else
                     {
@@ -460,6 +477,17 @@ namespace Proftaak
                 
             }
             RefreshReportList();
+        }
+
+        private void FileBox_Click(object sender, EventArgs e)
+        {
+            string selecteditem = FileBox.SelectedItem.ToString();
+            string[] selecteditems = selecteditem.Split(':', ' ');
+            int selecteditemid = Convert.ToInt32(selecteditems[0]);
+            Mediatext = mdsb.Getmediatextlist(selecteditemid);
+
+            Refresh();
+            RefreshListbox();
         }
 
      

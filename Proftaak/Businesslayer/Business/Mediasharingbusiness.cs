@@ -62,6 +62,13 @@ namespace Businesslayer.Business
         }
 
 
+
+        public List<string> GetAllCategories()
+        {
+        return dbmedia.GetAllCategories();
+        }
+
+
         public int  GetAllLikes(int mediaitemid)
         {
             return dbmedia.GetAllLikes(mediaitemid);

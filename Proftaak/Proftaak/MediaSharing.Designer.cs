@@ -209,6 +209,7 @@
             this.FileBox.Name = "FileBox";
             this.FileBox.Size = new System.Drawing.Size(178, 238);
             this.FileBox.TabIndex = 2;
+            this.FileBox.Click += new System.EventHandler(this.FileBox_Click);
             this.FileBox.SelectedIndexChanged += new System.EventHandler(this.FileBox_SelectedIndexChanged);
             // 
             // cbtype
