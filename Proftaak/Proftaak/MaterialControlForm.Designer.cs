@@ -31,6 +31,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Lenen = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.nudEvent = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblRFIDID = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.lbRFIDNr = new System.Windows.Forms.Label();
             this.btnLinks = new System.Windows.Forms.Button();
             this.btnRechts = new System.Windows.Forms.Button();
@@ -68,16 +73,15 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.tbAdd = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblRFIDID = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.nudEvent = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.Lenen.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -102,6 +106,10 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.nudEvent);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label11);
@@ -139,6 +147,49 @@
             this.tabPage1.Size = new System.Drawing.Size(440, 494);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Borrow";
+            // 
+            // nudEvent
+            // 
+            this.nudEvent.Location = new System.Drawing.Point(91, 320);
+            this.nudEvent.Name = "nudEvent";
+            this.nudEvent.Size = new System.Drawing.Size(41, 20);
+            this.nudEvent.TabIndex = 50;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(39, 322);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "Event:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(329, 50);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(10, 13);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "-";
+            // 
+            // lblRFIDID
+            // 
+            this.lblRFIDID.AutoSize = true;
+            this.lblRFIDID.Location = new System.Drawing.Point(251, 50);
+            this.lblRFIDID.Name = "lblRFIDID";
+            this.lblRFIDID.Size = new System.Drawing.Size(13, 13);
+            this.lblRFIDID.TabIndex = 47;
+            this.lblRFIDID.Text = "1";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(232, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "RFID ID";
             // 
             // lbRFIDNr
             // 
@@ -232,6 +283,7 @@
             this.button1.TabIndex = 36;
             this.button1.Text = "hand in";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // domainUpDown1
             // 
@@ -481,48 +533,41 @@
             this.tbAdd.Size = new System.Drawing.Size(61, 20);
             this.tbAdd.TabIndex = 92;
             // 
-            // label6
+            // label12
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(232, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 13);
-            this.label6.TabIndex = 46;
-            this.label6.Text = "RFID ID";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(329, 379);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(10, 13);
+            this.label12.TabIndex = 54;
+            this.label12.Text = "-";
             // 
-            // lblRFIDID
+            // label13
             // 
-            this.lblRFIDID.AutoSize = true;
-            this.lblRFIDID.Location = new System.Drawing.Point(251, 50);
-            this.lblRFIDID.Name = "lblRFIDID";
-            this.lblRFIDID.Size = new System.Drawing.Size(13, 13);
-            this.lblRFIDID.TabIndex = 47;
-            this.lblRFIDID.Text = "1";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(251, 379);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 13);
+            this.label13.TabIndex = 53;
+            this.label13.Text = "1";
             // 
-            // label11
+            // label14
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(329, 50);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(10, 13);
-            this.label11.TabIndex = 48;
-            this.label11.Text = "-";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(232, 350);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 13);
+            this.label14.TabIndex = 52;
+            this.label14.Text = "RFID ID";
             // 
-            // label10
+            // label15
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(39, 322);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 49;
-            this.label10.Text = "Event:";
-            // 
-            // nudEvent
-            // 
-            this.nudEvent.Location = new System.Drawing.Point(91, 320);
-            this.nudEvent.Name = "nudEvent";
-            this.nudEvent.Size = new System.Drawing.Size(41, 20);
-            this.nudEvent.TabIndex = 50;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(308, 350);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 13);
+            this.label15.TabIndex = 51;
+            this.label15.Text = "RFID number";
             // 
             // MaterialControlForm
             // 
@@ -537,10 +582,10 @@
             this.Lenen.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEvent)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -592,5 +637,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown nudEvent;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
     }
 }

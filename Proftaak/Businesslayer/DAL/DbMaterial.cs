@@ -136,18 +136,18 @@ namespace Businesslayer.DAL
                this.db.Connection.Close();
            }
        }
-       public void ReturnMaterial(int MaterialID, string MaterialName, string Description, double Price, int MaterialTypeID, int EventID)
+       public void ReturnMaterial(int materialID, string materialName, string description, double price, int materialTypeID, int eventID)
        {
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialID, materialName, description, price, materialTypeID, eventID)VALUES (:MaterialID, :MaterialName, :Description, :Price, :MaterialTypeID, :EventID)";
-               cmd.Parameters.Add("materialID", MaterialID);
-               cmd.Parameters.Add("materialName", MaterialName);
-               cmd.Parameters.Add("description", Description);
-               cmd.Parameters.Add("price", Price);
-               cmd.Parameters.Add("materialTypeID", MaterialTypeID);
-               cmd.Parameters.Add("eventID", EventID);
+               cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialID, materialName, description, price, materialTypeID, eventID)VALUES (:materialID, :materialName, :description, :price, :materialTypeID, :eventID)";
+               cmd.Parameters.Add("materialID", materialID);
+               cmd.Parameters.Add("materialName", materialName);
+               cmd.Parameters.Add("description", description);
+               cmd.Parameters.Add("price", price);
+               cmd.Parameters.Add("materialTypeID", materialTypeID);
+               cmd.Parameters.Add("eventID", eventID);
 
                db.Connection.Open();
 
@@ -213,6 +213,38 @@ namespace Businesslayer.DAL
            {
                this.db.Connection.Close();
            }
+       }
+      public void GetReservedItems()
+       {
+           List<ReservationMaterial> Reservations = new List<ReservationMaterial>();
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "select materialtypeName, price from PTS2_MATERIALTYPE";
+
+               db.Connection.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+
+               string materialtypeName;
+               int price;
+
+               while (reader.Read())
+               {
+                   materialtypeName = Convert.ToString(reader["materialtypeName"]);
+                   price = Convert.ToInt32(reader["price"]);
+                   Item item = new Item(materialtypeName, price);
+                   items.Add(item);
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return items;
        }
     }
 }

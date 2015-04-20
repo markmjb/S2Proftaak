@@ -244,5 +244,18 @@ namespace Proftaak
         {
             IB.GiveUserDebt(Convert.ToInt32(lblRFIDID.Text), Convert.ToInt32(nudEvent.Value), Convert.ToInt32(lblTotalPrice.Text));
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void ReturnMaterial()
+        {
+            IB.ReturnMaterial();
+        }
+        public void GetReservedItems()
+        {
+
+        }
     }
 }

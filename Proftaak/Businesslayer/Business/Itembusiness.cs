@@ -50,5 +50,9 @@ namespace Businesslayer.Business
         {
             DM.GiveUserDept(userId, eventId, debt);
         }
+        public void ReturnMaterial(int materialID, string materialName, string description, double price, int materialTypeID, int eventID)
+        {
+            DM.ReturnMaterial(materialID, materialName, description, price, materialTypeID, eventID);
+        }
     }
 }
