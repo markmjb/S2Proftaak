@@ -19,12 +19,12 @@ namespace Proftaak
     public partial class Reservation : Form
     {
 
-        private List<Businesslayer.Business.Campspot> Campspots;
-        private List<Campspot> Selectedcampspots; 
-        private List<Event> Events = new List<Event>();
-        private List<Group> groups = new List<Group>(); 
+        private IList<Businesslayer.Business.Campspot> Campspots;
+        private IList<Campspot> Selectedcampspots; 
+        private IList<Event> Events = new List<Event>();
+        private IList<Group> groups = new List<Group>(); 
         private ReservationCampspot RC = new ReservationCampspot();
-        private List<User> users; 
+        private IList<User> users; 
         private User user = new User();
         private Address address= new Address();
         private Event _event;
@@ -33,6 +33,9 @@ namespace Proftaak
         public Reservation()
         {
             InitializeComponent();
+            cbGroup.DisplayMember = "Name";
+            cbAddedusers.ValueMember = "Firstname";
+            cbAddedusers.DisplayMember = "Firstname";
         }
 
         private void Reservation_FormClosing(object sender, FormClosingEventArgs e)
@@ -43,41 +46,19 @@ namespace Proftaak
 
         private void Reservation_Load(object sender, EventArgs e)
         {
-            users= new List<User>();
+            users= new BindingList<User>();
             Events = RC.Events();
             cbEvent.DataSource = Events;
             cbEvent.DisplayMember = "Name";
             Campspots = RC.UpdateCampingSpots(((Event) cbEvent.SelectedItem).EventID);
             lbAvailablespots.DataSource = Campspots;
             lbAvailablespots.DisplayMember = "Campplace";
-            Updategroups();
             tbPassword.Text = string.Empty;
-        }
-
-        private void Updategroups()
-        {
             groups = RC.GetAllGroups();
             cbGroup.DataSource = groups;
-            cbGroup.DisplayMember = "Name";
-        }
-
-        private void UpdateUsers()
-        {
-            try
-            {
-                cbAddedusers.ValueMember = "Firstname";
-                cbAddedusers.DisplayMember = "Firstname";
-                cbAddedusers.DataSource = users;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
-            
 
-
-        }
-        private void btnPrevious_Click(object sender, EventArgs e)
+       private void btnPrevious_Click(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex != 0)
             {
@@ -144,7 +125,7 @@ namespace Proftaak
             }
 
             users.Add(user);
-            UpdateUsers();
+            
             ClearallFields();
         }
      
@@ -210,7 +191,7 @@ namespace Proftaak
                 MessageBox.Show("Fill In A Groupname");
             }
             tbNewGroup.Text = string.Empty;
-            Updategroups();
+            
         }
 
         private void btnLoadUser_Click(object sender, EventArgs e)

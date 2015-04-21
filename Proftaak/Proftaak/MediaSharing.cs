@@ -33,7 +33,7 @@ namespace Proftaak
             }
 
         }
-
+         
         private int selectedindex;
         private string type;
         private string description;

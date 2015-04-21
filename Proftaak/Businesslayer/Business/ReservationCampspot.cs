@@ -52,7 +52,7 @@ namespace Businesslayer.Business
             dbres.Creategroup(text);
         }
 
-        public void SaveReservation(List<User> users, List<Campspot> selectedcampspots, Event _event)
+        public void SaveReservation(IList<User> users, IList<Campspot> selectedcampspots, Event _event)
         {
             decimal price = selectedcampspots.Sum(c => c.Price);
             double days = (_event.EndDate - _event.StartDate).TotalDays;
