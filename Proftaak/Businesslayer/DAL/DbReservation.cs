@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using Businesslayer.Business;
 using Oracle.DataAccess;
@@ -10,9 +12,9 @@ namespace Businesslayer.DAL
     public class DbReservation
     {
         private Databaseconnection db;
-        private List<Campspot> spots;
+        private IList<Campspot> spots;
         private Campspot singlespot;
-        private List<Group> groups;
+        private IList<Group> groups;
         private int returnint;
 
         public DbReservation()
@@ -21,9 +23,9 @@ namespace Businesslayer.DAL
         }
 
 
-        public List<Campspot> Campspots(int evid)
+        public BindingList<Campspot> Campspots(int evid)
         {
-            spots = new List<Campspot>();
+            spots = new BindingList<Campspot>();
 
 
             try
@@ -59,15 +61,13 @@ namespace Businesslayer.DAL
             {
                 this.db.Connection.Close();
             }
-            return spots;
+            return (BindingList<Campspot>) spots;
 
         }
 
-        public List<Campspot> FilterCampspots(int evid, string filter)
+        public BindingList<Campspot> FilterCampspots(int evid, string filter)
         {
-            spots = new List<Campspot>();
-
-
+            spots = new BindingList<Campspot>();
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -101,15 +101,15 @@ namespace Businesslayer.DAL
             {
                 this.db.Connection.Close();
             }
-            return spots;
+            return (BindingList<Campspot>)spots;
 
         }
 
-        public List<Group> GetAllGroups()
+        public BindingList<Group> GetAllGroups()
         {
             try
             {
-                groups = new List<Group>();
+                groups= new BindingList<Group>();
                 Group group = new Group();
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "Select * from PTS2_GROUP";
@@ -132,7 +132,7 @@ namespace Businesslayer.DAL
             {
                 this.db.Connection.Close();
             }
-            return groups;
+            return groups as BindingList<Group>;
 
         }
 
@@ -354,6 +354,26 @@ namespace Businesslayer.DAL
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "select Max(USERID) FROM PTS2_USER";
+                this.db.Connection.Open();
+                returnint = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+            return returnint;
+        }
+
+        public int GetReservationID()
+        {
+            try
+            {
+                OracleCommand cmd = this.db.Connection.CreateCommand();
+                cmd.CommandText = "select Max(RESERVATIONID) FROM PTS2_RESERVATION";
                 this.db.Connection.Open();
                 returnint = Convert.ToInt32(cmd.ExecuteScalar());
             }

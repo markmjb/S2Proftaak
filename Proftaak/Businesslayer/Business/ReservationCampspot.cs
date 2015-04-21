@@ -8,21 +8,21 @@ namespace Businesslayer.Business
 {
     public class ReservationCampspot : Reservation
     {
-        public List<int> Campingspots { get; set; }
+        public IList<int> Campingspots { get; set; }
         public decimal Price { get; set; }
-        public List<User> ReservationUsers { get; set; }
+        public IList<User> ReservationUsers { get; set; }
 
         private DbReservation dbres = new DbReservation();
         private DbEvent dbEvent = new DbEvent();
 
-        public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, List<int> campingspots, decimal price, List<User> reservationUsers) : base(beginTime, endtime, employee)
+        public ReservationCampspot(DateTime beginTime, DateTime endtime, User employee, IList<int> campingspots, decimal price, IList<User> reservationUsers) : base(beginTime, endtime, employee)
         {
             Campingspots = campingspots;
             Price = price;
             ReservationUsers = reservationUsers;
         }
 
-        public List<Event> Events()
+        public IList<Event> Events()
         {
          return   dbEvent.GetEvents();
         }
@@ -30,11 +30,11 @@ namespace Businesslayer.Business
         {
             
         }
-        public List<Campspot> UpdateCampingSpots(int evid)
+        public IList<Campspot> UpdateCampingSpots(int evid)
         {
             return dbres.Campspots(evid);
         }
-        public List<Campspot> FilterCampingSpots(int evid, string filter)
+        public IList<Campspot> FilterCampingSpots(int evid, string filter)
         {
             return dbres.FilterCampspots(evid,filter);
         }
@@ -42,7 +42,7 @@ namespace Businesslayer.Business
         {
             return dbres.Groupexists(text);
         }
-        public List<Group> GetAllGroups()
+        public IList<Group> GetAllGroups()
         {
            return dbres.GetAllGroups();
         }
@@ -73,6 +73,7 @@ namespace Businesslayer.Business
                 dbres.InsertUser(u);
                 u.ID = dbres.GetUserID();
                 dbres.Insertreservation3(u.ID,Resid);
+                u.ReservationID = dbres.GetReservationID();
             }
         }
     }

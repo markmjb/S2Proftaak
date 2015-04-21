@@ -19,23 +19,20 @@ namespace Proftaak
     public partial class Reservation : Form
     {
 
-        private IList<Businesslayer.Business.Campspot> Campspots;
-        private IList<Campspot> Selectedcampspots; 
-        private IList<Event> Events = new List<Event>();
-        private IList<Group> groups = new List<Group>(); 
-        private ReservationCampspot RC = new ReservationCampspot();
-        private IList<User> users; 
-        private User user = new User();
-        private Address address= new Address();
+        private IList<Campspot> campspots = new List<Campspot>();
+        private IList<Campspot> selectedcampspots = new List<Campspot>();
+        private IList<Event> events = new List<Event>();
+        private IList<Group> groups = new List<Group>();
+        private IList<User> users = new List<User>();
+        private ReservationCampspot RC;
+        private User _user;
+        private Address _address;
         private Event _event;
-        private bool Isloaded = new bool();
+        private bool Isloaded;
 
         public Reservation()
         {
             InitializeComponent();
-            cbGroup.DisplayMember = "Name";
-            cbAddedusers.ValueMember = "Firstname";
-            cbAddedusers.DisplayMember = "Firstname";
         }
 
         private void Reservation_FormClosing(object sender, FormClosingEventArgs e)
@@ -46,17 +43,23 @@ namespace Proftaak
 
         private void Reservation_Load(object sender, EventArgs e)
         {
-            users= new BindingList<User>();
-            Events = RC.Events();
-            cbEvent.DataSource = Events;
-            cbEvent.DisplayMember = "Name";
-            Campspots = RC.UpdateCampingSpots(((Event) cbEvent.SelectedItem).EventID);
-            lbAvailablespots.DataSource = Campspots;
-            lbAvailablespots.DisplayMember = "Campplace";
-            tbPassword.Text = string.Empty;
+            RC = new ReservationCampspot();
+            users = new BindingList<User>();
+            events = RC.Events();
             groups = RC.GetAllGroups();
             cbGroup.DataSource = groups;
-            }
+            cbGroup.DisplayMember = "Name";
+            cbAddedusers.DataSource = users;
+            cbAddedusers.DisplayMember = "Firstname";
+            cbEvent.DataSource = events;
+            cbEvent.DisplayMember = "Name";
+            lbAvailablespots.DataSource = campspots;
+            lbAvailablespots.DisplayMember = "Campplace";
+            campspots = RC.UpdateCampingSpots(((Event)cbEvent.SelectedItem).EventID);
+            _user = new User();
+            _address = new Address();
+            _event = new Event();
+        }
 
        private void btnPrevious_Click(object sender, EventArgs e)
         {
@@ -68,6 +71,7 @@ namespace Proftaak
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            selectedcampspots = new BindingList<Campspot>();
             bool nonexttab = new bool();
             nonexttab = false;
             if (tabControl1.SelectedTab == tabEvent)
@@ -82,11 +86,11 @@ namespace Proftaak
                     nonexttab = true;
                 }
                 else {
-                    Selectedcampspots = new List<Campspot>();
+                    
                 foreach (var C in lbAvailablespots.SelectedItems)
                 {
                  
-                Selectedcampspots.Add((Campspot)C);
+                selectedcampspots.Add((Campspot)C);
                 }
                 }
             }
@@ -114,9 +118,9 @@ namespace Proftaak
                 tbStreetnumber.Text != string.Empty && tbCountry.Text != string.Empty && tbState.Text != string.Empty &&
                 cbGroup.SelectedIndex != -1)
             {
-                address = new Address(tbStreetnumber.Text, Convert.ToInt32(tbStreetnumber.Text), tbPostalcode.Text,
+                _address = new Address(tbStreetnumber.Text, Convert.ToInt32(tbStreetnumber.Text), tbPostalcode.Text,
                       tbCity.Text, tbState.Text, tbCountry.Text);
-                user = new User(tbFirstname.Text, tbLastname.Text, address, tbEmail.Text, tbPassword.Text,
+                _user = new User(tbFirstname.Text, tbLastname.Text, _address, tbEmail.Text, tbPassword.Text,
                     (Group)cbGroup.SelectedItem,dtpBirth.Value);
             }
             else
@@ -124,7 +128,7 @@ namespace Proftaak
                  MessageBox.Show("Please fill in all required fields");          
             }
 
-            users.Add(user);
+            users.Add(_user);
             
             ClearallFields();
         }
@@ -150,23 +154,23 @@ namespace Proftaak
         {
             if (cbCSprop.SelectedItem.ToString()  == "Show All")
             {
-                Campspots = RC.UpdateCampingSpots(((Event)cbEvent.SelectedItem).EventID);
-                lbAvailablespots.DataSource = Campspots;
+                campspots = RC.UpdateCampingSpots(((Event)cbEvent.SelectedItem).EventID);
+                lbAvailablespots.DataSource = campspots;
             }
             else if (cbCSprop.SelectedItem.ToString() == "Show Impaired")
             {
-                   Campspots = RC.FilterCampingSpots(((Event) cbEvent.SelectedItem).EventID, "handicap");
-                   lbAvailablespots.DataSource = Campspots;       
+                   campspots = RC.FilterCampingSpots(((Event) cbEvent.SelectedItem).EventID, "handicap");
+                   lbAvailablespots.DataSource = campspots;       
             }
             else if (cbCSprop.SelectedItem.ToString() == "Show Normal")
             {
-                Campspots = RC.FilterCampingSpots(((Event)cbEvent.SelectedItem).EventID, "normaal");
-                lbAvailablespots.DataSource = Campspots;
+                campspots = RC.FilterCampingSpots(((Event)cbEvent.SelectedItem).EventID, "normaal");
+                lbAvailablespots.DataSource = campspots;
             }
             else if (cbCSprop.SelectedItem.ToString() =="Show Quiet")   
                 {
-                  Campspots = RC.FilterCampingSpots(((Event) cbEvent.SelectedItem).EventID, "rustig");
-                  lbAvailablespots.DataSource = Campspots;
+                  campspots = RC.FilterCampingSpots(((Event) cbEvent.SelectedItem).EventID, "rustig");
+                  lbAvailablespots.DataSource = campspots;
                 }
                
             }
@@ -177,21 +181,23 @@ namespace Proftaak
             { 
          bool Groupexists = RC.CheckGroup(tbNewGroup.Text);
             if (Groupexists)
-            {
-                MessageBox.Show("Group already exists");
-            }
+                {
+                    MessageBox.Show("Group already exists");
+                }
             else
-            {
-                RC.CreateGroup(tbNewGroup.Text);
-            }
+                {
+                    RC.CreateGroup(tbNewGroup.Text);
+                }
         
-        }
+            }
             else
             {
                 MessageBox.Show("Fill In A Groupname");
             }
             tbNewGroup.Text = string.Empty;
-            
+            groups = RC.GetAllGroups();
+            cbGroup.DataSource = groups;
+
         }
 
         private void btnLoadUser_Click(object sender, EventArgs e)
@@ -205,20 +211,20 @@ namespace Proftaak
             {
                 if (!Isloaded)
                 {
-                    user = new User();
-                    user = (User) cbAddedusers.SelectedItem;
-                    tbFirstname.Text = user.Firstname;
-                    tbLastname.Text = user.Lastname;
-                    tbStreet.Text = user.Address.Street;
-                    tbStreetnumber.Text = user.Address.Streetnumber.ToString();
-                    tbPostalcode.Text = user.Address.PostalCode;
-                    tbCity.Text = user.Address.City;
-                    tbState.Text = user.Address.Province;
-                    tbCountry.Text = user.Address.Country;
-                    dtpBirth.Value = user.Birthdate;
-                    tbEmail.Text = user.Email;
-                    tbPassword.Text = user.Password;
-                    cbGroup.SelectedItem = user.Group;
+                    _user = new User();
+                    _user = (User) cbAddedusers.SelectedItem;
+                    tbFirstname.Text = _user.Firstname;
+                    tbLastname.Text = _user.Lastname;
+                    tbStreet.Text = _user.Address.Street;
+                    tbStreetnumber.Text = _user.Address.Streetnumber.ToString();
+                    tbPostalcode.Text = _user.Address.PostalCode;
+                    tbCity.Text = _user.Address.City;
+                    tbState.Text = _user.Address.Province;
+                    tbCountry.Text = _user.Address.Country;
+                    dtpBirth.Value = _user.Birthdate;
+                    tbEmail.Text = _user.Email;
+                    tbPassword.Text = _user.Password;
+                    cbGroup.SelectedItem = _user.Group;
                     Isloaded = true;
                 }
                 else
@@ -240,7 +246,8 @@ namespace Proftaak
 
         private void btnFinishReservation_Click(object sender, EventArgs e)
         {
-            RC.SaveReservation(users,Selectedcampspots,_event);
+            RC.SaveReservation(users,selectedcampspots,_event);
+            
             foreach (User U in users)
             {
             SendEmails(U);
@@ -269,7 +276,7 @@ namespace Proftaak
                 mail.Body = sql;
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("proftaakgroepA@gmail.com", "Proftaak_19");
+                SmtpServer.Credentials = new System.Net.NetworkCredential(@"proftaakgroepA@gmail.com", "Proftaak_19");
 
                 // Email, Password
                 SmtpServer.EnableSsl = true;
