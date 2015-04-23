@@ -7,7 +7,7 @@ namespace Businesslayer.DAL
         public OracleConnection Connection { get; set; }
         public static string Connectionstring
         {
-            get { return "User Id=dbi311717;Password=NDnMEa7VWMV;Data Source=//192.168.15.50:1521/fhictora;"; }
+            get { return "User Id=dbi304910;Password=drlc3PnAnP;Data Source=192.168.15.50:1521/fhictora;"; }
             private set {  }
         }
         //  get{return "User Id=dbi311717;Password=NDnMEa7VWMV;Data Source=" + "192.168.21.50/fhictora" + ";"; }
