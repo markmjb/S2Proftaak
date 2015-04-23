@@ -203,6 +203,27 @@ namespace Businesslayer.DAL
            }
        }
 
+
+       public void RemoveReply(string mediaitemid)
+       {
+           try
+           {
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "DELETE FROM PTS2_MEDIAITEMTEXT WHERE MEDIAITEMID = :MediaitemID";
+               cmd.Parameters.Add("MediaitemID", mediaitemid);
+               db.Connection.Open();
+               cmd.ExecuteReader();
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+       } 
+
        public void RemoveMediaItemFile(Mediaitem mediaitem)
        {
            try

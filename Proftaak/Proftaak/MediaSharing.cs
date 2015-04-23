@@ -204,43 +204,55 @@ namespace Proftaak
         {
             try
             {
-                if (FileBox.SelectedIndex == -1 || listBox1.SelectedIndex != -1)
+                if (FileBox.SelectedIndex == -1 && listBox1.SelectedIndex == -1)
                 {
-                    MessageBox.Show("No item selected / cant delete an reply");
+                    MessageBox.Show("No item selected");
                     
                 }
                 else
                 {
-                    string selecteditem = FileBox.SelectedItem.ToString();
-                    string[] selecteditems = selecteditem.Split(':');
-                    selecteditem = selecteditems[1];
-                    Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
-                    int selectedid = Convert.ToInt32(selecteditems[0]);
-                    Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
-                    int itemUserID = mdsb.GetUserID(selectedid);
-                    if (Userlogin.Loggeduser.Isadmin == false)
+                    if (listBox1.SelectedIndex > -1)
                     {
-                        if (userID == itemUserID)
-                        {
-                           
-                                System.IO.File.Delete(itemfile.Filepath);
-                                mdsb.RemoveMediaItem(item);
-                                mdsb.RemoveMediaItemFile(item);
-                            
-
-                        }
-
-                        else
-                        {
-                            MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
-                        }
-
+                        string selecteditemid = listBox1.SelectedItem.ToString();
+                        string[] selecteditems = selecteditemid.Split(':',' ');
+                        selecteditemid = selecteditems[2];
+                        mdsb.RemoveReply(selecteditemid);
                     }
                     else
                     {
-                        System.IO.File.Delete(itemfile.Filepath);
-                        mdsb.RemoveMediaItem(item);
-                        mdsb.RemoveMediaItemFile(item);
+                        string selecteditem = FileBox.SelectedItem.ToString();
+                        string[] selecteditems = selecteditem.Split(':');
+                        selecteditem = selecteditems[1];
+                        Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
+                        int selectedid = Convert.ToInt32(selecteditems[0]);
+                        Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
+                        int itemUserID = mdsb.GetUserID(selectedid);
+                        if (Userlogin.Loggeduser.Isadmin == false)
+                        {
+                            if (userID == itemUserID)
+                            {
+
+                                System.IO.File.Delete(itemfile.Filepath);
+                                mdsb.RemoveMediaItem(item);
+                                mdsb.RemoveMediaItemFile(item);
+
+
+                            }
+
+                            else
+                            {
+                                MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
+                            }
+
+                        }
+
+
+                        else
+                        {
+                            System.IO.File.Delete(itemfile.Filepath);
+                            mdsb.RemoveMediaItem(item);
+                            mdsb.RemoveMediaItemFile(item);
+                        }
                     }
                 }
                 
