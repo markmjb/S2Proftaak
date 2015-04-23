@@ -249,7 +249,7 @@ namespace Proftaak
         private void button3_Click(object sender, EventArgs e)  
         {
             Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
-            if(lbSelectItem.SelectedIndex != -1)
+            if(lbSelectItem.SelectedIndex != -1 && ScannedUser != null)
             {
                  Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
                  totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
@@ -277,7 +277,7 @@ namespace Proftaak
            }
             else
             {
-                MessageBox.Show("Select an item");
+                MessageBox.Show("Select an item or scan RFID");
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -292,7 +292,7 @@ namespace Proftaak
             }
             else
             {
-                MessageBox.Show("Selecteer een item");
+                MessageBox.Show("Select an item");
             }
         }
         private void lbRFIDNr_TextChanged(object sender, EventArgs e)
