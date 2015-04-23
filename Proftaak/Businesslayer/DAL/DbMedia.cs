@@ -16,6 +16,7 @@ namespace Businesslayer.DAL
         private List<Report> reports;
         private List<Mediaitem> mediaitems;
         private Databaseconnection db;
+        string naam;
         int aantallikes;
         int categoryid;
         
@@ -359,6 +360,39 @@ namespace Businesslayer.DAL
 
        }
 
+       public string PostedBy(int userid)
+       {
+      
+           try
+           {
+
+               OracleCommand cmd = this.db.Connection.CreateCommand();
+               cmd.CommandText = "SELECT FIRSTNAME, LASTNAME FROM PTS2_USER WHERE USERID = :userid";
+               cmd.Parameters.Add("USERID", userid);
+               db.Connection.Open();
+               OracleDataReader reader = cmd.ExecuteReader();
+               cmd.ExecuteReader();
+
+               while (reader.Read())
+               {
+                   string voornaam = Convert.ToString(reader["FIRSTNAME"]);
+                   string achternaam = Convert.ToString(reader["LASTNAME"]);
+
+                   naam = voornaam + " " + achternaam;
+
+               }
+           }
+           catch (OracleException exc)
+           {
+               Console.WriteLine(exc);
+           }
+           finally
+           {
+               this.db.Connection.Close();
+           }
+           return naam;
+
+       }
        public void AddLikeToFile(int mediaitemid, int userid)
        {
            try

@@ -303,7 +303,7 @@ namespace Proftaak
                 Mediaitem selected = mdsb.Getsinglemediaitem(selecteditemid);
                 string itemfiletype = itemfile.Filetype;
                 int itemfilesize = itemfile.Filesize;
-                string postedby = Userlogin.Loggeduser.Firstname + " " + Userlogin.Loggeduser.Lastname;
+                string postedby = mdsb.PostedBy(selected.UserID);
                 Mediatext = mdsb.Getmediatextlist(selecteditemid);
                 likes = mdsb.GetAllLikes(selecteditemid);
                 tbfileinfo.Text = "MediaitemID: " + selected.Mediaitemid + "  Title: " + selected.Title +

@@ -57,6 +57,11 @@ namespace Businesslayer.Business
             dbmedia.RemoveMediaItemFile(mediaitem);
         }
 
+        public string PostedBy(int userid)
+        {
+          return dbmedia.PostedBy(userid);
+        }
+
         public Mediaitem Getsinglemediaitem(int mediaitemid)
         {
             return dbmedia.Getsinglemediaitem(mediaitemid);
