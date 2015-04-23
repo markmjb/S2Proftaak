@@ -9,8 +9,6 @@ namespace Businesslayer.Business
 {
     public class Item
     {
-        DbMaterial DM = new DbMaterial();
-        public List<Item> Items { get; set; }
         public int ID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }

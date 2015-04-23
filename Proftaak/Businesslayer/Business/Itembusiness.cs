@@ -9,9 +9,9 @@ namespace Businesslayer.Business
 {
     public class Itembusiness
     {
-        DbMaterial DM = new DbMaterial();
-        DbAccess DA = new DbAccess();
-        DbEvent DE = new DbEvent();
+        public DbMaterial DM = new DbMaterial();
+        public DbAccess DA = new DbAccess();
+        public DbEvent DE = new DbEvent();
         public List<Item> GetItems()
         {
             List<Item> items = DM.GetItems();
