@@ -71,45 +71,13 @@ namespace Proftaak
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            selectedcampspots = new BindingList<Campspot>();
-            bool nonexttab = new bool();
-            nonexttab = false;
-            if (tabControl1.SelectedTab == tabEvent)
+            if (tabControl1.SelectedIndex!=tabControl1.TabCount)
             {
-                _event = (Event) cbEvent.SelectedItem;
+                tabControl1.SelectedIndex++;
             }
-            if (tabControl1.SelectedTab==tabCampspot)
-            {
-                if (lbAvailablespots.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Select one or more campspots first");
-                    nonexttab = true;
-                }
-                else {
-                    
-                foreach (var C in lbAvailablespots.SelectedItems)
-                {
-                 
-                selectedcampspots.Add((Campspot)C);
-                }
-                }
-            }
-            if (tabControl1.SelectedTab == tabAddUser)
-            {
-                if (cbAddedusers.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Add one or more users");
-                    nonexttab = true;
+        }
 
-                }
-            }
-            if (!nonexttab)
-                {
-                    tabControl1.SelectedIndex++;
-                }
-            }
 
-        
 
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
@@ -246,17 +214,61 @@ namespace Proftaak
 
         private void btnFinishReservation_Click(object sender, EventArgs e)
         {
+            if (DisplayError())
+            {      
             RC.SaveReservation(users,selectedcampspots,_event);
-            
             foreach (User U in users)
             {
             SendEmails(U);
             }
-            
             this.Hide();
             StartScreen S = new StartScreen();
             S.Show();
-           
+                }
+        }
+
+        private bool DisplayError()
+        {
+            int haserror = 1;
+             string errorstring = string.Empty;
+            List<string> errorstringlist = new List<string>();
+            if (cbEvent.SelectedIndex == -1)
+            {
+                errorstring = "You haven't selected an event\n";
+                errorstringlist.Add(errorstring);
+                haserror--;
+            }
+            else
+            {
+                errorstring="You have selected an event\n";
+                errorstringlist.Add(errorstring);
+                if (cbAddedusers.SelectedIndex == -1)
+                {
+                    errorstring = "You haven't selected any users\n";
+                    errorstringlist.Add(errorstring);
+                    haserror--;
+                }
+                else
+                {
+                    errorstring = "You have selected one or more users\n";
+                    errorstringlist.Add(errorstring);
+                }
+                if (lbAvailablespots.SelectedIndex == -1)
+                    {
+                        errorstring = "You haven't selected any campingspots to camp on\n";
+                        errorstringlist.Add(errorstring);
+                        haserror--;
+                    }
+                    else
+                    {
+                        errorstring = "You have selected one or more campingspots\n";
+                        errorstringlist.Add(errorstring);
+                    }
+                }
+            
+            errorstring = errorstringlist.Aggregate(string.Empty, (current, s) => current + s);
+            MessageBox.Show(errorstring);
+            return haserror == 1;
         }
 
         private void SendEmails(User user)
