@@ -198,6 +198,25 @@ namespace Proftaak
                 }
                 else
                 {
+                    if (tbFirstname.Text != string.Empty && tbLastname.Text != string.Empty && tbEmail.Text != string.Empty &&
+                    tbPostalcode.Text != string.Empty && tbStreet.Text != string.Empty &&
+                    tbStreetnumber.Text != string.Empty && tbCountry.Text != string.Empty && tbState.Text != string.Empty &&
+                    cbGroup.SelectedIndex != -1)
+                    {
+                        _address = new Address(tbStreetnumber.Text, Convert.ToInt32(tbStreetnumber.Text), tbPostalcode.Text,
+                              tbCity.Text, tbState.Text, tbCountry.Text);
+                        _user = new User(tbFirstname.Text, tbLastname.Text, _address, tbEmail.Text, tbPassword.Text,
+                            (Group)cbGroup.SelectedItem, dtpBirth.Value);
+                        if (_user != (User) cbAddedusers.SelectedItem)
+                        {
+                            users.Remove((User) cbAddedusers.SelectedItem);
+                            users.Add(_user);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please fill in all required fields or cancel the edit");
+                    }
                 ClearallFields();
                     Isloaded = false;
                 }
