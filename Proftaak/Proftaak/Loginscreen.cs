@@ -21,7 +21,7 @@ namespace Proftaak
 
         private void Loginscreen_Load(object sender, EventArgs e)
         {
-            lblWarning.Enabled = false;
+            lblWarning.Visible = false;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace Proftaak
             bool rightcredentials = login.CheckLogin(tbEmail.Text, tbPassword.Text);
             if (rightcredentials == false)
             {
-                lblWarning.Enabled = true;
+                lblWarning.Visible = true;
             }
             else
             {
@@ -40,7 +40,6 @@ namespace Proftaak
                 login.Updateuser(tbEmail.Text, tbPassword.Text);
             }
         }
-            
      }
 }
 

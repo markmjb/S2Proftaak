@@ -25,7 +25,7 @@ namespace Businesslayer.DAL
             try
             {
                 OracleCommand cmd = db.Connection.CreateCommand();
-                cmd.CommandText = "select userid from PTS2_user where EMAIL= :email and upas=:pw";
+                cmd.CommandText = "select userid from PTS2_user where EMAIL= :email and upas=:pw and isAdmin = 1";
                 cmd.Parameters.Add("email", email);
                 cmd.Parameters.Add("pw", pass);
                 db.Connection.Open();
