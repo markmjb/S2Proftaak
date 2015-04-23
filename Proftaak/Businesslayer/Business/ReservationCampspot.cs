@@ -60,6 +60,8 @@ namespace Businesslayer.Business
             decimal totalprice = price*fulldays;
             int Resid = dbres.SelectMaxID();
             Resid++;
+            decimal priceperuser;
+            priceperuser = totalprice/users.Count;
             dbres.Insertreservation(_event, totalprice);
             foreach (Campspot c in selectedcampspots)
             {
@@ -72,8 +74,10 @@ namespace Businesslayer.Business
                 u.Address.AddressID = dbres.GetAddressID();
                 dbres.InsertUser(u);
                 u.ID = dbres.GetUserID();
-                dbres.Insertreservation3(u.ID,Resid);
                 u.ReservationID = dbres.GetReservationID();
+                dbres.Insertreservation3(u.ID,Resid);
+                dbres.UpdateDebt(u.ID,priceperuser,_event.EventID);
+                
             }
         }
     }

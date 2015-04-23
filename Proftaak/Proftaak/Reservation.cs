@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -214,8 +215,14 @@ namespace Proftaak
 
         private void btnFinishReservation_Click(object sender, EventArgs e)
         {
+            foreach (Campspot S in lbAvailablespots.SelectedItems)
+            {
+            selectedcampspots.Add(S);
+
+            }
             if (DisplayError())
-            {      
+            {
+                _event = (Event) cbEvent.SelectedItem;
             RC.SaveReservation(users,selectedcampspots,_event);
             foreach (User U in users)
             {

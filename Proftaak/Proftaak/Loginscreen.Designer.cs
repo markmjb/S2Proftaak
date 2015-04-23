@@ -41,9 +41,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Location = new System.Drawing.Point(8, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(50, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Email: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -51,45 +52,48 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(0, 48);
+            this.label2.Location = new System.Drawing.Point(0, 59);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(61, 22);
+            this.tbEmail.Location = new System.Drawing.Point(81, 27);
+            this.tbEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(201, 20);
+            this.tbEmail.Size = new System.Drawing.Size(267, 22);
             this.tbEmail.TabIndex = 2;
-            this.tbEmail.Text = "kevin@mailinator.com";
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(61, 46);
+            this.tbPassword.Location = new System.Drawing.Point(81, 57);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
-            this.tbPassword.Size = new System.Drawing.Size(201, 20);
+            this.tbPassword.Size = new System.Drawing.Size(267, 22);
             this.tbPassword.TabIndex = 3;
-            this.tbPassword.Text = "kevin";
             // 
             // lblWarning
             // 
             this.lblWarning.AutoSize = true;
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(58, 102);
+            this.lblWarning.Location = new System.Drawing.Point(77, 126);
+            this.lblWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(179, 13);
+            this.lblWarning.Size = new System.Drawing.Size(235, 17);
             this.lblWarning.TabIndex = 4;
             this.lblWarning.Text = "Wrong Combination Email/Password";
             this.lblWarning.Visible = false;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(161, 70);
+            this.btnLogin.Location = new System.Drawing.Point(215, 86);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(100, 23);
+            this.btnLogin.Size = new System.Drawing.Size(133, 28);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Log In";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -103,19 +107,22 @@
             this.groupBox1.Controls.Add(this.lblWarning);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tbPassword);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(16, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 118);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(547, 145);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log In";
             // 
             // Loginscreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 142);
+            this.ClientSize = new System.Drawing.Size(579, 175);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Loginscreen";
             this.Text = "Login Screen";
             this.Load += new System.EventHandler(this.Loginscreen_Load);

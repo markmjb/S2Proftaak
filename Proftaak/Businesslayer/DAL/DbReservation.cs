@@ -330,6 +330,7 @@ namespace Businesslayer.DAL
 
         public int GetAddressID()
         {
+            returnint = 0;
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
@@ -387,6 +388,27 @@ namespace Businesslayer.DAL
             }
             return returnint;
         }
+
+        public void UpdateDebt(int userID, decimal priceperuser, int EventID)
+        {
+            try{
+            OracleCommand cmd = this.db.Connection.CreateCommand();
+            cmd.CommandText = "insert into pts2_debt(userid,eventid,amount) VALUES (:userid,:evid,:amount)";
+            cmd.Parameters.Add("userid", userID);
+            cmd.Parameters.Add("evid", EventID);
+            cmd.Parameters.Add("amount", priceperuser);
+            this.db.Connection.Open();
+            cmd.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.db.Connection.Close();
+            }
+        }
+        }
     }
-}
 
