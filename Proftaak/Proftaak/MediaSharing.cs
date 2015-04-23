@@ -204,55 +204,43 @@ namespace Proftaak
         {
             try
             {
-                if (FileBox.SelectedIndex == -1 && listBox1.SelectedIndex == -1)
+                if (FileBox.SelectedIndex == -1 || listBox1.SelectedIndex != -1)
                 {
-                    MessageBox.Show("No item selected");
+                    MessageBox.Show("No item selected / cant delete an reply");
                     
                 }
                 else
                 {
-                    if (listBox1.SelectedIndex > -1)
+                    string selecteditem = FileBox.SelectedItem.ToString();
+                    string[] selecteditems = selecteditem.Split(':');
+                    selecteditem = selecteditems[1];
+                    Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
+                    int selectedid = Convert.ToInt32(selecteditems[0]);
+                    Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
+                    int itemUserID = mdsb.GetUserID(selectedid);
+                    if (Userlogin.Loggeduser.Isadmin == false)
                     {
-                        string selecteditemid = listBox1.SelectedItem.ToString();
-                        string[] selecteditems = selecteditemid.Split(':',' ');
-                        selecteditemid = selecteditems[2];
-                        mdsb.RemoveReply(selecteditemid);
-                    }
-                    else
-                    {
-                        string selecteditem = FileBox.SelectedItem.ToString();
-                        string[] selecteditems = selecteditem.Split(':');
-                        selecteditem = selecteditems[1];
-                        Mediaitem item = Mediaitems.Find(x => x.Title == selecteditem);
-                        int selectedid = Convert.ToInt32(selecteditems[0]);
-                        Mediaitem itemfile = mdsb.Getsinglemediaitemfile(selectedid);
-                        int itemUserID = mdsb.GetUserID(selectedid);
-                        if (Userlogin.Loggeduser.Isadmin == false)
+                        if (userID == itemUserID)
                         {
-                            if (userID == itemUserID)
-                            {
-
+                           
                                 System.IO.File.Delete(itemfile.Filepath);
                                 mdsb.RemoveMediaItem(item);
                                 mdsb.RemoveMediaItemFile(item);
-
-
-                            }
-
-                            else
-                            {
-                                MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
-                            }
+                            
 
                         }
-
 
                         else
                         {
-                            System.IO.File.Delete(itemfile.Filepath);
-                            mdsb.RemoveMediaItem(item);
-                            mdsb.RemoveMediaItemFile(item);
+                            MessageBox.Show("Je hebt geen bevoegdheid om deze file te verwijderen");
                         }
+
+                    }
+                    else
+                    {
+                        System.IO.File.Delete(itemfile.Filepath);
+                        mdsb.RemoveMediaItem(item);
+                        mdsb.RemoveMediaItemFile(item);
                     }
                 }
                 
