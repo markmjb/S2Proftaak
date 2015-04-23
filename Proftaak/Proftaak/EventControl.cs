@@ -150,8 +150,7 @@ namespace Proftaak
             int streetnumber = Convert.ToInt32(nudStreetnumber.Value);
             string postalcode = tbPostalcode.Text;
 
-            if (name != "" && description != "" && startDate >= DateTime.Now && endDate >= DateTime.Now &&
-                endDate >= startDate && country != "" && province != "" && city != "" &&
+            if (name != "" && description != "" && endDate >= startDate && country != "" && province != "" && city != "" &&
                 street != "" && streetnumber > 0 && postalcode.Length == 6)
             {
                 if (!eventControl.CheckEvent(name, description, startDate, endDate, ticketPrice))
@@ -183,10 +182,6 @@ namespace Proftaak
                 if (description == "")
                 {
                     MessageBox.Show("The description is invalid");
-                }
-                if (startDate < DateTime.Now)
-                {
-                    MessageBox.Show("The startDate is invalid");
                 }
                 if (endDate < dtpStartDate.Value)
                 {
@@ -262,7 +257,7 @@ namespace Proftaak
                 int streetnumber = Convert.ToInt32(nudStreetnumber.Value);
                 string postalcode = tbPostalcode.Text;
 
-                if (name != "" && description != "" && startDate >= DateTime.Now && endDate >= DateTime.Now &&
+                if (name != "" && description != "" && 
                     endDate >= startDate && ticketPrice >= 0 && country != "" && province != "" && city != "" &&
                     street != "" && streetnumber > 0 && postalcode.Length == 6)
                 {
@@ -303,10 +298,6 @@ namespace Proftaak
                     if (description == "")
                     {
                         MessageBox.Show("The description is invalid");
-                    }
-                    if (startDate < DateTime.Now)
-                    {
-                        MessageBox.Show("The startDate is invalid");
                     }
                     if (endDate < startDate)
                     {
