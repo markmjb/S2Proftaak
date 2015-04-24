@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Businesslayer.Business;
+using System.Data.OleDb;
 using Oracle.DataAccess.Client;
 
 namespace Businesslayer.DAL
@@ -18,14 +19,14 @@ namespace Businesslayer.DAL
             try
             {
 
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "DELETE FROM PTS2_Reservation R WHERE R.ReservationID = :ID";
-                cmd.Parameters.Add("ID", ResNr);
+                cmd.Parameters.AddWithValue("ID", ResNr);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -39,14 +40,14 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "  DELETE FROM PTS2_User_Reservation UR WHERE UR.ReservationID = :ID";
-                cmd.Parameters.Add("ID", ResNr);
-
+                cmd.Parameters.AddWithValue("ID", ResNr);
+                
                 db.Connection.Open();
                 cmd.ExecuteReader();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -62,12 +63,12 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :ID";
-                cmd.Parameters.Add("ID", EventID);
+                cmd.Parameters.AddWithValue("ID", EventID);
 
                 db.Connection.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 int ReservationNr;
                 int Price;
@@ -80,7 +81,7 @@ namespace Businesslayer.DAL
                     Reservations.Add(Reservation);
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -99,13 +100,13 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, R.Price FROM PTS2_Reservation R, PTS2_Event E WHERE R.EventID = E.EventID AND E.EventID = :eID AND R.ReservationID LIKE :Search";
-                cmd.Parameters.Add("eID", EventID);
-                cmd.Parameters.Add("Search", Search);
+                cmd.Parameters.AddWithValue("eID", EventID);
+                cmd.Parameters.AddWithValue("Search", Search);
 
                 db.Connection.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 int ReservationNr;
                 int Price;
@@ -118,7 +119,7 @@ namespace Businesslayer.DAL
                     Reservations.Add(Reservation);
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -136,12 +137,12 @@ namespace Businesslayer.DAL
             try
             {
 
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND R.EventID = :eID";
-                cmd.Parameters.Add("eID", EventID);
+                cmd.Parameters.AddWithValue("eID", EventID);
 
                 db.Connection.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 int ReservationNr;
                 int UserID;
@@ -203,7 +204,7 @@ namespace Businesslayer.DAL
                     ReservUsers.Add(User);
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -219,13 +220,13 @@ namespace Businesslayer.DAL
             List<User> ReservUsers = new List<User>();
             try
             {
-                OracleCommand cmd = this.db.Connection.CreateCommand();
+                OleDbCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.Amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND R.ReservationID = :ID";
 
-                cmd.Parameters.Add("ID", ResNr);
+                cmd.Parameters.AddWithValue("ID", ResNr);
 
                 db.Connection.Open();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 int ReservationNr;
                 int UserID;
@@ -288,7 +289,7 @@ namespace Businesslayer.DAL
                     ReservUsers.Add(User);
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -303,14 +304,14 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT R.Price FROM PTS2_Reservation R WHERE R.ReservationID = :ID AND R.EventID = :ID";
-                cmd.Parameters.Add("ID", ResNr);
+                cmd.Parameters.AddWithValue("ID", ResNr);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -324,16 +325,16 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO PTS2_RFID (rfid, isAttached, eventID, userID) VALUES (:RFID,1,:EventID,:UserID)";
-                cmd.Parameters.Add("RFID", RFID);
-                cmd.Parameters.Add("EventID", EventID);
-                cmd.Parameters.Add("UserID", UserID);
+                cmd.Parameters.AddWithValue("RFID", RFID);
+                cmd.Parameters.AddWithValue("EventID", EventID);
+                cmd.Parameters.AddWithValue("UserID", UserID);
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -347,16 +348,16 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM PTS2_RFID WHERE RFID = :RFID AND EventID = :EventID";
-                cmd.Parameters.Add("RFID", RFID);
-                cmd.Parameters.Add("EventID", EventID);
+                cmd.Parameters.AddWithValue("RFID", RFID);
+                cmd.Parameters.AddWithValue("EventID", EventID);
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 throw exc;
             }
@@ -373,13 +374,13 @@ namespace Businesslayer.DAL
             try
             {
 
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE RFID = :rID";
-                cmd.Parameters.Add("rID", RFID);
+                cmd.Parameters.AddWithValue("rID", RFID);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -393,7 +394,7 @@ namespace Businesslayer.DAL
                     }
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -409,13 +410,13 @@ namespace Businesslayer.DAL
             bool isAttached = false;
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isAttached FROM PTS2_RFID WHERE UserID = :UserID";
-                cmd.Parameters.Add("UserID", UserID);
+                cmd.Parameters.AddWithValue("UserID", UserID);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -429,7 +430,7 @@ namespace Businesslayer.DAL
                     }
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -445,13 +446,13 @@ namespace Businesslayer.DAL
             bool isPresent = false;
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT isPresent FROM PTS2_USER WHERE UserID = :UserID";
-                cmd.Parameters.Add("UserID", UserID);
+                cmd.Parameters.AddWithValue("UserID", UserID);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -465,7 +466,7 @@ namespace Businesslayer.DAL
                     }
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -481,20 +482,20 @@ namespace Businesslayer.DAL
             int UserID = -1;
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT U.UserID FROM PTS2_User U, PTS2_RFID R WHERE U.UserID = R.UserID AND R.RFID = :rID";
-                cmd.Parameters.Add("rID", RFID);
+                cmd.Parameters.AddWithValue("rID", RFID);
 
                 db.Connection.Open();
                 cmd.ExecuteReader();
-                OracleDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     UserID = Convert.ToInt32(reader["UserID"]);
                 }
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -519,15 +520,15 @@ namespace Businesslayer.DAL
 
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_USER SET isPresent = :isPresent WHERE UserID = :userID";
-                cmd.Parameters.Add("isPresent", Present);
-                cmd.Parameters.Add("userID", UserID);
+                cmd.Parameters.AddWithValue("isPresent", Present);
+                cmd.Parameters.AddWithValue("userID", UserID);
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -541,15 +542,15 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_Reservation SET Price = :Price WHERE ReservationID = :ID";
-                cmd.Parameters.Add("Price", Price);
-                cmd.Parameters.Add("ID", ResNr);
+                cmd.Parameters.AddWithValue("Price", Price);
+                cmd.Parameters.AddWithValue("ID", ResNr);
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }
@@ -563,15 +564,15 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OracleCommand cmd = db.Connection.CreateCommand();
+                OleDbCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "UPDATE PTS2_Debt SET amount = 0 WHERE UserID = :usID AND EventID = :evID";
-                cmd.Parameters.Add("usID", UserID);
-                cmd.Parameters.Add("evID", EventID);
+                cmd.Parameters.AddWithValue("usID", UserID);
+                cmd.Parameters.AddWithValue("evID", EventID);
 
                 db.Connection.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (OracleException exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc);
             }

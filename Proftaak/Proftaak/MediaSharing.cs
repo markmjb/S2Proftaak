@@ -111,7 +111,7 @@ namespace Proftaak
                     int mediaitemID = mdsb.GetmediaitemID(title);
                     Mediaitems = mdsb.Getallmediaitems();
                     FileInfo f = new FileInfo(filepath);
-                    string uploadloc = @"C:\Opdracht" + "/" + f.Name;
+                    string uploadloc = @"\\SERVERPTS44\z\Opdracht" + "/" + f.Name;
                     System.IO.File.Copy(filepath, uploadloc, false);
                     MessageBox.Show("File uploaded: " + f.Name);
                     this.Close();
@@ -365,8 +365,8 @@ namespace Proftaak
                     try
                     {
                         FileInfo f = new FileInfo(filepath);
-                        string uploadloc = @"C:\Opdracht" + "/" + f.Name;
-                        System.IO.File.Copy(uploadloc, openFileDialog1.FileName, false);
+                        string uploadloc = @"\\SERVERPTS44\z\Opdracht" + "/" + f.Name;
+                        System.IO.File.Copy(uploadloc, saveFileDialog1.FileName , false);
                      
                         this.Close();
                     }
@@ -644,6 +644,11 @@ namespace Proftaak
         }
 
         private void cbsearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
 
         }
