@@ -34,5 +34,9 @@ namespace Businesslayer.Business
             StartDate = startdate;
             EndDate = enddate;
         }
+
+        public Item()
+        {
+        }
     }
 }

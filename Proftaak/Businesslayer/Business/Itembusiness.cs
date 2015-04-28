@@ -14,13 +14,12 @@ namespace Businesslayer.Business
         public DbEvent DE = new DbEvent();
         public List<Item> GetItems()
         {
-            List<Item> items = DM.GetItems();
-            return items;
+            return DM.GetItems();
         }
         public List<Item> GetStockItems()
         {
-            List<Item> StockItems = DM.GetStockItems();
-            return StockItems;
+           return DM.GetStockItems();
+          
         }
         public void ChangePrice(string name, int price)
         {
@@ -87,8 +86,8 @@ namespace Businesslayer.Business
         }
         public List<Item> GetReservedItems(int RFIDID)
         {
-            List<Item> items = DM.GetReservedItems(RFIDID);
-            return items;
+            return DM.GetReservedItems(RFIDID);
+            
         }
     }
 }

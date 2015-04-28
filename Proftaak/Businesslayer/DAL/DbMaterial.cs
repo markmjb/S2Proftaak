@@ -18,23 +18,19 @@ namespace Businesslayer.DAL
         public List<Item> GetItems()
         {
             List<Item> items = new List<Item>();
+            
             try
             {
                 OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "select materialtypeName, price from PTS2_MATERIALTYPE";
-
                 db.Connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
-
-                string materialtypeName;
-                int price;
-
                 while (reader.Read())
                 {
-                    materialtypeName = Convert.ToString(reader["materialtypeName"]);
-                    price = Convert.ToInt32(reader["price"]);
-                    Item item = new Item(materialtypeName, price);
-                    items.Add(item);               
+                Item item = new Item();
+                item.Name = Convert.ToString(reader["materialtypeName"]);
+                item.Price= Convert.ToInt32(reader["price"]);
+                items.Add(item);               
                 }
             }
             catch (Exception exc)
