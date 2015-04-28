@@ -25,12 +25,12 @@ namespace Businesslayer.DAL
 
             try
             {
-                OleDbCommand cmd = db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText = "select userid from PTS2_user where EMAIL= :email and upas=:pw and isAdmin = 1";
-                cmd.Parameters.AddWithValue("email", email);
-                cmd.Parameters.AddWithValue("pw", pass);
+                cmd.Parameters.Add("email", email);
+                cmd.Parameters.Add("pw", pass);
                 db.Connection.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
+                OracleDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     Logincheck = true;
@@ -59,15 +59,15 @@ namespace Businesslayer.DAL
             Address address = new Address();
             try
             {
-                OleDbCommand cmd = db.Connection.CreateCommand();
+                OracleCommand cmd = db.Connection.CreateCommand();
                 cmd.CommandText =
                     "select U.userid,U.firstname,U.lastname,U.email,U.upas,U.Isadmin,A.Street,A.Housenumber,A.postalcode,A.city,A.province,A.country from PTS2_user U,PTS2_Address A where U.ADDRESSID=A.ADDRESSID and U.EMAIL=:emo and U.upas=:upass";
-                cmd.Parameters.AddWithValue("emo", email);
-                cmd.Parameters.AddWithValue("upass", pass);
+                cmd.Parameters.Add("emo", email);
+                cmd.Parameters.Add("upass", pass);
                 db.Connection.Open();
                 try
                 {
-                    OleDbDataReader reader = cmd.ExecuteReader();
+                    OracleDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         user.ID = Convert.ToInt32(reader["USERID"]);
@@ -116,7 +116,7 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OleDbCommand cmd2 = db.Connection.CreateCommand();
+                OracleCommand cmd2 = db.Connection.CreateCommand();
                 string sql = string.Format("Update PTS2_User set upas='{0}' where UserID={1}", newpass, UserID);
                 cmd2.CommandText = sql;
                 db.Connection.Open();

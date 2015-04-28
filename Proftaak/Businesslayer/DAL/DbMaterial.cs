@@ -20,11 +20,11 @@ namespace Businesslayer.DAL
             List<Item> items = new List<Item>();
             try
             {
-                OleDbCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "select materialtypeName, price from PTS2_MATERIALTYPE";
 
                 db.Connection.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
+                OracleDataReader reader = cmd.ExecuteReader();
 
                 string materialtypeName;
                 int price;
@@ -52,11 +52,11 @@ namespace Businesslayer.DAL
             List<Item> items = new List<Item>();
             try
             {
-                OleDbCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = "SELECT MT.materialtypeName, M.Price, M.MaterialID FROM PTS2_Materialtype MT, PTS2_Material M WHERE MT.materialTypeID = M.MaterialTypeID AND M.MaterialID NOT IN (SELECT materialID FROM PTS2_LOAN)";
 
                 db.Connection.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
+                OracleDataReader reader = cmd.ExecuteReader();
 
                 string materialtypeName;
                 int materialID;
@@ -85,11 +85,11 @@ namespace Businesslayer.DAL
         {
             try
             {
-                OleDbCommand cmd = this.db.Connection.CreateCommand();
+                OracleCommand cmd = this.db.Connection.CreateCommand();
                 cmd.CommandText = String.Format("update PTS2_MATERIALTYPE set price = {0} where materialtypeName = '{1}'", price, materialName);
                // cmd.CommandText = String.Format("update PTS2_MATERIAL set price = {0} where materialName = '{1}'", price, materialName);
-                //cmd.Parameters.AddWithValue("materialName", materialName);
-                //cmd.Parameters.AddWithValue("price", price);
+                //cmd.Parameters.Add("materialName", materialName);
+                //cmd.Parameters.Add("price", price);
                 
 
                 db.Connection.Open();
@@ -104,11 +104,11 @@ namespace Businesslayer.DAL
             {
                 try
                 {
-                    System.Data.OleDb.OleDbCommand cmd = this.db.Connection.CreateCommand();
+                    OracleCommand cmd = this.db.Connection.CreateCommand();
                     //cmd.CommandText = String.Format("update PTS2_MATERIALTYPE set price = {0} where materialtypeName = '{1}'", price, materialName);
                     cmd.CommandText = String.Format("update PTS2_MATERIAL set price = {0} where materialName = '{1}'", price, materialName);
-                    //cmd.Parameters.AddWithValue("materialName", materialName);
-                    //cmd.Parameters.AddWithValue("price", price);
+                    //cmd.Parameters.Add("materialName", materialName);
+                    //cmd.Parameters.Add("price", price);
 
 
                     //DbMateriall.Open();
@@ -129,13 +129,13 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "INSERT INTO PTS2_MATERIAL (materialName, description, price, materialTypeID, eventID)VALUES (:materialName, :description, :price, :materialTypeID, :eventID)";
-               cmd.Parameters.AddWithValue("materialName", materialName);
-               cmd.Parameters.AddWithValue("description", description);
-               cmd.Parameters.AddWithValue("price", price);
-               cmd.Parameters.AddWithValue("materialTypeID", materialTypeID);
-               cmd.Parameters.AddWithValue("eventID", eventID);
+               cmd.Parameters.Add("materialName", materialName);
+               cmd.Parameters.Add("description", description);
+               cmd.Parameters.Add("price", price);
+               cmd.Parameters.Add("materialTypeID", materialTypeID);
+               cmd.Parameters.Add("eventID", eventID);
 
                db.Connection.Open();
 
@@ -154,9 +154,9 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_MATERIAL WHERE materialID = :MaterialID";
-               cmd.Parameters.AddWithValue("materialID", MaterialID);              
+               cmd.Parameters.Add("materialID", MaterialID);              
 
                db.Connection.Open();
 
@@ -176,12 +176,12 @@ namespace Businesslayer.DAL
            int price = 0;
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "select price from PTS2_MATERIALTYPE where materialtypeName = :materialName";
-               cmd.Parameters.AddWithValue("materialName", materialName);
+               cmd.Parameters.Add("materialName", materialName);
 
                db.Connection.Open();
-               OleDbDataReader reader = cmd.ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
                {
@@ -203,11 +203,11 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "UPDATE PTS2_DEBT SET amount = :debt WHERE userID = :usID AND EventID = :evID";
-               cmd.Parameters.AddWithValue("debt", debt);
-               cmd.Parameters.AddWithValue("usID", userId);
-               cmd.Parameters.AddWithValue("evID", eventId);
+               cmd.Parameters.Add("debt", debt);
+               cmd.Parameters.Add("usID", userId);
+               cmd.Parameters.Add("evID", eventId);
 
                db.Connection.Open();
                cmd.ExecuteNonQuery();
@@ -226,13 +226,13 @@ namespace Businesslayer.DAL
           User RFIDuser = null;
           try
           {
-              OleDbCommand cmd = this.db.Connection.CreateCommand();
+              OracleCommand cmd = this.db.Connection.CreateCommand();
               cmd.CommandText = "SELECT R.ReservationID, U.userID, U.lastName, U.firstName, U.Email, U.isAdmin, U.upas, U.isPresent, R.StartDate, R.endDate, G.Groupname, A.Street, A.Housenumber, A.Postalcode, A.Province, A.City, A.Country, D.Amount FROM PTS2_GROUP G, PTS2_USER U, PTS2_ADDRESS A, PTS2_RESERVATION R, PTS2_DEBT D, PTS2_USER_RESERVATION UR, PTS2_RFID RF WHERE G.GroupID = U.GroupID AND A.AddressID = U.AddressID AND D.UserID = U.UserID AND UR.UserID = U.UserID AND UR.ReservationID = R.ReservationID AND RF.UserID = U.UserID AND RF.RFID = :riID";
 
-              cmd.Parameters.AddWithValue("riID", RFID);
+              cmd.Parameters.Add("riID", RFID);
 
               db.Connection.Open();
-              OleDbDataReader reader = cmd.ExecuteReader();
+              OracleDataReader reader = cmd.ExecuteReader();
 
               int ReservationNr;
               int UserID;
@@ -310,13 +310,13 @@ namespace Businesslayer.DAL
            int RFIDID = 0;
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT RFIDID FROM PTS2_RFID WHERE UserID = :usID";
-               cmd.Parameters.AddWithValue("usID", UserID);
+               cmd.Parameters.Add("usID", UserID);
 
                db.Connection.Open();
                cmd.ExecuteReader();
-               OleDbDataReader reader = cmd.ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
 
                while (reader.Read())
                {
@@ -337,13 +337,13 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "INSERT INTO PTS2_LOAN (materialID, rfidID, userID, startDate, endDate) VALUES (:maID, :rfID, :usID, :sDate, :eDate)";
-               cmd.Parameters.AddWithValue("maID", materialID);
-               cmd.Parameters.AddWithValue("rfID", RFIDID);
-               cmd.Parameters.AddWithValue("usID", UserID);
-               cmd.Parameters.AddWithValue("sDate", StartDate);
-               cmd.Parameters.AddWithValue("eDate", Enddate);
+               cmd.Parameters.Add("maID", materialID);
+               cmd.Parameters.Add("rfID", RFIDID);
+               cmd.Parameters.Add("usID", UserID);
+               cmd.Parameters.Add("sDate", StartDate);
+               cmd.Parameters.Add("eDate", Enddate);
 
                db.Connection.Open();
                cmd.ExecuteNonQuery();
@@ -361,10 +361,10 @@ namespace Businesslayer.DAL
        {
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "DELETE FROM PTS2_LOAN WHERE materialID = :maID AND rfidID = :rfID";
-               cmd.Parameters.AddWithValue("maID", materialID);
-               cmd.Parameters.AddWithValue("rfID", RFIDID);
+               cmd.Parameters.Add("maID", materialID);
+               cmd.Parameters.Add("rfID", RFIDID);
 
                db.Connection.Open();
                cmd.ExecuteNonQuery();
@@ -383,13 +383,13 @@ namespace Businesslayer.DAL
            List<Item> items = new List<Item>();
            try
            {
-               OleDbCommand cmd = this.db.Connection.CreateCommand();
+               OracleCommand cmd = this.db.Connection.CreateCommand();
                cmd.CommandText = "SELECT M.Price, MT.MaterialTypeName, L.StartDate, L.Enddate FROM PTS2_LOAN L, PTS2_MATERIAL M, PTS2_MATERIALTYPE MT WHERE L.MaterialID = M.MaterialID AND M.MaterialtypeID = MT.MaterialtypeID AND L.RFIDID = :rfID";
-               cmd.Parameters.AddWithValue("rfID", RFIDID);
+               cmd.Parameters.Add("rfID", RFIDID);
 
                db.Connection.Open();
                cmd.ExecuteReader();
-               OleDbDataReader reader = cmd.ExecuteReader();
+               OracleDataReader reader = cmd.ExecuteReader();
 
                string materialtypeName;
                int price;
