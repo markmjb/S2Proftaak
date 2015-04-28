@@ -38,7 +38,6 @@ namespace Proftaak
         {
          StartScreen S = new StartScreen();
             S.Show();
-
             rfid.Attach -= new AttachEventHandler(rfid_Attach);
             rfid.Detach -= new DetachEventHandler(rfid_Detach);
             rfid.Tag -= new TagEventHandler(rfid_Tag);
@@ -219,7 +218,7 @@ namespace Proftaak
             string test = tbPrice.Text;
             int num1;
             bool isNummer = int.TryParse(test, out num1);
-            if(cbItem.SelectedItem != null && tbPrice.Text !=  "" && isNummer == true)
+            if(cbItem.SelectedItem != null && tbPrice.Text !=  "" && isNummer)
             {
                 IB.ChangePrice(cbItem.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text));
                 Update();
@@ -246,15 +245,19 @@ namespace Proftaak
                 MessageBox.Show("Enter a value of each field");
             }
         }
+        // Button 3 = Order Button
         private void button3_Click(object sender, EventArgs e)  
         {
             Event SelEv = Events.ElementAt(cbEvents.SelectedIndex);
             if(lbSelectItem.SelectedIndex != -1 && ScannedUser != null)
             {
+                // Create an instance of the Item Object that is selected in the listbox
                  Item Select = items.ElementAt(lbSelectItem.SelectedIndex);
+               // Adds the total price of the order to the debt of the scanned user. 
                  totalprice = Select.Price * Convert.ToInt32(nudAmount.Value) + Convert.ToInt32(ScannedUser.Debt);
-
+                // Gets the total stock of items that is not already on loan.
                  List<Item> StockItems = IB.GetStockItems();
+                // Loops through all stockitems, and adds all the Items that have the same name to the list (bad coding)
                  List<Item> SelectedStockItems = new List<Item>();
 
                  foreach (Item I in StockItems)
@@ -264,14 +267,15 @@ namespace Proftaak
                            SelectedStockItems.Add(I);
                       }
                   }
+                // Gets the RFID from the scanned user. If you have a scanned user object, you have an RFID. retarded code
                   int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
-
+                // Loops through the stockitems until the whole order of Nudamount value is completed. 
                   for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
                   {
                      Item SelItem = StockItems.ElementAt(i);
                      IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
                   }
-
+                // Finally updates the user debt to reflect the given order.
                 IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);
                 MessageBox.Show("The order has been completed");
            }
@@ -279,7 +283,9 @@ namespace Proftaak
             {
                 MessageBox.Show("Select an item or scan RFID");
             }
+            LoadComboBoxes();
         }
+        // Button 1 is the Hand in button
         private void button1_Click(object sender, EventArgs e)
         {
             if (cbYourItems.SelectedIndex != -1)
