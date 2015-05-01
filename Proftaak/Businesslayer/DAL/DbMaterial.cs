@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using Businesslayer.Business;
 using Oracle.DataAccess.Client;
 using System.Data.OleDb;
@@ -9,6 +10,7 @@ namespace Businesslayer.DAL
    public class DbMaterial
    {
        private readonly Databaseconnection db;
+       private Item item;
         
         public DbMaterial()
         {
@@ -380,26 +382,18 @@ namespace Businesslayer.DAL
            try
            {
                OracleCommand cmd = this.db.Connection.CreateCommand();
-               cmd.CommandText = "SELECT M.Price, MT.MaterialTypeName, L.StartDate, L.Enddate FROM PTS2_LOAN L, PTS2_MATERIAL M, PTS2_MATERIALTYPE MT WHERE L.MaterialID = M.MaterialID AND M.MaterialtypeID = MT.MaterialtypeID AND L.RFIDID = :rfID";
+               cmd.CommandText = "SELECT M.materialID, M.Price, MT.MaterialTypeName, L.StartDate, L.Enddate FROM PTS2_LOAN L, PTS2_MATERIAL M, PTS2_MATERIALTYPE MT WHERE L.MaterialID = M.MaterialID AND M.MaterialtypeID = MT.MaterialtypeID AND L.RFIDID = :rfID";
                cmd.Parameters.Add("rfID", RFIDID);
-
                db.Connection.Open();
-               cmd.ExecuteReader();
                OracleDataReader reader = cmd.ExecuteReader();
-
-               string materialtypeName;
-               int price;
-               DateTime StartDate;
-               DateTime EndDate;
-
                while (reader.Read())
                {
-                   materialtypeName = Convert.ToString(reader["materialtypeName"]);
-                   price = Convert.ToInt32(reader["price"]);
-                   StartDate = Convert.ToDateTime(reader["StartDate"]);
-                   EndDate = Convert.ToDateTime(reader["endDate"]);
-
-                   Item item = new Item(materialtypeName, price, StartDate, EndDate);
+                   Item item = new Item();
+                   item.ID = Convert.ToInt32(reader["materialID"]);
+                   item.Name = Convert.ToString(reader["materialtypeName"]);
+                   item.Price = Convert.ToInt32(reader["price"]);
+                   item.StartDate = Convert.ToDateTime(reader["StartDate"]);
+                   item.EndDate = Convert.ToDateTime(reader["endDate"]);
                    items.Add(item);
                }
            }

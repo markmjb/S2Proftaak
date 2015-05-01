@@ -461,7 +461,7 @@
             // 
             this.cbItemStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItemStock.FormattingEnabled = true;
-            this.cbItemStock.Location = new System.Drawing.Point(52, 479);
+            this.cbItemStock.Location = new System.Drawing.Point(52, 480);
             this.cbItemStock.Margin = new System.Windows.Forms.Padding(4);
             this.cbItemStock.Name = "cbItemStock";
             this.cbItemStock.Size = new System.Drawing.Size(191, 24);

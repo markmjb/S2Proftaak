@@ -183,6 +183,12 @@ namespace Proftaak
         }
         void LoadComboBoxes()
         {
+            lbItems.Items.Clear();
+            lbSelectItem.Items.Clear();
+            cbEvents.Items.Clear();
+            cbItem.Items.Clear();
+            cbItemStock.Items.Clear();
+            cbEvents.Items.Clear();
             items = IB.GetItems();
             Events = IB.GetEvents();
             ScannedUser = IB.RFIDuser(TempRFID);
@@ -196,9 +202,20 @@ namespace Proftaak
             foreach (Item I in items)
             {
                 cbItem.Items.Add(I.Name);
-                cbItemStock.Items.Add(I.Name + " , €" + I.Price);
+                cbItemStock.Items.Add(I.Name);
                 lbSelectItem.Items.Add(I.Name + " , €" + I.Price);
                 lbItems.Items.Add("Product : " + I.Name + " , prijs: €" + I.Price);
+            }
+            cbYourItems.Items.Clear();
+            if (ScannedUser != null)
+            {
+                int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
+                LoanItems = IB.GetReservedItems(RFIDID);
+
+                foreach (Item I in LoanItems)
+                {
+                    cbYourItems.Items.Add(I.Name);
+                }
             }
         }
         void LoadCbItems()
@@ -237,6 +254,7 @@ namespace Proftaak
             if ( tbAdd.Text != "" && isNummer == true)
             {
                 Event E = Events.ElementAt(cbEventsStock.SelectedIndex);
+                Item I = items.ElementAt(cbItemStock.SelectedIndex);
                 IB.AddStock(cbItemStock.SelectedItem.ToString(), Convert.ToInt32(tbPrice.Text), E.EventID );
                 Update();
             }
@@ -270,14 +288,21 @@ namespace Proftaak
                 // Gets the RFID from the scanned user. If you have a scanned user object, you have an RFID. retarded code
                   int RFIDID = IB.GetRFIDIDUser(ScannedUser.ID);
                 // Loops through the stockitems until the whole order of Nudamount value is completed. 
+                if (SelectedStockItems.Count>=nudAmount.Value)
+                { 
                   for (int i = 0; i < Convert.ToInt32(nudAmount.Value); i++)
                   {
-                     Item SelItem = StockItems.ElementAt(i);
+                     Item SelItem = SelectedStockItems.ElementAt(i);
                      IB.UpdateLoan(SelItem.ID, RFIDID, Userlogin.Loggeduser.ID, ScannedUser.StartDate, ScannedUser.EndDate);
                   }
                 // Finally updates the user debt to reflect the given order.
                 IB.GiveUserDebt(ScannedUser.ID, SelEv.EventID, totalprice);
                 MessageBox.Show("The order has been completed");
+                }
+                else
+                {
+                    MessageBox.Show("Not enough items in the database");
+                }
            }
             else
             {
@@ -300,6 +325,7 @@ namespace Proftaak
             {
                 MessageBox.Show("Select an item");
             }
+            LoadComboBoxes();
         }
         private void lbRFIDNr_TextChanged(object sender, EventArgs e)
         {
