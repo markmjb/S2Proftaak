@@ -148,14 +148,13 @@ namespace Proftaak
         {
             if (tbNewGroup.Text!=string.Empty)
             { 
-         bool Groupexists = RC.CheckGroup(tbNewGroup.Text);
-            if (Groupexists)
+            if (this.RC.CheckGroup(this.tbNewGroup.Text))
                 {
                     MessageBox.Show("Group already exists");
                 }
             else
                 {
-                    RC.CreateGroup(tbNewGroup.Text);
+                    this.RC.CreateGroup(this.tbNewGroup.Text);
                 }
         
             }
