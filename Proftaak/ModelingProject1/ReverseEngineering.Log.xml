@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2015-04-24T09:44:50" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer' -  (Package)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business' -  (Package)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem' -  (Class)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Category' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::CategoryID' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::dbm' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Description' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Filepath' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Filesize' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Filetype' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Likeid' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediacategoryid' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediacategoryofid' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem' -  (Operation)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::description' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::Description' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::filepath' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::filesize' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::filetype' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::Filetype' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::likeid' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::mediacategoryid' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::mediacategoryofid' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::mediaitemcommentid' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::mediaitemid' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::size' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::text' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::title' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::Title' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::Type' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::userid' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitem::UserID' -  (Parameter)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::MediaitemcommentID' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Mediaitemid' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Text' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::Title' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::ToString' -  (Operation)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::Business::Mediaitem::UserID' -  (Property)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::DAL' -  (Package)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Businesslayer::DAL::DbMedia' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'String' -  (PrimitiveType)" />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="High" Text="(1) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2015-04-24T09:44:52" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>

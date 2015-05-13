@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="2ad58158-9616-4e01-8f4e-661fb66221d3"
+  name="Businesslayer"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="8a8c612c-b7b9-4bba-bbdf-5e777e210d4f"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DBusinesslayer"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="57e7ee08-84c7-452c-a31e-8ff89a19351b"
+        LastKnownName="Business"
+        LastKnownLocation="Package1_0922.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="74773b3c-f34e-46be-949b-c4012b625366"
+        LastKnownName="DAL"
+        LastKnownLocation="Package5_0922.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

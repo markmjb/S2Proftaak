@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ad62fb81-2fdb-403f-a1e2-04b95152add9"
+  name="Phidgets"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="6d5f26c8-9c14-44d9-b0ad-715ac3abde85"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DPhidgets"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="0099361a-bd8b-457e-a2b4-b6ec9ba1b319"
+        LastKnownName="Events"
+        LastKnownLocation="Package4_0923.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3c094067-c4f4-406d-8cce-a505704469dc"
+        name="Phidget"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a0c3b049-cf65-4e10-b2c2-84171f9e51d6"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FPhidgets%2FPhidget21.NET.dll&quot; Namespace%3DPhidgets Type%3DPhidget"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4d9b9c8a-4612-4c27-8b37-bb218a84380b"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="332c4250-0b02-4ff7-9316-8c21cc274007">
+                <propertyInstance
+                  Id="f6fcfdc1-d7f8-4cd5-99c9-a0f7b4ff61cd"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dcd4bd0c-207d-440c-a48d-c32848c804d3">
+                <propertyInstance
+                  Id="5d226e18-02a3-436b-9355-9cd605f6be73"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9196cc24-b217-43f1-9299-34b3eb1aacb3">
+                <propertyInstance
+                  Id="48108c01-5426-49f6-a5be-b1108e1870a4"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e853ada-f691-4873-8fbe-30a47d25ddf1">
+                <propertyInstance
+                  Id="acc1af08-9268-4e56-b9b4-74c7da8189b6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="631b6a17-a663-4000-9110-46f0cb45973a">
+                <propertyInstance
+                  Id="99f90690-e8cb-40c5-96eb-ed80ea7cee99"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4282c9c0-d165-487b-b0e7-d891b9eb1fc2"
+        name="RFID"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="6190e745-4a1b-49b0-adf5-0e7f0afaebeb"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FPhidgets%2FPhidget21.NET.dll&quot; Namespace%3DPhidgets Type%3DRFID"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="187e3620-d554-43b4-9c05-1643294dbf7b"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e833244f-3071-41c2-9b75-613db5820c6e">
+                <propertyInstance
+                  Id="c39c339e-ea44-450c-bf33-77835233f6ac"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a6e99a27-2c39-40bd-bd4e-0ac94aaf9134">
+                <propertyInstance
+                  Id="a78f938a-a974-4de6-bfbc-961e74736304"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4913ea9d-941e-4966-85fd-9597652fd6a2">
+                <propertyInstance
+                  Id="f2a56456-626a-41bf-938d-f5749e5e0c45"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c7928e49-6da1-4aea-a283-7bdc7082b82e">
+                <propertyInstance
+                  Id="d9746172-7845-4883-8b15-8c411f0acf3d"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="10851e18-2572-4f0b-a273-4dfb1692aab1">
+                <propertyInstance
+                  Id="9f1684ec-525d-4216-a0d8-bec0993cf239"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="803001cb-0724-4cbf-8a6a-ecaa6d9d82d7"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3c094067-c4f4-406d-8cce-a505704469dc"
+              LastKnownName="Phidget"
+              LastKnownLocation="Package3_0923.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
